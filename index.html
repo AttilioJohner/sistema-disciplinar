@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Fichas Disciplinares</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * {
@@ -53,62 +52,41 @@
             backdrop-filter: blur(10px);
         }
 
-        .upload-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+        .config-section {
             margin-bottom: 30px;
         }
 
-        .upload-box {
-            border: 3px dashed #667eea;
-            border-radius: 10px;
-            padding: 40px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            background: linear-gradient(45deg, #f8f9ff, #fff);
+        .input-group {
+            margin-bottom: 20px;
         }
 
-        .upload-box:hover {
-            border-color: #764ba2;
-            background: linear-gradient(45deg, #f0f2ff, #f8f9ff);
-            transform: translateY(-2px);
-        }
-
-        .upload-box.dragover {
-            border-color: #764ba2;
-            background: linear-gradient(45deg, #e8ebff, #f0f2ff);
-        }
-
-        .upload-box input {
-            display: none;
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            color: #667eea;
-            margin-bottom: 15px;
-        }
-
-        .upload-text {
-            font-size: 1.1rem;
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
             color: #555;
-            margin-bottom: 10px;
         }
 
-        .file-info {
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e6ff;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .url-example {
             font-size: 0.9rem;
-            color: #777;
-        }
-
-        .uploaded {
-            border-color: #28a745;
-            background: linear-gradient(45deg, #f0fff4, #f8fff8);
-        }
-
-        .uploaded .upload-icon {
-            color: #28a745;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
         }
 
         .btn {
@@ -136,6 +114,10 @@
             transform: none;
         }
 
+        .btn.success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
         .controls {
             display: flex;
             justify-content: center;
@@ -146,6 +128,35 @@
 
         .results {
             margin-top: 30px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #f8f9ff, #fff);
+            border: 1px solid #e0e6ff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .summary-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .summary-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .student-card {
@@ -187,7 +198,7 @@
 
         .student-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             margin-bottom: 15px;
         }
@@ -201,13 +212,18 @@
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            color: #667eea;
+            margin-bottom: 5px;
         }
 
+        .stat-number.total { color: #667eea; }
+        .stat-number.injustificada { color: #dc3545; }
+        .stat-number.justificada { color: #28a745; }
+        .stat-number.presente { color: #17a2b8; }
+
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -231,6 +247,40 @@
             border-radius: 5px;
             margin-bottom: 8px;
             border-left: 4px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-date {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .detail-type {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .detail-type.F {
+            background: #fff5f5;
+            color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+
+        .detail-type.A {
+            background: #f0fff4;
+            color: #28a745;
+            border: 1px solid #28a745;
+        }
+
+        .detail-type.P {
+            background: #f0f9ff;
+            color: #17a2b8;
+            border: 1px solid #17a2b8;
         }
 
         .loading {
@@ -273,12 +323,31 @@
             border-left: 4px solid #28a745;
         }
 
+        .filter-section {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
-            .upload-section {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
             .controls {
                 flex-direction: column;
                 align-items: center;
@@ -291,6 +360,10 @@
             .header h1 {
                 font-size: 2rem;
             }
+
+            .summary-stats {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
@@ -298,33 +371,49 @@
     <div class="container">
         <div class="header">
             <h1>📋 Sistema de Fichas Disciplinares</h1>
-            <p>Geração automática de relatórios disciplinares escolares</p>
+            <p>Conectado diretamente ao Google Sheets - Atualização automática</p>
         </div>
 
         <div class="card">
-            <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">Upload das Planilhas</h2>
+            <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">Configuração da Planilha</h2>
             
-            <div class="upload-section">
-                <div class="upload-box" id="faltasUpload">
-                    <div class="upload-icon">📊</div>
-                    <div class="upload-text">Controle de Faltas</div>
-                    <div class="file-info">Clique ou arraste o arquivo CSV</div>
-                    <input type="file" id="faltasFile" accept=".csv">
+            <div class="config-section">
+                <div class="input-group">
+                    <label for="planilhaUrl">🔗 URL da Planilha do Google Sheets</label>
+                    <input 
+                        type="text" 
+                        id="planilhaUrl" 
+                        placeholder="Cole aqui a URL da sua planilha..."
+                        value="">
+                    <div class="url-example">
+                        Exemplo: https://docs.google.com/spreadsheets/d/1ABc...xyz/edit#gid=0
+                    </div>
                 </div>
 
-                <div class="upload-box" id="disciplinasUpload">
-                    <div class="upload-icon">⚖️</div>
-                    <div class="upload-text">Medidas Disciplinares</div>
-                    <div class="file-info">Clique ou arraste o arquivo CSV</div>
-                    <input type="file" id="disciplinasFile" accept=".csv">
+                <div class="input-group">
+                    <label for="abaFaltas">📊 Nome da Aba de Faltas</label>
+                    <input 
+                        type="text" 
+                        id="abaFaltas" 
+                        placeholder="Nome da aba com os dados de faltas"
+                        value="BD_Faltas">
+                </div>
+
+                <div class="input-group">
+                    <label for="abaDisciplinares">⚖️ Nome da Aba de Medidas Disciplinares (opcional)</label>
+                    <input 
+                        type="text" 
+                        id="abaDisciplinares" 
+                        placeholder="Nome da aba com medidas disciplinares"
+                        value="BD_Disciplinares">
                 </div>
             </div>
 
             <div class="controls">
-                <button class="btn" id="processBtn" disabled onclick="processData()">
-                    🔄 Processar Dados
+                <button class="btn" id="carregarBtn" onclick="carregarDados()">
+                    🔄 Carregar Dados
                 </button>
-                <button class="btn" id="exportBtn" disabled onclick="exportToPDF()" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                <button class="btn success" id="exportBtn" disabled onclick="exportToPDF()">
                     📄 Exportar PDF
                 </button>
             </div>
@@ -332,192 +421,303 @@
 
         <div id="results" class="results" style="display: none;">
             <div class="card">
-                <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">Fichas Disciplinares</h2>
+                <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">Relatório Geral</h2>
+                
+                <div class="summary-stats" id="summaryStats"></div>
+
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label>🎯 Filtrar por Turma:</label>
+                        <select id="filtroTurma" onchange="filtrarAlunos()">
+                            <option value="">Todas as turmas</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>📈 Ordenar por:</label>
+                        <select id="ordenacao" onchange="ordenarAlunos()">
+                            <option value="nome">Nome (A-Z)</option>
+                            <option value="totalFaltas">Total de Faltas</option>
+                            <option value="faltasInjustificadas">Faltas Injustificadas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h3 style="color: #667eea; margin-bottom: 20px;">Fichas Individuais</h3>
                 <div id="studentsContainer"></div>
             </div>
         </div>
     </div>
 
     <script>
-        let faltasData = [];
-        let disciplinasData = [];
         let processedData = [];
+        let filteredData = [];
 
-        // Setup drag and drop
-        setupUploadBox('faltasUpload', 'faltasFile');
-        setupUploadBox('disciplinasUpload', 'disciplinasFile');
+        async function carregarDados() {
+            const planilhaUrl = document.getElementById('planilhaUrl').value.trim();
+            const abaFaltas = document.getElementById('abaFaltas').value.trim();
+            const abaDisciplinares = document.getElementById('abaDisciplinares').value.trim();
 
-        function setupUploadBox(boxId, inputId) {
-            const box = document.getElementById(boxId);
-            const input = document.getElementById(inputId);
+            if (!planilhaUrl) {
+                showMessage('Por favor, insira a URL da planilha!', 'error');
+                return;
+            }
 
-            box.addEventListener('click', () => input.click());
+            showMessage('Carregando dados da planilha...', 'loading');
 
-            box.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                box.classList.add('dragover');
-            });
-
-            box.addEventListener('dragleave', () => {
-                box.classList.remove('dragover');
-            });
-
-            box.addEventListener('drop', (e) => {
-                e.preventDefault();
-                box.classList.remove('dragover');
-                if (e.dataTransfer.files.length > 0) {
-                    input.files = e.dataTransfer.files;
-                    handleFileUpload(input);
+            try {
+                // Extrair ID da planilha da URL
+                const sheetId = extractSheetId(planilhaUrl);
+                if (!sheetId) {
+                    throw new Error('URL da planilha inválida');
                 }
-            });
 
-            input.addEventListener('change', () => handleFileUpload(input));
-        }
+                // Carregar dados de faltas
+                const faltasData = await carregarAbaCSV(sheetId, abaFaltas);
+                console.log('Dados de faltas carregados:', faltasData.length, 'registros');
 
-        function handleFileUpload(input) {
-            const file = input.files[0];
-            if (!file) return;
-
-            const box = input.parentElement;
-            const fileName = file.name;
-            
-            Papa.parse(file, {
-                header: true,
-                skipEmptyLines: true,
-                dynamicTyping: true,
-                complete: function(results) {
-                    if (input.id === 'faltasFile') {
-                        faltasData = results.data;
-                        box.classList.add('uploaded');
-                        box.querySelector('.file-info').textContent = `✅ ${fileName} carregado`;
-                    } else {
-                        disciplinasData = results.data;
-                        box.classList.add('uploaded');
-                        box.querySelector('.file-info').textContent = `✅ ${fileName} carregado`;
+                // Tentar carregar dados disciplinares (opcional)
+                let disciplinaresData = [];
+                if (abaDisciplinares) {
+                    try {
+                        disciplinaresData = await carregarAbaCSV(sheetId, abaDisciplinares);
+                        console.log('Dados disciplinares carregados:', disciplinaresData.length, 'registros');
+                    } catch (error) {
+                        console.log('Aba disciplinar não encontrada ou vazia, continuando só com faltas...');
                     }
-                    
-                    checkIfReadyToProcess();
-                },
-                error: function(error) {
-                    console.error('Erro ao processar arquivo:', error);
-                    showMessage('Erro ao processar arquivo: ' + fileName, 'error');
                 }
-            });
-        }
 
-        function checkIfReadyToProcess() {
-            const processBtn = document.getElementById('processBtn');
-            if (faltasData.length > 0 && disciplinasData.length > 0) {
-                processBtn.disabled = false;
+                // Processar dados
+                processedData = processarDados(faltasData, disciplinaresData);
+                filteredData = [...processedData];
+                
+                displayResults();
+                document.getElementById('exportBtn').disabled = false;
+                
+                showMessage(`✅ Dados carregados com sucesso! ${processedData.length} alunos encontrados.`, 'success');
+
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                showMessage(`Erro ao carregar dados: ${error.message}`, 'error');
             }
         }
 
-        function processData() {
-            showMessage('Processando dados...', 'loading');
+        function extractSheetId(url) {
+            const match = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+            return match ? match[1] : null;
+        }
+
+        async function carregarAbaCSV(sheetId, abaName) {
+            const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(abaName)}`;
             
-            setTimeout(() => {
-                try {
-                    // Agrupar dados por aluno
-                    const studentsMap = new Map();
+            const response = await fetch(csvUrl);
+            if (!response.ok) {
+                throw new Error(`Não foi possível carregar a aba "${abaName}"`);
+            }
+            
+            const csvText = await response.text();
+            return parseCSV(csvText);
+        }
 
-                    // Processar faltas
-                    faltasData.forEach(row => {
-                        const studentName = (row['Nome do Aluno'] || row['Nome'] || row['Aluno'] || '').toString().trim();
-                        if (!studentName) return;
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n').filter(line => line.trim());
+            if (lines.length < 2) return [];
 
-                        if (!studentsMap.has(studentName)) {
-                            studentsMap.set(studentName, {
-                                nome: studentName,
-                                turma: row['Turma'] || row['Classe'] || 'N/A',
-                                matricula: row['Matrícula'] || row['RA'] || 'N/A',
-                                faltas: [],
-                                medidas: [],
-                                totalFaltas: 0,
-                                totalMedidas: 0
-                            });
-                        }
+            const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
+            const data = [];
 
-                        const student = studentsMap.get(studentName);
-                        const data = row['Data'] || row['Data da Falta'] || 'N/A';
-                        const disciplina = row['Disciplina'] || row['Matéria'] || 'N/A';
-                        const justificada = row['Justificada'] || row['Justificado'] || 'Não';
-
-                        student.faltas.push({
-                            data: data,
-                            disciplina: disciplina,
-                            justificada: justificada
-                        });
-                        student.totalFaltas++;
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.replace(/"/g, '').trim());
+                if (values.length >= headers.length && values[0]) {
+                    const row = {};
+                    headers.forEach((header, index) => {
+                        row[header] = values[index] || '';
                     });
-
-                    // Processar medidas disciplinares
-                    disciplinasData.forEach(row => {
-                        const studentName = (row['Nome do Aluno'] || row['Nome'] || row['Aluno'] || '').toString().trim();
-                        if (!studentName) return;
-
-                        if (!studentsMap.has(studentName)) {
-                            studentsMap.set(studentName, {
-                                nome: studentName,
-                                turma: row['Turma'] || row['Classe'] || 'N/A',
-                                matricula: row['Matrícula'] || row['RA'] || 'N/A',
-                                faltas: [],
-                                medidas: [],
-                                totalFaltas: 0,
-                                totalMedidas: 0
-                            });
-                        }
-
-                        const student = studentsMap.get(studentName);
-                        const data = row['Data'] || row['Data da Ocorrência'] || 'N/A';
-                        const medida = row['Medida'] || row['Tipo de Medida'] || row['Medida Aplicada'] || 'N/A';
-                        const motivo = row['Motivo'] || row['Descrição'] || row['Observações'] || 'N/A';
-
-                        student.medidas.push({
-                            data: data,
-                            medida: medida,
-                            motivo: motivo
-                        });
-                        student.totalMedidas++;
-                    });
-
-                    processedData = Array.from(studentsMap.values()).sort((a, b) => a.nome.localeCompare(b.nome));
-                    displayResults();
-                    
-                    document.getElementById('exportBtn').disabled = false;
-                    showMessage(`✅ Dados processados com sucesso! ${processedData.length} alunos encontrados.`, 'success');
-                    
-                } catch (error) {
-                    console.error('Erro no processamento:', error);
-                    showMessage('Erro ao processar os dados. Verifique o formato dos arquivos.', 'error');
+                    data.push(row);
                 }
-            }, 500);
+            }
+
+            return data;
+        }
+
+        function processarDados(faltasData, disciplinaresData = []) {
+            const studentsMap = new Map();
+
+            // Processar faltas
+            faltasData.forEach(row => {
+                const nome = (row.nome || row['nome do aluno'] || row.aluno || '').toString().trim();
+                const turma = (row.turma || row.classe || 'N/A').toString().trim();
+                const data = (row.data || 'N/A').toString().trim();
+                const tipo = (row.tipo || 'P').toString().trim().toUpperCase();
+
+                if (!nome) return;
+
+                if (!studentsMap.has(nome)) {
+                    studentsMap.set(nome, {
+                        nome: nome,
+                        turma: turma,
+                        faltas: [],
+                        medidas: [],
+                        totalRegistros: 0,
+                        totalFaltas: 0,
+                        faltasJustificadas: 0,
+                        faltasInjustificadas: 0,
+                        diasPresentes: 0
+                    });
+                }
+
+                const student = studentsMap.get(nome);
+                
+                // Atualizar turma se estava como N/A
+                if (student.turma === 'N/A' && turma !== 'N/A') {
+                    student.turma = turma;
+                }
+
+                student.faltas.push({
+                    data: data,
+                    tipo: tipo
+                });
+
+                student.totalRegistros++;
+
+                if (tipo === 'F') {
+                    student.totalFaltas++;
+                    student.faltasInjustificadas++;
+                } else if (tipo === 'A') {
+                    student.totalFaltas++;
+                    student.faltasJustificadas++;
+                } else if (tipo === 'P') {
+                    student.diasPresentes++;
+                }
+            });
+
+            // Processar medidas disciplinares
+            disciplinaresData.forEach(row => {
+                const nome = (row.nome || row['nome do aluno'] || row.aluno || '').toString().trim();
+                const data = (row.data || row['data da ocorrência'] || 'N/A').toString().trim();
+                const medida = (row.medida || row['tipo de medida'] || 'N/A').toString().trim();
+                const motivo = (row.motivo || row.descrição || row.observações || 'N/A').toString().trim();
+
+                if (!nome) return;
+
+                if (!studentsMap.has(nome)) {
+                    studentsMap.set(nome, {
+                        nome: nome,
+                        turma: 'N/A',
+                        faltas: [],
+                        medidas: [],
+                        totalRegistros: 0,
+                        totalFaltas: 0,
+                        faltasJustificadas: 0,
+                        faltasInjustificadas: 0,
+                        diasPresentes: 0
+                    });
+                }
+
+                const student = studentsMap.get(nome);
+                student.medidas.push({
+                    data: data,
+                    medida: medida,
+                    motivo: motivo
+                });
+            });
+
+            return Array.from(studentsMap.values()).sort((a, b) => a.nome.localeCompare(b.nome));
         }
 
         function displayResults() {
-            const container = document.getElementById('studentsContainer');
-            const resultsSection = document.getElementById('results');
+            displaySummaryStats();
+            populateFilters();
+            displayStudents();
             
+            const resultsSection = document.getElementById('results');
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function displaySummaryStats() {
+            const container = document.getElementById('summaryStats');
+            
+            const totalAlunos = processedData.length;
+            const totalFaltas = processedData.reduce((sum, student) => sum + student.totalFaltas, 0);
+            const totalInjustificadas = processedData.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
+            const totalJustificadas = processedData.reduce((sum, student) => sum + student.faltasJustificadas, 0);
+            const totalMedidas = processedData.reduce((sum, student) => sum + student.medidas.length, 0);
+
+            container.innerHTML = `
+                <div class="summary-box">
+                    <div class="summary-number">${totalAlunos}</div>
+                    <div class="summary-label">Total de Alunos</div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-number">${totalFaltas}</div>
+                    <div class="summary-label">Total de Faltas</div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-number">${totalInjustificadas}</div>
+                    <div class="summary-label">Faltas Injustificadas</div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-number">${totalJustificadas}</div>
+                    <div class="summary-label">Faltas Justificadas</div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-number">${totalMedidas}</div>
+                    <div class="summary-label">Medidas Disciplinares</div>
+                </div>
+            `;
+        }
+
+        function populateFilters() {
+            const filtroTurma = document.getElementById('filtroTurma');
+            const turmas = [...new Set(processedData.map(student => student.turma))].sort();
+            
+            filtroTurma.innerHTML = '<option value="">Todas as turmas</option>';
+            turmas.forEach(turma => {
+                filtroTurma.innerHTML += `<option value="${turma}">${turma}</option>`;
+            });
+        }
+
+        function filtrarAlunos() {
+            const turmaFiltro = document.getElementById('filtroTurma').value;
+            
+            filteredData = processedData.filter(student => 
+                !turmaFiltro || student.turma === turmaFiltro
+            );
+            
+            ordenarAlunos();
+        }
+
+        function ordenarAlunos() {
+            const ordenacao = document.getElementById('ordenacao').value;
+            
+            filteredData.sort((a, b) => {
+                switch (ordenacao) {
+                    case 'totalFaltas':
+                        return b.totalFaltas - a.totalFaltas;
+                    case 'faltasInjustificadas':
+                        return b.faltasInjustificadas - a.faltasInjustificadas;
+                    default:
+                        return a.nome.localeCompare(b.nome);
+                }
+            });
+            
+            displayStudents();
+        }
+
+        function displayStudents() {
+            const container = document.getElementById('studentsContainer');
             container.innerHTML = '';
 
-            processedData.forEach(student => {
+            filteredData.forEach(student => {
                 const studentCard = createStudentCard(student);
                 container.appendChild(studentCard);
             });
-
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
         }
 
         function createStudentCard(student) {
             const card = document.createElement('div');
             card.className = 'student-card';
             
-            const faltasJustificadas = student.faltas.filter(f => 
-                f.justificada && f.justificada.toString().toLowerCase().includes('sim')
-            ).length;
-            
-            const faltasInjustificadas = student.totalFaltas - faltasJustificadas;
-
             card.innerHTML = `
                 <div class="student-header">
                     <div class="student-name">${student.nome}</div>
@@ -526,31 +726,41 @@
                 
                 <div class="student-stats">
                     <div class="stat-box">
-                        <div class="stat-number">${student.totalFaltas}</div>
+                        <div class="stat-number total">${student.totalFaltas}</div>
                         <div class="stat-label">Total de Faltas</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-number">${faltasInjustificadas}</div>
-                        <div class="stat-label">Faltas Injustificadas</div>
+                        <div class="stat-number injustificada">${student.faltasInjustificadas}</div>
+                        <div class="stat-label">Injustificadas (F)</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-number">${student.totalMedidas}</div>
+                        <div class="stat-number justificada">${student.faltasJustificadas}</div>
+                        <div class="stat-label">Justificadas (A)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number presente">${student.diasPresentes}</div>
+                        <div class="stat-label">Dias Presentes (P)</div>
+                    </div>
+                    ${student.medidas.length > 0 ? `
+                    <div class="stat-box">
+                        <div class="stat-number total">${student.medidas.length}</div>
                         <div class="stat-label">Medidas Disciplinares</div>
                     </div>
+                    ` : ''}
                 </div>
 
                 ${student.faltas.length > 0 ? `
                 <div class="details-section">
-                    <div class="details-title">📅 Histórico de Faltas</div>
-                    ${student.faltas.slice(0, 5).map(falta => `
+                    <div class="details-title">📅 Últimos Registros de Frequência</div>
+                    ${student.faltas.slice(-10).reverse().map(falta => `
                         <div class="detail-item">
-                            <strong>${falta.data}</strong> - ${falta.disciplina} 
-                            <span style="color: ${falta.justificada && falta.justificada.toString().toLowerCase().includes('sim') ? '#28a745' : '#dc3545'};">
-                                (${falta.justificada || 'Não informado'})
+                            <span class="detail-date">${falta.data}</span>
+                            <span class="detail-type ${falta.tipo}">
+                                ${falta.tipo === 'F' ? 'FALTA' : falta.tipo === 'A' ? 'ATESTADO' : 'PRESENTE'}
                             </span>
                         </div>
                     `).join('')}
-                    ${student.faltas.length > 5 ? `<div style="text-align: center; color: #666; font-style: italic;">... e mais ${student.faltas.length - 5} faltas</div>` : ''}
+                    ${student.faltas.length > 10 ? `<div style="text-align: center; color: #666; font-style: italic; margin-top: 10px;">... e mais ${student.faltas.length - 10} registros</div>` : ''}
                 </div>
                 ` : ''}
 
@@ -559,11 +769,13 @@
                     <div class="details-title">⚖️ Medidas Disciplinares</div>
                     ${student.medidas.slice(0, 5).map(medida => `
                         <div class="detail-item">
-                            <strong>${medida.data}</strong> - ${medida.medida}<br>
-                            <small style="color: #666;">${medida.motivo}</small>
+                            <div>
+                                <strong>${medida.data}</strong> - ${medida.medida}<br>
+                                <small style="color: #666;">${medida.motivo}</small>
+                            </div>
                         </div>
                     `).join('')}
-                    ${student.medidas.length > 5 ? `<div style="text-align: center; color: #666; font-style: italic;">... e mais ${student.medidas.length - 5} medidas</div>` : ''}
+                    ${student.medidas.length > 5 ? `<div style="text-align: center; color: #666; font-style: italic; margin-top: 10px;">... e mais ${student.medidas.length - 5} medidas</div>` : ''}
                 </div>
                 ` : ''}
             `;
@@ -572,7 +784,7 @@
         }
 
         function exportToPDF() {
-            if (processedData.length === 0) {
+            if (filteredData.length === 0) {
                 showMessage('Nenhum dado para exportar!', 'error');
                 return;
             }
@@ -593,10 +805,24 @@
                 doc.setFontSize(12);
                 doc.setTextColor(0, 0, 0);
                 doc.text(`Data de geração: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
-                doc.text(`Total de alunos: ${processedData.length}`, 120, yPos);
+                doc.text(`Total de alunos: ${filteredData.length}`, 120, yPos);
                 yPos += 20;
 
-                processedData.forEach((student, index) => {
+                // Estatísticas gerais
+                const totalFaltas = filteredData.reduce((sum, student) => sum + student.totalFaltas, 0);
+                const totalInjustificadas = filteredData.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
+                
+                doc.setFontSize(14);
+                doc.setTextColor(102, 126, 234);
+                doc.text('RESUMO GERAL', 20, yPos);
+                yPos += 10;
+                
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`Total de Faltas: ${totalFaltas} | Injustificadas: ${totalInjustificadas} | Justificadas: ${totalFaltas - totalInjustificadas}`, 20, yPos);
+                yPos += 20;
+
+                filteredData.forEach((student, index) => {
                     // Verificar se precisa de nova página
                     if (yPos > pageHeight - 60) {
                         doc.addPage();
@@ -604,117 +830,3 @@
                     }
 
                     // Cabeçalho do aluno
-                    doc.setFontSize(14);
-                    doc.setTextColor(102, 126, 234);
-                    doc.text(`${index + 1}. ${student.nome}`, 20, yPos);
-                    yPos += 8;
-                    
-                    doc.setFontSize(10);
-                    doc.setTextColor(100, 100, 100);
-                    doc.text(`Turma: ${student.turma} | Matrícula: ${student.matricula}`, 20, yPos);
-                    yPos += 12;
-
-                    // Estatísticas
-                    doc.setFontSize(12);
-                    doc.setTextColor(0, 0, 0);
-                    const faltasJustificadas = student.faltas.filter(f => 
-                        f.justificada && f.justificada.toString().toLowerCase().includes('sim')
-                    ).length;
-                    
-                    doc.text(`Total de Faltas: ${student.totalFaltas}`, 20, yPos);
-                    doc.text(`Faltas Injustificadas: ${student.totalFaltas - faltasJustificadas}`, 80, yPos);
-                    doc.text(`Medidas Disciplinares: ${student.totalMedidas}`, 140, yPos);
-                    yPos += 15;
-
-                    // Faltas (resumo)
-                    if (student.faltas.length > 0) {
-                        doc.setFontSize(11);
-                        doc.setTextColor(102, 126, 234);
-                        doc.text('Últimas Faltas:', 20, yPos);
-                        yPos += 6;
-                        
-                        doc.setFontSize(9);
-                        doc.setTextColor(0, 0, 0);
-                        student.faltas.slice(0, 3).forEach(falta => {
-                            doc.text(`• ${falta.data} - ${falta.disciplina}`, 25, yPos);
-                            yPos += 5;
-                        });
-                        yPos += 5;
-                    }
-
-                    // Medidas (resumo)
-                    if (student.medidas.length > 0) {
-                        doc.setFontSize(11);
-                        doc.setTextColor(102, 126, 234);
-                        doc.text('Medidas Disciplinares:', 20, yPos);
-                        yPos += 6;
-                        
-                        doc.setFontSize(9);
-                        doc.setTextColor(0, 0, 0);
-                        student.medidas.slice(0, 3).forEach(medida => {
-                            doc.text(`• ${medida.data} - ${medida.medida}`, 25, yPos);
-                            yPos += 5;
-                        });
-                        yPos += 5;
-                    }
-
-                    yPos += 10; // Espaço entre alunos
-                });
-
-                // Salvar PDF
-                const fileName = `relatorio_disciplinar_${new Date().toISOString().slice(0, 10)}.pdf`;
-                doc.save(fileName);
-                
-                showMessage('✅ PDF exportado com sucesso!', 'success');
-                
-            } catch (error) {
-                console.error('Erro ao gerar PDF:', error);
-                showMessage('Erro ao gerar PDF. Tente novamente.', 'error');
-            }
-        }
-
-        function showMessage(message, type) {
-            // Remove mensagens anteriores
-            const existingMessages = document.querySelectorAll('.message');
-            existingMessages.forEach(msg => msg.remove());
-
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}`;
-            messageDiv.style.position = 'fixed';
-            messageDiv.style.top = '20px';
-            messageDiv.style.right = '20px';
-            messageDiv.style.zIndex = '1000';
-            messageDiv.style.padding = '15px 20px';
-            messageDiv.style.borderRadius = '8px';
-            messageDiv.style.maxWidth = '400px';
-            messageDiv.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-
-            if (type === 'loading') {
-                messageDiv.innerHTML = message;
-                messageDiv.style.background = '#f8f9ff';
-                messageDiv.style.color = '#667eea';
-                messageDiv.style.border = '1px solid #667eea';
-            } else if (type === 'error') {
-                messageDiv.innerHTML = '❌ ' + message;
-                messageDiv.style.background = '#fff5f5';
-                messageDiv.style.color = '#dc3545';
-                messageDiv.style.borderLeft = '4px solid #dc3545';
-            } else if (type === 'success') {
-                messageDiv.innerHTML = message;
-                messageDiv.style.background = '#f0fff4';
-                messageDiv.style.color = '#28a745';
-                messageDiv.style.borderLeft = '4px solid #28a745';
-            }
-
-            document.body.appendChild(messageDiv);
-
-            if (type !== 'loading') {
-                setTimeout(() => {
-                    messageDiv.style.opacity = '0';
-                    setTimeout(() => messageDiv.remove(), 300);
-                }, 4000);
-            }
-        }
-    </script>
-</body>
-</html>
