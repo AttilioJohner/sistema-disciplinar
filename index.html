@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Fichas Disciplinares</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .upload-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .upload-box {
+            border: 3px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: linear-gradient(45deg, #f8f9ff, #fff);
+        }
+
+        .upload-box:hover {
+            border-color: #764ba2;
+            background: linear-gradient(45deg, #f0f2ff, #f8f9ff);
+            transform: translateY(-2px);
+        }
+
+        .upload-box.dragover {
+            border-color: #764ba2;
+            background: linear-gradient(45deg, #e8ebff, #f0f2ff);
+        }
+
+        .upload-box input {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .file-info {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .uploaded {
+            border-color: #28a745;
+            background: linear-gradient(45deg, #f0fff4, #f8fff8);
+        }
+
+        .uploaded .upload-icon {
+            color: #28a745;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .student-card {
+            background: linear-gradient(135deg, #f8f9ff, #fff);
+            border: 1px solid #e0e6ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .student-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .student-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f2ff;
+        }
+
+        .student-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .student-class {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .student-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e6ff;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .details-section {
+            margin-top: 15px;
+        }
+
+        .details-title {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f2ff;
+        }
+
+        .detail-item {
+            background: #f8f9ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            color: #dc3545;
+            background: #fff5f5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .success {
+            color: #28a745;
+            background: #f0fff4;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        @media (max-width: 768px) {
+            .upload-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .student-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Sistema de Fichas Disciplinares</h1>
+            <p>Geração automática de relatórios disciplinares escolares</p>
+        </div>
+
+        <div class="card">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">Upload das Planilhas</h2>
+            
+            <div class="upload-section">
+                <div class="upload-box" id="faltasUpload">
+                    <div class="upload-icon">📊</div>
+                    <div class="upload-text">Controle de Faltas</div>
+                    <div class="file-info">Clique ou arraste o arquivo CSV</div>
+                    <input type="file" id="faltasFile" accept=".csv">
+                </div>
+
+                <div class="upload-box" id="disciplinasUpload">
+                    <div class="upload-icon">⚖️</div>
+                    <div class="upload-text">Medidas Disciplinares</div>
+                    <div class="file-info">Clique ou arraste o arquivo CSV</div>
+                    <input type="file" id="disciplinasFile" accept=".csv">
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="btn" id="processBtn" disabled onclick="processData()">
+                    🔄 Processar Dados
+                </button>
+                <button class="btn" id="exportBtn" disabled onclick="exportToPDF()" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                    📄 Exportar PDF
+                </button>
+            </div>
+        </div>
+
+        <div id="results" class="results" style="display: none;">
+            <div class="card">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">Fichas Disciplinares</h2>
+                <div id="studentsContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let faltasData = [];
+        let disciplinasData = [];
+        let processedData = [];
+
+        // Setup drag and drop
+        setupUploadBox('faltasUpload', 'faltasFile');
+        setupUploadBox('disciplinasUpload', 'disciplinasFile');
+
+        function setupUploadBox(boxId, inputId) {
+            const box = document.getElementById(boxId);
+            const input = document.getElementById(inputId);
+
+            box.addEventListener('click', () => input.click());
+
+            box.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                box.classList.add('dragover');
+            });
+
+            box.addEventListener('dragleave', () => {
+                box.classList.remove('dragover');
+            });
+
+            box.addEventListener('drop', (e) => {
+                e.preventDefault();
+                box.classList.remove('dragover');
+                if (e.dataTransfer.files.length > 0) {
+                    input.files = e.dataTransfer.files;
+                    handleFileUpload(input);
+                }
+            });
+
+            input.addEventListener('change', () => handleFileUpload(input));
+        }
+
+        function handleFileUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const box = input.parentElement;
+            const fileName = file.name;
+            
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                dynamicTyping: true,
+                complete: function(results) {
+                    if (input.id === 'faltasFile') {
+                        faltasData = results.data;
+                        box.classList.add('uploaded');
+                        box.querySelector('.file-info').textContent = `✅ ${fileName} carregado`;
+                    } else {
+                        disciplinasData = results.data;
+                        box.classList.add('uploaded');
+                        box.querySelector('.file-info').textContent = `✅ ${fileName} carregado`;
+                    }
+                    
+                    checkIfReadyToProcess();
+                },
+                error: function(error) {
+                    console.error('Erro ao processar arquivo:', error);
+                    showMessage('Erro ao processar arquivo: ' + fileName, 'error');
+                }
+            });
+        }
+
+        function checkIfReadyToProcess() {
+            const processBtn = document.getElementById('processBtn');
+            if (faltasData.length > 0 && disciplinasData.length > 0) {
+                processBtn.disabled = false;
+            }
+        }
+
+        function processData() {
+            showMessage('Processando dados...', 'loading');
+            
+            setTimeout(() => {
+                try {
+                    // Agrupar dados por aluno
+                    const studentsMap = new Map();
+
+                    // Processar faltas
+                    faltasData.forEach(row => {
+                        const studentName = (row['Nome do Aluno'] || row['Nome'] || row['Aluno'] || '').toString().trim();
+                        if (!studentName) return;
+
+                        if (!studentsMap.has(studentName)) {
+                            studentsMap.set(studentName, {
+                                nome: studentName,
+                                turma: row['Turma'] || row['Classe'] || 'N/A',
+                                matricula: row['Matrícula'] || row['RA'] || 'N/A',
+                                faltas: [],
+                                medidas: [],
+                                totalFaltas: 0,
+                                totalMedidas: 0
+                            });
+                        }
+
+                        const student = studentsMap.get(studentName);
+                        const data = row['Data'] || row['Data da Falta'] || 'N/A';
+                        const disciplina = row['Disciplina'] || row['Matéria'] || 'N/A';
+                        const justificada = row['Justificada'] || row['Justificado'] || 'Não';
+
+                        student.faltas.push({
+                            data: data,
+                            disciplina: disciplina,
+                            justificada: justificada
+                        });
+                        student.totalFaltas++;
+                    });
+
+                    // Processar medidas disciplinares
+                    disciplinasData.forEach(row => {
+                        const studentName = (row['Nome do Aluno'] || row['Nome'] || row['Aluno'] || '').toString().trim();
+                        if (!studentName) return;
+
+                        if (!studentsMap.has(studentName)) {
+                            studentsMap.set(studentName, {
+                                nome: studentName,
+                                turma: row['Turma'] || row['Classe'] || 'N/A',
+                                matricula: row['Matrícula'] || row['RA'] || 'N/A',
+                                faltas: [],
+                                medidas: [],
+                                totalFaltas: 0,
+                                totalMedidas: 0
+                            });
+                        }
+
+                        const student = studentsMap.get(studentName);
+                        const data = row['Data'] || row['Data da Ocorrência'] || 'N/A';
+                        const medida = row['Medida'] || row['Tipo de Medida'] || row['Medida Aplicada'] || 'N/A';
+                        const motivo = row['Motivo'] || row['Descrição'] || row['Observações'] || 'N/A';
+
+                        student.medidas.push({
+                            data: data,
+                            medida: medida,
+                            motivo: motivo
+                        });
+                        student.totalMedidas++;
+                    });
+
+                    processedData = Array.from(studentsMap.values()).sort((a, b) => a.nome.localeCompare(b.nome));
+                    displayResults();
+                    
+                    document.getElementById('exportBtn').disabled = false;
+                    showMessage(`✅ Dados processados com sucesso! ${processedData.length} alunos encontrados.`, 'success');
+                    
+                } catch (error) {
+                    console.error('Erro no processamento:', error);
+                    showMessage('Erro ao processar os dados. Verifique o formato dos arquivos.', 'error');
+                }
+            }, 500);
+        }
+
+        function displayResults() {
+            const container = document.getElementById('studentsContainer');
+            const resultsSection = document.getElementById('results');
+            
+            container.innerHTML = '';
+
+            processedData.forEach(student => {
+                const studentCard = createStudentCard(student);
+                container.appendChild(studentCard);
+            });
+
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function createStudentCard(student) {
+            const card = document.createElement('div');
+            card.className = 'student-card';
+            
+            const faltasJustificadas = student.faltas.filter(f => 
+                f.justificada && f.justificada.toString().toLowerCase().includes('sim')
+            ).length;
+            
+            const faltasInjustificadas = student.totalFaltas - faltasJustificadas;
+
+            card.innerHTML = `
+                <div class="student-header">
+                    <div class="student-name">${student.nome}</div>
+                    <div class="student-class">${student.turma}</div>
+                </div>
+                
+                <div class="student-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">${student.totalFaltas}</div>
+                        <div class="stat-label">Total de Faltas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">${faltasInjustificadas}</div>
+                        <div class="stat-label">Faltas Injustificadas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">${student.totalMedidas}</div>
+                        <div class="stat-label">Medidas Disciplinares</div>
+                    </div>
+                </div>
+
+                ${student.faltas.length > 0 ? `
+                <div class="details-section">
+                    <div class="details-title">📅 Histórico de Faltas</div>
+                    ${student.faltas.slice(0, 5).map(falta => `
+                        <div class="detail-item">
+                            <strong>${falta.data}</strong> - ${falta.disciplina} 
+                            <span style="color: ${falta.justificada && falta.justificada.toString().toLowerCase().includes('sim') ? '#28a745' : '#dc3545'};">
+                                (${falta.justificada || 'Não informado'})
+                            </span>
+                        </div>
+                    `).join('')}
+                    ${student.faltas.length > 5 ? `<div style="text-align: center; color: #666; font-style: italic;">... e mais ${student.faltas.length - 5} faltas</div>` : ''}
+                </div>
+                ` : ''}
+
+                ${student.medidas.length > 0 ? `
+                <div class="details-section">
+                    <div class="details-title">⚖️ Medidas Disciplinares</div>
+                    ${student.medidas.slice(0, 5).map(medida => `
+                        <div class="detail-item">
+                            <strong>${medida.data}</strong> - ${medida.medida}<br>
+                            <small style="color: #666;">${medida.motivo}</small>
+                        </div>
+                    `).join('')}
+                    ${student.medidas.length > 5 ? `<div style="text-align: center; color: #666; font-style: italic;">... e mais ${student.medidas.length - 5} medidas</div>` : ''}
+                </div>
+                ` : ''}
+            `;
+
+            return card;
+        }
+
+        function exportToPDF() {
+            if (processedData.length === 0) {
+                showMessage('Nenhum dado para exportar!', 'error');
+                return;
+            }
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                let yPos = 20;
+                const pageHeight = doc.internal.pageSize.height;
+                
+                // Título do relatório
+                doc.setFontSize(18);
+                doc.setTextColor(102, 126, 234);
+                doc.text('RELATÓRIO DISCIPLINAR ESCOLAR', 20, yPos);
+                yPos += 15;
+                
+                doc.setFontSize(12);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`Data de geração: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
+                doc.text(`Total de alunos: ${processedData.length}`, 120, yPos);
+                yPos += 20;
+
+                processedData.forEach((student, index) => {
+                    // Verificar se precisa de nova página
+                    if (yPos > pageHeight - 60) {
+                        doc.addPage();
+                        yPos = 20;
+                    }
+
+                    // Cabeçalho do aluno
+                    doc.setFontSize(14);
+                    doc.setTextColor(102, 126, 234);
+                    doc.text(`${index + 1}. ${student.nome}`, 20, yPos);
+                    yPos += 8;
+                    
+                    doc.setFontSize(10);
+                    doc.setTextColor(100, 100, 100);
+                    doc.text(`Turma: ${student.turma} | Matrícula: ${student.matricula}`, 20, yPos);
+                    yPos += 12;
+
+                    // Estatísticas
+                    doc.setFontSize(12);
+                    doc.setTextColor(0, 0, 0);
+                    const faltasJustificadas = student.faltas.filter(f => 
+                        f.justificada && f.justificada.toString().toLowerCase().includes('sim')
+                    ).length;
+                    
+                    doc.text(`Total de Faltas: ${student.totalFaltas}`, 20, yPos);
+                    doc.text(`Faltas Injustificadas: ${student.totalFaltas - faltasJustificadas}`, 80, yPos);
+                    doc.text(`Medidas Disciplinares: ${student.totalMedidas}`, 140, yPos);
+                    yPos += 15;
+
+                    // Faltas (resumo)
+                    if (student.faltas.length > 0) {
+                        doc.setFontSize(11);
+                        doc.setTextColor(102, 126, 234);
+                        doc.text('Últimas Faltas:', 20, yPos);
+                        yPos += 6;
+                        
+                        doc.setFontSize(9);
+                        doc.setTextColor(0, 0, 0);
+                        student.faltas.slice(0, 3).forEach(falta => {
+                            doc.text(`• ${falta.data} - ${falta.disciplina}`, 25, yPos);
+                            yPos += 5;
+                        });
+                        yPos += 5;
+                    }
+
+                    // Medidas (resumo)
+                    if (student.medidas.length > 0) {
+                        doc.setFontSize(11);
+                        doc.setTextColor(102, 126, 234);
+                        doc.text('Medidas Disciplinares:', 20, yPos);
+                        yPos += 6;
+                        
+                        doc.setFontSize(9);
+                        doc.setTextColor(0, 0, 0);
+                        student.medidas.slice(0, 3).forEach(medida => {
+                            doc.text(`• ${medida.data} - ${medida.medida}`, 25, yPos);
+                            yPos += 5;
+                        });
+                        yPos += 5;
+                    }
+
+                    yPos += 10; // Espaço entre alunos
+                });
+
+                // Salvar PDF
+                const fileName = `relatorio_disciplinar_${new Date().toISOString().slice(0, 10)}.pdf`;
+                doc.save(fileName);
+                
+                showMessage('✅ PDF exportado com sucesso!', 'success');
+                
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                showMessage('Erro ao gerar PDF. Tente novamente.', 'error');
+            }
+        }
+
+        function showMessage(message, type) {
+            // Remove mensagens anteriores
+            const existingMessages = document.querySelectorAll('.message');
+            existingMessages.forEach(msg => msg.remove());
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.position = 'fixed';
+            messageDiv.style.top = '20px';
+            messageDiv.style.right = '20px';
+            messageDiv.style.zIndex = '1000';
+            messageDiv.style.padding = '15px 20px';
+            messageDiv.style.borderRadius = '8px';
+            messageDiv.style.maxWidth = '400px';
+            messageDiv.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+
+            if (type === 'loading') {
+                messageDiv.innerHTML = message;
+                messageDiv.style.background = '#f8f9ff';
+                messageDiv.style.color = '#667eea';
+                messageDiv.style.border = '1px solid #667eea';
+            } else if (type === 'error') {
+                messageDiv.innerHTML = '❌ ' + message;
+                messageDiv.style.background = '#fff5f5';
+                messageDiv.style.color = '#dc3545';
+                messageDiv.style.borderLeft = '4px solid #dc3545';
+            } else if (type === 'success') {
+                messageDiv.innerHTML = message;
+                messageDiv.style.background = '#f0fff4';
+                messageDiv.style.color = '#28a745';
+                messageDiv.style.borderLeft = '4px solid #28a745';
+            }
+
+            document.body.appendChild(messageDiv);
+
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    messageDiv.style.opacity = '0';
+                    setTimeout(() => messageDiv.remove(), 300);
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+</html>
