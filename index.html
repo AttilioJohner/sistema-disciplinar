@@ -453,6 +453,8 @@
                     </div>
                 </div>
 
+                <div id="turmaReport" style="display: none;"></div>
+                
                 <h3 style="color: #667eea; margin-bottom: 20px;">Fichas Individuais</h3>
                 <div id="studentsContainer"></div>
             </div>
@@ -712,6 +714,9 @@
                 updateAlunoFilter(turmaFiltro);
             }
             
+            // Mostrar/esconder relatório de turma
+            displayTurmaReport(turmaFiltro, alunoFiltro);
+            
             ordenarAlunos();
             updateResultsCount();
         }
@@ -745,6 +750,7 @@
             
             filteredData = [...processedData];
             updateAlunoFilter();
+            displayTurmaReport('', '');
             ordenarAlunos();
             updateResultsCount();
         }
@@ -762,6 +768,115 @@
             if (tituloFichas) {
                 tituloFichas.textContent = `Fichas Individuais${contadorTexto}`;
             }
+        }
+
+        function displayTurmaReport(turmaFiltro, alunoFiltro) {
+            const turmaReportDiv = document.getElementById('turmaReport');
+            
+            // Só mostrar relatório de turma se turma estiver selecionada E aluno não estiver selecionado
+            if (turmaFiltro && !alunoFiltro) {
+                const alunosDaTurma = filteredData;
+                const relatorio = generateTurmaReport(turmaFiltro, alunosDaTurma);
+                turmaReportDiv.innerHTML = relatorio;
+                turmaReportDiv.style.display = 'block';
+            } else {
+                turmaReportDiv.style.display = 'none';
+            }
+        }
+
+        function generateTurmaReport(turma, alunos) {
+            if (alunos.length === 0) return '';
+            
+            // Calcular estatísticas da turma
+            const totalAlunos = alunos.length;
+            const totalFaltas = alunos.reduce((sum, student) => sum + student.totalFaltas, 0);
+            const totalInjustificadas = alunos.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
+            const totalJustificadas = alunos.reduce((sum, student) => sum + student.faltasJustificadas, 0);
+            const totalMedidas = alunos.reduce((sum, student) => sum + student.medidas.length, 0);
+            
+            // Alunos com mais faltas (top 5)
+            const alunosComMaisFaltas = [...alunos]
+                .sort((a, b) => b.totalFaltas - a.totalFaltas)
+                .slice(0, 5);
+            
+            // Alunos com medidas disciplinares
+            const alunosComMedidas = alunos.filter(student => student.medidas.length > 0);
+            
+            // Média de faltas por aluno
+            const mediaFaltas = totalAlunos > 0 ? (totalFaltas / totalAlunos).toFixed(1) : 0;
+            
+            return `
+                <div class="card" style="background: linear-gradient(135deg, #e8f2ff, #f8fbff); border: 2px solid #667eea; margin-bottom: 30px;">
+                    <h2 style="text-align: center; color: #667eea; margin-bottom: 25px;">
+                        📊 Relatório da Turma ${turma}
+                    </h2>
+                    
+                    <div class="summary-stats" style="margin-bottom: 25px;">
+                        <div class="summary-box">
+                            <div class="summary-number">${totalAlunos}</div>
+                            <div class="summary-label">Alunos na Turma</div>
+                        </div>
+                        <div class="summary-box">
+                            <div class="summary-number">${mediaFaltas}</div>
+                            <div class="summary-label">Média de Faltas</div>
+                        </div>
+                        <div class="summary-box">
+                            <div class="summary-number">${totalInjustificadas}</div>
+                            <div class="summary-label">Faltas Injustificadas</div>
+                        </div>
+                        <div class="summary-box">
+                            <div class="summary-number">${totalJustificadas}</div>
+                            <div class="summary-label">Faltas Justificadas</div>
+                        </div>
+                        <div class="summary-box">
+                            <div class="summary-number">${totalMedidas}</div>
+                            <div class="summary-label">Medidas Aplicadas</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+                        <div>
+                            <h4 style="color: #667eea; margin-bottom: 15px; border-bottom: 2px solid #e8f2ff; padding-bottom: 8px;">
+                                🔥 Alunos com Mais Faltas
+                            </h4>
+                            ${alunosComMaisFaltas.map((student, index) => `
+                                <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid ${index === 0 ? '#dc3545' : index === 1 ? '#fd7e14' : '#ffc107'};">
+                                    <strong>${student.nome}</strong><br>
+                                    <small style="color: #666;">
+                                        Total: ${student.totalFaltas} | 
+                                        Injustificadas: ${student.faltasInjustificadas} | 
+                                        Justificadas: ${student.faltasJustificadas}
+                                    </small>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <div>
+                            <h4 style="color: #667eea; margin-bottom: 15px; border-bottom: 2px solid #e8f2ff; padding-bottom: 8px;">
+                                ⚖️ Alunos com Medidas Disciplinares
+                            </h4>
+                            ${alunosComMedidas.length > 0 ? 
+                                alunosComMedidas.slice(0, 5).map(student => `
+                                    <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #dc3545;">
+                                        <strong>${student.nome}</strong><br>
+                                        <small style="color: #666;">
+                                            ${student.medidas.length} medida(s) aplicada(s)
+                                        </small>
+                                    </div>
+                                `).join('') 
+                                : 
+                                '<div style="text-align: center; color: #28a745; font-style: italic; padding: 20px;">✅ Nenhuma medida disciplinar aplicada!</div>'
+                            }
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #e8f2ff;">
+                        <button class="btn" onclick="exportTurmaPDF('${turma}')" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                            📄 Exportar Relatório da Turma ${turma}
+                        </button>
+                    </div>
+                </div>
+            `;
         }
 
         function ordenarAlunos() {
@@ -950,6 +1065,116 @@
                 doc.save(fileName);
                 
                 showMessage('✅ PDF exportado com sucesso!', 'success');
+                
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                showMessage('Erro ao gerar PDF. Tente novamente.', 'error');
+            }
+        }
+
+        function exportTurmaPDF(turma) {
+            const alunosDaTurma = processedData.filter(student => student.turma === turma);
+            
+            if (alunosDaTurma.length === 0) {
+                showMessage('Nenhum aluno encontrado nesta turma!', 'error');
+                return;
+            }
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                let yPos = 20;
+                const pageHeight = doc.internal.pageSize.height;
+                
+                // Título do relatório
+                doc.setFontSize(20);
+                doc.setTextColor(102, 126, 234);
+                doc.text(`RELATÓRIO DA TURMA ${turma}`, 20, yPos);
+                yPos += 15;
+                
+                doc.setFontSize(12);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`Data de geração: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
+                doc.text(`Total de alunos: ${alunosDaTurma.length}`, 120, yPos);
+                yPos += 20;
+
+                // Estatísticas da turma
+                const totalFaltas = alunosDaTurma.reduce((sum, student) => sum + student.totalFaltas, 0);
+                const totalInjustificadas = alunosDaTurma.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
+                const totalJustificadas = alunosDaTurma.reduce((sum, student) => sum + student.faltasJustificadas, 0);
+                const totalMedidas = alunosDaTurma.reduce((sum, student) => sum + student.medidas.length, 0);
+                const mediaFaltas = (totalFaltas / alunosDaTurma.length).toFixed(1);
+                
+                doc.setFontSize(16);
+                doc.setTextColor(102, 126, 234);
+                doc.text('RESUMO DA TURMA', 20, yPos);
+                yPos += 12;
+                
+                doc.setFontSize(11);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`• Total de Faltas: ${totalFaltas}`, 20, yPos);
+                yPos += 8;
+                doc.text(`• Faltas Injustificadas: ${totalInjustificadas}`, 20, yPos);
+                yPos += 8;
+                doc.text(`• Faltas Justificadas: ${totalJustificadas}`, 20, yPos);
+                yPos += 8;
+                doc.text(`• Medidas Disciplinares: ${totalMedidas}`, 20, yPos);
+                yPos += 8;
+                doc.text(`• Média de Faltas por Aluno: ${mediaFaltas}`, 20, yPos);
+                yPos += 20;
+
+                // Top 5 alunos com mais faltas
+                const topAlunos = [...alunosDaTurma].sort((a, b) => b.totalFaltas - a.totalFaltas).slice(0, 5);
+                
+                doc.setFontSize(14);
+                doc.setTextColor(102, 126, 234);
+                doc.text('ALUNOS COM MAIS FALTAS', 20, yPos);
+                yPos += 10;
+                
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                topAlunos.forEach((student, index) => {
+                    if (yPos > pageHeight - 40) {
+                        doc.addPage();
+                        yPos = 20;
+                    }
+                    doc.text(`${index + 1}. ${student.nome} - Total: ${student.totalFaltas} (Inj: ${student.faltasInjustificadas})`, 25, yPos);
+                    yPos += 7;
+                });
+                yPos += 15;
+
+                // Alunos com medidas disciplinares
+                const alunosComMedidas = alunosDaTurma.filter(student => student.medidas.length > 0);
+                
+                if (alunosComMedidas.length > 0) {
+                    doc.setFontSize(14);
+                    doc.setTextColor(102, 126, 234);
+                    doc.text('ALUNOS COM MEDIDAS DISCIPLINARES', 20, yPos);
+                    yPos += 10;
+                    
+                    doc.setFontSize(10);
+                    doc.setTextColor(0, 0, 0);
+                    alunosComMedidas.forEach(student => {
+                        if (yPos > pageHeight - 40) {
+                            doc.addPage();
+                            yPos = 20;
+                        }
+                        doc.text(`• ${student.nome} - ${student.medidas.length} medida(s)`, 25, yPos);
+                        yPos += 7;
+                    });
+                } else {
+                    doc.setFontSize(14);
+                    doc.setTextColor(40, 167, 69);
+                    doc.text('✓ NENHUMA MEDIDA DISCIPLINAR APLICADA', 20, yPos);
+                    yPos += 10;
+                }
+
+                // Salvar PDF
+                const fileName = `relatorio_turma_${turma}_${new Date().toISOString().slice(0, 10)}.pdf`;
+                doc.save(fileName);
+                
+                showMessage(`✅ Relatório da turma ${turma} exportado com sucesso!`, 'success');
                 
             } catch (error) {
                 console.error('Erro ao gerar PDF:', error);
