@@ -400,7 +400,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="abaDisciplinares">⚖️ Nome da Aba de Medidas Disciplinares (opcional)</label>
+                    <label for="abaDisciplinares">⚖️ Nome da Aba de Medidas Disciplinares</label>
                     <input 
                         type="text" 
                         id="abaDisciplinares" 
@@ -488,14 +488,15 @@
                 const faltasData = await carregarAbaCSV(sheetId, abaFaltas);
                 console.log('Dados de faltas carregados:', faltasData.length, 'registros');
 
-                // Tentar carregar dados disciplinares (opcional)
+                // Tentar carregar dados disciplinares
                 let disciplinaresData = [];
                 if (abaDisciplinares) {
                     try {
                         disciplinaresData = await carregarAbaCSV(sheetId, abaDisciplinares);
                         console.log('Dados disciplinares carregados:', disciplinaresData.length, 'registros');
                     } catch (error) {
-                        console.log('Aba disciplinar não encontrada ou vazia, continuando só com faltas...');
+                        console.log('Erro ao carregar dados disciplinares:', error.message);
+                        showMessage(`Aviso: Não foi possível carregar medidas disciplinares. Continuando só com faltas...`, 'error');
                     }
                 }
 
@@ -506,7 +507,13 @@
                 displayResults();
                 document.getElementById('exportBtn').disabled = false;
                 
-                showMessage(`✅ Dados carregados com sucesso! ${processedData.length} alunos encontrados.`, 'success');
+                // Mostrar informações sobre os dados carregados
+                const infoFaltas = `${faltasData.length} registros de faltas`;
+                const infoDisciplinares = disciplinaresData.length > 0 ? 
+                    `, ${disciplinaresData.length} registros de medidas disciplinares` : 
+                    ', nenhuma medida disciplinar encontrada';
+                
+                showMessage(`✅ Dados carregados com sucesso! ${processedData.length} alunos encontrados. (${infoFaltas}${infoDisciplinares})`, 'success');
 
             } catch (error) {
                 console.error('Erro ao carregar dados:', error);
