@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Disciplinar - Sistema Escolar</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -173,6 +174,15 @@
             box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
         }
 
+        .btn.info {
+            background: linear-gradient(135deg, #17a2b8, #20c997);
+            box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+        }
+
+        .btn.info:hover {
+            box-shadow: 0 8px 25px rgba(23, 162, 184, 0.4);
+        }
+
         .quick-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -187,11 +197,23 @@
             padding: 20px;
             text-align: center;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
         }
 
         .stat-number {
@@ -246,6 +268,11 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             border-color: #667eea;
+        }
+
+        .module-card.active {
+            border-color: #667eea;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
         }
 
         .module-card.disabled {
@@ -325,6 +352,104 @@
             border-radius: 8px;
             font-size: 0.9rem;
             background: white;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .analytics-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e8f2ff;
+        }
+
+        .analytics-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        .chart-small {
+            height: 250px;
+        }
+
+        .insights-section {
+            background: linear-gradient(135deg, #e8f5e8, #f0fff0);
+            border: 2px solid #28a745;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .insights-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .insight-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .insight-text {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .insight-highlight {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .trend-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .trend-up {
+            background: #fff5f5;
+            color: #dc3545;
+        }
+
+        .trend-down {
+            background: #f0fff4;
+            color: #28a745;
+        }
+
+        .trend-stable {
+            background: #f0f9ff;
+            color: #17a2b8;
         }
 
         .student-card {
@@ -496,12 +621,52 @@
             margin: 20px 0;
         }
 
+        .analytics-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .period-selector {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .period-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .period-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .period-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
         @media (max-width: 1024px) {
             .dashboard {
                 grid-template-columns: 1fr;
             }
             
             .search-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .analytics-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -531,6 +696,11 @@
                 flex-direction: column;
                 align-items: stretch;
             }
+
+            .analytics-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
     </style>
 </head>
@@ -548,17 +718,16 @@
                 </div>
 
                 <div class="modules-grid">
-                    <div class="module-card" onclick="ativarModuloRelatorios()">
+                    <div class="module-card" id="relatoriosCard" onclick="ativarModulo('relatorios')">
                         <div class="module-icon">📋</div>
                         <div class="module-name">Relatórios</div>
                         <div class="module-description">Consultas e relatórios de faltas e medidas disciplinares</div>
                     </div>
 
-                    <div class="module-card disabled">
+                    <div class="module-card" id="analisesCard" onclick="ativarModulo('analises')">
                         <div class="module-icon">📊</div>
                         <div class="module-name">Análises</div>
                         <div class="module-description">Gráficos e estatísticas avançadas</div>
-                        <div class="coming-soon">Em Breve</div>
                     </div>
 
                     <div class="module-card disabled">
@@ -578,87 +747,164 @@
             </div>
 
             <div class="main-content">
-                <div class="module-title">
-                    📋 Módulo de Relatórios
-                </div>
+                <!-- MÓDULO DE RELATÓRIOS -->
+                <div id="moduloRelatorios" class="modulo-content">
+                    <div class="module-title">
+                        📋 Módulo de Relatórios
+                    </div>
 
-                <div class="quick-stats" id="quickStats" style="display: none;">
-                    <div class="stat-card">
-                        <div class="stat-number primary" id="totalAlunos">0</div>
-                        <div class="stat-label">Total de Alunos</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number danger" id="totalFaltas">0</div>
-                        <div class="stat-label">Total de Faltas</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number warning" id="totalMedidas">0</div>
-                        <div class="stat-label">Medidas Aplicadas</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number info" id="mediaFaltas">0</div>
-                        <div class="stat-label">Média por Aluno</div>
-                    </div>
-                </div>
-
-                <div class="search-section">
-                    <div class="search-title">
-                        🔍 Consultar Dados
-                    </div>
-                    <div class="search-controls">
-                        <div class="search-input-group">
-                            <input 
-                                type="text" 
-                                id="searchInput" 
-                                class="search-input" 
-                                placeholder="Digite o nome de um aluno para buscar..."
-                                onkeypress="handleSearchKeyPress(event)"
-                            >
+                    <div class="quick-stats" id="quickStats" style="display: none;">
+                        <div class="stat-card">
+                            <div class="stat-number primary" id="totalAlunos">0</div>
+                            <div class="stat-label">Total de Alunos</div>
                         </div>
-                        <button class="btn" onclick="carregarDados()">
-                            🔄 Carregar Dados
+                        <div class="stat-card">
+                            <div class="stat-number danger" id="totalFaltas">0</div>
+                            <div class="stat-label">Total de Faltas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number warning" id="totalMedidas">0</div>
+                            <div class="stat-label">Medidas Aplicadas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number info" id="mediaFaltas">0</div>
+                            <div class="stat-label">Média por Aluno</div>
+                        </div>
+                    </div>
+
+                    <div class="search-section">
+                        <div class="search-title">
+                            🔍 Consultar Dados
+                        </div>
+                        <div class="search-controls">
+                            <div class="search-input-group">
+                                <input 
+                                    type="text" 
+                                    id="searchInput" 
+                                    class="search-input" 
+                                    placeholder="Digite o nome de um aluno para buscar..."
+                                    onkeypress="handleSearchKeyPress(event)"
+                                >
+                            </div>
+                            <button class="btn" onclick="carregarDados()">
+                                🔄 Carregar Dados
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="results" class="results" style="display: none;">
+                        <div class="filter-section">
+                            <div class="filter-group">
+                                <label>🎯 Filtrar por Turma:</label>
+                                <select id="filtroTurma" onchange="filtrarAlunos()">
+                                    <option value="">Todas as turmas</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>👤 Filtrar por Aluno:</label>
+                                <select id="filtroAluno" onchange="filtrarAlunos()">
+                                    <option value="">Todos os alunos</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>📈 Ordenar por:</label>
+                                <select id="ordenacao" onchange="ordenarAlunos()">
+                                    <option value="nome">Nome (A-Z)</option>
+                                    <option value="totalFaltas">Total de Faltas</option>
+                                    <option value="faltasInjustificadas">Faltas Injustificadas</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <button class="btn success" onclick="exportToPDF()" id="exportBtn" disabled>
+                                    📄 Exportar PDF
+                                </button>
+                            </div>
+                            <div class="filter-group">
+                                <button class="btn" onclick="limparFiltros()">
+                                    🔄 Limpar Filtros
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="turmaReport" style="display: none;"></div>
+                        
+                        <h3 style="color: #667eea; margin-bottom: 20px; font-size: 1.3rem;">Fichas Individuais</h3>
+                        <div id="studentsContainer"></div>
+                    </div>
+                </div>
+
+                <!-- MÓDULO DE ANÁLISES -->
+                <div id="moduloAnalises" class="modulo-content" style="display: none;">
+                    <div class="module-title">
+                        📊 Módulo de Análises
+                    </div>
+
+                    <div class="analytics-controls">
+                        <div class="period-selector">
+                            <label style="font-weight: 600; color: #555;">📅 Período:</label>
+                            <button class="period-btn active" onclick="setPeriod('30')">30 dias</button>
+                            <button class="period-btn" onclick="setPeriod('90')">90 dias</button>
+                            <button class="period-btn" onclick="setPeriod('180')">6 meses</button>
+                            <button class="period-btn" onclick="setPeriod('365')">1 ano</button>
+                        </div>
+                        <button class="btn info" onclick="atualizarAnalises()">
+                            🔄 Atualizar Análises
                         </button>
                     </div>
-                </div>
 
-                <div id="results" class="results" style="display: none;">
-                    <div class="filter-section">
-                        <div class="filter-group">
-                            <label>🎯 Filtrar por Turma:</label>
-                            <select id="filtroTurma" onchange="filtrarAlunos()">
-                                <option value="">Todas as turmas</option>
-                            </select>
+                    <div class="insights-section" id="insightsSection" style="display: none;">
+                        <div class="insights-title">
+                            🧠 Insights Inteligentes
                         </div>
-                        <div class="filter-group">
-                            <label>👤 Filtrar por Aluno:</label>
-                            <select id="filtroAluno" onchange="filtrarAlunos()">
-                                <option value="">Todos os alunos</option>
-                            </select>
+                        <div id="insightsContainer"></div>
+                    </div>
+
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <div class="analytics-title">
+                                📈 Tendência de Faltas
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="trendChart"></canvas>
+                            </div>
                         </div>
-                        <div class="filter-group">
-                            <label>📈 Ordenar por:</label>
-                            <select id="ordenacao" onchange="ordenarAlunos()">
-                                <option value="nome">Nome (A-Z)</option>
-                                <option value="totalFaltas">Total de Faltas</option>
-                                <option value="faltasInjustificadas">Faltas Injustificadas</option>
-                            </select>
+
+                        <div class="analytics-card">
+                            <div class="analytics-title">
+                                📊 Comparativo por Turma
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="turmaChart"></canvas>
+                            </div>
                         </div>
-                        <div class="filter-group">
-                            <button class="btn success" onclick="exportToPDF()" id="exportBtn" disabled>
-                                📄 Exportar PDF
-                            </button>
+
+                        <div class="analytics-card">
+                            <div class="analytics-title">
+                                🎯 Tipos de Faltas
+                            </div>
+                            <div class="chart-container chart-small">
+                                <canvas id="tipoChart"></canvas>
+                            </div>
                         </div>
-                        <div class="filter-group">
-                            <button class="btn" onclick="limparFiltros()">
-                                🔄 Limpar Filtros
-                            </button>
+
+                        <div class="analytics-card">
+                            <div class="analytics-title">
+                                ⚖️ Medidas Disciplinares
+                            </div>
+                            <div class="chart-container chart-small">
+                                <canvas id="medidasChart"></canvas>
+                            </div>
                         </div>
                     </div>
 
-                    <div id="turmaReport" style="display: none;"></div>
-                    
-                    <h3 style="color: #667eea; margin-bottom: 20px; font-size: 1.3rem;">Fichas Individuais</h3>
-                    <div id="studentsContainer"></div>
+                    <div class="analytics-card">
+                        <div class="analytics-title">
+                            🗓️ Heatmap Semanal
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="heatmapChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -670,18 +916,60 @@
         // ============================================
         const CONFIG = {
             planilhaFaltas: 'https://docs.google.com/spreadsheets/d/1O-eOiOLvsxFNyKv6k6RySRKQ7sZHYYCCVpYUQRsDocM/edit',
-            planilhaDisciplinares: 'https://docs.google.com/spreadsheets/d/1SjhhQTLM26FR0DzeUsgpWdWrXrTcCnYV-jAkCnCWIm4/edit',
+          planilhaDisciplinares: 'https://docs.google.com/spreadsheets/d/1SjhhQTLM26FR0DzeUsgpWdWrXrTcCnYV-jAkCnCWIm4/edit',
             abaFaltas: 'BD_Faltas',
             abaDisciplinares: 'BD_Disciplinares'
         };
 
         let processedData = [];
         let filteredData = [];
+        let currentModule = 'relatorios';
+        let analyticsPeriod = '30';
+        let charts = {};
+
+        // ============================================
+        // SISTEMA DE MÓDULOS
+        // ============================================
+
+        function ativarModulo(modulo) {
+            // Atualizar estado
+            currentModule = modulo;
+            
+            // Resetar cards ativos
+            document.querySelectorAll('.module-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Ativar card selecionado
+            document.getElementById(modulo + 'Card').classList.add('active');
+            
+            // Esconder todos os módulos
+            document.querySelectorAll('.modulo-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Mostrar módulo selecionado
+            if (modulo === 'relatorios') {
+                document.getElementById('moduloRelatorios').style.display = 'block';
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('searchInput').focus();
+            } else if (modulo === 'analises') {
+                document.getElementById('moduloAnalises').style.display = 'block';
+                if (processedData.length > 0) {
+                    atualizarAnalises();
+                } else {
+                    showMessage('Carregue os dados primeiro no módulo de Relatórios!', 'error');
+                }
+            }
+        }
 
         function ativarModuloRelatorios() {
-            document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
-            document.getElementById('searchInput').focus();
+            ativarModulo('relatorios');
         }
+
+        // ============================================
+        // SISTEMA DE CARREGAMENTO DE DADOS
+        // ============================================
 
         function handleSearchKeyPress(event) {
             if (event.key === 'Enter') {
@@ -826,7 +1114,8 @@
 
                 student.faltas.push({
                     data: data,
-                    tipo: tipo
+                    tipo: tipo,
+                    dataObj: parseDate(data)
                 });
 
                 student.totalRegistros++;
@@ -868,12 +1157,486 @@
                 student.medidas.push({
                     data: data,
                     medida: medida,
-                    motivo: motivo
+                    motivo: motivo,
+                    dataObj: parseDate(data)
                 });
             });
 
             return Array.from(studentsMap.values()).sort((a, b) => a.nome.localeCompare(b.nome));
         }
+
+        function parseDate(dateStr) {
+            if (!dateStr || dateStr === 'N/A') return null;
+            
+            // Tentar diferentes formatos de data
+            const formats = [
+                /(\d{1,2})\/(\d{1,2})\/(\d{4})/,  // DD/MM/YYYY
+                /(\d{4})-(\d{1,2})-(\d{1,2})/,   // YYYY-MM-DD
+                /(\d{1,2})-(\d{1,2})-(\d{4})/    // DD-MM-YYYY
+            ];
+            
+            for (let format of formats) {
+                const match = dateStr.match(format);
+                if (match) {
+                    if (format === formats[1]) { // YYYY-MM-DD
+                        return new Date(match[1], match[2] - 1, match[3]);
+                    } else { // DD/MM/YYYY ou DD-MM-YYYY
+                        return new Date(match[3], match[2] - 1, match[1]);
+                    }
+                }
+            }
+            
+            return new Date(dateStr);
+        }
+
+        // ============================================
+        // MÓDULO DE ANÁLISES
+        // ============================================
+
+        function setPeriod(days) {
+            analyticsPeriod = days;
+            
+            // Atualizar botões
+            document.querySelectorAll('.period-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (processedData.length > 0) {
+                atualizarAnalises();
+            }
+        }
+
+        function atualizarAnalises() {
+            if (processedData.length === 0) {
+                showMessage('Carregue os dados primeiro!', 'error');
+                return;
+            }
+
+            showMessage('Gerando análises...', 'loading');
+            
+            setTimeout(() => {
+                try {
+                    criarGraficoTendencia();
+                    criarGraficoTurmas();
+                    criarGraficoTipos();
+                    criarGraficoMedidas();
+                    criarHeatmap();
+                    gerarInsights();
+                    
+                    document.getElementById('insightsSection').style.display = 'block';
+                    showMessage('✅ Análises atualizadas com sucesso!', 'success');
+                } catch (error) {
+                    console.error('Erro ao gerar análises:', error);
+                    showMessage('Erro ao gerar análises. Tente novamente.', 'error');
+                }
+            }, 1000);
+        }
+
+        function criarGraficoTendencia() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            
+            // Destruir gráfico anterior se existir
+            if (charts.trend) {
+                charts.trend.destroy();
+            }
+
+            // Calcular dados de tendência
+            const hoje = new Date();
+            const diasPeriodo = parseInt(analyticsPeriod);
+            const dataInicio = new Date(hoje.getTime() - (diasPeriodo * 24 * 60 * 60 * 1000));
+            
+            const dadosTendencia = calcularTendencia(dataInicio, hoje);
+
+            charts.trend = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dadosTendencia.labels,
+                    datasets: [{
+                        label: 'Faltas Injustificadas',
+                        data: dadosTendencia.injustificadas,
+                        borderColor: '#dc3545',
+                        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: 'Faltas Justificadas',
+                        data: dadosTendencia.justificadas,
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoTurmas() {
+            const ctx = document.getElementById('turmaChart').getContext('2d');
+            
+            if (charts.turma) {
+                charts.turma.destroy();
+            }
+
+            const dadosTurmas = calcularDadosPorTurma();
+
+            charts.turma = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dadosTurmas.labels,
+                    datasets: [{
+                        label: 'Total de Faltas',
+                        data: dadosTurmas.faltas,
+                        backgroundColor: [
+                            'rgba(102, 126, 234, 0.8)',
+                            'rgba(220, 53, 69, 0.8)',
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(23, 162, 184, 0.8)'
+                        ],
+                        borderColor: [
+                            '#667eea',
+                            '#dc3545',
+                            '#28a745',
+                            '#ffc107',
+                            '#17a2b8'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoTipos() {
+            const ctx = document.getElementById('tipoChart').getContext('2d');
+            
+            if (charts.tipo) {
+                charts.tipo.destroy();
+            }
+
+            const dadosTipos = calcularTiposFaltas();
+
+            charts.tipo = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Injustificadas', 'Justificadas', 'Presentes'],
+                    datasets: [{
+                        data: [dadosTipos.injustificadas, dadosTipos.justificadas, dadosTipos.presentes],
+                        backgroundColor: [
+                            '#dc3545',
+                            '#28a745',
+                            '#17a2b8'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoMedidas() {
+            const ctx = document.getElementById('medidasChart').getContext('2d');
+            
+            if (charts.medidas) {
+                charts.medidas.destroy();
+            }
+
+            const dadosMedidas = calcularTiposMedidas();
+
+            charts.medidas = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: dadosMedidas.labels,
+                    datasets: [{
+                        data: dadosMedidas.valores,
+                        backgroundColor: [
+                            '#667eea',
+                            '#dc3545',
+                            '#ffc107',
+                            '#28a745',
+                            '#17a2b8'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarHeatmap() {
+            const ctx = document.getElementById('heatmapChart').getContext('2d');
+            
+            if (charts.heatmap) {
+                charts.heatmap.destroy();
+            }
+
+            const dadosHeatmap = calcularHeatmapSemanal();
+
+            charts.heatmap = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'],
+                    datasets: [{
+                        label: 'Faltas por Dia da Semana',
+                        data: dadosHeatmap,
+                        backgroundColor: [
+                            'rgba(102, 126, 234, 0.8)',
+                            'rgba(220, 53, 69, 0.8)',
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(23, 162, 184, 0.8)'
+                        ],
+                        borderColor: [
+                            '#667eea',
+                            '#dc3545',
+                            '#28a745',
+                            '#ffc107',
+                            '#17a2b8'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        function gerarInsights() {
+            const insights = [];
+            
+            // Insight 1: Turma com mais problemas
+            const dadosTurmas = calcularDadosPorTurma();
+            const turmaProblemática = dadosTurmas.labels[dadosTurmas.faltas.indexOf(Math.max(...dadosTurmas.faltas))];
+            const maxFaltas = Math.max(...dadosTurmas.faltas);
+            
+            insights.push({
+                text: `A turma <span class="insight-highlight">${turmaProblemática}</span> apresenta o maior número de faltas (${maxFaltas}), necessitando atenção especial.`,
+                trend: 'up'
+            });
+
+            // Insight 2: Tendência geral
+            const dadosTipos = calcularTiposFaltas();
+            const percentualInjustificadas = ((dadosTipos.injustificadas / (dadosTipos.injustificadas + dadosTipos.justificadas)) * 100).toFixed(1);
+            
+            insights.push({
+                text: `<span class="insight-highlight">${percentualInjustificadas}%</span> das faltas são injustificadas, indicando possível necessidade de intervenção pedagógica.`,
+                trend: percentualInjustificadas > 70 ? 'up' : percentualInjustificadas < 30 ? 'down' : 'stable'
+            });
+
+            // Insight 3: Medidas disciplinares
+            const totalMedidas = processedData.reduce((sum, student) => sum + student.medidas.length, 0);
+            const alunosComMedidas = processedData.filter(student => student.medidas.length > 0).length;
+            
+            if (totalMedidas > 0) {
+                insights.push({
+                    text: `<span class="insight-highlight">${alunosComMedidas}</span> alunos receberam medidas disciplinares, representando ${((alunosComMedidas / processedData.length) * 100).toFixed(1)}% do total.`,
+                    trend: alunosComMedidas > processedData.length * 0.2 ? 'up' : 'down'
+                });
+            }
+
+            // Insight 4: Dia da semana crítico
+            const heatmapData = calcularHeatmapSemanal();
+            const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+            const diaCritico = dias[heatmapData.indexOf(Math.max(...heatmapData))];
+            
+            insights.push({
+                text: `<span class="insight-highlight">${diaCritico}-feira</span> é o dia com maior número de faltas, sugerindo padrões comportamentais específicos.`,
+                trend: 'stable'
+            });
+
+            // Renderizar insights
+            const container = document.getElementById('insightsContainer');
+            container.innerHTML = insights.map(insight => `
+                <div class="insight-item">
+                    <div class="insight-text">
+                        ${insight.text}
+                        <span class="trend-indicator trend-${insight.trend}">
+                            ${insight.trend === 'up' ? '📈 Atenção' : insight.trend === 'down' ? '📉 Positivo' : '📊 Estável'}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ============================================
+        // FUNÇÕES DE CÁLCULO PARA ANÁLISES
+        // ============================================
+
+        function calcularTendencia(dataInicio, dataFim) {
+            const labels = [];
+            const injustificadas = [];
+            const justificadas = [];
+            
+            // Criar labels de datas
+            const diasPeriodo = parseInt(analyticsPeriod);
+            const intervalo = diasPeriodo > 90 ? 7 : diasPeriodo > 30 ? 3 : 1; // Semanal, tri-diário, ou diário
+            
+            for (let i = 0; i < diasPeriodo; i += intervalo) {
+                const data = new Date(dataInicio.getTime() + (i * 24 * 60 * 60 * 1000));
+                labels.push(data.toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' }));
+                
+                const dataFinal = new Date(data.getTime() + (intervalo * 24 * 60 * 60 * 1000));
+                
+                let faltasInj = 0;
+                let faltasJust = 0;
+                
+                processedData.forEach(student => {
+                    student.faltas.forEach(falta => {
+                        if (falta.dataObj && falta.dataObj >= data && falta.dataObj < dataFinal) {
+                            if (falta.tipo === 'F') faltasInj++;
+                            else if (falta.tipo === 'A') faltasJust++;
+                        }
+                    });
+                });
+                
+                injustificadas.push(faltasInj);
+                justificadas.push(faltasJust);
+            }
+            
+            return { labels, injustificadas, justificadas };
+        }
+
+        function calcularDadosPorTurma() {
+            const turmasMap = new Map();
+            
+            processedData.forEach(student => {
+                const turma = student.turma;
+                if (!turmasMap.has(turma)) {
+                    turmasMap.set(turma, 0);
+                }
+                turmasMap.set(turma, turmasMap.get(turma) + student.totalFaltas);
+            });
+            
+            const labels = Array.from(turmasMap.keys()).sort();
+            const faltas = labels.map(turma => turmasMap.get(turma));
+            
+            return { labels, faltas };
+        }
+
+        function calcularTiposFaltas() {
+            const injustificadas = processedData.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
+            const justificadas = processedData.reduce((sum, student) => sum + student.faltasJustificadas, 0);
+            const presentes = processedData.reduce((sum, student) => sum + student.diasPresentes, 0);
+            
+            return { injustificadas, justificadas, presentes };
+        }
+
+        function calcularTiposMedidas() {
+            const tiposMap = new Map();
+            
+            processedData.forEach(student => {
+                student.medidas.forEach(medida => {
+                    const tipo = medida.medida.split(':')[0].trim(); // Pegar só o tipo base
+                    tiposMap.set(tipo, (tiposMap.get(tipo) || 0) + 1);
+                });
+            });
+            
+            const labels = Array.from(tiposMap.keys());
+            const valores = labels.map(tipo => tiposMap.get(tipo));
+            
+            return { labels, valores };
+        }
+
+        function calcularHeatmapSemanal() {
+            const diasSemana = [0, 0, 0, 0, 0]; // Seg, Ter, Qua, Qui, Sex
+            
+            processedData.forEach(student => {
+                student.faltas.forEach(falta => {
+                    if (falta.dataObj && falta.tipo === 'F') {
+                        const diaSemana = falta.dataObj.getDay(); // 0=Dom, 1=Seg, etc
+                        if (diaSemana >= 1 && diaSemana <= 5) { // Seg a Sex
+                            diasSemana[diaSemana - 1]++;
+                        }
+                    }
+                });
+            });
+            
+            return diasSemana;
+        }
+
+        // ============================================
+        // SISTEMA DE RELATÓRIOS (CÓDIGO EXISTENTE)
+        // ============================================
 
         function displayResults() {
             populateFilters();
@@ -923,488 +1686,265 @@
         }
 
         function updateAlunoFilter(turmaFiltrada = null) {
-            const filtroAluno = document.getElementById('filtroAluno');
-            const alunoAtual = filtroAluno.value;
-            
-            let alunosParaFiltro;
-            if (turmaFiltrada) {
-                alunosParaFiltro = processedData
-                    .filter(student => student.turma === turmaFiltrada)
-                    .map(student => student.nome);
-            } else {
-                alunosParaFiltro = processedData.map(student => student.nome);
-            }
-            
-            const alunosUnicos = [...new Set(alunosParaFiltro)].sort();
-            
-            filtroAluno.innerHTML = '<option value="">Todos os alunos</option>';
-            alunosUnicos.forEach(aluno => {
-                const selected = aluno === alunoAtual ? 'selected' : '';
-                filtroAluno.innerHTML += `<option value="${aluno}" ${selected}>${aluno}</option>`;
-            });
-        }
+    const filtroAluno = document.getElementById('filtroAluno');
+    const alunoAtual = filtroAluno.value;
+    
+    let alunosParaFiltro;
+    
+    if (turmaFiltrada) {
+        alunosParaFiltro = processedData
+            .filter(student => student.turma === turmaFiltrada)
+            .map(student => student.nome)
+            .sort();
+    } else {
+        alunosParaFiltro = processedData.map(student => student.nome).sort();
+    }
+    
+    filtroAluno.innerHTML = '<option value="">Todos os alunos</option>';
+    alunosParaFiltro.forEach(aluno => {
+        const selected = aluno === alunoAtual ? 'selected' : '';
+        filtroAluno.innerHTML += `<option value="${aluno}" ${selected}>${aluno}</option>`;
+    });
+}
 
-        function limparFiltros() {
-            document.getElementById('filtroTurma').value = '';
-            document.getElementById('filtroAluno').value = '';
-            document.getElementById('ordenacao').value = 'nome';
-            document.getElementById('searchInput').value = '';
-            
-            filteredData = [...processedData];
-            updateAlunoFilter();
-            displayTurmaReport('', '');
-            ordenarAlunos();
-            updateResultsCount();
-        }
-
-        function updateResultsCount() {
-            const totalMostrados = filteredData.length;
-            const totalGeral = processedData.length;
-            
-            let contadorTexto = '';
-            if (totalMostrados !== totalGeral) {
-                contadorTexto = ` (${totalMostrados} de ${totalGeral} alunos)`;
-            }
-            
-            const tituloFichas = document.querySelector('h3');
-            if (tituloFichas) {
-                tituloFichas.textContent = `Fichas Individuais${contadorTexto}`;
-            }
-        }
-
-        function displayTurmaReport(turmaFiltro, alunoFiltro) {
-            const turmaReportDiv = document.getElementById('turmaReport');
-            
-            if (turmaFiltro && !alunoFiltro) {
-                const alunosDaTurma = filteredData;
-                const relatorio = generateTurmaReport(turmaFiltro, alunosDaTurma);
-                turmaReportDiv.innerHTML = relatorio;
-                turmaReportDiv.style.display = 'block';
-            } else {
-                turmaReportDiv.style.display = 'none';
-            }
-        }
-
-        function generateTurmaReport(turma, alunos) {
-            if (alunos.length === 0) return '';
-            
-            const totalAlunos = alunos.length;
-            const totalFaltas = alunos.reduce((sum, student) => sum + student.totalFaltas, 0);
-            const totalInjustificadas = alunos.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
-            const totalJustificadas = alunos.reduce((sum, student) => sum + student.faltasJustificadas, 0);
-            const totalMedidas = alunos.reduce((sum, student) => sum + student.medidas.length, 0);
-            
-            const alunosComMaisFaltas = [...alunos].sort((a, b) => b.totalFaltas - a.totalFaltas).slice(0, 5);
-            const alunosComMedidas = alunos.filter(student => student.medidas.length > 0);
-            const mediaFaltas = totalAlunos > 0 ? (totalFaltas / totalAlunos).toFixed(1) : 0;
-            
-            return `
-                <div style="background: linear-gradient(135deg, #e8f2ff, #f8fbff); border: 2px solid #667eea; border-radius: 15px; margin-bottom: 30px; padding: 25px;">
-                    <h2 style="text-align: center; color: #667eea; margin-bottom: 25px; font-size: 1.5rem;">
-                        📊 Relatório da Turma ${turma}
-                    </h2>
-                    
-                    <div class="quick-stats" style="margin-bottom: 25px;">
-                        <div class="stat-card">
-                            <div class="stat-number primary">${totalAlunos}</div>
-                            <div class="stat-label">Alunos na Turma</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number info">${mediaFaltas}</div>
-                            <div class="stat-label">Média de Faltas</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number danger">${totalInjustificadas}</div>
-                            <div class="stat-label">Faltas Injustificadas</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number success">${totalJustificadas}</div>
-                            <div class="stat-label">Faltas Justificadas</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number warning">${totalMedidas}</div>
-                            <div class="stat-label">Medidas Aplicadas</div>
-                        </div>
+function displayTurmaReport(turmaFiltro, alunoFiltro) {
+    const turmaReport = document.getElementById('turmaReport');
+    
+    if (turmaFiltro && !alunoFiltro) {
+        const alunosDaTurma = filteredData;
+        const totalFaltasTurma = alunosDaTurma.reduce((sum, student) => sum + student.totalFaltas, 0);
+        const mediaTurma = alunosDaTurma.length > 0 ? (totalFaltasTurma / alunosDaTurma.length).toFixed(1) : 0;
+        
+        turmaReport.innerHTML = `
+            <div style="background: linear-gradient(135deg, #e8f4fd, #fff); border: 2px solid #17a2b8; border-radius: 15px; padding: 25px; margin-bottom: 25px;">
+                <h3 style="color: #17a2b8; margin-bottom: 15px; font-size: 1.4rem;">📊 Relatório da Turma: ${turmaFiltro}</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #e0f7ff;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #17a2b8; margin-bottom: 5px;">${alunosDaTurma.length}</div>
+                        <div style="font-size: 0.9rem; color: #666; text-transform: uppercase;">Alunos na Turma</div>
                     </div>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
-                        <div>
-                            <h4 style="color: #667eea; margin-bottom: 15px; border-bottom: 2px solid #e8f2ff; padding-bottom: 8px;">
-                                🔥 Alunos com Mais Faltas
-                            </h4>
-                            ${alunosComMaisFaltas.map((student, index) => `
-                                <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid ${index === 0 ? '#dc3545' : index === 1 ? '#fd7e14' : '#ffc107'};">
-                                    <strong>${student.nome}</strong><br>
-                                    <small style="color: #666;">
-                                        Total: ${student.totalFaltas} | 
-                                        Injustificadas: ${student.faltasInjustificadas} | 
-                                        Justificadas: ${student.faltasJustificadas}
-                                    </small>
-                                </div>
-                            `).join('')}
-                        </div>
-                        
-                        <div>
-                            <h4 style="color: #667eea; margin-bottom: 15px; border-bottom: 2px solid #e8f2ff; padding-bottom: 8px;">
-                                ⚖️ Alunos com Medidas Disciplinares
-                            </h4>
-                            ${alunosComMedidas.length > 0 ? 
-                                alunosComMedidas.slice(0, 5).map(student => `
-                                    <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #dc3545;">
-                                        <strong>${student.nome}</strong><br>
-                                        <small style="color: #666;">
-                                            ${student.medidas.length} medida(s) aplicada(s)
-                                        </small>
-                                    </div>
-                                `).join('') 
-                                : 
-                                '<div style="text-align: center; color: #28a745; font-style: italic; padding: 20px;">✅ Nenhuma medida disciplinar aplicada!</div>'
-                            }
-                        </div>
+                    <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #e0f7ff;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #dc3545; margin-bottom: 5px;">${totalFaltasTurma}</div>
+                        <div style="font-size: 0.9rem; color: #666; text-transform: uppercase;">Total de Faltas</div>
                     </div>
-                    
-                    <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #e8f2ff;">
-                        <button class="btn success" onclick="exportTurmaPDF('${turma}')">
-                            📄 Exportar Relatório da Turma ${turma}
-                        </button>
+                    <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #e0f7ff;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #ffc107; margin-bottom: 5px;">${mediaTurma}</div>
+                        <div style="font-size: 0.9rem; color: #666; text-transform: uppercase;">Média por Aluno</div>
                     </div>
                 </div>
-            `;
-        }
+            </div>
+        `;
+        turmaReport.style.display = 'block';
+    } else {
+        turmaReport.style.display = 'none';
+    }
+}
 
-        function ordenarAlunos() {
-            const ordenacao = document.getElementById('ordenacao').value;
+function ordenarAlunos() {
+    const ordenacao = document.getElementById('ordenacao').value;
+    
+    switch(ordenacao) {
+        case 'nome':
+            filteredData.sort((a, b) => a.nome.localeCompare(b.nome));
+            break;
+        case 'totalFaltas':
+            filteredData.sort((a, b) => b.totalFaltas - a.totalFaltas);
+            break;
+        case 'faltasInjustificadas':
+            filteredData.sort((a, b) => b.faltasInjustificadas - a.faltasInjustificadas);
+            break;
+    }
+    
+    displayStudents();
+}
+
+function displayStudents() {
+    const container = document.getElementById('studentsContainer');
+    
+    if (filteredData.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 60px; color: #666; font-size: 1.2rem;">
+                📝 Nenhum aluno encontrado com os filtros aplicados.
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = filteredData.map(student => `
+        <div class="student-card">
+            <div class="student-header">
+                <div class="student-name">${student.nome}</div>
+                <div class="student-class">${student.turma}</div>
+            </div>
             
-            filteredData.sort((a, b) => {
-                switch (ordenacao) {
-                    case 'totalFaltas':
-                        return b.totalFaltas - a.totalFaltas;
-                    case 'faltasInjustificadas':
-                        return b.faltasInjustificadas - a.faltasInjustificadas;
-                    default:
-                        return a.nome.localeCompare(b.nome);
-                }
-            });
-            
-            displayStudents();
-        }
-
-        function displayStudents() {
-            const container = document.getElementById('studentsContainer');
-            container.innerHTML = '';
-
-            filteredData.forEach(student => {
-                const studentCard = createStudentCard(student);
-                container.appendChild(studentCard);
-            });
-        }
-
-        function createStudentCard(student) {
-            const card = document.createElement('div');
-            card.className = 'student-card';
-            
-            card.innerHTML = `
-                <div class="student-header">
-                    <div class="student-name">${student.nome}</div>
-                    <div class="student-class">${student.turma}</div>
+            <div class="student-stats">
+                <div class="stat-box">
+                    <div class="stat-number primary">${student.totalFaltas}</div>
+                    <div class="stat-label">Total Faltas</div>
                 </div>
-                
-                <div class="student-stats">
-                    <div class="stat-box">
-                        <div class="stat-number primary">${student.totalFaltas}</div>
-                        <div class="stat-label">Total de Faltas</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number danger">${student.faltasInjustificadas}</div>
-                        <div class="stat-label">Injustificadas (F)</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number success">${student.faltasJustificadas}</div>
-                        <div class="stat-label">Justificadas (A)</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number info">${student.diasPresentes}</div>
-                        <div class="stat-label">Dias Presentes (P)</div>
-                    </div>
-                    ${student.medidas.length > 0 ? `
-                    <div class="stat-box">
-                        <div class="stat-number warning">${student.medidas.length}</div>
-                        <div class="stat-label">Medidas Disciplinares</div>
-                    </div>
-                    ` : ''}
+                <div class="stat-box">
+                    <div class="stat-number danger">${student.faltasInjustificadas}</div>
+                    <div class="stat-label">Injustificadas</div>
                 </div>
-
-                ${student.faltas.length > 0 ? `
+                <div class="stat-box">
+                    <div class="stat-number success">${student.faltasJustificadas}</div>
+                    <div class="stat-label">Justificadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number info">${student.diasPresentes}</div>
+                    <div class="stat-label">Presenças</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number warning">${student.medidas.length}</div>
+                    <div class="stat-label">Medidas</div>
+                </div>
+            </div>
+            
+            ${student.faltas.length > 0 ? `
                 <div class="details-section">
-                    <div class="details-title">📅 Últimos Registros de Frequência</div>
-                    ${student.faltas.slice(-10).reverse().map(falta => `
+                    <div class="details-title">📅 Histórico de Faltas</div>
+                    ${student.faltas.slice(0, 5).map(falta => `
                         <div class="detail-item">
                             <span class="detail-date">${falta.data}</span>
                             <span class="detail-type ${falta.tipo}">
-                                ${falta.tipo === 'F' ? 'FALTA' : falta.tipo === 'A' ? 'ATESTADO' : 'PRESENTE'}
+                                ${falta.tipo === 'F' ? 'Falta' : falta.tipo === 'A' ? 'Abonada' : 'Presente'}
                             </span>
                         </div>
                     `).join('')}
-                    ${student.faltas.length > 10 ? `<div style="text-align: center; color: #666; font-style: italic; margin-top: 10px;">... e mais ${student.faltas.length - 10} registros</div>` : ''}
+                    ${student.faltas.length > 5 ? `
+                        <div style="text-align: center; padding: 10px; color: #666; font-style: italic;">
+                            ... e mais ${student.faltas.length - 5} registros
+                        </div>
+                    ` : ''}
                 </div>
-                ` : ''}
-
-                ${student.medidas.length > 0 ? `
+            ` : ''}
+            
+            ${student.medidas.length > 0 ? `
                 <div class="details-section">
                     <div class="details-title">⚖️ Medidas Disciplinares</div>
-                    ${student.medidas.slice(0, 5).map(medida => `
+                    ${student.medidas.map(medida => `
                         <div class="detail-item">
                             <div>
-                                <strong>${medida.data}</strong> - ${medida.medida}<br>
-                                <small style="color: #666;">${medida.motivo}</small>
+                                <div class="detail-date">${medida.data}</div>
+                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">
+                                    <strong>${medida.medida}</strong><br>
+                                    ${medida.motivo !== 'N/A' ? medida.motivo : ''}
+                                </div>
                             </div>
                         </div>
                     `).join('')}
-                    ${student.medidas.length > 5 ? `<div style="text-align: center; color: #666; font-style: italic; margin-top: 10px;">... e mais ${student.medidas.length - 5} medidas</div>` : ''}
                 </div>
-                ` : ''}
-            `;
+            ` : ''}
+        </div>
+    `).join('');
+}
 
-            return card;
-        }
+function limparFiltros() {
+    document.getElementById('filtroTurma').value = '';
+    document.getElementById('filtroAluno').value = '';
+    document.getElementById('ordenacao').value = 'nome';
+    document.getElementById('searchInput').value = '';
+    
+    filteredData = [...processedData];
+    displayStudents();
+    updateAlunoFilter();
+    displayTurmaReport('', '');
+    updateResultsCount();
+}
 
-        function exportToPDF() {
-            if (filteredData.length === 0) {
-                showMessage('Nenhum dado para exportar!', 'error');
-                return;
-            }
+function updateResultsCount() {
+    const total = filteredData.length;
+    const totalGeral = processedData.length;
+    
+    if (total !== totalGeral) {
+        showMessage(`📊 Exibindo ${total} de ${totalGeral} alunos`, 'info');
+    }
+}
 
-            try {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                
-                let yPos = 20;
-                const pageHeight = doc.internal.pageSize.height;
-                
-                doc.setFontSize(18);
-                doc.setTextColor(102, 126, 234);
-                doc.text('RELATÓRIO DISCIPLINAR ESCOLAR', 20, yPos);
-                yPos += 15;
-                
-                doc.setFontSize(12);
-                doc.setTextColor(0, 0, 0);
-                doc.text(`Data: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
-                doc.text(`Alunos: ${filteredData.length}`, 120, yPos);
-                yPos += 20;
-
-                const totalFaltas = filteredData.reduce((sum, student) => sum + student.totalFaltas, 0);
-                const totalInjustificadas = filteredData.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
-                
-                doc.setFontSize(14);
-                doc.setTextColor(102, 126, 234);
-                doc.text('RESUMO GERAL', 20, yPos);
-                yPos += 10;
-                
-                doc.setFontSize(10);
-                doc.setTextColor(0, 0, 0);
-                doc.text(`Total de Faltas: ${totalFaltas} | Injustificadas: ${totalInjustificadas} | Justificadas: ${totalFaltas - totalInjustificadas}`, 20, yPos);
-                yPos += 20;
-
-                filteredData.forEach((student, index) => {
-                    if (yPos > pageHeight - 60) {
-                        doc.addPage();
-                        yPos = 20;
-                    }
-
-                    doc.setFontSize(14);
-                    doc.setTextColor(102, 126, 234);
-                    doc.text(`${index + 1}. ${student.nome}`, 20, yPos);
-                    yPos += 8;
-                    
-                    doc.setFontSize(10);
-                    doc.setTextColor(100, 100, 100);
-                    doc.text(`Turma: ${student.turma}`, 20, yPos);
-                    yPos += 12;
-
-                    doc.setFontSize(12);
-                    doc.setTextColor(0, 0, 0);
-                    
-                    doc.text(`Total de Faltas: ${student.totalFaltas}`, 20, yPos);
-                    doc.text(`Injustificadas: ${student.faltasInjustificadas}`, 80, yPos);
-                    doc.text(`Justificadas: ${student.faltasJustificadas}`, 140, yPos);
-                    yPos += 15;
-
-                    if (student.faltas.length > 0) {
-                        doc.setFontSize(11);
-                        doc.setTextColor(102, 126, 234);
-                        doc.text('Últimos Registros:', 20, yPos);
-                        yPos += 6;
-                        
-                        doc.setFontSize(9);
-                        doc.setTextColor(0, 0, 0);
-                        student.faltas.slice(-5).forEach(falta => {
-                            doc.text(`• ${falta.data} - ${falta.tipo}`, 25, yPos);
-                            yPos += 5;
-                        });
-                        yPos += 5;
-                    }
-
-                    yPos += 10;
-                });
-
-                const fileName = `relatorio_disciplinar_${new Date().toISOString().slice(0, 10)}.pdf`;
-                doc.save(fileName);
-                
-                showMessage('✅ PDF exportado com sucesso!', 'success');
-                
-            } catch (error) {
-                console.error('Erro ao gerar PDF:', error);
-                showMessage('Erro ao gerar PDF. Tente novamente.', 'error');
-            }
-        }
-
-        function exportTurmaPDF(turma) {
-            const alunosDaTurma = processedData.filter(student => student.turma === turma);
+function exportToPDF() {
+    if (filteredData.length === 0) {
+        showMessage('Nenhum dado para exportar!', 'error');
+        return;
+    }
+    
+    showMessage('Gerando PDF...', 'loading');
+    
+    setTimeout(() => {
+        try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
             
-            if (alunosDaTurma.length === 0) {
-                showMessage('Nenhum aluno encontrado nesta turma!', 'error');
-                return;
-            }
-
-            try {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                
-                let yPos = 20;
-                const pageHeight = doc.internal.pageSize.height;
-                
-                doc.setFontSize(20);
-                doc.setTextColor(102, 126, 234);
-                doc.text(`RELATÓRIO DA TURMA ${turma}`, 20, yPos);
-                yPos += 15;
-                
-                doc.setFontSize(12);
-                doc.setTextColor(0, 0, 0);
-                doc.text(`Data: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
-                doc.text(`Alunos: ${alunosDaTurma.length}`, 120, yPos);
-                yPos += 20;
-
-                const totalFaltas = alunosDaTurma.reduce((sum, student) => sum + student.totalFaltas, 0);
-                const totalInjustificadas = alunosDaTurma.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
-                const totalJustificadas = alunosDaTurma.reduce((sum, student) => sum + student.faltasJustificadas, 0);
-                const totalMedidas = alunosDaTurma.reduce((sum, student) => sum + student.medidas.length, 0);
-                const mediaFaltas = (totalFaltas / alunosDaTurma.length).toFixed(1);
-                
-                doc.setFontSize(16);
-                doc.setTextColor(102, 126, 234);
-                doc.text('RESUMO DA TURMA', 20, yPos);
-                yPos += 12;
-                
-                doc.setFontSize(11);
-                doc.setTextColor(0, 0, 0);
-                doc.text(`• Total de Faltas: ${totalFaltas}`, 20, yPos);
-                yPos += 8;
-                doc.text(`• Faltas Injustificadas: ${totalInjustificadas}`, 20, yPos);
-                yPos += 8;
-                doc.text(`• Faltas Justificadas: ${totalJustificadas}`, 20, yPos);
-                yPos += 8;
-                doc.text(`• Medidas Disciplinares: ${totalMedidas}`, 20, yPos);
-                yPos += 8;
-                doc.text(`• Média de Faltas por Aluno: ${mediaFaltas}`, 20, yPos);
-                yPos += 20;
-
-                const topAlunos = [...alunosDaTurma].sort((a, b) => b.totalFaltas - a.totalFaltas).slice(0, 5);
+            // Cabeçalho
+            doc.setFontSize(20);
+            doc.text('RELATÓRIO DISCIPLINAR', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, 105, 30, { align: 'center' });
+            doc.text(`Total de alunos: ${filteredData.length}`, 105, 40, { align: 'center' });
+            
+            let yPosition = 60;
+            
+            filteredData.forEach((student, index) => {
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
                 
                 doc.setFontSize(14);
-                doc.setTextColor(102, 126, 234);
-                doc.text('ALUNOS COM MAIS FALTAS', 20, yPos);
-                yPos += 10;
+                doc.text(`${index + 1}. ${student.nome} (${student.turma})`, 20, yPosition);
                 
+                yPosition += 10;
                 doc.setFontSize(10);
-                doc.setTextColor(0, 0, 0);
-                topAlunos.forEach((student, index) => {
-                    if (yPos > pageHeight - 40) {
-                        doc.addPage();
-                        yPos = 20;
-                    }
-                    doc.text(`${index + 1}. ${student.nome} - Total: ${student.totalFaltas} (Inj: ${student.faltasInjustificadas})`, 25, yPos);
-                    yPos += 7;
-                });
-                yPos += 15;
-
-                const alunosComMedidas = alunosDaTurma.filter(student => student.medidas.length > 0);
+                doc.text(`Total: ${student.totalFaltas} | Injust.: ${student.faltasInjustificadas} | Just.: ${student.faltasJustificadas} | Medidas: ${student.medidas.length}`, 20, yPosition);
                 
-                if (alunosComMedidas.length > 0) {
-                    doc.setFontSize(14);
-                    doc.setTextColor(102, 126, 234);
-                    doc.text('ALUNOS COM MEDIDAS DISCIPLINARES', 20, yPos);
-                    yPos += 10;
-                    
-                    doc.setFontSize(10);
-                    doc.setTextColor(0, 0, 0);
-                    alunosComMedidas.forEach(student => {
-                        if (yPos > pageHeight - 40) {
-                            doc.addPage();
-                            yPos = 20;
-                        }
-                        doc.text(`• ${student.nome} - ${student.medidas.length} medida(s)`, 25, yPos);
-                        yPos += 7;
-                    });
-                } else {
-                    doc.setFontSize(14);
-                    doc.setTextColor(40, 167, 69);
-                    doc.text('✓ NENHUMA MEDIDA DISCIPLINAR APLICADA', 20, yPos);
-                }
-
-                const fileName = `relatorio_turma_${turma}_${new Date().toISOString().slice(0, 10)}.pdf`;
-                doc.save(fileName);
-                
-                showMessage(`✅ Relatório da turma ${turma} exportado!`, 'success');
-                
-            } catch (error) {
-                console.error('Erro ao gerar PDF:', error);
-                showMessage('Erro ao gerar PDF. Tente novamente.', 'error');
-            }
+                yPosition += 15;
+            });
+            
+            doc.save('relatorio-disciplinar.pdf');
+            showMessage('✅ PDF gerado com sucesso!', 'success');
+            
+        } catch (error) {
+            console.error('Erro ao gerar PDF:', error);
+            showMessage('Erro ao gerar PDF. Tente novamente.', 'error');
         }
+    }, 1000);
+}
 
-        function showMessage(message, type) {
-            const existingMessages = document.querySelectorAll('.message');
-            existingMessages.forEach(msg => msg.remove());
-
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}`;
-            messageDiv.style.position = 'fixed';
-            messageDiv.style.top = '20px';
-            messageDiv.style.right = '20px';
-            messageDiv.style.zIndex = '1000';
-            messageDiv.style.padding = '20px 25px';
-            messageDiv.style.borderRadius = '12px';
-            messageDiv.style.maxWidth = '400px';
-            messageDiv.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
-            messageDiv.style.fontSize = '1rem';
-            messageDiv.style.fontWeight = '500';
-
-            if (type === 'loading') {
-                messageDiv.innerHTML = message;
-                messageDiv.style.background = '#f8f9ff';
-                messageDiv.style.color = '#667eea';
-                messageDiv.style.border = '2px solid #667eea';
-            } else if (type === 'error') {
-                messageDiv.innerHTML = '❌ ' + message;
-                messageDiv.style.background = '#fff5f5';
-                messageDiv.style.color = '#dc3545';
-                messageDiv.style.borderLeft = '4px solid #dc3545';
-            } else if (type === 'success') {
-                messageDiv.innerHTML = message;
-                messageDiv.style.background = '#f0fff4';
-                messageDiv.style.color = '#28a745';
-                messageDiv.style.borderLeft = '4px solid #28a745';
+function showMessage(message, type = 'info') {
+    // Remove mensagem anterior
+    const existingMessage = document.querySelector('.message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}`;
+    
+    if (type === 'loading') {
+        messageDiv.innerHTML = `<div class="loading">${message}</div>`;
+    } else {
+        messageDiv.className = type;
+        messageDiv.textContent = message;
+    }
+    
+    const container = document.querySelector('.main-content');
+    container.insertBefore(messageDiv, container.firstChild);
+    
+    if (type !== 'loading') {
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.remove();
             }
+        }, 5000);
+    }
+}
 
-            document.body.appendChild(messageDiv);
-
-            if (type !== 'loading') {
-                setTimeout(() => {
-                    messageDiv.style.opacity = '0';
-                    setTimeout(() => messageDiv.remove(), 300);
-                }, 5000);
-            }
-        }
+// Inicialização
+document.addEventListener('DOMContentLoaded', function() {
+    ativarModulo('relatorios');
+    document.getElementById('searchInput').focus();
+});
     </script>
 </body>
-</html>
+</html></parameter>
+</invoke>
