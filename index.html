@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Fichas Disciplinares</title>
+    <title>Dashboard Disciplinar - Sistema Escolar</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * {
@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -33,59 +33,108 @@
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
         }
 
         .header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.9;
+            font-weight: 300;
         }
 
-        .card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
             padding: 30px;
-            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            height: fit-content;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
 
-        .config-section {
-            margin-bottom: 30px;
-        }
-
-        .input-group {
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #667eea;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
+        .module-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .search-section {
+            background: linear-gradient(135deg, #f8f9ff, #fff);
+            border: 2px solid #e8f2ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .search-title {
+            font-size: 1.2rem;
             font-weight: 600;
             color: #555;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .input-group input {
+        .search-controls {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .search-input-group {
+            position: relative;
+        }
+
+        .search-input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 15px 20px;
             border: 2px solid #e0e6ff;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            background: white;
         }
 
-        .input-group input:focus {
+        .search-input:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
         }
 
-        .url-example {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 5px;
+        .search-input::placeholder {
+            color: #999;
             font-style: italic;
         }
 
@@ -94,18 +143,19 @@
             color: white;
             border: none;
             padding: 15px 30px;
-            border-radius: 25px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
         .btn:disabled {
@@ -116,113 +166,233 @@
 
         .btn.success {
             background: linear-gradient(135deg, #28a745, #20c997);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
 
-        .controls {
-            display: flex;
-            justify-content: center;
+        .btn.success:hover {
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9ff, #fff);
+            border: 1px solid #e8f2ff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-number.primary { color: #667eea; }
+        .stat-number.danger { color: #dc3545; }
+        .stat-number.success { color: #28a745; }
+        .stat-number.info { color: #17a2b8; }
+        .stat-number.warning { color: #ffc107; }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 20px;
+        }
+
+        .module-card {
+            background: linear-gradient(135deg, #f8f9ff, #fff);
+            border: 2px solid #e8f2ff;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .module-card.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: linear-gradient(135deg, #f5f5f5, #fff);
+        }
+
+        .module-card.disabled::before {
+            background: #ccc;
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .module-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .module-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .coming-soon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ffc107;
+            color: #333;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         .results {
             margin-top: 30px;
         }
 
-        .summary-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .summary-box {
-            background: linear-gradient(135deg, #f8f9ff, #fff);
-            border: 1px solid #e0e6ff;
-            border-radius: 10px;
+        .filter-section {
+            background: #f8f9ff;
             padding: 20px;
-            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .summary-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #667eea;
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
             margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.9rem;
         }
 
-        .summary-label {
+        .filter-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             font-size: 0.9rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background: white;
         }
 
         .student-card {
             background: linear-gradient(135deg, #f8f9ff, #fff);
             border: 1px solid #e0e6ff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
             transition: all 0.3s ease;
         }
 
         .student-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .student-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 2px solid #f0f2ff;
         }
 
         .student-name {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
             color: #333;
         }
 
         .student-class {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 5px 15px;
-            border-radius: 15px;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 0.9rem;
+            font-weight: 600;
         }
 
         .student-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .stat-box {
             background: white;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 18px;
+            border-radius: 12px;
             text-align: center;
             border: 1px solid #e0e6ff;
+            transition: all 0.3s ease;
         }
 
-        .stat-number {
-            font-size: 1.8rem;
+        .stat-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-box .stat-number {
+            font-size: 2rem;
             font-weight: bold;
             margin-bottom: 5px;
         }
 
-        .stat-number.total { color: #667eea; }
-        .stat-number.injustificada { color: #dc3545; }
-        .stat-number.justificada { color: #28a745; }
-        .stat-number.presente { color: #17a2b8; }
-
-        .stat-label {
+        .stat-box .stat-label {
             font-size: 0.8rem;
             color: #666;
             text-transform: uppercase;
@@ -230,22 +400,23 @@
         }
 
         .details-section {
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .details-title {
             font-weight: bold;
             color: #555;
-            margin-bottom: 10px;
-            padding: 8px 0;
+            margin-bottom: 15px;
+            padding: 10px 0;
             border-bottom: 1px solid #f0f2ff;
+            font-size: 1.1rem;
         }
 
         .detail-item {
             background: #f8f9ff;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 8px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
             border-left: 4px solid #667eea;
             display: flex;
             justify-content: space-between;
@@ -258,8 +429,8 @@
         }
 
         .detail-type {
-            padding: 3px 8px;
-            border-radius: 12px;
+            padding: 4px 10px;
+            border-radius: 15px;
             font-size: 0.8rem;
             font-weight: bold;
             text-transform: uppercase;
@@ -285,21 +456,21 @@
 
         .loading {
             text-align: center;
-            padding: 40px;
+            padding: 60px;
             color: #667eea;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         .loading::after {
             content: '';
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             border: 3px solid #f3f3f3;
             border-top: 3px solid #667eea;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-left: 10px;
+            margin-left: 15px;
         }
 
         @keyframes spin {
@@ -310,59 +481,55 @@
         .error {
             color: #dc3545;
             background: #fff5f5;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 12px;
             border-left: 4px solid #dc3545;
+            margin: 20px 0;
         }
 
         .success {
             color: #28a745;
             background: #f0fff4;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #28a745;
-        }
-
-        .filter-section {
-            background: #f8f9ff;
             padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            align-items: center;
+            border-radius: 12px;
+            border-left: 4px solid #28a745;
+            margin: 20px 0;
         }
 
-        .filter-group {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .filter-group select {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9rem;
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
         }
 
         @media (max-width: 768px) {
-            .controls {
-                flex-direction: column;
-                align-items: center;
+            .container {
+                padding: 15px;
+            }
+            
+            .quick-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
             }
             
             .student-stats {
                 grid-template-columns: 1fr 1fr;
             }
             
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .summary-stats {
-                grid-template-columns: 1fr 1fr;
+            .filter-section {
+                flex-direction: column;
+                align-items: stretch;
             }
         }
     </style>
@@ -370,173 +537,202 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📋 Sistema de Fichas Disciplinares</h1>
-            <p>Conectado diretamente ao Google Sheets - Atualização automática</p>
+            <h1>📊 Dashboard Disciplinar</h1>
+            <p>Sistema Integrado de Gestão Escolar</p>
         </div>
 
-        <div class="card">
-            <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">Configuração da Planilha</h2>
-            
-            <div class="config-section">
-                <div class="input-group">
-                    <label for="planilhaUrl">🔗 URL da Planilha de Faltas (Google Sheets)</label>
-                    <input 
-                        type="text" 
-                        id="planilhaUrl" 
-                        placeholder="Cole aqui a URL da planilha de faltas..."
-                        value="">
-                    <div class="url-example">
-                        Exemplo: https://docs.google.com/spreadsheets/d/1ABc...xyz/edit#gid=0
+        <div class="dashboard">
+            <div class="sidebar">
+                <div class="module-title">
+                    🎯 Módulos do Sistema
+                </div>
+
+                <div class="modules-grid">
+                    <div class="module-card" onclick="ativarModuloRelatorios()">
+                        <div class="module-icon">📋</div>
+                        <div class="module-name">Relatórios</div>
+                        <div class="module-description">Consultas e relatórios de faltas e medidas disciplinares</div>
                     </div>
-                </div>
 
-                <div class="input-group">
-                    <label for="planilhaDisciplinarUrl">⚖️ URL da Planilha de Medidas Disciplinares (Google Sheets)</label>
-                    <input 
-                        type="text" 
-                        id="planilhaDisciplinarUrl" 
-                        placeholder="Cole aqui a URL da planilha de medidas disciplinares..."
-                        value="">
-                    <div class="url-example">
-                        Deixe vazio se as medidas estão na mesma planilha das faltas
+                    <div class="module-card disabled">
+                        <div class="module-icon">📊</div>
+                        <div class="module-name">Análises</div>
+                        <div class="module-description">Gráficos e estatísticas avançadas</div>
+                        <div class="coming-soon">Em Breve</div>
                     </div>
-                </div>
 
-                <div class="input-group">
-                    <label for="abaFaltas">📊 Nome da Aba de Faltas</label>
-                    <input 
-                        type="text" 
-                        id="abaFaltas" 
-                        placeholder="Nome da aba com os dados de faltas"
-                        value="BD_Faltas">
-                </div>
+                    <div class="module-card disabled">
+                        <div class="module-icon">👥</div>
+                        <div class="module-name">Gestão</div>
+                        <div class="module-description">Cadastros e configurações</div>
+                        <div class="coming-soon">Em Breve</div>
+                    </div>
 
-                <div class="input-group">
-                    <label for="abaDisciplinares">⚖️ Nome da Aba de Medidas Disciplinares</label>
-                    <input 
-                        type="text" 
-                        id="abaDisciplinares" 
-                        placeholder="Nome da aba com medidas disciplinares"
-                        value="BD_Disciplinares">
+                    <div class="module-card disabled">
+                        <div class="module-icon">📱</div>
+                        <div class="module-name">Comunicação</div>
+                        <div class="module-description">Notificações e alertas</div>
+                        <div class="coming-soon">Em Breve</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="controls">
-                <button class="btn" id="carregarBtn" onclick="carregarDados()">
-                    🔄 Carregar Dados
-                </button>
-                <button class="btn success" id="exportBtn" disabled onclick="exportToPDF()">
-                    📄 Exportar PDF
-                </button>
-            </div>
-        </div>
+            <div class="main-content">
+                <div class="module-title">
+                    📋 Módulo de Relatórios
+                </div>
 
-        <div id="results" class="results" style="display: none;">
-            <div class="card">
-                <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">Relatório Geral</h2>
-                
-                <div class="summary-stats" id="summaryStats"></div>
+                <div class="quick-stats" id="quickStats" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-number primary" id="totalAlunos">0</div>
+                        <div class="stat-label">Total de Alunos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number danger" id="totalFaltas">0</div>
+                        <div class="stat-label">Total de Faltas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number warning" id="totalMedidas">0</div>
+                        <div class="stat-label">Medidas Aplicadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number info" id="mediaFaltas">0</div>
+                        <div class="stat-label">Média por Aluno</div>
+                    </div>
+                </div>
 
-                <div class="filter-section">
-                    <div class="filter-group">
-                        <label>🎯 Filtrar por Turma:</label>
-                        <select id="filtroTurma" onchange="filtrarAlunos()">
-                            <option value="">Todas as turmas</option>
-                        </select>
+                <div class="search-section">
+                    <div class="search-title">
+                        🔍 Consultar Dados
                     </div>
-                    <div class="filter-group">
-                        <label>👤 Filtrar por Aluno:</label>
-                        <select id="filtroAluno" onchange="filtrarAlunos()">
-                            <option value="">Todos os alunos</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>📈 Ordenar por:</label>
-                        <select id="ordenacao" onchange="ordenarAlunos()">
-                            <option value="nome">Nome (A-Z)</option>
-                            <option value="totalFaltas">Total de Faltas</option>
-                            <option value="faltasInjustificadas">Faltas Injustificadas</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <button class="btn" onclick="limparFiltros()" style="padding: 8px 15px; font-size: 0.9rem; margin-top: 20px;">
-                            🔄 Limpar Filtros
+                    <div class="search-controls">
+                        <div class="search-input-group">
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                class="search-input" 
+                                placeholder="Digite o nome de um aluno para buscar..."
+                                onkeypress="handleSearchKeyPress(event)"
+                            >
+                        </div>
+                        <button class="btn" onclick="carregarDados()">
+                            🔄 Carregar Dados
                         </button>
                     </div>
                 </div>
 
-                <div id="turmaReport" style="display: none;"></div>
-                
-                <h3 style="color: #667eea; margin-bottom: 20px;">Fichas Individuais</h3>
-                <div id="studentsContainer"></div>
+                <div id="results" class="results" style="display: none;">
+                    <div class="filter-section">
+                        <div class="filter-group">
+                            <label>🎯 Filtrar por Turma:</label>
+                            <select id="filtroTurma" onchange="filtrarAlunos()">
+                                <option value="">Todas as turmas</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>👤 Filtrar por Aluno:</label>
+                            <select id="filtroAluno" onchange="filtrarAlunos()">
+                                <option value="">Todos os alunos</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>📈 Ordenar por:</label>
+                            <select id="ordenacao" onchange="ordenarAlunos()">
+                                <option value="nome">Nome (A-Z)</option>
+                                <option value="totalFaltas">Total de Faltas</option>
+                                <option value="faltasInjustificadas">Faltas Injustificadas</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <button class="btn success" onclick="exportToPDF()" id="exportBtn" disabled>
+                                📄 Exportar PDF
+                            </button>
+                        </div>
+                        <div class="filter-group">
+                            <button class="btn" onclick="limparFiltros()">
+                                🔄 Limpar Filtros
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="turmaReport" style="display: none;"></div>
+                    
+                    <h3 style="color: #667eea; margin-bottom: 20px; font-size: 1.3rem;">Fichas Individuais</h3>
+                    <div id="studentsContainer"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // ============================================
+        // CONFIGURAÇÕES FIXAS - ALTERE AQUI AS URLs DAS SUAS PLANILHAS
+        // ============================================
+        const CONFIG = {
+            planilhaFaltas: 'https://docs.google.com/spreadsheets/d/1O-eOiOLvsxFNyKv6k6RySRKQ7sZHYYCCVpYUQRsDocM/edit?gid=2061884176#gid=2061884176',
+            planilhaDisciplinares: 'https://docs.google.com/spreadsheets/d/1SjhhQTLM26FR0DzeUsgpWdWrXrTcCnYV-jAkCnCWIm4/edit?gid=1520096174#gid=1520096174',
+            abaFaltas: 'BD_Faltas',
+            abaDisciplinares: 'BD_Disciplinares'
+        };
+
         let processedData = [];
         let filteredData = [];
 
-        async function carregarDados() {
-            const planilhaUrl = document.getElementById('planilhaUrl').value.trim();
-            const planilhaDisciplinarUrl = document.getElementById('planilhaDisciplinarUrl').value.trim();
-            const abaFaltas = document.getElementById('abaFaltas').value.trim();
-            const abaDisciplinares = document.getElementById('abaDisciplinares').value.trim();
+        function ativarModuloRelatorios() {
+            document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('searchInput').focus();
+        }
 
-            if (!planilhaUrl) {
-                showMessage('Por favor, insira a URL da planilha de faltas!', 'error');
-                return;
+        function handleSearchKeyPress(event) {
+            if (event.key === 'Enter') {
+                carregarDados();
             }
+        }
 
+        async function carregarDados() {
             showMessage('Carregando dados das planilhas...', 'loading');
 
             try {
-                // Extrair ID da planilha de faltas
-                const sheetIdFaltas = extractSheetId(planilhaUrl);
+                const sheetIdFaltas = extractSheetId(CONFIG.planilhaFaltas);
+                const sheetIdDisciplinares = extractSheetId(CONFIG.planilhaDisciplinares);
+                
                 if (!sheetIdFaltas) {
-                    throw new Error('URL da planilha de faltas inválida');
+                    throw new Error('ID da planilha de faltas inválido na configuração');
                 }
 
-                // Carregar dados de faltas
-                const faltasData = await carregarAbaCSV(sheetIdFaltas, abaFaltas);
+                const faltasData = await carregarAbaCSV(sheetIdFaltas, CONFIG.abaFaltas);
                 console.log('Dados de faltas carregados:', faltasData.length, 'registros');
 
-                // Carregar dados disciplinares
                 let disciplinaresData = [];
-                if (abaDisciplinares) {
+                if (sheetIdDisciplinares && CONFIG.abaDisciplinares) {
                     try {
-                        // Verificar se usar planilha separada ou mesma planilha
-                        let sheetIdDisciplinares = sheetIdFaltas; // Padrão: mesma planilha
-                        
-                        if (planilhaDisciplinarUrl) {
-                            sheetIdDisciplinares = extractSheetId(planilhaDisciplinarUrl);
-                            if (!sheetIdDisciplinares) {
-                                throw new Error('URL da planilha de medidas disciplinares inválida');
-                            }
-                        }
-                        
-                        disciplinaresData = await carregarAbaCSV(sheetIdDisciplinares, abaDisciplinares);
+                        disciplinaresData = await carregarAbaCSV(sheetIdDisciplinares, CONFIG.abaDisciplinares);
                         console.log('Dados disciplinares carregados:', disciplinaresData.length, 'registros');
                     } catch (error) {
                         console.log('Erro ao carregar dados disciplinares:', error.message);
-                        showMessage(`Aviso: Não foi possível carregar medidas disciplinares (${error.message}). Continuando só com faltas...`, 'error');
                     }
                 }
 
-                // Processar dados
                 processedData = processarDados(faltasData, disciplinaresData);
                 filteredData = [...processedData];
                 
+                const searchTerm = document.getElementById('searchInput').value.trim();
+                if (searchTerm) {
+                    filteredData = processedData.filter(student => 
+                        student.nome.toLowerCase().includes(searchTerm.toLowerCase())
+                    );
+                }
+                
                 displayResults();
+                updateQuickStats();
                 document.getElementById('exportBtn').disabled = false;
                 
-                // Mostrar informações sobre os dados carregados
                 const infoFaltas = `${faltasData.length} registros de faltas`;
                 const infoDisciplinares = disciplinaresData.length > 0 ? 
                     `, ${disciplinaresData.length} registros de medidas disciplinares` : 
                     ', nenhuma medida disciplinar encontrada';
                 
-                showMessage(`✅ Dados carregados com sucesso! ${processedData.length} alunos encontrados. (${infoFaltas}${infoDisciplinares})`, 'success');
+                showMessage(`✅ Dados carregados! ${processedData.length} alunos encontrados. (${infoFaltas}${infoDisciplinares})`, 'success');
 
             } catch (error) {
                 console.error('Erro ao carregar dados:', error);
@@ -544,7 +740,22 @@
             }
         }
 
+        function updateQuickStats() {
+            const totalAlunos = processedData.length;
+            const totalFaltas = processedData.reduce((sum, student) => sum + student.totalFaltas, 0);
+            const totalMedidas = processedData.reduce((sum, student) => sum + student.medidas.length, 0);
+            const mediaFaltas = totalAlunos > 0 ? (totalFaltas / totalAlunos).toFixed(1) : 0;
+
+            document.getElementById('totalAlunos').textContent = totalAlunos;
+            document.getElementById('totalFaltas').textContent = totalFaltas;
+            document.getElementById('totalMedidas').textContent = totalMedidas;
+            document.getElementById('mediaFaltas').textContent = mediaFaltas;
+            
+            document.getElementById('quickStats').style.display = 'grid';
+        }
+
         function extractSheetId(url) {
+            if (!url) return null;
             const match = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
             return match ? match[1] : null;
         }
@@ -585,7 +796,6 @@
         function processarDados(faltasData, disciplinaresData = []) {
             const studentsMap = new Map();
 
-            // Processar faltas
             faltasData.forEach(row => {
                 const nome = (row.nome || row['nome do aluno'] || row.aluno || '').toString().trim();
                 const turma = (row.turma || row.classe || 'N/A').toString().trim();
@@ -610,7 +820,6 @@
 
                 const student = studentsMap.get(nome);
                 
-                // Atualizar turma se estava como N/A
                 if (student.turma === 'N/A' && turma !== 'N/A') {
                     student.turma = turma;
                 }
@@ -633,7 +842,6 @@
                 }
             });
 
-            // Processar medidas disciplinares
             disciplinaresData.forEach(row => {
                 const nome = (row.nome || row['nome do aluno'] || row.aluno || '').toString().trim();
                 const data = (row.data || row['data da ocorrência'] || 'N/A').toString().trim();
@@ -659,7 +867,7 @@
                 const student = studentsMap.get(nome);
                 student.medidas.push({
                     data: data,
-                    medida: medida,
+                    medida: medida
                     motivo: motivo
                 });
             });
@@ -668,7 +876,6 @@
         }
 
         function displayResults() {
-            displaySummaryStats();
             populateFilters();
             displayStudents();
             
@@ -677,51 +884,16 @@
             resultsSection.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function displaySummaryStats() {
-            const container = document.getElementById('summaryStats');
-            
-            const totalAlunos = processedData.length;
-            const totalFaltas = processedData.reduce((sum, student) => sum + student.totalFaltas, 0);
-            const totalInjustificadas = processedData.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
-            const totalJustificadas = processedData.reduce((sum, student) => sum + student.faltasJustificadas, 0);
-            const totalMedidas = processedData.reduce((sum, student) => sum + student.medidas.length, 0);
-
-            container.innerHTML = `
-                <div class="summary-box">
-                    <div class="summary-number">${totalAlunos}</div>
-                    <div class="summary-label">Total de Alunos</div>
-                </div>
-                <div class="summary-box">
-                    <div class="summary-number">${totalFaltas}</div>
-                    <div class="summary-label">Total de Faltas</div>
-                </div>
-                <div class="summary-box">
-                    <div class="summary-number">${totalInjustificadas}</div>
-                    <div class="summary-label">Faltas Injustificadas</div>
-                </div>
-                <div class="summary-box">
-                    <div class="summary-number">${totalJustificadas}</div>
-                    <div class="summary-label">Faltas Justificadas</div>
-                </div>
-                <div class="summary-box">
-                    <div class="summary-number">${totalMedidas}</div>
-                    <div class="summary-label">Medidas Disciplinares</div>
-                </div>
-            `;
-        }
-
         function populateFilters() {
             const filtroTurma = document.getElementById('filtroTurma');
             const filtroAluno = document.getElementById('filtroAluno');
             
-            // Populate turmas
             const turmas = [...new Set(processedData.map(student => student.turma))].sort();
             filtroTurma.innerHTML = '<option value="">Todas as turmas</option>';
             turmas.forEach(turma => {
                 filtroTurma.innerHTML += `<option value="${turma}">${turma}</option>`;
             });
             
-            // Populate alunos
             const alunos = [...new Set(processedData.map(student => student.nome))].sort();
             filtroAluno.innerHTML = '<option value="">Todos os alunos</option>';
             alunos.forEach(aluno => {
@@ -732,21 +904,20 @@
         function filtrarAlunos() {
             const turmaFiltro = document.getElementById('filtroTurma').value;
             const alunoFiltro = document.getElementById('filtroAluno').value;
+            const searchTerm = document.getElementById('searchInput').value.trim();
             
             filteredData = processedData.filter(student => {
                 const matchTurma = !turmaFiltro || student.turma === turmaFiltro;
                 const matchAluno = !alunoFiltro || student.nome === alunoFiltro;
-                return matchTurma && matchAluno;
+                const matchSearch = !searchTerm || student.nome.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchTurma && matchAluno && matchSearch;
             });
             
-            // Atualizar lista de alunos baseada na turma selecionada
             if (turmaFiltro && !alunoFiltro) {
                 updateAlunoFilter(turmaFiltro);
             }
             
-            // Mostrar/esconder relatório de turma
             displayTurmaReport(turmaFiltro, alunoFiltro);
-            
             ordenarAlunos();
             updateResultsCount();
         }
@@ -777,6 +948,7 @@
             document.getElementById('filtroTurma').value = '';
             document.getElementById('filtroAluno').value = '';
             document.getElementById('ordenacao').value = 'nome';
+            document.getElementById('searchInput').value = '';
             
             filteredData = [...processedData];
             updateAlunoFilter();
@@ -803,7 +975,6 @@
         function displayTurmaReport(turmaFiltro, alunoFiltro) {
             const turmaReportDiv = document.getElementById('turmaReport');
             
-            // Só mostrar relatório de turma se turma estiver selecionada E aluno não estiver selecionado
             if (turmaFiltro && !alunoFiltro) {
                 const alunosDaTurma = filteredData;
                 const relatorio = generateTurmaReport(turmaFiltro, alunosDaTurma);
@@ -817,50 +988,42 @@
         function generateTurmaReport(turma, alunos) {
             if (alunos.length === 0) return '';
             
-            // Calcular estatísticas da turma
             const totalAlunos = alunos.length;
             const totalFaltas = alunos.reduce((sum, student) => sum + student.totalFaltas, 0);
             const totalInjustificadas = alunos.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
             const totalJustificadas = alunos.reduce((sum, student) => sum + student.faltasJustificadas, 0);
             const totalMedidas = alunos.reduce((sum, student) => sum + student.medidas.length, 0);
             
-            // Alunos com mais faltas (top 5)
-            const alunosComMaisFaltas = [...alunos]
-                .sort((a, b) => b.totalFaltas - a.totalFaltas)
-                .slice(0, 5);
-            
-            // Alunos com medidas disciplinares
+            const alunosComMaisFaltas = [...alunos].sort((a, b) => b.totalFaltas - a.totalFaltas).slice(0, 5);
             const alunosComMedidas = alunos.filter(student => student.medidas.length > 0);
-            
-            // Média de faltas por aluno
             const mediaFaltas = totalAlunos > 0 ? (totalFaltas / totalAlunos).toFixed(1) : 0;
             
             return `
-                <div class="card" style="background: linear-gradient(135deg, #e8f2ff, #f8fbff); border: 2px solid #667eea; margin-bottom: 30px;">
-                    <h2 style="text-align: center; color: #667eea; margin-bottom: 25px;">
+                <div style="background: linear-gradient(135deg, #e8f2ff, #f8fbff); border: 2px solid #667eea; border-radius: 15px; margin-bottom: 30px; padding: 25px;">
+                    <h2 style="text-align: center; color: #667eea; margin-bottom: 25px; font-size: 1.5rem;">
                         📊 Relatório da Turma ${turma}
                     </h2>
                     
-                    <div class="summary-stats" style="margin-bottom: 25px;">
-                        <div class="summary-box">
-                            <div class="summary-number">${totalAlunos}</div>
-                            <div class="summary-label">Alunos na Turma</div>
+                    <div class="quick-stats" style="margin-bottom: 25px;">
+                        <div class="stat-card">
+                            <div class="stat-number primary">${totalAlunos}</div>
+                            <div class="stat-label">Alunos na Turma</div>
                         </div>
-                        <div class="summary-box">
-                            <div class="summary-number">${mediaFaltas}</div>
-                            <div class="summary-label">Média de Faltas</div>
+                        <div class="stat-card">
+                            <div class="stat-number info">${mediaFaltas}</div>
+                            <div class="stat-label">Média de Faltas</div>
                         </div>
-                        <div class="summary-box">
-                            <div class="summary-number">${totalInjustificadas}</div>
-                            <div class="summary-label">Faltas Injustificadas</div>
+                        <div class="stat-card">
+                            <div class="stat-number danger">${totalInjustificadas}</div>
+                            <div class="stat-label">Faltas Injustificadas</div>
                         </div>
-                        <div class="summary-box">
-                            <div class="summary-number">${totalJustificadas}</div>
-                            <div class="summary-label">Faltas Justificadas</div>
+                        <div class="stat-card">
+                            <div class="stat-number success">${totalJustificadas}</div>
+                            <div class="stat-label">Faltas Justificadas</div>
                         </div>
-                        <div class="summary-box">
-                            <div class="summary-number">${totalMedidas}</div>
-                            <div class="summary-label">Medidas Aplicadas</div>
+                        <div class="stat-card">
+                            <div class="stat-number warning">${totalMedidas}</div>
+                            <div class="stat-label">Medidas Aplicadas</div>
                         </div>
                     </div>
                     
@@ -901,7 +1064,7 @@
                     </div>
                     
                     <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #e8f2ff;">
-                        <button class="btn" onclick="exportTurmaPDF('${turma}')" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                        <button class="btn success" onclick="exportTurmaPDF('${turma}')">
                             📄 Exportar Relatório da Turma ${turma}
                         </button>
                     </div>
@@ -948,24 +1111,24 @@
                 
                 <div class="student-stats">
                     <div class="stat-box">
-                        <div class="stat-number total">${student.totalFaltas}</div>
+                        <div class="stat-number primary">${student.totalFaltas}</div>
                         <div class="stat-label">Total de Faltas</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-number injustificada">${student.faltasInjustificadas}</div>
+                        <div class="stat-number danger">${student.faltasInjustificadas}</div>
                         <div class="stat-label">Injustificadas (F)</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-number justificada">${student.faltasJustificadas}</div>
+                        <div class="stat-number success">${student.faltasJustificadas}</div>
                         <div class="stat-label">Justificadas (A)</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-number presente">${student.diasPresentes}</div>
+                        <div class="stat-number info">${student.diasPresentes}</div>
                         <div class="stat-label">Dias Presentes (P)</div>
                     </div>
                     ${student.medidas.length > 0 ? `
                     <div class="stat-box">
-                        <div class="stat-number total">${student.medidas.length}</div>
+                        <div class="stat-number warning">${student.medidas.length}</div>
                         <div class="stat-label">Medidas Disciplinares</div>
                     </div>
                     ` : ''}
@@ -1018,7 +1181,6 @@
                 let yPos = 20;
                 const pageHeight = doc.internal.pageSize.height;
                 
-                // Título do relatório
                 doc.setFontSize(18);
                 doc.setTextColor(102, 126, 234);
                 doc.text('RELATÓRIO DISCIPLINAR ESCOLAR', 20, yPos);
@@ -1026,11 +1188,10 @@
                 
                 doc.setFontSize(12);
                 doc.setTextColor(0, 0, 0);
-                doc.text(`Data de geração: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
-                doc.text(`Total de alunos: ${filteredData.length}`, 120, yPos);
+                doc.text(`Data: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
+                doc.text(`Alunos: ${filteredData.length}`, 120, yPos);
                 yPos += 20;
 
-                // Estatísticas gerais
                 const totalFaltas = filteredData.reduce((sum, student) => sum + student.totalFaltas, 0);
                 const totalInjustificadas = filteredData.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
                 
@@ -1045,13 +1206,11 @@
                 yPos += 20;
 
                 filteredData.forEach((student, index) => {
-                    // Verificar se precisa de nova página
                     if (yPos > pageHeight - 60) {
                         doc.addPage();
                         yPos = 20;
                     }
 
-                    // Cabeçalho do aluno
                     doc.setFontSize(14);
                     doc.setTextColor(102, 126, 234);
                     doc.text(`${index + 1}. ${student.nome}`, 20, yPos);
@@ -1062,7 +1221,6 @@
                     doc.text(`Turma: ${student.turma}`, 20, yPos);
                     yPos += 12;
 
-                    // Estatísticas
                     doc.setFontSize(12);
                     doc.setTextColor(0, 0, 0);
                     
@@ -1071,7 +1229,6 @@
                     doc.text(`Justificadas: ${student.faltasJustificadas}`, 140, yPos);
                     yPos += 15;
 
-                    // Últimas faltas (resumo)
                     if (student.faltas.length > 0) {
                         doc.setFontSize(11);
                         doc.setTextColor(102, 126, 234);
@@ -1087,10 +1244,9 @@
                         yPos += 5;
                     }
 
-                    yPos += 10; // Espaço entre alunos
+                    yPos += 10;
                 });
 
-                // Salvar PDF
                 const fileName = `relatorio_disciplinar_${new Date().toISOString().slice(0, 10)}.pdf`;
                 doc.save(fileName);
                 
@@ -1117,7 +1273,6 @@
                 let yPos = 20;
                 const pageHeight = doc.internal.pageSize.height;
                 
-                // Título do relatório
                 doc.setFontSize(20);
                 doc.setTextColor(102, 126, 234);
                 doc.text(`RELATÓRIO DA TURMA ${turma}`, 20, yPos);
@@ -1125,11 +1280,10 @@
                 
                 doc.setFontSize(12);
                 doc.setTextColor(0, 0, 0);
-                doc.text(`Data de geração: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
-                doc.text(`Total de alunos: ${alunosDaTurma.length}`, 120, yPos);
+                doc.text(`Data: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
+                doc.text(`Alunos: ${alunosDaTurma.length}`, 120, yPos);
                 yPos += 20;
 
-                // Estatísticas da turma
                 const totalFaltas = alunosDaTurma.reduce((sum, student) => sum + student.totalFaltas, 0);
                 const totalInjustificadas = alunosDaTurma.reduce((sum, student) => sum + student.faltasInjustificadas, 0);
                 const totalJustificadas = alunosDaTurma.reduce((sum, student) => sum + student.faltasJustificadas, 0);
@@ -1154,7 +1308,6 @@
                 doc.text(`• Média de Faltas por Aluno: ${mediaFaltas}`, 20, yPos);
                 yPos += 20;
 
-                // Top 5 alunos com mais faltas
                 const topAlunos = [...alunosDaTurma].sort((a, b) => b.totalFaltas - a.totalFaltas).slice(0, 5);
                 
                 doc.setFontSize(14);
@@ -1174,7 +1327,6 @@
                 });
                 yPos += 15;
 
-                // Alunos com medidas disciplinares
                 const alunosComMedidas = alunosDaTurma.filter(student => student.medidas.length > 0);
                 
                 if (alunosComMedidas.length > 0) {
@@ -1197,14 +1349,12 @@
                     doc.setFontSize(14);
                     doc.setTextColor(40, 167, 69);
                     doc.text('✓ NENHUMA MEDIDA DISCIPLINAR APLICADA', 20, yPos);
-                    yPos += 10;
                 }
 
-                // Salvar PDF
                 const fileName = `relatorio_turma_${turma}_${new Date().toISOString().slice(0, 10)}.pdf`;
                 doc.save(fileName);
                 
-                showMessage(`✅ Relatório da turma ${turma} exportado com sucesso!`, 'success');
+                showMessage(`✅ Relatório da turma ${turma} exportado!`, 'success');
                 
             } catch (error) {
                 console.error('Erro ao gerar PDF:', error);
@@ -1213,7 +1363,6 @@
         }
 
         function showMessage(message, type) {
-            // Remove mensagens anteriores
             const existingMessages = document.querySelectorAll('.message');
             existingMessages.forEach(msg => msg.remove());
 
@@ -1223,16 +1372,18 @@
             messageDiv.style.top = '20px';
             messageDiv.style.right = '20px';
             messageDiv.style.zIndex = '1000';
-            messageDiv.style.padding = '15px 20px';
-            messageDiv.style.borderRadius = '8px';
+            messageDiv.style.padding = '20px 25px';
+            messageDiv.style.borderRadius = '12px';
             messageDiv.style.maxWidth = '400px';
-            messageDiv.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            messageDiv.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+            messageDiv.style.fontSize = '1rem';
+            messageDiv.style.fontWeight = '500';
 
             if (type === 'loading') {
                 messageDiv.innerHTML = message;
                 messageDiv.style.background = '#f8f9ff';
                 messageDiv.style.color = '#667eea';
-                messageDiv.style.border = '1px solid #667eea';
+                messageDiv.style.border = '2px solid #667eea';
             } else if (type === 'error') {
                 messageDiv.innerHTML = '❌ ' + message;
                 messageDiv.style.background = '#fff5f5';
@@ -1251,7 +1402,7 @@
                 setTimeout(() => {
                     messageDiv.style.opacity = '0';
                     setTimeout(() => messageDiv.remove(), 300);
-                }, 4000);
+                }, 5000);
             }
         }
     </script>
