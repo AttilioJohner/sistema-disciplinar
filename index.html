@@ -379,14 +379,26 @@
             
             <div class="config-section">
                 <div class="input-group">
-                    <label for="planilhaUrl">🔗 URL da Planilha do Google Sheets</label>
+                    <label for="planilhaUrl">🔗 URL da Planilha de Faltas (Google Sheets)</label>
                     <input 
                         type="text" 
                         id="planilhaUrl" 
-                        placeholder="Cole aqui a URL da sua planilha..."
+                        placeholder="Cole aqui a URL da planilha de faltas..."
                         value="">
                     <div class="url-example">
                         Exemplo: https://docs.google.com/spreadsheets/d/1ABc...xyz/edit#gid=0
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="planilhaDisciplinarUrl">⚖️ URL da Planilha de Medidas Disciplinares (Google Sheets)</label>
+                    <input 
+                        type="text" 
+                        id="planilhaDisciplinarUrl" 
+                        placeholder="Cole aqui a URL da planilha de medidas disciplinares..."
+                        value="">
+                    <div class="url-example">
+                        Deixe vazio se as medidas estão na mesma planilha das faltas
                     </div>
                 </div>
 
@@ -467,36 +479,47 @@
 
         async function carregarDados() {
             const planilhaUrl = document.getElementById('planilhaUrl').value.trim();
+            const planilhaDisciplinarUrl = document.getElementById('planilhaDisciplinarUrl').value.trim();
             const abaFaltas = document.getElementById('abaFaltas').value.trim();
             const abaDisciplinares = document.getElementById('abaDisciplinares').value.trim();
 
             if (!planilhaUrl) {
-                showMessage('Por favor, insira a URL da planilha!', 'error');
+                showMessage('Por favor, insira a URL da planilha de faltas!', 'error');
                 return;
             }
 
-            showMessage('Carregando dados da planilha...', 'loading');
+            showMessage('Carregando dados das planilhas...', 'loading');
 
             try {
-                // Extrair ID da planilha da URL
-                const sheetId = extractSheetId(planilhaUrl);
-                if (!sheetId) {
-                    throw new Error('URL da planilha inválida');
+                // Extrair ID da planilha de faltas
+                const sheetIdFaltas = extractSheetId(planilhaUrl);
+                if (!sheetIdFaltas) {
+                    throw new Error('URL da planilha de faltas inválida');
                 }
 
                 // Carregar dados de faltas
-                const faltasData = await carregarAbaCSV(sheetId, abaFaltas);
+                const faltasData = await carregarAbaCSV(sheetIdFaltas, abaFaltas);
                 console.log('Dados de faltas carregados:', faltasData.length, 'registros');
 
-                // Tentar carregar dados disciplinares
+                // Carregar dados disciplinares
                 let disciplinaresData = [];
                 if (abaDisciplinares) {
                     try {
-                        disciplinaresData = await carregarAbaCSV(sheetId, abaDisciplinares);
+                        // Verificar se usar planilha separada ou mesma planilha
+                        let sheetIdDisciplinares = sheetIdFaltas; // Padrão: mesma planilha
+                        
+                        if (planilhaDisciplinarUrl) {
+                            sheetIdDisciplinares = extractSheetId(planilhaDisciplinarUrl);
+                            if (!sheetIdDisciplinares) {
+                                throw new Error('URL da planilha de medidas disciplinares inválida');
+                            }
+                        }
+                        
+                        disciplinaresData = await carregarAbaCSV(sheetIdDisciplinares, abaDisciplinares);
                         console.log('Dados disciplinares carregados:', disciplinaresData.length, 'registros');
                     } catch (error) {
                         console.log('Erro ao carregar dados disciplinares:', error.message);
-                        showMessage(`Aviso: Não foi possível carregar medidas disciplinares. Continuando só com faltas...`, 'error');
+                        showMessage(`Aviso: Não foi possível carregar medidas disciplinares (${error.message}). Continuando só com faltas...`, 'error');
                     }
                 }
 
