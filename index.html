@@ -271,5 +271,26 @@
       }, 100);
     });
   </script>
+  <script>
+  // Se não estiver logado, manda para o login
+  document.addEventListener('DOMContentLoaded', () => {
+    const wait = setInterval(() => {
+      if (window.isFirebaseReady && window.isFirebaseReady()) {
+        clearInterval(wait);
+        firebase.auth().onAuthStateChanged(user => {
+          if (!user) {
+            window.location.href = 'pages/login.html';
+          } else {
+            // usuário logado → carregue o dashboard aqui
+            if (typeof carregarEstatisticasDashboard === 'function') {
+              carregarEstatisticasDashboard();
+            }
+          }
+        });
+      }
+    }, 100);
+  });
+</script>
+
 </body>
 </html>
