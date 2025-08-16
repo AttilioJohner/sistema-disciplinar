@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - Dashboard Disciplinar</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Sistema Disciplinar</title>
 
-  <!-- CSS Externos -->
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/dashboard.css">
 
+  <!-- Firebase compat: app + auth (ORDEM IMPORTA) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="../assets/js/firebase-config.js"></script>
+
   <style>
-    /* Estilos específicos para página de login (mantidos) */
     .login-container{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0078d4,#106ebe);padding:20px}
     .login-card{background:#fff;border-radius:12px;padding:40px;width:100%;max-width:400px;box-shadow:0 10px 40px rgba(0,0,0,.2);animation:slideIn .5s ease}
     .login-header{text-align:center;margin-bottom:30px}
@@ -29,31 +32,17 @@
     .forgot-password{color:#0078d4;text-decoration:none;transition:color .2s ease}
     .forgot-password:hover{color:#106ebe}
     .login-footer{text-align:center;margin-top:30px;padding-top:20px;border-top:1px solid #f3f2f1;color:#605e5c;font-size:12px}
-    .user-info{background:#f8f9fa;border-radius:8px;padding:20px;margin-bottom:20px;text-align:center}
-    .user-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#0078d4,#106ebe);display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:36px;color:#fff}
-    .user-name{font-size:18px;font-weight:600;color:#323130;margin-bottom:5px}
-    .user-role{color:#605e5c;font-size:14px}
     .logout-section{display:none}
     @keyframes slideIn{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
     .logout-mode .login-section{display:none}
     .logout-mode .logout-section{display:block}
   </style>
-
-  <!-- Firebase SDK (App + Auth compat) -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <!-- Sua configuração (preencha em assets/js/firebase-config.js) -->
-  <script src="../assets/js/firebase-config.js"></script>
-
-  <!-- Utilidades do seu projeto (showMessage, etc.) -->
-  <script src="../assets/js/main.js" defer></script>
 </head>
-
 <body>
   <div class="login-container" id="loginContainer">
     <div class="login-card">
 
-      <!-- SEÇÃO DE LOGIN -->
+      <!-- LOGIN -->
       <div class="login-section" id="loginSection">
         <div class="login-header">
           <div class="login-logo">🏫</div>
@@ -64,18 +53,11 @@
         <form class="login-form" id="loginForm">
           <input type="email" id="loginEmail" class="login-input" placeholder="Email institucional" required>
           <input type="password" id="loginSenha" class="login-input" placeholder="Senha" required>
-
           <div class="login-options">
-            <label class="remember-me">
-              <input type="checkbox" id="lembrarMe">
-              <span>Lembrar-me</span>
-            </label>
+            <label class="remember-me"><input type="checkbox" id="lembrarMe"><span>Lembrar-me</span></label>
             <a href="#" class="forgot-password" id="linkEsqueci">Esqueceu a senha?</a>
           </div>
-
-          <button type="submit" class="login-button" id="loginButton">
-            🔐 Entrar no Sistema
-          </button>
+          <button type="submit" class="login-button" id="loginButton">🔐 Entrar no Sistema</button>
         </form>
 
         <div class="login-footer">
@@ -83,7 +65,7 @@
         </div>
       </div>
 
-      <!-- SEÇÃO DE LOGOUT (aparece quando logado) -->
+      <!-- LOGOUT (exibido se já estiver logado) -->
       <div class="logout-section" id="logoutSection">
         <div class="login-header">
           <div class="login-logo">👤</div>
@@ -91,24 +73,10 @@
           <p class="login-subtitle">Gerenciar sessão e configurações</p>
         </div>
 
-        <div class="user-info" id="userInfo">
-          <div class="user-avatar" id="userAvatar">U</div>
-          <div class="user-name" id="userName">Usuário</div>
-          <div class="user-role" id="userRole">Conta autenticada</div>
-        </div>
-
         <div class="login-form">
-          <button class="login-button" id="btnVoltar" style="background:linear-gradient(135deg,#28a745,#20c997);">
-            🏠 Voltar ao Dashboard
-          </button>
-
-          <button class="login-button" id="btnAlterarSenha" style="background:linear-gradient(135deg,#17a2b8,#20c997);">
-            🔑 Alterar Senha
-          </button>
-
-          <button class="login-button" id="btnSair" style="background:linear-gradient(135deg,#dc3545,#c82333);">
-            🚪 Sair do Sistema
-          </button>
+          <button class="login-button" id="btnVoltar" style="background:linear-gradient(135deg,#28a745,#20c997);">🏠 Voltar ao Dashboard</button>
+          <button class="login-button" id="btnAlterarSenha" style="background:linear-gradient(135deg,#17a2b8,#20c997);">🔑 Alterar Senha</button>
+          <button class="login-button" id="btnSair" style="background:linear-gradient(135deg,#dc3545,#c82333);">🚪 Sair do Sistema</button>
         </div>
 
         <div class="login-footer">
@@ -120,193 +88,92 @@
   </div>
 
   <script>
-    // Helpers de mensagem (usa showMessage se existir)
+    // Helpers de mensagem
     function msgOk(t){ if (typeof showMessage==='function') showMessage(t,'success'); else alert(t) }
     function msgErro(t){ if (typeof showMessage==='function') showMessage(t,'error'); else alert(t) }
 
-    // Atualiza UI conforme o estado de autenticação
     function atualizarUI(user){
       const container = document.getElementById('loginContainer');
       if (user){
-        // Modo logout
         container.classList.add('logout-mode');
-        const name = user.displayName || (user.email ? user.email.split('@')[0] : 'Usuário');
-        const avatar = (name && name[0] ? name[0] : 'U').toUpperCase();
-        document.getElementById('userAvatar').textContent = avatar;
-        document.getElementById('userName').textContent = name;
-        document.getElementById('userRole').textContent = 'Conta autenticada';
         const sessao = new Date();
-        document.getElementById('sessaoInfo').textContent =
-          `Sessão atual: ${sessao.toLocaleDateString('pt-BR')} às ${sessao.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})}`;
+        const p = document.getElementById('sessaoInfo');
+        if (p) p.textContent = `Sessão atual: ${sessao.toLocaleDateString('pt-BR')} às ${sessao.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}`;
       } else {
-        // Modo login
         container.classList.remove('logout-mode');
       }
     }
 
-    // Guard e configuração inicial
-    document.addEventListener('DOMContentLoaded', () => {
-      const wait = setInterval(() => {
-        if (window.isFirebaseReady && window.isFirebaseReady() && firebase?.auth){
-          clearInterval(wait);
+    // Redireciona se já estiver logado
+    (function waitReady(){
+      if (window.isFirebaseReady && window.isFirebaseReady()) {
+        firebase.auth().onAuthStateChanged(user => {
+          atualizarUI(user);
+          if (user) window.location.href = '../index.html';
+        });
+      } else {
+        setTimeout(waitReady, 100);
+      }
+    })();
 
-          // Observa login/logout
-     <script>
-  // ...
+    // Submit login
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const senha = document.getElementById('loginSenha').value;
+      const lembrar = document.getElementById('lembrarMe').checked;
+      const btn = document.getElementById('loginButton');
 
-  // Se já estiver logado → pula a tela de login e vai pro dashboard
-  firebase.auth().onAuthStateChanged(user => {
-    atualizarUI(user);
-    if (user) {
-      window.location.href = '../index.html';
-    }
-  });
+      if (!email || !senha){ msgErro('Preencha email e senha.'); return; }
 
-  // ...
-</script>
+      btn.disabled = true; btn.textContent = '⏳ Entrando...';
+      try {
+        await firebase.auth().setPersistence(
+          lembrar ? firebase.auth.Auth.Persistence.LOCAL
+                  : firebase.auth.Auth.Persistence.SESSION
+        );
+        await firebase.auth().signInWithEmailAndPassword(email, senha);
+        msgOk('✅ Login realizado!');
+        window.location.href = '../index.html';
+      } catch (err){
+        console.error(err);
+        msgErro('❌ Falha no login: ' + (err?.message || err));
+      } finally {
+        btn.disabled = false; btn.textContent = '🔐 Entrar no Sistema';
+      }
+    });
 
+    // Esqueceu a senha
+    document.getElementById('linkEsqueci').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      if (!email) { msgErro('Digite seu email primeiro.'); return; }
+      try {
+        await firebase.auth().sendPasswordResetEmail(email);
+        msgOk('📧 Email de redefinição enviado.');
+      } catch (err){
+        console.error(err);
+        msgErro('Erro ao enviar email: ' + (err?.message || err));
+      }
+    });
 
-          // Submete login
-          document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const senha = document.getElementById('loginSenha').value;
-            const lembrar = document.getElementById('lembrarMe').checked;
-            const btn = document.getElementById('loginButton');
-
-            if (!email || !senha){ msgErro('Preencha email e senha.'); return; }
-
-            btn.disabled = true; btn.textContent = '⏳ Entrando...';
-
-            try {
-              // Persistência: lembrar-me = LOCAL, senão = SESSION
-              await firebase.auth().setPersistence(
-                lembrar ? firebase.auth.Auth.Persistence.LOCAL
-                        : firebase.auth.Auth.Persistence.SESSION
-              );
-              await firebase.auth().signInWithEmailAndPassword(email, senha);
-              msgOk('✅ Login realizado com sucesso!');
-              window.location.href = '../index.html';
-            } catch (err){
-              console.error(err);
-              msgErro('❌ Falha no login: ' + (err?.message || err));
-            } finally {
-              btn.disabled = false; btn.textContent = '🔐 Entrar no Sistema';
-            }
-          });
-
-          // Esqueceu a senha
-          document.getElementById('linkEsqueci').addEventListener('click', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            if (!email){ msgErro('Digite seu email primeiro.'); return; }
-            try {
-              await firebase.auth().sendPasswordResetEmail(email);
-              msgOk('📧 Enviamos um email para redefinir sua senha.');
-            } catch (err){
-              console.error(err);
-              msgErro('Não foi possível enviar o email de redefinição: ' + (err?.message || err));
-            }
-          });
-
-          // Voltar ao dashboard
-          document.getElementById('btnVoltar').addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = '../index.html';
-          });
-
-          // Alterar senha (usuário logado)
-          document.getElementById('btnAlterarSenha').addEventListener('click', async (e) => {
-            e.preventDefault();
-            const user = firebase.auth().currentUser;
-            if (!user){ msgErro('Você precisa estar logado.'); return; }
-            const nova = prompt('Digite a nova senha (mín. 6 caracteres):');
-            if (!nova) return;
-            if (nova.length < 6){ msgErro('A senha deve ter pelo menos 6 caracteres.'); return; }
-            try {
-              await user.updatePassword(nova);
-              msgOk('✅ Senha alterada com sucesso!');
-            } catch (err){
-              // Pode exigir reautenticação se a sessão estiver “antiga”
-              console.error(err);
-              msgErro('Não foi possível alterar a senha: ' + (err?.message || err));
-            }
-          });
-
-          // Logout
-          document.getElementById('btnSair').addEventListener('click', async (e) => {
-            e.preventDefault();
-            try {
-              await firebase.auth().signOut();
-              msgOk('👋 Você saiu do sistema.');
-              atualizarUI(null);
-            } catch (err){
-              console.error(err);
-              msgErro('Erro ao sair: ' + (err?.message || err));
-            }
-          });
-
-        }
-      }, 100);
+    // Voltar / Alterar senha / Sair
+    document.getElementById('btnVoltar').addEventListener('click', (e) => { e.preventDefault(); window.location.href = '../index.html'; });
+    document.getElementById('btnAlterarSenha').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const user = firebase.auth().currentUser;
+      if (!user){ msgErro('Você precisa estar logado.'); return; }
+      const nova = prompt('Digite a nova senha (mín. 6 caracteres):');
+      if (!nova) return;
+      if (nova.length < 6){ msgErro('A senha deve ter pelo menos 6 caracteres.'); return; }
+      try { await user.updatePassword(nova); msgOk('✅ Senha alterada com sucesso!'); }
+      catch (err){ console.error(err); msgErro('Não foi possível alterar a senha: ' + (err?.message || err)); }
+    });
+    document.getElementById('btnSair').addEventListener('click', async (e) => {
+      e.preventDefault();
+      try { await firebase.auth().signOut(); msgOk('👋 Você saiu do sistema.'); atualizarUI(null); }
+      catch (err){ console.error(err); msgErro('Erro ao sair: ' + (err?.message || err)); }
     });
   </script>
 </body>
-  <script>
-  const form = document.getElementById('loginForm');
-  const btn = document.getElementById('loginButton');
-  const lembrar = document.getElementById('lembrarMe');
-  const linkEsqueci = document.getElementById('linkEsqueci');
-
-  function msgOk(t){ if (typeof showMessage==='function') showMessage(t,'success'); else alert(t) }
-  function msgErro(t){ if (typeof showMessage==='function') showMessage(t,'error'); else alert(t) }
-
-  // Redireciona se já estiver logado
-  (function waitReady(){
-    if (window.isFirebaseReady && window.isFirebaseReady()) {
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) window.location.href = '../index.html';
-      });
-    } else {
-      setTimeout(waitReady, 100);
-    }
-  })();
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value.trim();
-    const senha = document.getElementById('loginSenha').value;
-
-    if (!email || !senha){ msgErro('Preencha email e senha.'); return; }
-
-    btn.disabled = true; btn.textContent = '⏳ Entrando...';
-    try {
-      await firebase.auth().setPersistence(
-        lembrar.checked ? firebase.auth.Auth.Persistence.LOCAL
-                        : firebase.auth.Auth.Persistence.SESSION
-      );
-      await firebase.auth().signInWithEmailAndPassword(email, senha);
-      msgOk('✅ Login realizado!');
-      window.location.href = '../index.html';
-    } catch (err){
-      console.error(err);
-      msgErro('❌ Falha no login: ' + (err?.message || err));
-    } finally {
-      btn.disabled = false; btn.textContent = '🔐 Entrar no Sistema';
-    }
-  });
-
-  // Esqueci a senha
-  linkEsqueci.addEventListener('click', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value.trim();
-    if (!email) { msgErro('Digite seu email primeiro.'); return; }
-    try {
-      await firebase.auth().sendPasswordResetEmail(email);
-      msgOk('📧 Email de redefinição enviado.');
-    } catch (err){
-      console.error(err);
-      msgErro('Erro ao enviar email: ' + (err?.message || err));
-    }
-  });
-</script>
 </html>
