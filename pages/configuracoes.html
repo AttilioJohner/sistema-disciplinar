@@ -1,1 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Dashboard Disciplinar</title>
+    
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="../ativos/css/style.css">
+    <link rel="stylesheet" href="../ativos/css/components.css">
+    <link rel="stylesheet" href="../ativos/css/dashboard.css">
+</head>
 
+<body>
+    <!-- BARRA SUPERIOR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <div class="app-launcher">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+            <span class="app-name">Dashboard Disciplinar</span>
+        </div>
+        <div class="top-bar-center">
+            <input type="text" class="search-box" placeholder="Pesquisar configurações...">
+        </div>
+        <div class="top-bar-right">
+            <div class="user-profile">A</div>
+        </div>
+    </div>
+
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="main-layout">
+        
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Módulos Principais</div>
+                
+                <a href="../index.html" class="sidebar-item">
+                    <span class="sidebar-icon">🏠</span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                
+                <a href="controle-disciplinar.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚖️</span>
+                    <span class="sidebar-text">Controle Disciplinar</span>
+                </a>
+                
+                <a href="gestao-alunos.html" class="sidebar-item">
+                    <span class="sidebar-icon">👥</span>
+                    <span class="sidebar-text">Gestão de Alunos</span>
+                </a>
+                
+                <a href="medidas-disciplinares.html" class="sidebar-item">
+                    <span class="sidebar-icon">📋</span>
+                    <span class="sidebar-text">Medidas Disciplinares</span>
+                </a>
+                
+                <a href="relatorios.html" class="sidebar-item">
+                    <span class="sidebar-icon">📊</span>
+                    <span class="sidebar-text">Relatórios</span>
+                </a>
+                
+                <a href="analises.html" class="sidebar-item">
+                    <span class="sidebar-icon">📈</span>
+                    <span class="sidebar-text">Análises</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Ferramentas</div>
+                
+                <a href="configuracoes.html" class="sidebar-item active">
+                    <span class="sidebar-icon">⚙️</span>
+                    <span class="sidebar-text">Configurações</span>
+                </a>
+                
+                <a href="comunicacao.html" class="sidebar-item">
+                    <span class="sidebar-icon">📱</span>
+                    <span class="sidebar-text">Comunicação</span>
+                </a>
+                
+                <a href="login.html" class="sidebar-item">
+                    <span class="sidebar-icon">🔐</span>
+                    <span class="sidebar-text">Login/Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ÁREA DE CONTEÚDO -->
+        <div class="content-area">
+            <div class="main-content">
+                
+                <!-- TÍTULO -->
+                <div class="module-title">
+                    ⚙️ Configurações do Sistema
+                </div>
+
+                <!-- CONFIGURAÇÕES GERAIS -->
+                <div class="config-section">
+                    <div class="config-title">🏫 Configurações da Escola</div>
+                    <div class="config-grid">
+                        <div class="config-item">
+                            <label class="config-label">Nome da Escola:</label>
+                            <input type="text" id="nomeEscola" class="config-input" placeholder="Digite o nome da escola">
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Ano Letivo:</label>
+                            <input type="number" id="anoLetivo" class="config-input" value="2025" min="2020" max="2030">
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">CNPJ/Código MEC:</label>
+                            <input type="text" id="cnpjEscola" class="config-input" placeholder="00.000.000/0001-00">
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Endereço:</label>
+                            <input type="text" id="enderecoEscola" class="config-input" placeholder="Endereço completo">
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Telefone:</label>
+                            <input type="tel" id="telefoneEscola" class="config-input" placeholder="(11) 99999-9999">
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Email Institucional:</label>
+                            <input type="email" id="emailEscola" class="config-input" placeholder="contato@escola.edu.br">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="salvarConfiguracoesEscola()">
+                        💾 Salvar Configurações da Escola
+                    </button>
+                </div>
+
+                <!-- CONFIGURAÇÕES DO SISTEMA -->
+                <div class="config-section">
+                    <div class="config-title">🔧 Configurações do Sistema</div>
+                    <div class="config-grid">
+                        <div class="config-item">
+                            <label class="config-label">Limite de Faltas para Alerta:</label>
+                            <input type="number" id="limiteFaltas" class="config-input" value="10" min="1" max="50">
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Dias para Backup Automático:</label>
+                            <input type="number" id="diasBackup" class="config-input" value="7" min="1" max="30">
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Formato de Data:</label>
+                            <select id="formatoData" class="config-input">
+                                <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                            </select>
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Tema do Sistema:</label>
+                            <select id="temaSistema" class="config-input">
+                                <option value="claro">Tema Claro</option>
+                                <option value="escuro">Tema Escuro</option>
+                                <option value="auto">Automático</option>
+                            </select>
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Notificações por Email:</label>
+                            <select id="notificacoesEmail" class="config-input">
+                                <option value="todas">Todas as Notificações</option>
+                                <option value="importantes">Apenas Importantes</option>
+                                <option value="nenhuma">Desabilitadas</option>
+                            </select>
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Idioma do Sistema:</label>
+                            <select id="idiomaSistema" class="config-input">
+                                <option value="pt-BR">Português (Brasil)</option>
+                                <option value="en-US">English (US)</option>
+                                <option value="es-ES">Español</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="salvarConfigracoesSistema()">
+                        ⚙️ Salvar Configurações do Sistema
+                    </button>
+                </div>
+
+                <!-- CONFIGURAÇÕES DE SEGURANÇA -->
+                <div class="config-section">
+                    <div class="config-title">🔒 Configurações de Segurança</div>
+                    <div class="config-grid">
+                        <div class="config-item">
+                            <label class="config-label">Tempo de Sessão (minutos):</label>
+                            <input type="number" id="tempoSessao" class="config-input" value="60" min="15" max="480">
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Política de Senhas:</label>
+                            <select id="politicaSenhas" class="config-input">
+                                <option value="basica">Básica (6+ caracteres)</option>
+                                <option value="intermediaria">Intermediária (8+ com números)</option>
+                                <option value="avancada">Avançada (12+ com símbolos)</option>
+                            </select>
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Autenticação de Dois Fatores:</label>
+                            <select id="autenticacao2FA" class="config-input">
+                                <option value="desabilitada">Desabilitada</option>
+                                <option value="opcional">Opcional</option>
+                                <option value="obrigatoria">Obrigatória</option>
+                            </select>
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Log de Atividades:</label>
+                            <select id="logAtividades" class="config-input">
+                                <option value="completo">Completo</option>
+                                <option value="basico">Básico</option>
+                                <option value="desabilitado">Desabilitado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-warning" onclick="salvarConfiguracoeSeguranca()">
+                        🔒 Salvar Configurações de Segurança
+                    </button>
+                </div>
+
+                <!-- GERENCIAMENTO DE DADOS -->
+                <div class="config-section">
+                    <div class="config-title">💾 Gerenciamento de Dados</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Backup dos Dados</label>
+                            <p style="color: #666; font-size: 13px; margin-bottom: 10px;">
+                                Faça backup regular dos dados para evitar perdas
+                            </p>
+                            <button class="btn btn-info" onclick="fazerBackupCompleto()">
+                                💾 Fazer Backup Completo
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Restaurar Dados</label>
+                            <p style="color: #666; font-size: 13px; margin-bottom: 10px;">
+                                Restaurar dados a partir de um arquivo de backup
+                            </p>
+                            <input type="file" id="arquivoRestore" accept=".json" class="form-input" style="margin-bottom: 10px;">
+                            <button class="btn btn-warning" onclick="restaurarBackup()">
+                                📂 Restaurar Backup
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Exportar Dados</label>
+                            <p style="color: #666; font-size: 13px; margin-bottom: 10px;">
+                                Exportar todos os dados em formato CSV
+                            </p>
+                            <button class="btn btn-success" onclick="exportarTodosDados()">
+                                📊 Exportar Tudo (CSV)
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Limpeza de Dados</label>
+                            <p style="color: #666; font-size: 13px; margin-bottom: 10px;">
+                                ⚠️ <strong>CUIDADO:</strong> Ação irreversível
+                            </p>
+                            <button class="btn btn-secondary" onclick="limparDadosAntigos()">
+                                🗑️ Limpar Dados Antigos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONFIGURAÇÕES FIREBASE -->
+                <div class="config-section">
+                    <div class="config-title">🔥 Configurações Firebase</div>
+                    <div class="config-grid">
+                        <div class="config-item">
+                            <label class="config-label">Status da Conexão:</label>
+                            <div id="statusFirebase" style="padding: 10px; border-radius: 4px; margin-top: 5px;">
+                                <span id="statusTexto">Verificando...</span>
+                                <button class="btn btn-small btn-info" onclick="testarConexaoFirebase()" style="margin-left: 10px;">
+                                    🔄 Testar Conexão
+                                </button>
+                            </div>
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">Projeto ID:</label>
+                            <input type="text" id="projectId" class="config-input" placeholder="seu-projeto-firebase" readonly>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                        <p style="margin-bottom: 10px;"><strong>📖 Como configurar Firebase:</strong></p>
+                        <ol style="margin-left: 20px; line-height: 1.6;">
+                            <li>Acesse <a href="https://console.firebase.google.com" target="_blank">Firebase Console</a></li>
+                            <li>Crie um novo projeto ou selecione um existente</li>
+                            <li>Ative o Firestore Database</li>
+                            <li>Configure as regras de segurança</li>
+                            <li>Copie as configurações para <code>ativos/js/firebase-config.js</code></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- SOBRE O SISTEMA -->
+                <div class="config-section">
+                    <div class="config-title">ℹ️ Sobre o Sistema</div>
+                    <div class="student-stats" style="margin-bottom: 20px;">
+                        <div class="stat-box">
+                            <div class="stat-number">v1.0</div>
+                            <div class="stat-label">Versão</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="totalRegistros">0</div>
+                            <div class="stat-label">Registros</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="espacoUsado">0 MB</div>
+                            <div class="stat-label">Espaço Usado</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="ultimoBackup">Nunca</div>
+                            <div class="stat-label">Último Backup</div>
+                        </div>
+                    </div>
+                    <p style="color: #666; line-height: 1.6;">
+                        <strong>Dashboard Disciplinar v1.0</strong><br>
+                        Sistema de gestão disciplinar escolar desenvolvido para facilitar o controle de faltas, 
+                        medidas disciplinares e comunicação com responsáveis. 
+                        Desenvolvido com HTML5, CSS3, JavaScript e Firebase.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="../ativos/js/firebase-config.js"></script>
+    <script src="../ativos/js/main.js"></script>
+    
+    <script>
+        // Inicialização da página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('⚙️ Página de Configurações carregada');
+            inicializarConfiguracoes();
+        });
+
+        // Função de inicialização
+        function inicializarConfiguracoes() {
+            carregarConfiguracoesSalvas();
+            verificarStatusFirebase();
+            atualizarEstatisticasSistema();
+        }
+
+        // Carregar configurações salvas
+        function carregarConfiguracoesSalvas() {
+            // Carregar do localStorage
+            const configs = {
+                nomeEscola: localStorage.getItem('nomeEscola') || '',
+                anoLetivo: localStorage.getItem('anoLetivo') || new Date().getFullYear(),
+                cnpjEscola: localStorage.getItem('cnpjEscola') || '',
+                enderecoEscola: localStorage.getItem('enderecoEscola') || '',
+                telefoneEscola: localStorage.getItem('telefoneEscola') || '',
+                emailEscola: localStorage.getItem('emailEscola') || '',
+                limiteFaltas: localStorage.getItem('limiteFaltas') || '10',
+                diasBackup: localStorage.getItem('diasBackup') || '7',
+                formatoData: localStorage.getItem('formatoData') || 'DD/MM/YYYY',
+                temaSistema: localStorage.getItem('temaSistema') || 'claro',
+                notificacoesEmail: localStorage.getItem('notificacoesEmail') || 'importantes',
+                idiomaSistema: localStorage.getItem('idiomaSistema') || 'pt-BR',
+                tempoSessao: localStorage.getItem('tempoSessao') || '60',
+                politicaSenhas: localStorage.getItem('politicaSenhas') || 'basica',
+                autenticacao2FA: localStorage.getItem('autenticacao2FA') || 'desabilitada',
+                logAtividades: localStorage.getItem('logAtividades') || 'basico'
+            };
+
+            // Aplicar valores aos campos
+            Object.keys(configs).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.value = configs[key];
+                }
+            });
+        }
+
+        // Verificar status do Firebase
+        async function verificarStatusFirebase() {
+            const statusElement = document.getElementById('statusFirebase');
+            const textoElement = document.getElementById('statusTexto');
+            
+            if (isFirebaseReady()) {
+                try {
+                    const conectado = await testarConexaoFirebase();
+                    if (conectado) {
+                        statusElement.style.backgroundColor = '#d4edda';
+                        statusElement.style.color = '#155724';
+                        textoElement.textContent = '✅ Conectado';
+                        
+                        // Mostrar Project ID se disponível
+                        if (window.firebaseConfig && window.firebaseConfig.projectId) {
+                            document.getElementById('projectId').value = window.firebaseConfig.projectId;
+                        }
+                    } else {
+                        throw new Error('Falha na conexão');
+                    }
+                } catch (error) {
+                    statusElement.style.backgroundColor = '#f8d7da';
+                    statusElement.style.color = '#721c24';
+                    textoElement.textContent = '❌ Erro na conexão';
+                }
+            } else {
+                statusElement.style.backgroundColor = '#fff3cd';
+                statusElement.style.color = '#856404';
+                textoElement.textContent = '⚠️ Firebase não configurado';
+            }
+        }
+
+        // Atualizar estatísticas do sistema
+        async function atualizarEstatisticasSistema() {
+            try {
+                let totalRegistros = 0;
+                
+                if (isFirebaseReady()) {
+                    const alunosSnapshot = await db.collection('alunos').get();
+                    const faltasSnapshot = await db.collection('faltas').get();
+                    const medidasSnapshot = await db.collection('medidas').get();
+                    
+                    totalRegistros = alunosSnapshot.size + faltasSnapshot.size + medidasSnapshot.size;
+                }
+                
+                document.getElementById('totalRegistros').textContent = totalRegistros;
+                
+                // Simular espaço usado (estimativa básica)
+                const espacoEstimado = Math.round(totalRegistros * 0.5); // 0.5KB por registro
+                document.getElementById('espacoUsado').textContent = espacoEstimado + ' KB';
+                
+                // Último backup
+                const ultimoBackup = localStorage.getItem('ultimoBackup') || 'Nunca';
+                document.getElementById('ultimoBackup').textContent = ultimoBackup;
+                
+            } catch (error) {
+                console.error('Erro ao atualizar estatísticas:', error);
+            }
+        }
+
+        // Salvar configurações
+        function salvarConfiguracoesEscola() {
+            const configs = {
+                nomeEscola: document.getElementById('nomeEscola').value,
+                anoLetivo: document.getElementById('anoLetivo').value,
+                cnpjEscola: document.getElementById('cnpjEscola').value,
+                enderecoEscola: document.getElementById('enderecoEscola').value,
+                telefoneEscola: document.getElementById('telefoneEscola').value,
+                emailEscola: document.getElementById('emailEscola').value
+            };
+
+            try {
+                Object.keys(configs).forEach(key => {
+                    localStorage.setItem(key, configs[key]);
+                });
+                showMessage('✅ Configurações da escola salvas!', 'success');
+            } catch (error) {
+                showMessage('Erro ao salvar configurações', 'error');
+            }
+        }
+
+        function salvarConfigracoesSistema() {
+            const configs = {
+                limiteFaltas: document.getElementById('limiteFaltas').value,
+                diasBackup: document.getElementById('diasBackup').value,
+                formatoData: document.getElementById('formatoData').value,
+                temaSistema: document.getElementById('temaSistema').value,
+                notificacoesEmail: document.getElementById('notificacoesEmail').value,
+                idiomaSistema: document.getElementById('idiomaSistema').value
+            };
+
+            try {
+                Object.keys(configs).forEach(key => {
+                    localStorage.setItem(key, configs[key]);
+                });
+                showMessage('✅ Configurações do sistema salvas!', 'success');
+                
+                // Aplicar tema se mudou
+                aplicarTema(configs.temaSistema);
+            } catch (error) {
+                showMessage('Erro ao salvar configurações', 'error');
+            }
+        }
+
+        function salvarConfiguracoeSeguranca() {
+            const configs = {
+                tempoSessao: document.getElementById('tempoSessao').value,
+                politicaSenhas: document.getElementById('politicaSenhas').value,
+                autenticacao2FA: document.getElementById('autenticacao2FA').value,
+                logAtividades: document.getElementById('logAtividades').value
+            };
+
+            try {
+                Object.keys(configs).forEach(key => {
+                    localStorage.setItem(key, configs[key]);
+                });
+                showMessage('✅ Configurações de segurança salvas!', 'success');
+            } catch (error) {
+                showMessage('Erro ao salvar configurações', 'error');
+            }
+        }
+
+        // Funções de dados
+        async function fazerBackupCompleto() {
+            try {
+                await fazerBackup();
+                localStorage.setItem('ultimoBackup', new Date().toLocaleDateString('pt-BR'));
+                atualizarEstatisticasSistema();
+            } catch (error) {
+                showMessage('Erro ao fazer backup', 'error');
+            }
+        }
+
+        function restaurarBackup() {
+            showMessage('Funcionalidade em desenvolvimento', 'info');
+        }
+
+        function exportarTodosDados() {
+            showMessage('Funcionalidade em desenvolvimento', 'info');
+        }
+
+        function limparDadosAntigos() {
+            if (confirm('ATENÇÃO: Esta ação irá remover registros antigos permanentemente.\n\nTem certeza que deseja continuar?')) {
+                showMessage('Funcionalidade em desenvolvimento', 'info');
+            }
+        }
+
+        // Aplicar tema
+        function aplicarTema(tema) {
+            // Implementação básica de tema
+            const body = document.body;
+            body.classList.remove('tema-claro', 'tema-escuro');
+            
+            if (tema === 'escuro') {
+                body.classList.add('tema-escuro');
+            } else if (tema === 'auto') {
+                const isEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                body.classList.add(isEscuro ? 'tema-escuro' : 'tema-claro');
+            } else {
+                body.classList.add('tema-claro');
+            }
+        }
+
+        // Funções expostas globalmente
+        window.salvarConfiguracoesEscola = salvarConfiguracoesEscola;
+        window.salvarConfigracoesSistema = salvarConfigracoesSistema;
+        window.salvarConfiguracoeSeguranca = salvarConfiguracoeSeguranca;
+        window.fazerBackupCompleto = fazerBackupCompleto;
+        window.restaurarBackup = restaurarBackup;
+        window.exportarTodosDados = exportarTodosDados;
+        window.limparDadosAntigos = limparDadosAntigos;
+    </script>
+</body>
+</html>
