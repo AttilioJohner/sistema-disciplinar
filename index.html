@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR" lang="pt-BR">
+<head>
+<meta name="description" content="Dashboard disciplinar para gestão escolar: alunos, medidas, relatórios e análises.">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Disciplinar - Sistema de Gestão Escolar</title>
+    
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- ============================================
+         BARRA SUPERIOR DE NAVEGAÇÃO
+    ============================================ -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <div class="app-launcher">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+            <span class="app-name">Dashboard Disciplinar</span>
+        </div>
+        <div class="top-bar-center">
+            <input type="text" class="search-box" placeholder="Pesquisar alunos, turmas...">
+        </div>
+        <div class="top-bar-right">
+            <div class="user-profile">A</div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         LAYOUT PRINCIPAL
+    ============================================ -->
+    <div class="main-layout">
+        
+        <!-- ============================================
+             SIDEBAR - MENU LATERAL
+        ============================================ -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Módulos Principais</div>
+                
+                <a href="index.html" class="sidebar-item active">
+                    <span class="sidebar-icon">🏠</span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                
+                <a href="pages/controle-disciplinar.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚖️</span>
+                    <span class="sidebar-text">Controle Disciplinar</span>
+                </a>
+                
+                <a href="pages/gestao-alunos.html" class="sidebar-item">
+                    <span class="sidebar-icon">👥</span>
+                    <span class="sidebar-text">Gestão de Alunos</span>
+                </a>
+                
+                <a href="pages/medidas-disciplinares.html" class="sidebar-item">
+                    <span class="sidebar-icon">📋</span>
+                    <span class="sidebar-text">Medidas Disciplinares</span>
+                </a>
+                
+                <a href="pages/relatorios.html" class="sidebar-item">
+                    <span class="sidebar-icon">📊</span>
+                    <span class="sidebar-text">Relatórios</span>
+                </a>
+                
+                <a href="pages/analises.html" class="sidebar-item">
+                    <span class="sidebar-icon">📈</span>
+                    <span class="sidebar-text">Análises</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Ferramentas</div>
+                
+                <a href="pages/configuracoes.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚙️</span>
+                    <span class="sidebar-text">Configurações</span>
+                </a>
+                
+                <a href="pages/comunicacao.html" class="sidebar-item">
+                    <span class="sidebar-icon">📱</span>
+                    <span class="sidebar-text">Comunicação</span>
+                </a>
+                
+                <a href="pages/login.html" class="sidebar-item">
+                    <span class="sidebar-icon">🔐</span>
+                    <span class="sidebar-text">Login/Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================
+             ÁREA DE CONTEÚDO PRINCIPAL - DASHBOARD
+        ============================================ -->
+        <div class="content-area">
+            <div class="main-content">
+                
+                <!-- TÍTULO DA PÁGINA -->
+                <div class="module-title">
+                    🏠 Dashboard Geral
+                </div>
+
+                <!-- ESTATÍSTICAS RÁPIDAS -->
+                <div class="quick-stats">
+                    <div class="stat-card stat-primary">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalAlunos">0</div>
+                            <div class="stat-label">Total de Alunos</div>
+                            <div class="stat-trend">+0% vs mês anterior</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-danger">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalFaltas">0</div>
+                            <div class="stat-label">Total de Faltas</div>
+                            <div class="stat-trend">+0% vs mês anterior</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-warning">
+                        <div class="stat-icon">⚖️</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalMedidas">0</div>
+                            <div class="stat-label">Medidas Aplicadas</div>
+                            <div class="stat-trend">+0% vs mês anterior</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-info">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="mediaFaltas">0.0</div>
+                            <div class="stat-label">Média por Aluno</div>
+                            <div class="stat-trend">+0% vs mês anterior</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RESUMO RÁPIDO -->
+                <div class="management-section">
+                    <div class="management-title">
+                        📋 Resumo do Sistema
+                    </div>
+                    <div class="insight-item">
+                        <div class="insight-text">
+                            Sistema funcionando normalmente. Acesse os módulos através do menu lateral para começar a gerenciar os dados da escola.
+                        </div>
+                        <span class="trend-indicator trend-stable">
+                            📊 Estável
+                        </span>
+                    </div>
+                </div>
+
+                <!-- ACESSO RÁPIDO AOS MÓDULOS -->
+                <div class="management-section">
+                    <div class="management-title">
+                        🚀 Acesso Rápido
+                    </div>
+                    <div class="form-grid">
+                        <a href="pages/gestao-alunos.html" class="btn btn-primary" style="padding: 20px; text-align: center; text-decoration: none;">
+                            👥 Cadastrar Aluno
+                        </a>
+                        <a href="pages/medidas-disciplinares.html" class="btn btn-warning" style="padding: 20px; text-align: center; text-decoration: none;">
+                            📋 Registrar Falta
+                        </a>
+                        <a href="pages/relatorios.html" class="btn btn-info" style="padding: 20px; text-align: center; text-decoration: none;">
+                            📊 Ver Relatórios
+                        </a>
+                        <a href="pages/analises.html" class="btn btn-success" style="padding: 20px; text-align: center; text-decoration: none;">
+                            📈 Ver Análises
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         JAVASCRIPT - CARREGAR SCRIPTS EXTERNOS
+    ============================================ -->
+    <script src="assets/js/firebase-config.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    
+    <script>
+        // Inicialização específica do dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🏠 Dashboard carregado');
+            carregarEstatisticasDashboard();
+        });
+
+        // Função para carregar estatísticas do dashboard
+        async function carregarEstatisticasDashboard() {
+            try {
+                if (typeof db !== 'undefined' && db) {
+                    // Carregar estatísticas gerais
+                    const alunosSnapshot = await db.collection('alunos').where('ativo', '==', true).get();
+                    const faltasSnapshot = await db.collection('faltas').get();
+                    const medidasSnapshot = await db.collection('medidas').get();
+
+                    const totalAlunos = alunosSnapshot.size;
+                    const totalFaltas = faltasSnapshot.size;
+                    const totalMedidas = medidasSnapshot.size;
+                    const mediaFaltas = totalAlunos > 0 ? (totalFaltas / totalAlunos).toFixed(1) : 0;
+
+                    // Atualizar interface
+                    document.getElementById('totalAlunos').textContent = totalAlunos;
+                    document.getElementById('totalFaltas').textContent = totalFaltas;
+                    document.getElementById('totalMedidas').textContent = totalMedidas;
+                    document.getElementById('mediaFaltas').textContent = mediaFaltas;
+
+                    showMessage('📊 Estatísticas atualizadas!', 'success');
+                } else {
+                    console.log('Firebase não conectado - usando dados demo');
+                    // Dados de demonstração
+                    document.getElementById('totalAlunos').textContent = '0';
+                    document.getElementById('totalFaltas').textContent = '0';
+                    document.getElementById('totalMedidas').textContent = '0';
+                    document.getElementById('mediaFaltas').textContent = '0.0';
+                }
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas:', error);
+                showMessage('⚠️ Erro ao carregar estatísticas', 'error');
+            }
+        }
+    </script>
+</body>
+</html>

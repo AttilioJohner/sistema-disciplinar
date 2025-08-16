@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Dashboard Disciplinar</title>
+    
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    
+    <style>
+        /* Estilos específicos para página de login */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0078d4, #106ebe);
+            padding: 20px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.5s ease;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #0078d4, #106ebe);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #323130;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: #605e5c;
+            font-size: 14px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-input {
+            padding: 16px;
+            border: 2px solid #e1dfdd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #0078d4;
+            box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1);
+        }
+
+        .login-button {
+            padding: 16px;
+            background: linear-gradient(135deg, #0078d4, #106ebe);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 120, 212, 0.4);
+        }
+
+        .login-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #605e5c;
+        }
+
+        .forgot-password {
+            color: #0078d4;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .forgot-password:hover {
+            color: #106ebe;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #f3f2f1;
+            color: #605e5c;
+            font-size: 12px;
+        }
+
+        .user-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0078d4, #106ebe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .user-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 5px;
+        }
+
+        .user-role {
+            color: #605e5c;
+            font-size: 14px;
+        }
+
+        .logout-section {
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modo logout */
+        .logout-mode .login-section {
+            display: none;
+        }
+
+        .logout-mode .logout-section {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- CONTAINER PRINCIPAL DE LOGIN -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-card">
+            
+            <!-- SEÇÃO DE LOGIN -->
+            <div class="login-section" id="loginSection">
+                <div class="login-header">
+                    <div class="login-logo">🏫</div>
+                    <h1 class="login-title">Dashboard Disciplinar</h1>
+                    <p class="login-subtitle">Faça login para acessar o sistema</p>
+                </div>
+
+                <form class="login-form" id="loginForm" onsubmit="fazerLogin(event)">
+                    <input 
+                        type="email" 
+                        id="loginEmail" 
+                        class="login-input" 
+                        placeholder="Email institucional" 
+                        required
+                    >
+                    
+                    <input 
+                        type="password" 
+                        id="loginSenha" 
+                        class="login-input" 
+                        placeholder="Senha" 
+                        required
+                    >
+                    
+                    <div class="login-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="lembrarMe">
+                            <span>Lembrar-me</span>
+                        </label>
+                        <a href="#" class="forgot-password" onclick="esqueceuSenha()">Esqueceu a senha?</a>
+                    </div>
+                    
+                    <button type="submit" class="login-button" id="loginButton">
+                        🔐 Entrar no Sistema
+                    </button>
+                </form>
+
+                <div class="login-footer">
+                    <p>Dashboard Disciplinar v1.0<br>Sistema de Gestão Escolar</p>
+                </div>
+            </div>
+
+            <!-- SEÇÃO DE LOGOUT -->
+            <div class="logout-section" id="logoutSection">
+                <div class="login-header">
+                    <div class="login-logo">👤</div>
+                    <h1 class="login-title">Área do Usuário</h1>
+                    <p class="login-subtitle">Gerenciar sessão e configurações</p>
+                </div>
+
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div class="user-name" id="userName">Administrador</div>
+                    <div class="user-role" id="userRole">Coordenador Pedagógico</div>
+                </div>
+
+                <div class="login-form">
+                    <button class="login-button" onclick="voltarDashboard()" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                        🏠 Voltar ao Dashboard
+                    </button>
+                    
+                    <button class="login-button" onclick="alterarSenha()" style="background: linear-gradient(135deg, #17a2b8, #20c997);">
+                        🔑 Alterar Senha
+                    </button>
+                    
+                    <button class="login-button" onclick="fazerLogout()" style="background: linear-gradient(135deg, #dc3545, #c82333);">
+                        🚪 Sair do Sistema
+                    </button>
+                </div>
+
+                <div class="login-footer">
+                    <p id="sessaoInfo">Última sessão: Hoje às 14:30</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="../assets/js/firebase-config.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    
+    <script>
+        // Inicialização da página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔐 Página de Login carregada');
+            verificarSessao();
+        });
+
+        // Verificar se já está logado
+        function verificarSessao() {
+            const usuarioLogado = localStorage.getItem('usuarioLogado');
+            const loginContainer = document.getElementById('loginContainer');
+            
+            if (usuarioLogado) {
+                // Mostrar seção de logout
+                loginContainer.classList.add('logout-mode');
+                carregarDadosUsuario(JSON.parse(usuarioLogado));
+            } else {
+                // Mostrar seção de login
+                loginContainer.classList.remove('logout-mode');
+            }
+        }
+
+        // Fazer login
+        async function fazerLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value.trim();
+            const senha = document.getElementById('loginSenha').value;
+            const lembrarMe = document.getElementById('lembrarMe').checked;
+            const button = document.getElementById('loginButton');
+            
+            if (!email || !senha) {
+                showMessage('Por favor, preencha todos os campos', 'error');
+                return;
+            }
+
+            // Simular loading
+            button.disabled = true;
+            button.innerHTML = '⏳ Entrando...';
+
+            try {
+                // Simular autenticação (em produção, integrar com Firebase Auth)
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Credenciais de demonstração
+                const credenciaisValidas = [
+                    { email: 'admin@escola.edu.br', senha: 'admin123', nome: 'Administrador', role: 'Administrador do Sistema' },
+                    { email: 'coordenador@escola.edu.br', senha: 'coord123', nome: 'Maria Silva', role: 'Coordenadora Pedagógica' },
+                    { email: 'professor@escola.edu.br', senha: 'prof123', nome: 'João Santos', role: 'Professor' },
+                    { email: 'secretaria@escola.edu.br', senha: 'sec123', nome: 'Ana Costa', role: 'Secretária Escolar' }
+                ];
+
+                const usuario = credenciaisValidas.find(cred => 
+                    cred.email === email && cred.senha === senha
+                );
+
+                if (usuario) {
+                    const dadosUsuario = {
+                        nome: usuario.nome,
+                        email: usuario.email,
+                        role: usuario.role,
+                        loginTime: new Date().toISOString(),
+                        avatar: usuario.nome.charAt(0).toUpperCase()
+                    };
+
+                    // Salvar dados do usuário
+                    if (lembrarMe) {
+                        localStorage.setItem('usuarioLogado', JSON.stringify(dadosUsuario));
+                    } else {
+                        sessionStorage.setItem('usuarioLogado', JSON.stringify(dadosUsuario));
+                    }
+
+                    showMessage('✅ Login realizado com sucesso!', 'success');
+                    
+                    // Redirecionar para dashboard após 1 segundo
+                    setTimeout(() => {
+                        window.location.href = '../index.html';
+                    }, 1000);
+
+                } else {
+                    throw new Error('Credenciais inválidas');
+                }
+
+            } catch (error) {
+                console.error('Erro no login:', error);
+                showMessage('❌ Email ou senha incorretos', 'error');
+            } finally {
+                button.disabled = false;
+                button.innerHTML = '🔐 Entrar no Sistema';
+            }
+        }
+
+        // Carregar dados do usuário logado
+        function carregarDadosUsuario(usuario) {
+            document.getElementById('userAvatar').textContent = usuario.avatar || 'U';
+            document.getElementById('userName').textContent = usuario.nome || 'Usuário';
+            document.getElementById('userRole').textContent = usuario.role || 'Usuário do Sistema';
+            
+            // Atualizar informação da sessão
+            if (usuario.loginTime) {
+                const loginTime = new Date(usuario.loginTime);
+                const sessaoInfo = `Última sessão: ${loginTime.toLocaleDateString('pt-BR')} às ${loginTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+                document.getElementById('sessaoInfo').textContent = sessaoInfo;
+            }
+        }
+
+        // Fazer logout
+        function fazerLogout() {
+            if (confirm('Tem certeza que deseja sair do sistema?')) {
+                // Limpar dados de sessão
+                localStorage.removeItem('usuarioLogado');
+                sessionStorage.removeItem('usuarioLogado');
+                
+                // Limpar outros dados temporários
+                localStorage.removeItem('tempData');
+                
+                showMessage('👋 Logout realizado com sucesso!', 'success');
+                
+                // Voltar para tela de login
+                setTimeout(() => {
+                    verificarSessao();
+                }, 1000);
+            }
+        }
+
+        // Voltar ao dashboard
+        function voltarDashboard() {
+            window.location.href = '../index.html';
+        }
+
+        // Alterar senha
+        function alterarSenha() {
+            const novaSenha = prompt('Digite a nova senha:');
+            if (novaSenha) {
+                if (novaSenha.length < 6) {
+                    showMessage('A senha deve ter pelo menos 6 caracteres', 'error');
+                    return;
+                }
+                
+                // Simular alteração de senha
+                showMessage('✅ Senha alterada com sucesso!', 'success');
+                
+                // Em produção, integrar com Firebase Auth para alterar senha
+            }
+        }
+
+        // Esqueceu a senha
+        function esqueceuSenha() {
+            const email = document.getElementById('loginEmail').value.trim();
+            
+            if (!email) {
+                showMessage('Digite seu email primeiro', 'error');
+                return;
+            }
+            
+            if (confirm(`Enviar instruções de recuperação para ${email}?`)) {
+                showMessage('📧 Instruções enviadas para seu email!', 'success');
+                // Em produção, integrar com Firebase Auth para reset de senha
+            }
+        }
+
+        // Mostrar credenciais de demonstração
+        function mostrarCredenciais() {
+            const credenciais = `
+CREDENCIAIS DE DEMONSTRAÇÃO:
+
+👨‍💼 Administrador:
+Email: admin@escola.edu.br
+Senha: admin123
+
+👩‍🏫 Coordenadora:
+Email: coordenador@escola.edu.br  
+Senha: coord123
+
+👨‍🏫 Professor:
+Email: professor@escola.edu.br
+Senha: prof123
+
+👩‍💼 Secretária:
+Email: secretaria@escola.edu.br
+Senha: sec123
+            `;
+            
+            alert(credenciais);
+        }
+
+        // Adicionar link para mostrar credenciais
+        document.addEventListener('DOMContentLoaded', function() {
+            const footer = document.querySelector('.login-footer');
+            if (footer && !document.getElementById('credenciaisLink')) {
+                footer.innerHTML += `
+                    <br><br>
+                    <a href="#" id="credenciaisLink" onclick="mostrarCredenciais()" style="color: #0078d4; text-decoration: none; font-size: 11px;">
+                        🔑 Ver credenciais de demonstração
+                    </a>
+                `;
+            }
+        });
+
+        // Funções globais
+        window.fazerLogin = fazerLogin;
+        window.fazerLogout = fazerLogout;
+        window.voltarDashboard = voltarDashboard;
+        window.alterarSenha = alterarSenha;
+        window.esqueceuSenha = esqueceuSenha;
+        window.mostrarCredenciais = mostrarCredenciais;
+    </script>
+</body>
+</html>
