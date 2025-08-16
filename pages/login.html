@@ -251,4 +251,62 @@
     });
   </script>
 </body>
+  <script>
+  const form = document.getElementById('loginForm');
+  const btn = document.getElementById('loginButton');
+  const lembrar = document.getElementById('lembrarMe');
+  const linkEsqueci = document.getElementById('linkEsqueci');
+
+  function msgOk(t){ if (typeof showMessage==='function') showMessage(t,'success'); else alert(t) }
+  function msgErro(t){ if (typeof showMessage==='function') showMessage(t,'error'); else alert(t) }
+
+  // Redireciona se já estiver logado
+  (function waitReady(){
+    if (window.isFirebaseReady && window.isFirebaseReady()) {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) window.location.href = '../index.html';
+      });
+    } else {
+      setTimeout(waitReady, 100);
+    }
+  })();
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const senha = document.getElementById('loginSenha').value;
+
+    if (!email || !senha){ msgErro('Preencha email e senha.'); return; }
+
+    btn.disabled = true; btn.textContent = '⏳ Entrando...';
+    try {
+      await firebase.auth().setPersistence(
+        lembrar.checked ? firebase.auth.Auth.Persistence.LOCAL
+                        : firebase.auth.Auth.Persistence.SESSION
+      );
+      await firebase.auth().signInWithEmailAndPassword(email, senha);
+      msgOk('✅ Login realizado!');
+      window.location.href = '../index.html';
+    } catch (err){
+      console.error(err);
+      msgErro('❌ Falha no login: ' + (err?.message || err));
+    } finally {
+      btn.disabled = false; btn.textContent = '🔐 Entrar no Sistema';
+    }
+  });
+
+  // Esqueci a senha
+  linkEsqueci.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    if (!email) { msgErro('Digite seu email primeiro.'); return; }
+    try {
+      await firebase.auth().sendPasswordResetEmail(email);
+      msgOk('📧 Email de redefinição enviado.');
+    } catch (err){
+      console.error(err);
+      msgErro('Erro ao enviar email: ' + (err?.message || err));
+    }
+  });
+</script>
 </html>
