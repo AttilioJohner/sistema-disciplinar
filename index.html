@@ -2062,27 +2062,51 @@
         }
 
         async function carregarAlunos() {
-            try {
-                const container = document.getElementById('listaAlunos');
-                container.innerHTML = `
-                    <div class="loading-state">
-                        <div class="loading-spinner"></div>
-                        <p>Carregando alunos...</p>
-                    </div>
-                `;
-                
-                const querySnapshot = await db.collection('alunos')
-                    .where('ativo', '==', true)
-                    .orderBy('nome')
-                    .get();
-                
-                alunosCache = [];
-                querySnapshot.forEach((doc) => {
-                    alunosCache.push({
-                        id: doc.id,
-                        ...doc.data()
-                    });
-                });
+    try {
+        const container = document.getElementById('listaAlunos');
+        container.innerHTML = `
+            <div class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Carregando alunos...</p>
+            </div>
+        `;
+        
+        console.log('🔍 Carregando alunos do Firebase...');
+        
+        // VERSÃO CORRIGIDA - Sem orderBy que precisa de índice
+        const querySnapshot = await db.collection('alunos')
+            .where('ativo', '==', true)
+            .get();
+        
+        console.log('📊 Documentos encontrados:', querySnapshot.size);
+        
+        alunosCache = [];
+        querySnapshot.forEach((doc) => {
+            console.log('👤 Aluno encontrado:', doc.data());
+            alunosCache.push({
+                id: doc.id,
+                ...doc.data()
+            });
+        });
+         // Ordenar no JavaScript (não no Firebase)
+        alunosCache.sort((a, b) => a.nome.localeCompare(b.nome));
+
+        console.log('✅ Alunos carregados:', alunosCache.length);
+        displayListaAlunos();
+
+    } catch (error) {
+        console.error('❌ Erro ao carregar alunos:', error);
+        document.getElementById('listaAlunos').innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">⚠️</div>
+                <h3>Erro ao carregar alunos</h3>
+                <p>Erro: ${error.message}</p>
+                <button class="btn btn-primary" onclick="carregarAlunos()">🔄 Tentar Novamente</button>
+            </div>
+        `;
+    }
+}
+
 
                 displayListaAlunos();
 
@@ -2260,64 +2284,113 @@
         // REGISTROS RECENTES
         // ============================================
         async function carregarRegistrosRecentes() {
-            try {
-                const container = document.getElementById('registrosRecentes');
-                container.innerHTML = `
-                    <div class="loading-state">
-                        <div class="loading-spinner"></div>
-                        <p>Carregando registros recentes...</p>
-                    </div>
-                `;
+    try {
+        const container = document.getElementById('registrosRecentes');
+        container.innerHTML = `
+            <div class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Carregando registros recentes...</p>
+            </div>
+        `;
 
-                // Carregar faltas recentes
-                const faltasSnapshot = await db.collection('faltas')
-                    .orderBy('dataRegistro', 'desc')
-                    .limit(10)
-                    .get();
-                
-                const faltas = [];
-                faltasSnapshot.forEach(doc => {
-                    faltas.push({
-                        id: doc.id,
-                        ...doc.data(),
-                        categoria: 'falta'
-                    });
-                });
+        console.log('🔍 Carregando registros do Firebase...');
 
-                // Carregar medidas recentes
-                const medidasSnapshot = await db.collection('medidas')
-                    .orderBy('dataRegistro', 'desc')
-                    .limit(10)
-                    .get();
-                
-                const medidas = [];
-                medidasSnapshot.forEach(doc => {
-                    medidas.push({
-                        id: doc.id,
-                        ...doc.data(),
-                        categoria: 'medida'
-                    });
-                });
+        // Carregar faltas - SEM orderBy para evitar erro de índice
+        const faltasSnapshot = await db.collection('faltas')
+            .limit(20)
+            .get();
+        
+        console.log('📊 Faltas encontradas:', faltasSnapshot.size);
+        
+        const faltas = [];
+        faltasSnapshot.forEach(doc => {
+            console.log('📝 Falta encontrada:', doc.data());
+            faltas.push({
+                id: doc.id,
+                ...doc.data(),
+                categoria: 'falta'
+            });
+        });
 
-                // Combinar e ordenar
-                registrosCache = [...faltas, ...medidas]
-                    .sort((a, b) => new Date(b.dataRegistro) - new Date(a.dataRegistro))
-                    .slice(0, 15);
+        // Carregar medidas - SEM orderBy
+        const medidasSnapshot = await db.collection('medidas')
+            .limit(20)
+            .get();
+            
+        console.log('📊 Medidas encontradas:', medidasSnapshot.size);
+        
+        const medidas = [];
+        medidasSnapshot.forEach(doc => {
+            console.log('⚖️ Medida encontrada:', doc.data());
+            medidas.push({
+                id: doc.id,
+                ...doc.data(),
+                categoria: 'medida'
+            });
+        });
 
-                displayRegistrosRecentes(registrosCache);
+        // Combinar e ordenar no JavaScript
+        registrosCache = [...faltas, ...medidas]
+            .sort((a, b) => {
+                const dataA = new Date(a.dataRegistro || a.data);
+                const dataB = new Date(b.dataRegistro || b.data);
+                return dataB - dataA; // Mais recentes primeiro
+            })
+            .slice(0, 15);
 
-            } catch (error) {
-                console.error('Erro ao carregar registros:', error);
-                document.getElementById('registrosRecentes').innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">⚠️</div>
-                        <h3>Erro ao carregar registros</h3>
-                        <p>${error.message}</p>
-                    </div>
-                `;
-            }
-        }
+        console.log('✅ Registros processados:', registrosCache.length);
+        displayRegistrosRecentes(registrosCache);
 
+    } catch (error) {
+        console.error('❌ Erro ao carregar registros:', error);
+        document.getElementById('registrosRecentes').innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">⚠️</div>
+                <h3>Erro ao carregar registros</h3>
+                <p>Erro: ${error.message}</p>
+                <button class="btn btn-primary" onclick="carregarRegistrosRecentes()">🔄 Tentar Novamente</button>
+            </div>
+        `;
+    }
+}
+
+// Função auxiliar para debug - cole no console para verificar dados
+async function debugFirebase() {
+    console.log('🔍 INICIANDO DEBUG DO FIREBASE...');
+    
+    try {
+        // Verificar conexão
+        console.log('📡 Testando conexão Firebase...');
+        const testDoc = await db.collection('alunos').limit(1).get();
+        console.log('✅ Firebase conectado! Documentos:', testDoc.size);
+        
+        // Listar todos os alunos
+        console.log('👥 Listando todos os alunos...');
+        const alunosSnap = await db.collection('alunos').get();
+        alunosSnap.forEach(doc => {
+            console.log(`👤 ID: ${doc.id}`, doc.data());
+        });
+        
+        // Listar todas as faltas
+        console.log('📝 Listando todas as faltas...');
+        const faltasSnap = await db.collection('faltas').get();
+        faltasSnap.forEach(doc => {
+            console.log(`📝 ID: ${doc.id}`, doc.data());
+        });
+        
+        // Listar todas as medidas
+        console.log('⚖️ Listando todas as medidas...');
+        const medidasSnap = await db.collection('medidas').get();
+        medidasSnap.forEach(doc => {
+            console.log(`⚖️ ID: ${doc.id}`, doc.data());
+        });
+        
+        console.log('✅ DEBUG CONCLUÍDO!');
+        
+    } catch (error) {
+        console.error('❌ ERRO NO DEBUG:', error);
+    }
+}
         function displayRegistrosRecentes(registros) {
             const container = document.getElementById('registrosRecentes');
             
