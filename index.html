@@ -242,5 +242,25 @@
             }
         }
     </script>
+    <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const wait = setInterval(() => {
+      if (window.isFirebaseReady && window.isFirebaseReady()) {
+        clearInterval(wait);
+
+        firebase.auth().onAuthStateChanged(user => {
+          if (!user) {
+            // Se não está logado, manda pro login
+            window.location.href = 'pages/login.html';
+          } else {
+            console.log("Usuário logado:", user.email);
+            // Aqui você pode inicializar gráficos, estatísticas, etc.
+            // Exemplo: carregarDashboard();
+          }
+        });
+      }
+    }, 100);
+  });
+</script>
 </body>
 </html>
