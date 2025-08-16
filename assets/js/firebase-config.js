@@ -4,12 +4,13 @@
 
 const firebaseConfig = {
     // Substitua pelas suas configurações do Firebase
-    apiKey: "your-api-key",
-    authDomain: "your-auth-domain",
-    projectId: "your-project-id",
-    storageBucket: "your-storage-bucket",
-    messagingSenderId: "your-messaging-sender-id",
-    appId: "your-app-id"
+   const firebaseConfig = {
+  apiKey: "AIzaSyCaD2QFSUsr85ASm6IM_mCN6pAm9Vw0B40",
+  authDomain: "controle-disciplinar.firebaseapp.com",
+  projectId: "controle-disciplinar",
+  storageBucket: "controle-disciplinar.firebasestorage.app",
+  messagingSenderId: "301814043852",
+  appId: "1:301814043852:web:0b648d9c3c424a5146de69"
 };
 
 // Variável global para o banco de dados
