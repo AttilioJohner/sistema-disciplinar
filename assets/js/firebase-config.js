@@ -8,12 +8,13 @@
 // 3) Habilite um provedor de autenticação (Email/Senha ou Google)
 
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_PROJECT_ID.firebaseapp.com",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_PROJECT_ID.appspot.com",
-  messagingSenderId: "SEU_SENDER_ID",
-  appId: "SUA_APP_ID"
+  apiKey: "AIzaSyD7V1GCtmteP_ccenLKJDhvzOsT1QlWdxg",
+  authDomain: "sistema-disciplinar.firebaseapp.com",
+  projectId: "sistema-disciplinar",
+  storageBucket: "sistema-disciplinar.firebasestorage.app",
+  messagingSenderId: "916562716910",
+  appId: "1:916562716910:web:ac5c0b328cc3087489ebff",
+  measurementId: "G-THVTKDV4LF"
 };
 
 // Inicializa (compat)
