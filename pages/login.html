@@ -151,11 +151,20 @@
           clearInterval(wait);
 
           // Observa login/logout
-          firebase.auth().onAuthStateChanged(user => {
-            atualizarUI(user);
-            // Se já estiver logado, pode opcionalmente mandar direto para o dashboard:
-            // if (user) window.location.href = '../index.html';
-          });
+     <script>
+  // ...
+
+  // Se já estiver logado → pula a tela de login e vai pro dashboard
+  firebase.auth().onAuthStateChanged(user => {
+    atualizarUI(user);
+    if (user) {
+      window.location.href = '../index.html';
+    }
+  });
+
+  // ...
+</script>
+
 
           // Submete login
           document.getElementById('loginForm').addEventListener('submit', async (e) => {
