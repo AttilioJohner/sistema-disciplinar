@@ -1,12 +1,14 @@
-// ============================================
-// CONFIGURAÇÃO DO FIREBASE
-// ============================================
+// assets/js/firebase-config.js
+// ATENÇÃO: preencha com as SUAS chaves do Firebase (Project Settings → Your apps → Web)
 
-// Configuração e inicialização do Firebase + Firestore (compat)
-// 1) Substitua os valores abaixo pelos do seu projeto Firebase
-// 2) GARANTA regras de segurança no Firestore (exigir request.auth != null)
-// 3) Habilite um provedor de autenticação (Email/Senha ou Google)
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyD7V1GCtmteP_ccenLKJDhvzOsT1QlWdxg",
   authDomain: "sistema-disciplinar.firebaseapp.com",
@@ -17,41 +19,23 @@ const firebaseConfig = {
   measurementId: "G-THVTKDV4LF"
 };
 
-// Inicializa (compat)
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// Inicializa (compat) — ESSENCIAL
 if (typeof firebase !== 'undefined' && !firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const db = (typeof firebase !== 'undefined') ? firebase.firestore() : null;
+// (Opcional) Firestore se você usa DB no dashboard
+try {
+  window.db = firebase.firestore();
+} catch (e) {
+  // se você não incluiu o firestore-compat nesta página, ignore
+  window.db = null;
+}
 
-// Helpers globais
-window.db = db;
+// Utilitário para sabermos se o app já está pronto
 window.isFirebaseReady = () =>
-  (typeof firebase !== 'undefined') && !!db;
-<!-- Firebase (app/auth compat) + sua config devem estar carregados antes -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="assets/js/firebase-config.js"></script>
-
-<!-- Guard reutilizável -->
-<script src="assets/js/auth-guard.js"></script>
-
-<!-- Seus scripts -->
-<script src="assets/js/main.js" defer></script>
-
-<script>
-  // Protege a página e, quando logado, carrega o dashboard e liga o botão Sair
-  document.addEventListener('DOMContentLoaded', () => {
-    requireAuth({
-      loginPath: 'pages/login.html',
-      onAuth: (user) => {
-        // Aqui você coloca o que precisa rodar apenas logado:
-        if (typeof carregarEstatisticasDashboard === 'function') {
-          carregarEstatisticasDashboard();
-        }
-        const btn = document.getElementById('btnLogout');
-        if (btn) btn.addEventListener('click', () => logout('pages/login.html'));
-      }
-    });
-  });
-</script>
+  (typeof firebase !== 'undefined') && firebase.apps && firebase.apps.length > 0;
