@@ -1,1 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Alunos - Dashboard Disciplinar</title>
+    
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="../ativos/css/style.css">
+    <link rel="stylesheet" href="../ativos/css/components.css">
+    <link rel="stylesheet" href="../ativos/css/dashboard.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
 
+<body>
+    <!-- BARRA SUPERIOR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <div class="app-launcher">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+            <span class="app-name">Dashboard Disciplinar</span>
+        </div>
+        <div class="top-bar-center">
+            <input type="text" class="search-box" placeholder="Pesquisar alunos...">
+        </div>
+        <div class="top-bar-right">
+            <div class="user-profile">A</div>
+        </div>
+    </div>
+
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="main-layout">
+        
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Módulos Principais</div>
+                
+                <a href="../index.html" class="sidebar-item">
+                    <span class="sidebar-icon">🏠</span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                
+                <a href="controle-disciplinar.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚖️</span>
+                    <span class="sidebar-text">Controle Disciplinar</span>
+                </a>
+                
+                <a href="gestao-alunos.html" class="sidebar-item active">
+                    <span class="sidebar-icon">👥</span>
+                    <span class="sidebar-text">Gestão de Alunos</span>
+                </a>
+                
+                <a href="medidas-disciplinares.html" class="sidebar-item">
+                    <span class="sidebar-icon">📋</span>
+                    <span class="sidebar-text">Medidas Disciplinares</span>
+                </a>
+                
+                <a href="relatorios.html" class="sidebar-item">
+                    <span class="sidebar-icon">📊</span>
+                    <span class="sidebar-text">Relatórios</span>
+                </a>
+                
+                <a href="analises.html" class="sidebar-item">
+                    <span class="sidebar-icon">📈</span>
+                    <span class="sidebar-text">Análises</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Ferramentas</div>
+                
+                <a href="configuracoes.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚙️</span>
+                    <span class="sidebar-text">Configurações</span>
+                </a>
+                
+                <a href="comunicacao.html" class="sidebar-item">
+                    <span class="sidebar-icon">📱</span>
+                    <span class="sidebar-text">Comunicação</span>
+                </a>
+                
+                <a href="login.html" class="sidebar-item">
+                    <span class="sidebar-icon">🔐</span>
+                    <span class="sidebar-text">Login/Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ÁREA DE CONTEÚDO -->
+        <div class="content-area">
+            <div class="main-content">
+                
+                <!-- TÍTULO -->
+                <div class="module-title">
+                    👥 Gestão de Alunos
+                </div>
+
+                <!-- SEÇÃO: CADASTRO DE ALUNOS -->
+                <div class="management-section">
+                    <div class="management-title">
+                        👤 Cadastrar Novo Aluno
+                    </div>
+                    
+                    <form id="formAluno" onsubmit="salvarAluno(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Nome Completo *</label>
+                                <input 
+                                    type="text" 
+                                    id="nomeAluno" 
+                                    class="form-input" 
+                                    required 
+                                    placeholder="Digite o nome completo do aluno"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Turma *</label>
+                                <input 
+                                    type="text" 
+                                    id="turmaAluno" 
+                                    class="form-input" 
+                                    required 
+                                    placeholder="Ex: 7º A, 2º EM"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Data de Nascimento</label>
+                                <input 
+                                    type="date" 
+                                    id="nascimentoAluno" 
+                                    class="form-input"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Responsável</label>
+                                <input 
+                                    type="text" 
+                                    id="responsavelAluno" 
+                                    class="form-input" 
+                                    placeholder="Nome do responsável"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Telefone do Responsável</label>
+                                <input 
+                                    type="tel" 
+                                    id="telefoneResponsavel" 
+                                    class="form-input" 
+                                    placeholder="(11) 99999-9999"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Email do Responsável</label>
+                                <input 
+                                    type="email" 
+                                    id="emailResponsavel" 
+                                    class="form-input" 
+                                    placeholder="email@exemplo.com"
+                                >
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="limparFormAluno()">
+                                🔄 Limpar
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                ✅ Cadastrar Aluno
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- SEÇÃO: LISTA DE ALUNOS -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            👥 Lista de Alunos Cadastrados
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-info btn-small" onclick="carregarAlunos()">
+                                🔄 Atualizar Lista
+                            </button>
+                            <button class="btn btn-secondary btn-small" onclick="exportarAlunos()">
+                                📊 Exportar
+                            </button>
+                            <button class="btn btn-primary btn-small" onclick="fazerBackup()">
+                                💾 Backup
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="listaAlunos" class="table-content">
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <p>Carregando lista de alunos...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO: ESTATÍSTICAS RÁPIDAS -->
+                <div class="quick-stats">
+                    <div class="stat-card stat-primary">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalAlunosAtivos">0</div>
+                            <div class="stat-label">Alunos Ativos</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-info">
+                        <div class="stat-icon">🏫</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalTurmas">0</div>
+                            <div class="stat-label">Turmas</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-success">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="cadastrosHoje">0</div>
+                            <div class="stat-label">Cadastros Hoje</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-warning">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="dadosIncompletos">0</div>
+                            <div class="stat-label">Dados Incompletos</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="../ativos/js/firebase-config.js"></script>
+    <script src="../ativos/js/main.js"></script>
+    <script src="../ativos/js/gestao.js"></script>
+    
+    <script>
+        // Inicialização da página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('👥 Página de Gestão de Alunos carregada');
+            inicializarGestaoAlunos();
+        });
+
+        // Função de inicialização específica
+        async function inicializarGestaoAlunos() {
+            try {
+                showMessage('Carregando módulo de gestão...', 'loading');
+                
+                // Aguardar Firebase
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                if (isFirebaseReady()) {
+                    await carregarAlunos();
+                    await carregarEstatisticasGestao();
+                    showMessage('✅ Módulo de gestão carregado!', 'success');
+                } else {
+                    showMessage('⚠️ Firebase não conectado - funcionalidade limitada', 'error');
+                    carregarDadosDemo();
+                }
+            } catch (error) {
+                console.error('Erro ao inicializar gestão:', error);
+                showMessage('Erro ao carregar módulo de gestão', 'error');
+            }
+        }
+
+        // Carregar dados de demonstração
+        function carregarDadosDemo() {
+            document.getElementById('listaAlunos').innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">👤</div>
+                    <h3>Nenhum aluno cadastrado</h3>
+                    <p>Configure o Firebase para começar a cadastrar alunos</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
