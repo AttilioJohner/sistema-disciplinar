@@ -28,3 +28,30 @@ const db = (typeof firebase !== 'undefined') ? firebase.firestore() : null;
 window.db = db;
 window.isFirebaseReady = () =>
   (typeof firebase !== 'undefined') && !!db;
+<!-- Firebase (app/auth compat) + sua config devem estar carregados antes -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+
+<!-- Guard reutilizável -->
+<script src="assets/js/auth-guard.js"></script>
+
+<!-- Seus scripts -->
+<script src="assets/js/main.js" defer></script>
+
+<script>
+  // Protege a página e, quando logado, carrega o dashboard e liga o botão Sair
+  document.addEventListener('DOMContentLoaded', () => {
+    requireAuth({
+      loginPath: 'pages/login.html',
+      onAuth: (user) => {
+        // Aqui você coloca o que precisa rodar apenas logado:
+        if (typeof carregarEstatisticasDashboard === 'function') {
+          carregarEstatisticasDashboard();
+        }
+        const btn = document.getElementById('btnLogout');
+        if (btn) btn.addEventListener('click', () => logout('pages/login.html'));
+      }
+    });
+  });
+</script>
