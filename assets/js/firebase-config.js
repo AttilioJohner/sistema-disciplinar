@@ -13,6 +13,15 @@ const firebaseConfig = {
   appId: "1:301814043852:web:0b648d9c3c424a5146de69"
 };
 
+// Inicializa (compat)
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Helpers globais (se você usa em outros arquivos)
+window.db = db;
+window.isFirebaseReady = () =>
+  typeof firebase !== 'undefined' && typeof db !== 'undefined';
+
 // Variável global para o banco de dados
 let db;
 
