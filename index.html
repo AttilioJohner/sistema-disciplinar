@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta name="description" content="Dashboard disciplinar para gestão escolar: alunos, medidas, relatórios e análises.">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard disciplinar para gestão escolar: alunos, medidas, relatórios e análises.">
   <title>Dashboard Disciplinar - Sistema de Gestão Escolar</title>
 
   <!-- CSS -->
@@ -11,26 +11,23 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/dashboard.css">
 
-  <!-- Firebase SDK (Compat) -->
- <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script src="assets/js/firebase-config.js"></script>
-  <script src="assets/js/auth-guard.js"></script>
-  <!-- Sua config do Firebase (deixe com seus valores) -->
+  <!-- Firebase (ORDEM IMPORTA) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <script src="assets/js/firebase-config.js"></script>
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Guard reutilizável -->
+  <script src="assets/js/auth-guard.js"></script>
+
+  <!-- (Opcional) Chart.js se precisar de gráficos nesta página -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
   <!-- Scripts do dashboard -->
   <script src="assets/js/main.js" defer></script>
 </head>
-
 <body>
-  <!-- ============================================
-       BARRA SUPERIOR DE NAVEGAÇÃO
-  ============================================ -->
+  <!-- Topbar -->
   <div class="top-bar">
     <div class="top-bar-left">
       <div class="app-launcher">
@@ -49,81 +46,29 @@
     </div>
   </div>
 
-  <!-- ============================================
-       LAYOUT PRINCIPAL
-  ============================================ -->
   <div class="main-layout">
-
-    <!-- ============================================
-         SIDEBAR - MENU LATERAL
-    ============================================ -->
     <div class="sidebar">
       <div class="sidebar-section">
         <div class="sidebar-title">Módulos Principais</div>
-
-        <a href="index.html" class="sidebar-item active">
-          <span class="sidebar-icon">🏠</span>
-          <span class="sidebar-text">Dashboard</span>
-        </a>
-
-        <a href="pages/controle-disciplinar.html" class="sidebar-item">
-          <span class="sidebar-icon">⚖️</span>
-          <span class="sidebar-text">Controle Disciplinar</span>
-        </a>
-
-        <a href="pages/gestao-alunos.html" class="sidebar-item">
-          <span class="sidebar-icon">👥</span>
-          <span class="sidebar-text">Gestão de Alunos</span>
-        </a>
-
-        <a href="pages/medidas-disciplinares.html" class="sidebar-item">
-          <span class="sidebar-icon">📋</span>
-          <span class="sidebar-text">Medidas Disciplinares</span>
-        </a>
-
-        <a href="pages/relatorios.html" class="sidebar-item">
-          <span class="sidebar-icon">📊</span>
-          <span class="sidebar-text">Relatórios</span>
-        </a>
-
-        <a href="pages/analises.html" class="sidebar-item">
-          <span class="sidebar-icon">📈</span>
-          <span class="sidebar-text">Análises</span>
-        </a>
+        <a href="index.html" class="sidebar-item active"><span class="sidebar-icon">🏠</span><span class="sidebar-text">Dashboard</span></a>
+        <a href="pages/controle-disciplinar.html" class="sidebar-item"><span class="sidebar-icon">⚖️</span><span class="sidebar-text">Controle Disciplinar</span></a>
+        <a href="pages/gestao-alunos.html" class="sidebar-item"><span class="sidebar-icon">👥</span><span class="sidebar-text">Gestão de Alunos</span></a>
+        <a href="pages/medidas-disciplinares.html" class="sidebar-item"><span class="sidebar-icon">📋</span><span class="sidebar-text">Medidas Disciplinares</span></a>
+        <a href="pages/relatorios.html" class="sidebar-item"><span class="sidebar-icon">📊</span><span class="sidebar-text">Relatórios</span></a>
+        <a href="pages/analises.html" class="sidebar-item"><span class="sidebar-icon">📈</span><span class="sidebar-text">Análises</span></a>
       </div>
-
       <div class="sidebar-section">
         <div class="sidebar-title">Ferramentas</div>
-
-        <a href="pages/configuracoes.html" class="sidebar-item">
-          <span class="sidebar-icon">⚙️</span>
-          <span class="sidebar-text">Configurações</span>
-        </a>
-
-        <a href="pages/comunicacao.html" class="sidebar-item">
-          <span class="sidebar-icon">📱</span>
-          <span class="sidebar-text">Comunicação</span>
-        </a>
-
-        <a href="pages/login.html" class="sidebar-item">
-          <span class="sidebar-icon">🔐</span>
-          <span class="sidebar-text">Login/Logout</span>
-        </a>
+        <a href="pages/configuracoes.html" class="sidebar-item"><span class="sidebar-icon">⚙️</span><span class="sidebar-text">Configurações</span></a>
+        <a href="pages/comunicacao.html" class="sidebar-item"><span class="sidebar-icon">📱</span><span class="sidebar-text">Comunicação</span></a>
+        <a href="pages/login.html" class="sidebar-item"><span class="sidebar-icon">🔐</span><span class="sidebar-text">Login/Logout</span></a>
       </div>
     </div>
 
-    <!-- ============================================
-         ÁREA DE CONTEÚDO PRINCIPAL - DASHBOARD
-    ============================================ -->
     <div class="content-area">
       <div class="main-content">
+        <div class="module-title">🏠 Dashboard Geral</div>
 
-        <!-- TÍTULO DA PÁGINA -->
-        <div class="module-title">
-          🏠 Dashboard Geral
-        </div>
-
-        <!-- ESTATÍSTICAS RÁPIDAS -->
         <div class="quick-stats">
           <div class="stat-card stat-primary">
             <div class="stat-icon">👥</div>
@@ -133,7 +78,6 @@
               <div class="stat-trend">+0% vs mês anterior</div>
             </div>
           </div>
-
           <div class="stat-card stat-danger">
             <div class="stat-icon">❌</div>
             <div class="stat-content">
@@ -142,7 +86,6 @@
               <div class="stat-trend">+0% vs mês anterior</div>
             </div>
           </div>
-
           <div class="stat-card stat-warning">
             <div class="stat-icon">⚖️</div>
             <div class="stat-content">
@@ -151,7 +94,6 @@
               <div class="stat-trend">+0% vs mês anterior</div>
             </div>
           </div>
-
           <div class="stat-card stat-info">
             <div class="stat-icon">📊</div>
             <div class="stat-content">
@@ -162,51 +104,31 @@
           </div>
         </div>
 
-        <!-- RESUMO RÁPIDO -->
         <div class="management-section">
-          <div class="management-title">
-            📋 Resumo do Sistema
-          </div>
+          <div class="management-title">📋 Resumo do Sistema</div>
           <div class="insight-item">
             <div class="insight-text">
               Sistema funcionando normalmente. Acesse os módulos através do menu lateral para começar a gerenciar os dados da escola.
             </div>
-            <span class="trend-indicator trend-stable">
-              📊 Estável
-            </span>
+            <span class="trend-indicator trend-stable">📊 Estável</span>
           </div>
         </div>
 
-        <!-- ACESSO RÁPIDO AOS MÓDULOS -->
         <div class="management-section">
-          <div class="management-title">
-            🚀 Acesso Rápido
-          </div>
+          <div class="management-title">🚀 Acesso Rápido</div>
           <div class="form-grid">
-            <a href="pages/gestao-alunos.html" class="btn btn-primary" style="padding: 20px; text-align: center; text-decoration: none;">
-              👥 Cadastrar Aluno
-            </a>
-            <a href="pages/medidas-disciplinares.html" class="btn btn-warning" style="padding: 20px; text-align: center; text-decoration: none;">
-              📋 Registrar Falta
-            </a>
-            <a href="pages/relatorios.html" class="btn btn-info" style="padding: 20px; text-align: center; text-decoration: none;">
-              📊 Ver Relatórios
-            </a>
-            <a href="pages/analises.html" class="btn btn-success" style="padding: 20px; text-align: center; text-decoration: none;">
-              📈 Ver Análises
-            </a>
+            <a href="pages/gestao-alunos.html" class="btn btn-primary" style="padding: 20px; text-align: center; text-decoration: none;">👥 Cadastrar Aluno</a>
+            <a href="pages/medidas-disciplinares.html" class="btn btn-warning" style="padding: 20px; text-align: center; text-decoration: none;">📋 Registrar Falta</a>
+            <a href="pages/relatorios.html" class="btn btn-info" style="padding: 20px; text-align: center; text-decoration: none;">📊 Ver Relatórios</a>
+            <a href="pages/analises.html" class="btn btn-success" style="padding: 20px; text-align: center; text-decoration: none;">📈 Ver Análises</a>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ============================================
-       JS ESPECÍFICO (protegido por login)
-  ============================================ -->
+  <!-- Guard + inicialização do dashboard (só logado) -->
   <script>
-    // Carrega estatísticas somente quando estiver logado
     async function carregarEstatisticasDashboard() {
       try {
         if (typeof db !== 'undefined' && db) {
@@ -224,73 +146,26 @@
           document.getElementById('totalMedidas').textContent = totalMedidas;
           document.getElementById('mediaFaltas').textContent  = mediaFaltas;
 
-          if (typeof showMessage === 'function') {
-            showMessage('📊 Estatísticas atualizadas!', 'success');
-          }
-        } else {
-          console.warn('Firebase não conectado - usando dados demo');
+          if (typeof showMessage === 'function') showMessage('📊 Estatísticas atualizadas!', 'success');
         }
-      } catch (error) {
-        console.error('Erro ao carregar estatísticas:', error);
-        if (typeof showMessage === 'function') {
-          showMessage('⚠️ Erro ao carregar estatísticas', 'error');
-        }
+      } catch (e) {
+        console.error('Erro ao carregar estatísticas:', e);
+        if (typeof showMessage === 'function') showMessage('⚠️ Erro ao carregar estatísticas', 'error');
       }
     }
 
-    // Guard de autenticação + logout
     document.addEventListener('DOMContentLoaded', () => {
-      const wait = setInterval(() => {
-        if (window.isFirebaseReady && window.isFirebaseReady()) {
-          clearInterval(wait);
-
-          // Verifica login
-          firebase.auth().onAuthStateChanged(user => {
-            if (!user) {
-              window.location.href = 'pages/login.html';
-            } else {
-              console.log("Usuário logado:", user.email);
-              // Só carrega dados do dashboard após login
-              carregarEstatisticasDashboard();
-            }
-          });
-
-          // Logout
-          const btnLogout = document.getElementById('btnLogout');
-          if (btnLogout) {
-            btnLogout.addEventListener('click', async () => {
-              try {
-                await firebase.auth().signOut();
-                window.location.href = 'pages/login.html';
-              } catch (e) {
-                console.error('Erro ao sair:', e);
-              }
-            });
+      requireAuth({
+        loginPath: 'pages/login.html',
+        onAuth: (user) => {
+          if (typeof carregarEstatisticasDashboard === 'function') {
+            carregarEstatisticasDashboard();
           }
+          const btn = document.getElementById('btnLogout');
+          if (btn) btn.addEventListener('click', () => logout('pages/login.html'));
         }
-      }, 100);
+      });
     });
   </script>
-  <script>
-  // Se não estiver logado, manda para o login
-  document.addEventListener('DOMContentLoaded', () => {
-    const wait = setInterval(() => {
-      if (window.isFirebaseReady && window.isFirebaseReady()) {
-        clearInterval(wait);
-        firebase.auth().onAuthStateChanged(user => {
-          if (!user) {
-            window.location.href = 'pages/login.html';
-          } else {
-            // usuário logado → carregue o dashboard aqui
-            if (typeof carregarEstatisticasDashboard === 'function') {
-              carregarEstatisticasDashboard();
-            }
-          }
-        });
-      }
-    }, 100);
-  });
-</script>
-
 </body>
 </html>
