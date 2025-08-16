@@ -1,1 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicação - Dashboard Disciplinar</title>
+    
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="../ativos/css/style.css">
+    <link rel="stylesheet" href="../ativos/css/components.css">
+    <link rel="stylesheet" href="../ativos/css/dashboard.css">
+</head>
 
+<body>
+    <!-- BARRA SUPERIOR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <div class="app-launcher">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+            <span class="app-name">Dashboard Disciplinar</span>
+        </div>
+        <div class="top-bar-center">
+            <input type="text" class="search-box" placeholder="Pesquisar comunicações...">
+        </div>
+        <div class="top-bar-right">
+            <div class="user-profile">A</div>
+        </div>
+    </div>
+
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="main-layout">
+        
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Módulos Principais</div>
+                
+                <a href="../index.html" class="sidebar-item">
+                    <span class="sidebar-icon">🏠</span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                
+                <a href="controle-disciplinar.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚖️</span>
+                    <span class="sidebar-text">Controle Disciplinar</span>
+                </a>
+                
+                <a href="gestao-alunos.html" class="sidebar-item">
+                    <span class="sidebar-icon">👥</span>
+                    <span class="sidebar-text">Gestão de Alunos</span>
+                </a>
+                
+                <a href="medidas-disciplinares.html" class="sidebar-item">
+                    <span class="sidebar-icon">📋</span>
+                    <span class="sidebar-text">Medidas Disciplinares</span>
+                </a>
+                
+                <a href="relatorios.html" class="sidebar-item">
+                    <span class="sidebar-icon">📊</span>
+                    <span class="sidebar-text">Relatórios</span>
+                </a>
+                
+                <a href="analises.html" class="sidebar-item">
+                    <span class="sidebar-icon">📈</span>
+                    <span class="sidebar-text">Análises</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Ferramentas</div>
+                
+                <a href="configuracoes.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚙️</span>
+                    <span class="sidebar-text">Configurações</span>
+                </a>
+                
+                <a href="comunicacao.html" class="sidebar-item active">
+                    <span class="sidebar-icon">📱</span>
+                    <span class="sidebar-text">Comunicação</span>
+                </a>
+                
+                <a href="login.html" class="sidebar-item">
+                    <span class="sidebar-icon">🔐</span>
+                    <span class="sidebar-text">Login/Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ÁREA DE CONTEÚDO -->
+        <div class="content-area">
+            <div class="main-content">
+                
+                <!-- TÍTULO -->
+                <div class="module-title">
+                    📱 Módulo de Comunicação
+                </div>
+
+                <!-- AVISO DE FUNCIONALIDADE -->
+                <div class="management-section">
+                    <div class="management-title">
+                        🚧 Funcionalidade em Desenvolvimento
+                    </div>
+                    <div class="insight-item">
+                        <div class="insight-text">
+                            Este módulo está sendo desenvolvido e estará disponível em breve. 
+                            Incluirá funcionalidades para comunicação direta com responsáveis, 
+                            envio de notificações automáticas e histórico de comunicações.
+                        </div>
+                        <span class="trend-indicator trend-stable">
+                            🚧 Em Breve
+                        </span>
+                    </div>
+                </div>
+
+                <!-- PRÉVIA DAS FUNCIONALIDADES -->
+                <div class="quick-stats">
+                    <div class="stat-card stat-primary">
+                        <div class="stat-icon">📧</div>
+                        <div class="stat-content">
+                            <div class="stat-number">Email</div>
+                            <div class="stat-label">Notificações Automáticas</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-info">
+                        <div class="stat-icon">📱</div>
+                        <div class="stat-content">
+                            <div class="stat-number">SMS</div>
+                            <div class="stat-label">Alertas por Mensagem</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-success">
+                        <div class="stat-icon">📞</div>
+                        <div class="stat-content">
+                            <div class="stat-number">WhatsApp</div>
+                            <div class="stat-label">Comunicação Direta</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-warning">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-content">
+                            <div class="stat-number">Relatórios</div>
+                            <div class="stat-label">Para Responsáveis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FUNCIONALIDADES PLANEJADAS -->
+                <div class="management-section">
+                    <div class="management-title">
+                        🎯 Funcionalidades Planejadas
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <div class="stat-box">
+                                <div class="stat-number">📧</div>
+                                <div class="stat-label">Email Automático</div>
+                            </div>
+                            <p style="margin-top: 10px; color: #666; font-size: 14px;">
+                                Envio automático de notificações por email quando faltas ou medidas disciplinares são registradas
+                            </p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="stat-box">
+                                <div class="stat-number">📱</div>
+                                <div class="stat-label">SMS/WhatsApp</div>
+                            </div>
+                            <p style="margin-top: 10px; color: #666; font-size: 14px;">
+                                Integração com APIs de SMS e WhatsApp para comunicação imediata com responsáveis
+                            </p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="stat-box">
+                                <div class="stat-number">📋</div>
+                                <div class="stat-label">Relatórios Personalizados</div>
+                            </div>
+                            <p style="margin-top: 10px; color: #666; font-size: 14px;">
+                                Geração automática de relatórios personalizados para envio aos responsáveis
+                            </p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="stat-box">
+                                <div class="stat-number">🔔</div>
+                                <div class="stat-label">Portal dos Pais</div>
+                            </div>
+                            <p style="margin-top: 10px; color: #666; font-size: 14px;">
+                                Portal web onde responsáveis podem acompanhar em tempo real a situação dos filhos
+                            </p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="stat-box">
+                                <div class="stat-number">🤖</div>
+                                <div class="stat-label">Chatbot Inteligente</div>
+                            </div>
+                            <p style="margin-top: 10px; color: #666; font-size: 14px;">
+                                Bot automatizado para responder dúvidas comuns dos responsáveis 24/7
+                            </p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="stat-box">
+                                <div class="stat-number">📅</div>
+                                <div class="stat-label">Agendamento</div>
+                            </div>
+                            <p style="margin-top: 10px; color: #666; font-size: 14px;">
+                                Sistema de agendamento de reuniões e comunicações programadas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONFIGURAÇÕES FUTURAS -->
+                <div class="management-section">
+                    <div class="management-title">
+                        ⚙️ Configurações Futuras
+                    </div>
+                    
+                    <div class="insight-item">
+                        <div class="insight-text">
+                            <strong>📧 Templates de Email:</strong> Criação de modelos personalizados para diferentes tipos de comunicação
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <div class="insight-text">
+                            <strong>🔔 Regras de Notificação:</strong> Configuração de quando e como notificar responsáveis automaticamente
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <div class="insight-text">
+                            <strong>📱 Integrações:</strong> Conexão com plataformas como WhatsApp Business API, Twilio, SendGrid
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <div class="insight-text">
+                            <strong>🎯 Segmentação:</strong> Comunicações diferentes baseadas no tipo de ocorrência e gravidade
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CRONOGRAMA -->
+                <div class="management-section">
+                    <div class="management-title">
+                        📅 Cronograma de Desenvolvimento
+                    </div>
+                    
+                    <div class="table-container">
+                        <div class="table-content">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Funcionalidade</th>
+                                        <th>Prioridade</th>
+                                        <th>Previsão</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>📧 Email Automático</strong></td>
+                                        <td><span class="detail-type" style="background: #dc3545; color: white;">Alta</span></td>
+                                        <td>Próxima versão</td>
+                                        <td><span class="detail-type" style="background: #ffc107; color: #323130;">Em Desenvolvimento</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>📋 Portal dos Pais</strong></td>
+                                        <td><span class="detail-type" style="background: #dc3545; color: white;">Alta</span></td>
+                                        <td>Versão 1.1</td>
+                                        <td><span class="detail-type" style="background: #6c757d; color: white;">Planejado</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>📱 WhatsApp Integration</strong></td>
+                                        <td><span class="detail-type" style="background: #ffc107; color: #323130;">Média</span></td>
+                                        <td>Versão 1.2</td>
+                                        <td><span class="detail-type" style="background: #6c757d; color: white;">Planejado</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>🤖 Chatbot</strong></td>
+                                        <td><span class="detail-type" style="background: #28a745; color: white;">Baixa</span></td>
+                                        <td>Versão 2.0</td>
+                                        <td><span class="detail-type" style="background: #6c757d; color: white;">Planejado</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FEEDBACK -->
+                <div class="management-section">
+                    <div class="management-title">
+                        💬 Sugestões e Feedback
+                    </div>
+                    
+                    <form id="formFeedback">
+                        <div class="form-group form-group-full">
+                            <label class="form-label">Sua Sugestão para o Módulo de Comunicação:</label>
+                            <textarea 
+                                id="feedbackText" 
+                                class="form-textarea" 
+                                placeholder="Descreva suas necessidades de comunicação, integrações desejadas, ou sugestões de melhorias..." 
+                                rows="4"
+                            ></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" onclick="enviarFeedback()">
+                                📧 Enviar Sugestão
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="../ativos/js/firebase-config.js"></script>
+    <script src="../ativos/js/main.js"></script>
+    
+    <script>
+        // Inicialização da página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📱 Página de Comunicação carregada');
+        });
+
+        function enviarFeedback() {
+            const feedback = document.getElementById('feedbackText').value.trim();
+            
+            if (!feedback) {
+                showMessage('Por favor, digite sua sugestão', 'error');
+                return;
+            }
+            
+            // Simular envio de feedback
+            showMessage('✅ Obrigado pela sugestão! Ela será considerada no desenvolvimento.', 'success');
+            document.getElementById('feedbackText').value = '';
+        }
+
+        // Função global
+        window.enviarFeedback = enviarFeedback;
+    </script>
+</body>
+</html>
