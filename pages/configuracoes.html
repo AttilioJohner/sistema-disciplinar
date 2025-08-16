@@ -551,5 +551,28 @@
         window.exportarTodosDados = exportarTodosDados;
         window.limparDadosAntigos = limparDadosAntigos;
     </script>
+    <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Espera o Firebase estar carregado
+    const wait = setInterval(() => {
+      if (window.isFirebaseReady && window.isFirebaseReady()) {
+        clearInterval(wait);
+
+        // Verifica usuário logado
+        firebase.auth().onAuthStateChanged(user => {
+          if (!user) {
+            // Se não está logado → volta para login
+            window.location.href = 'login.html'; 
+          } else {
+            console.log("Usuário logado:", user.email);
+            // Aqui você pode chamar funções de carregamento da página
+            // Exemplo: carregarAlunos();
+          }
+        });
+      }
+    }, 100);
+  });
+</script>
+
 </body>
 </html>
