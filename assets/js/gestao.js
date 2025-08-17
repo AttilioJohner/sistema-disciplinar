@@ -245,7 +245,8 @@
     });
 
     if (lista.length === 0) {
-      els.tbody.innerHTML = '<tr><td colspan="9" class="no-data">Nenhum aluno cadastrado.</td></tr>';
+      const colSpan = els.tbody.closest('table').querySelectorAll('thead th').length;
+      els.tbody.innerHTML = '<tr><td colspan="' + colSpan + '" class="no-data">Nenhum aluno cadastrado.</td></tr>';
     } else {
       els.tbody.innerHTML = lista
         .map((a) => {
