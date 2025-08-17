@@ -305,10 +305,6 @@ if (typeof document !== 'undefined') {
     });
 }
 
-const medidasRoutes = require('./routes/medidas');
-app.use('/medidas', medidasRoutes);
-
-
 // ============================================
 // EXPORTAR FUNÇÕES GLOBAIS
 // ============================================
