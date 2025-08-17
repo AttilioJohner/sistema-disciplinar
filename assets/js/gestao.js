@@ -1,275 +1,359 @@
-// assets/js/gestao-alunos.js
-// Requisitos: firebase compat + firebase-config.js + firestore-compat carregados
-(function(){
-  // ---------- Helpers ----------
-  const col = () => firebase.firestore().collection('alunos');
-  const el  = (id) => document.getElementById(id);
+// gestao.js — CRUD de Alunos com Firestore (Compat SDK)
+// Requisitos no HTML:
+// - <form id="alunoForm"> com inputs name="id", "nome", "turma", "nascimento", "responsavel", "telefone", "email"
+// - <tbody id="alunosTableBody"></tbody>
+// - Botões: #btnSalvar, #btnCancelar (opcional), e input de busca #busca (opcional)
+// - Elementos auxiliares (opcional): #totalAlunos, #toast
+// - firebase-config.js deve ter inicializado window.db e window.isFirebaseReady
 
-  function msgOk(t){ if (typeof showMessage==='function') showMessage(t,'success'); else alert(t); }
-  function msgErr(t){ if (typeof showMessage==='function') showMessage(t,'error'); else alert(t); }
-  function msgInfo(t){ if (typeof showMessage==='function') showMessage(t,'loading'); else console.log(t); }
+(function () {
+  'use strict';
 
-  function toTimestampOrNull(yyyy_mm_dd){
-    if (!yyyy_mm_dd) return null;
-    const d = new Date(yyyy_mm_dd + 'T00:00:00');
-    return isNaN(d.getTime()) ? null : firebase.firestore.Timestamp.fromDate(d);
-  }
+  // === CONFIG LOCAL ===
+  const COLLECTION = 'alunos';
+  const REQUIRED_FIELDS_CREATE = ['id', 'nome', 'turma'];
+  const REQUIRED_FIELDS_UPDATE = ['nome', 'turma'];
 
-  function formatarData(v){
-    try {
-      if (!v) return '-';
-      if (v.toDate) return v.toDate().toLocaleDateString('pt-BR');
-      if (/^\d{4}-\d{2}-\d{2}/.test(v)) return new Date(v).toLocaleDateString('pt-BR');
-      const d = new Date(v);
-      return isNaN(d.getTime()) ? '-' : d.toLocaleDateString('pt-BR');
-    } catch { return '-'; }
-  }
+  // === STATE ===
+  let db = null;
+  let unsubLista = null;
+  let alunosCache = []; // Mantém snapshot local para filtros rápidos
+  let editingId = null; // null -> modo criação; string -> modo edição
 
-  // mascara simples p/ telefone
-  function maskTelefone(value){
-    const digits = (value || '').replace(/\D/g,'').slice(0,11);
-    if (digits.length >= 11) return digits.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-    if (digits.length >= 10) return digits.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
-    if (digits.length >= 6)  return digits.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
-    if (digits.length >= 2)  return digits.replace(/(\d{2})(\d{0,5})/, '($1) $2');
-    return digits;
-  }
+  // === ELEMENTOS ===
+  const els = {};
 
-  // ---------- Estado ----------
-  let lastDoc = null;
-  let firstDoc = null;
-  let stack = [];
-  let cache = [];
-
-  // ---------- Form ----------
-  function readForm(){
-    const matricula = el('matriculaAluno').value.trim(); // docId
-    const nome = el('nomeAluno').value.trim();
-    const turma = el('turmaAluno').value.trim();
-    const nascimento = el('nascimentoAluno').value;
-    const responsavel = el('responsavelAluno').value.trim();
-    const telefone = el('telefoneResponsavel').value.trim();
-    const email = el('emailResponsavel').value.trim();
-    const ativo = el('statusAluno').value === 'true';
-
-    return {
-      id: el('fId').value.trim(), // só é usado no modo edição
-      docId: matricula,
-      data: {
-        matricula,
-        nome,
-        turma,
-        nascimento: toTimestampOrNull(nascimento),
-        responsavel: responsavel || null,
-        telefoneResponsavel: telefone || null,
-        emailResponsavel: email || null,
-        ativo
-      }
-    };
-  }
-
-  function fillForm(docId, data){
-    el('fId').value = docId || '';
-    el('matriculaAluno').value = data?.matricula || docId || '';
-    el('nomeAluno').value = data?.nome || '';
-    el('turmaAluno').value = data?.turma || '';
-    el('responsavelAluno').value = data?.responsavel || '';
-    el('telefoneResponsavel').value = data?.telefoneResponsavel || '';
-    el('emailResponsavel').value = data?.emailResponsavel || '';
-    if (data?.nascimento?.toDate) {
-      el('nascimentoAluno').value = data.nascimento.toDate().toISOString().slice(0,10);
-    } else {
-      el('nascimentoAluno').value = '';
-    }
-    el('statusAluno').value = data?.ativo ? 'true' : 'false';
-  }
-
-  function resetForm(){
-    fillForm('', {});
-    el('formTitulo').textContent = 'Novo aluno';
-    el('btnSalvar').textContent = 'Cadastrar';
-  }
-
-  // ---------- CRUD ----------
-  async function salvarAluno(e){
-    e.preventDefault();
-    const { id, docId, data } = readForm();
-
-    if (!docId) return msgErr('Informe a matrícula (ID).');
-    if (!data.nome) return msgErr('Informe o nome.');
-    if (!data.turma) return msgErr('Informe a turma.');
-
-    try {
-      msgInfo('Salvando...');
-      if (id) {
-        // edição: mantém docId fixo (id)
-        await col().doc(id).set({ ...data, dataAtualizacao: firebase.firestore.Timestamp.fromDate(new Date()) }, { merge: true });
-      } else {
-        // criação com docId = matrícula
-        await col().doc(docId).set({ ...data, dataCadastro: firebase.firestore.Timestamp.fromDate(new Date()) }, { merge: false });
-      }
-      msgOk('Dados salvos!');
-      resetForm();
-      carregarPagina('first');
-    } catch (e) {
-      console.error(e);
-      msgErr('Erro ao salvar: ' + (e.message || e));
-    }
-  }
-
-  async function editarAluno(id){
-    try {
-      const d = await col().doc(id).get();
-      if (!d.exists) return msgErr('Registro não encontrado.');
-      fillForm(d.id, d.data());
-      el('formTitulo').textContent = 'Editar aluno';
-      el('btnSalvar').textContent = 'Salvar alterações';
-      el('matriculaAluno').disabled = true; // não permitir trocar docId
-      el('formAluno').scrollIntoView({ behavior: 'smooth' });
-    } catch(e){
-      console.error(e); msgErr('Erro ao carregar aluno.');
-    }
-  }
-
-  async function excluirAluno(id){
-    if (!confirm('Excluir este aluno?')) return;
-    try {
-      await col().doc(id).delete();
-      msgOk('Aluno excluído.');
-      carregarPagina();
-    } catch(e){
-      console.error(e); msgErr('Erro ao excluir.');
-    }
-  }
-
-  async function inativarAluno(id){
-    if (!confirm('Inativar este aluno?')) return;
-    try {
-      await col().doc(id).update({ ativo: false, dataInativacao: firebase.firestore.Timestamp.fromDate(new Date()) });
-      msgOk('Aluno inativado.');
-      carregarPagina();
-    } catch(e){ console.error(e); msgErr('Erro ao inativar.'); }
-  }
-
-  // ---------- Lista / Paginação ----------
-  function rowHTML(id, d){
-    const dn = d.nascimento?.toDate ? d.nascimento.toDate().toLocaleDateString('pt-BR') : '-';
-    return `
-      <tr>
-        <td>${id}</td>
-        <td>${d.nome || '-'}</td>
-        <td>${d.turma || '-'}</td>
-        <td>${dn}</td>
-        <td>${d.responsavel || '-'}</td>
-        <td>
-          ${(d.telefoneResponsavel || '-')}${d.emailResponsavel ? `<br>${d.emailResponsavel}` : ''}
-        </td>
-        <td>${d.ativo ? '<span class="badge badge-green">Ativo</span>' : '<span class="badge badge-gray">Inativo</span>'}</td>
-        <td style="white-space:nowrap">
-          <button class="btn btn-small" data-edit="${id}">Editar</button>
-          <button class="btn btn-small" data-inativar="${id}">Inativar</button>
-          <button class="btn btn-small btn-danger" data-del="${id}">Excluir</button>
-        </td>
-      </tr>
-    `;
-  }
-
-  async function carregarPagina(direction='first'){
-    const busca = el('busca').value.trim().toLowerCase();
-    let q = col().orderBy('nome').limit(12);
-
-    if (direction === 'next' && lastDoc) q = q.startAfter(lastDoc);
-    if (direction === 'prev') {
-      if (stack.length >= 2) {
-        stack.pop();
-        const anchor = stack[stack.length - 1];
-        q = col().orderBy('nome').limit(12).startAt(anchor);
-      } else {
-        q = col().orderBy('nome').limit(12);
-      }
-    }
-
-    const tbody = el('alunosTableBody');
-    tbody.innerHTML = `<tr><td class="muted" colspan="8">Carregando...</td></tr>`;
-
-    const snap = await q.get();
-    if (snap.empty) {
-      tbody.innerHTML = `<tr><td class="muted" colspan="8">Nenhum aluno encontrado.</td></tr>`;
-      firstDoc = lastDoc = null; cache = [];
-      return;
-    }
-
-    cache = [];
-    snap.forEach(d => {
-      const data = d.data();
-      const ok = !busca
-        || (data.nome && data.nome.toLowerCase().includes(busca))
-        || (data.matricula && String(data.matricula).toLowerCase().includes(busca));
-      if (ok) cache.push({ id: d.id, data });
-    });
-
-    tbody.innerHTML = cache.map(r => rowHTML(r.id, r.data)).join('') || `<tr><td class="muted" colspan="8">Sem resultados.</td></tr>`;
-
-    firstDoc = snap.docs[0];
-    lastDoc = snap.docs[snap.docs.length - 1];
-    if (direction === 'first') stack = [firstDoc];
-    if (direction === 'next') stack.push(firstDoc);
-
-    // bind ações
-    tbody.querySelectorAll('[data-edit]').forEach(b => b.addEventListener('click', () => editarAluno(b.getAttribute('data-edit'))));
-    tbody.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => excluirAluno(b.getAttribute('data-del'))));
-    tbody.querySelectorAll('[data-inativar]').forEach(b => b.addEventListener('click', () => inativarAluno(b.getAttribute('data-inativar'))));
-  }
-
-  // ---------- Exportar CSV ----------
-  function exportarCSV(){
-    if (!cache.length) return msgErr('Nenhum aluno carregado para exportar');
-    const rows = cache.map(a => ({
-      Matricula: a.id,
-      Nome: a.data.nome || '',
-      Turma: a.data.turma || '',
-      Nascimento: a.data.nascimento?.toDate ? a.data.nascimento.toDate().toISOString().slice(0,10) : '',
-      Responsavel: a.data.responsavel || '',
-      Telefone: a.data.telefoneResponsavel || '',
-      Email: a.data.emailResponsavel || '',
-      Status: a.data.ativo ? 'Ativo' : 'Inativo'
-    }));
-    const headers = Object.keys(rows[0]).join(',');
-    const csv = [headers].concat(rows.map(r => Object.values(r).map(v => `"${String(v).replace(/"/g,'""')}"`).join(','))).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `alunos_${new Date().toISOString().slice(0,10)}.csv`;
-    a.click();
-  }
-
-  // ---------- Init ----------
-  document.addEventListener('DOMContentLoaded', () => {
-    // proteger rota (se tiver auth-guard)
-    if (window.requireAuth) {
-      requireAuth({
-        loginPath: 'login.html',
-        onAuth: () => carregarPagina('first')
-      });
-    } else {
-      carregarPagina('first');
-    }
-
-    // eventos do form
-    el('btnSalvar').addEventListener('click', salvarAluno);
-    el('btnCancelar').addEventListener('click', (e)=>{ e.preventDefault(); el('matriculaAluno').disabled = false; resetForm(); });
-
-    // busca/paginação/export
-    el('btnBuscar').addEventListener('click', () => carregarPagina('first'));
-    el('btnLimparBusca').addEventListener('click', () => { el('busca').value=''; carregarPagina('first'); });
-    el('btnProx').addEventListener('click', () => carregarPagina('next'));
-    el('btnAnt').addEventListener('click', () => carregarPagina('prev'));
-    el('btnExportar').addEventListener('click', exportarCSV);
-
-    // máscara telefone
-    el('telefoneResponsavel').addEventListener('input', (e)=> e.target.value = maskTelefone(e.target.value));
+  document.addEventListener('DOMContentLoaded', async () => {
+    await ensureFirebase();
+    mapElements();
+    bindEvents();
+    startLiveList();
   });
 
-  // expõe se precisar em outros scripts
-  window.carregarPaginaAlunos = carregarPagina;
+  // Aguarda Firebase disponível via window.isFirebaseReady/window.db
+  async function ensureFirebase() {
+    const maxWaitMs = 8000;
+    const start = Date.now();
+    while (!(window.isFirebaseReady && window.isFirebaseReady() && window.db)) {
+      if (Date.now() - start > maxWaitMs) {
+        throw new Error('Firebase não inicializado. Verifique a ordem dos scripts e o firebase-config.js.');
+      }
+      await sleep(100);
+    }
+    db = window.db;
+  }
+
+  function mapElements() {
+    els.form = document.getElementById('alunoForm');
+    els.tbody = document.getElementById('alunosTableBody');
+    els.btnSalvar = document.getElementById('btnSalvar') || queryByType(els.form, 'submit');
+    els.btnCancelar = document.getElementById('btnCancelar');
+    els.busca = document.getElementById('busca');
+    els.total = document.getElementById('totalAlunos');
+    els.toast = document.getElementById('toast');
+  }
+
+  function bindEvents() {
+    if (els.form) {
+      els.form.addEventListener('submit', onSubmitForm);
+    }
+    if (els.btnCancelar) {
+      els.btnCancelar.addEventListener('click', (e) => {
+        e.preventDefault();
+        resetForm();
+      });
+    }
+    if (els.busca) {
+      els.busca.addEventListener('input', () => renderTable());
+    }
+    if (els.tbody) {
+      // Delegação para Editar/Excluir
+      els.tbody.addEventListener('click', async (e) => {
+        const btn = e.target.closest('[data-action]');
+        if (!btn) return;
+        const action = btn.dataset.action;
+        const id = btn.dataset.id;
+        if (!action || !id) return;
+        if (action === 'edit') {
+          onEdit(id);
+        } else if (action === 'delete') {
+          onDelete(id);
+        }
+      });
+    }
+  }
+
+  function startLiveList() {
+    // Real-time listener ordenando por nome (se existir). Documentos sem o campo aparecem primeiro.
+    unsubLista = db.collection(COLLECTION).orderBy('nome').onSnapshot(
+      (snap) => {
+        alunosCache = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        renderTable();
+      },
+      (err) => {
+        console.error('Erro ao ouvir lista:', err);
+        toast('Erro ao carregar alunos. Verifique as regras do Firestore.', 'erro');
+      }
+    );
+  }
+
+  // === CRUD ===
+  async function onSubmitForm(ev) {
+    ev.preventDefault();
+    const data = getFormData();
+
+    try {
+      if (editingId) {
+        validateRequired(data, REQUIRED_FIELDS_UPDATE);
+        // Não permitir troca de docId durante edição
+        if (data.id && data.id !== editingId) {
+          // Se usuário tentou mudar o campo id, ignoramos (docId é fixo no update)
+          data.id = editingId;
+        }
+        await updateAluno(editingId, data);
+        toast('Aluno atualizado com sucesso!');
+      } else {
+        validateRequired(data, REQUIRED_FIELDS_CREATE);
+        const docId = String(data.id).trim();
+        await createAluno(docId, data);
+        toast('Aluno cadastrado com sucesso!');
+      }
+      resetForm();
+    } catch (err) {
+      console.error(err);
+      toast(err.message || 'Falha ao salvar aluno.', 'erro');
+    }
+  }
+
+  async function createAluno(docId, data) {
+    // Confere duplicidade
+    const ref = db.collection(COLLECTION).doc(docId);
+    const snap = await ref.get();
+    if (snap.exists) {
+      throw new Error(`Já existe um aluno com ID "${docId}".`);
+    }
+    const payload = sanitizeData(data, { forCreate: true });
+    await ref.set(payload, { merge: false });
+  }
+
+  async function updateAluno(docId, data) {
+    const ref = db.collection(COLLECTION).doc(docId);
+    const snap = await ref.get();
+    if (!snap.exists) {
+      throw new Error(`Aluno com ID "${docId}" não encontrado para atualização.`);
+    }
+    const payload = sanitizeData(data, { forUpdate: true });
+    await ref.update(payload);
+  }
+
+  async function onEdit(id) {
+    try {
+      const ref = db.collection(COLLECTION).doc(id);
+      const snap = await ref.get();
+      if (!snap.exists) {
+        toast('Registro não encontrado.', 'erro');
+        return;
+      }
+      fillForm({ id, ...snap.data() });
+      editingId = id;
+      toggleFormMode('edit');
+      scrollIntoViewSmooth(els.form);
+    } catch (err) {
+      console.error(err);
+      toast('Falha ao carregar aluno para edição.', 'erro');
+    }
+  }
+
+  async function onDelete(id) {
+    const ok = confirm(`Excluir definitivamente o aluno ID "${id}"?`);
+    if (!ok) return;
+    try {
+      await db.collection(COLLECTION).doc(id).delete();
+      toast('Aluno excluído.');
+      // Se estava editando esse ID, limpa o formulário
+      if (editingId === id) resetForm();
+    } catch (err) {
+      console.error(err);
+      toast('Falha ao excluir aluno.', 'erro');
+    }
+  }
+
+  // === RENDER ===
+  function renderTable() {
+    if (!els.tbody) return;
+    const termo = normalize((els.busca && els.busca.value) || '');
+
+    const lista = alunosCache.filter((a) => {
+      if (!termo) return true;
+      const alvo = normalize(
+        [a.id, a.nome, a.turma, a.nascimento, a.responsavel, a.telefone, a.email]
+          .filter(Boolean)
+          .join(' ')
+      );
+      return alvo.includes(termo);
+    });
+
+    els.tbody.innerHTML = lista
+      .map((a) => {
+        return `
+          <tr>
+            <td>${escapeHtml(a.id || '')}</td>
+            <td>${escapeHtml(a.nome || '')}</td>
+            <td>${escapeHtml(a.turma || '')}</td>
+            <td>${escapeHtml(a.nascimento || '')}</td>
+            <td>${escapeHtml(a.responsavel || '')}</td>
+            <td>${escapeHtml(a.telefone || '')}</td>
+            <td>${escapeHtml(a.email || '')}</td>
+            <td style="white-space:nowrap">
+              <button type="button" class="btn btn-sm" data-action="edit" data-id="${encodeURIComponent(
+                a.id
+              )}">Editar</button>
+              <button type="button" class="btn btn-sm btn-danger" data-action="delete" data-id="${encodeURIComponent(
+                a.id
+              )}">Excluir</button>
+            </td>
+          </tr>`;
+      })
+      .join('');
+
+    if (els.total) {
+      els.total.textContent = String(lista.length);
+    }
+  }
+
+  // === FORM HELPERS ===
+  function getFormData() {
+    if (!els.form) return {};
+    const fd = new FormData(els.form);
+    const data = Object.fromEntries(fd.entries());
+    // Normalizações simples
+    if (data.id != null) data.id = String(data.id).trim();
+    if (data.nome != null) data.nome = cleanSpaces(data.nome);
+    if (data.turma != null) data.turma = cleanSpaces(data.turma).toUpperCase();
+    if (data.telefone != null) data.telefone = data.telefone.trim();
+    if (data.email != null) data.email = data.email.trim().toLowerCase();
+    return data;
+  }
+
+  function fillForm(data) {
+    if (!els.form) return;
+    for (const [k, v] of Object.entries(data)) {
+      const input = els.form.querySelector(`[name="${cssEscape(k)}"]`);
+      if (input) input.value = v == null ? '' : String(v);
+    }
+  }
+
+  function resetForm() {
+    if (els.form) els.form.reset();
+    editingId = null;
+    toggleFormMode('create');
+  }
+
+  function toggleFormMode(mode) {
+    const idInput = els.form && els.form.querySelector('[name="id"]');
+    if (mode === 'edit') {
+      if (idInput) {
+        idInput.disabled = true; // docId não muda
+        idInput.classList.add('is-disabled');
+      }
+      if (els.btnSalvar) els.btnSalvar.textContent = 'Atualizar';
+    } else {
+      if (idInput) {
+        idInput.disabled = false;
+        idInput.classList.remove('is-disabled');
+      }
+      if (els.btnSalvar) els.btnSalvar.textContent = 'Salvar';
+    }
+  }
+
+  function validateRequired(data, fields) {
+    const faltando = fields.filter((f) => !data[f] || String(data[f]).trim() === '');
+    if (faltando.length) {
+      throw new Error('Preencha os campos obrigatórios: ' + faltando.join(', '));
+    }
+  }
+
+  function sanitizeData(data, { forCreate = false, forUpdate = false } = {}) {
+    const allowed = ['id', 'nome', 'turma', 'nascimento', 'responsavel', 'telefone', 'email'];
+    const out = {};
+    for (const k of allowed) {
+      if (data[k] != null && data[k] !== '') out[k] = data[k];
+    }
+
+    // Campos de auditoria
+    const ts = firebase.firestore.FieldValue.serverTimestamp();
+    if (forCreate) {
+      out.createdAt = ts;
+      out.updatedAt = ts;
+    }
+    if (forUpdate) {
+      out.updatedAt = ts;
+    }
+
+    return out;
+  }
+
+  // === UTILITÁRIOS ===
+  function toast(msg, tipo = 'ok') {
+    // Se existir #toast, usa-o; senão, fallback para alert no error
+    if (els.toast) {
+      els.toast.textContent = msg;
+      els.toast.dataset.tipo = tipo; // permita CSS [data-tipo="erro"]
+      els.toast.classList.add('show');
+      setTimeout(() => els.toast && els.toast.classList.remove('show'), 3500);
+    } else if (tipo === 'erro') {
+      alert(msg);
+    } else {
+      console.log('[OK]', msg);
+    }
+  }
+
+  function sleep(ms) {
+    return new Promise((res) => setTimeout(res, ms));
+  }
+
+  function queryByType(root, type) {
+    return root ? root.querySelector(`[type="${cssEscape(type)}"]`) : null;
+  }
+
+  function cleanSpaces(str) {
+    return String(str || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function normalize(str) {
+    return String(str || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .trim();
+  }
+
+  function escapeHtml(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // Polyfill para CSS.escape (evita erro em navegadores mais antigos)
+  function cssEscape(value) {
+    if (window.CSS && typeof window.CSS.escape === 'function') return window.CSS.escape(value);
+    return String(value).replace(/[^a-zA-Z0-9_-]/g, (m) => `\\${m}`);
+  }
+
+  function scrollIntoViewSmooth(el) {
+    if (!el) return;
+    try {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (_) {
+      el.scrollIntoView();
+    }
+  }
+
+  // === LIMPEZA ===
+  window.addEventListener('beforeunload', () => {
+    if (typeof unsubLista === 'function') unsubLista();
+  });
 })();
