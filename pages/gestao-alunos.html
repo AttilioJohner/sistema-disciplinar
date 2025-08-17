@@ -14,6 +14,8 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+     <script src="/js/firebase-config.js"></script>
+   <script src="/js/gestao.js"></script>
 </head>
 
 <body>
@@ -113,7 +115,54 @@
             </div>
           </form>
         </div>
-
+ <form id="alunoForm" class="mt" autocomplete="off">
+        <div class="row">
+          <div class="field col-3">
+            <label for="fld-id">ID (docId no Firestore)*</label>
+            <input id="fld-id" name="id" placeholder="ex.: 2025-0001" required />
+          </div>
+          <div class="field col-6">
+            <label for="fld-nome">Nome*</label>
+            <input id="fld-nome" name="nome" placeholder="Nome completo" required />
+          </div>
+          <div class="field col-3">
+            <label for="fld-turma">Turma*</label>
+            <input id="fld-turma" name="turma" placeholder="ex.: 1ºA" required />
+          </div>
+          <div class="field col-3">
+            <label for="fld-nasc">Nascimento</label>
+            <input id="fld-nasc" name="nascimento" type="date" />
+          </div>
+          <div class="field col-4">
+            <label for="fld-resp">Responsável</label>
+            <input id="fld-resp" name="responsavel" placeholder="Nome do responsável" />
+          </div>
+          <div class="field col-3">
+            <label for="fld-tel">Telefone</label>
+            <input id="fld-tel" name="telefone" placeholder="(xx) xxxxx-xxxx" />
+          </div>
+          <div class="field col-2">
+            <label for="fld-email">E-mail</label>
+            <input id="fld-email" name="email" type="email" placeholder="email@exemplo.com" />
+          </div>
+        </div>
+   <table id="alunosTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Turma</th>
+              <th>Nascimento</th>
+              <th>Responsável</th>
+              <th>Telefone</th>
+              <th>E-mail</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="alunosTableBody">
+            <!-- Preenchido em tempo real pelo gestao.js -->
+          </tbody>
+        </table>
         <!-- LISTA -->
         <div class="table-container">
           <div class="table-header">
@@ -197,6 +246,7 @@
       }, 100);
     });
   </script>
+
 
   <!-- Fallback simples para mensagens -->
   <script>
