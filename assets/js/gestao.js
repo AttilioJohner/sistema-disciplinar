@@ -1,449 +1,275 @@
-// ============================================
-// GESTÃO DE ALUNOS - LÓGICA ESPECÍFICA
-// ============================================
+// assets/js/gestao-alunos.js
+// Requisitos: firebase compat + firebase-config.js + firestore-compat carregados
+(function(){
+  // ---------- Helpers ----------
+  const col = () => firebase.firestore().collection('alunos');
+  const el  = (id) => document.getElementById(id);
 
-// ============================================
-// FIREBASE FUNCTIONS - ALUNOS
-// ============================================
-async function salvarAluno(event) {
-    event.preventDefault();
-    
-    const nome = document.getElementById('nomeAluno').value.trim();
-    const turma = document.getElementById('turmaAluno').value.trim();
-    const nascimento = document.getElementById('nascimentoAluno').value;
-    const responsavel = document.getElementById('responsavelAluno').value.trim();
-    const telefone = document.getElementById('telefoneResponsavel')?.value.trim() || '';
-    const email = document.getElementById('emailResponsavel')?.value.trim() || '';
+  function msgOk(t){ if (typeof showMessage==='function') showMessage(t,'success'); else alert(t); }
+  function msgErr(t){ if (typeof showMessage==='function') showMessage(t,'error'); else alert(t); }
+  function msgInfo(t){ if (typeof showMessage==='function') showMessage(t,'loading'); else console.log(t); }
 
-    if (!nome || !turma) {
-        showMessage('Nome e turma são obrigatórios!', 'error');
-        return;
-    }
+  function toTimestampOrNull(yyyy_mm_dd){
+    if (!yyyy_mm_dd) return null;
+    const d = new Date(yyyy_mm_dd + 'T00:00:00');
+    return isNaN(d.getTime()) ? null : firebase.firestore.Timestamp.fromDate(d);
+  }
 
+  function formatarData(v){
     try {
-        showMessage('Cadastrando aluno...', 'loading');
-        
-        if (!isFirebaseReady()) {
-            showMessage('Firebase não está conectado', 'error');
-            return;
-        }
-        
-        const alunoData = {
-            nome: nome,
-            turma: turma,
-            nascimento: nascimento || null,
-            responsavel: responsavel || null,
-            telefoneResponsavel: telefone || null,
-            emailResponsavel: email || null,
-            dataCadastro: new Date().toISOString(),
-            ativo: true
-        };
+      if (!v) return '-';
+      if (v.toDate) return v.toDate().toLocaleDateString('pt-BR');
+      if (/^\d{4}-\d{2}-\d{2}/.test(v)) return new Date(v).toLocaleDateString('pt-BR');
+      const d = new Date(v);
+      return isNaN(d.getTime()) ? '-' : d.toLocaleDateString('pt-BR');
+    } catch { return '-'; }
+  }
 
-        await db.collection('alunos').add(alunoData);
+  // mascara simples p/ telefone
+  function maskTelefone(value){
+    const digits = (value || '').replace(/\D/g,'').slice(0,11);
+    if (digits.length >= 11) return digits.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    if (digits.length >= 10) return digits.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+    if (digits.length >= 6)  return digits.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+    if (digits.length >= 2)  return digits.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+    return digits;
+  }
 
-        showMessage('✅ Aluno cadastrado com sucesso!', 'success');
-        limparFormAluno();
-        carregarAlunos();
-        carregarEstatisticasGestao();
+  // ---------- Estado ----------
+  let lastDoc = null;
+  let firstDoc = null;
+  let stack = [];
+  let cache = [];
 
-    } catch (error) {
-        console.error('Erro ao cadastrar aluno:', error);
-        showMessage(`Erro ao cadastrar aluno: ${error.message}`, 'error');
-    }
-}
+  // ---------- Form ----------
+  function readForm(){
+    const matricula = el('matriculaAluno').value.trim(); // docId
+    const nome = el('nomeAluno').value.trim();
+    const turma = el('turmaAluno').value.trim();
+    const nascimento = el('nascimentoAluno').value;
+    const responsavel = el('responsavelAluno').value.trim();
+    const telefone = el('telefoneResponsavel').value.trim();
+    const email = el('emailResponsavel').value.trim();
+    const ativo = el('statusAluno').value === 'true';
 
-async function carregarAlunos() {
-    try {
-        const container = document.getElementById('listaAlunos');
-        container.innerHTML = `
-            <div class="loading-state">
-                <div class="loading-spinner"></div>
-                <p>Carregando alunos...</p>
-            </div>
-        `;
-        
-        if (!isFirebaseReady()) {
-            throw new Error('Firebase não conectado');
-        }
-        
-        const querySnapshot = await db.collection('alunos')
-            .where('ativo', '==', true)
-            .orderBy('nome')
-            .get();
-        
-        alunosCache = [];
-        querySnapshot.forEach((doc) => {
-            alunosCache.push({
-                id: doc.id,
-                ...doc.data()
-            });
-        });
+    return {
+      id: el('fId').value.trim(), // só é usado no modo edição
+      docId: matricula,
+      data: {
+        matricula,
+        nome,
+        turma,
+        nascimento: toTimestampOrNull(nascimento),
+        responsavel: responsavel || null,
+        telefoneResponsavel: telefone || null,
+        emailResponsavel: email || null,
+        ativo
+      }
+    };
+  }
 
-        displayListaAlunos();
-
-    } catch (error) {
-        console.error('Erro ao carregar alunos:', error);
-        document.getElementById('listaAlunos').innerHTML = `
-            <div class="empty-state">
-                <div class="empty-icon">⚠️</div>
-                <h3>Erro ao carregar alunos</h3>
-                <p>${error.message}</p>
-                <button class="btn btn-primary" onclick="carregarAlunos()">
-                    🔄 Tentar Novamente
-                </button>
-            </div>
-        `;
-    }
-}
-
-function displayListaAlunos() {
-    const container = document.getElementById('listaAlunos');
-    
-    if (alunosCache.length === 0) {
-        container.innerHTML = `
-            <div class="empty-state">
-                <div class="empty-icon">👤</div>
-                <h3>Nenhum aluno cadastrado</h3>
-                <p>Comece cadastrando o primeiro aluno usando o formulário acima</p>
-            </div>
-        `;
-        return;
-    }
-
-    const html = `
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Turma</th>
-                    <th>Responsável</th>
-                    <th>Contato</th>
-                    <th>Cadastro</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${alunosCache.map(aluno => `
-                    <tr>
-                        <td>
-                            <div style="font-weight: 600;">${aluno.nome}</div>
-                            ${aluno.nascimento ? `<div style="font-size: 12px; color: #605e5c;">Nascimento: ${formatarData(aluno.nascimento)}</div>` : ''}
-                        </td>
-                        <td>
-                            <span class="student-class">${aluno.turma}</span>
-                        </td>
-                        <td>${aluno.responsavel || '-'}</td>
-                        <td>
-                            ${aluno.telefoneResponsavel ? `<div style="font-size: 12px;">📞 ${aluno.telefoneResponsavel}</div>` : ''}
-                            ${aluno.emailResponsavel ? `<div style="font-size: 12px;">📧 ${aluno.emailResponsavel}</div>` : ''}
-                            ${!aluno.telefoneResponsavel && !aluno.emailResponsavel ? '-' : ''}
-                        </td>
-                        <td>${formatarData(aluno.dataCadastro)}</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn btn-primary btn-small" onclick="editarAluno('${aluno.id}')" title="Editar">
-                                    ✏️
-                                </button>
-                                <button class="btn btn-info btn-small" onclick="verDetalhesAluno('${aluno.id}')" title="Ver Detalhes">
-                                    👁️
-                                </button>
-                                <button class="btn btn-warning btn-small" onclick="inativarAluno('${aluno.id}', '${aluno.nome}')" title="Inativar">
-                                    ⚠️
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `).join('')}
-            </tbody>
-        </table>
-    `;
-
-    container.innerHTML = html;
-}
-
-async function carregarEstatisticasGestao() {
-    try {
-        if (!isFirebaseReady()) return;
-
-        // Total de alunos ativos
-        const alunosSnapshot = await db.collection('alunos')
-            .where('ativo', '==', true)
-            .get();
-        const totalAtivos = alunosSnapshot.size;
-
-        // Total de turmas únicas
-        const turmas = new Set();
-        alunosSnapshot.forEach(doc => {
-            const data = doc.data();
-            if (data.turma) turmas.add(data.turma);
-        });
-
-        // Cadastros de hoje
-        const hoje = new Date().toISOString().split('T')[0];
-        const cadastrosHoje = alunosCache.filter(aluno => 
-            aluno.dataCadastro && aluno.dataCadastro.startsWith(hoje)
-        ).length;
-
-        // Dados incompletos (sem responsável ou contato)
-        const dadosIncompletos = alunosCache.filter(aluno => 
-            !aluno.responsavel || (!aluno.telefoneResponsavel && !aluno.emailResponsavel)
-        ).length;
-
-        // Atualizar interface
-        document.getElementById('totalAlunosAtivos').textContent = totalAtivos;
-        document.getElementById('totalTurmas').textContent = turmas.size;
-        document.getElementById('cadastrosHoje').textContent = cadastrosHoje;
-        document.getElementById('dadosIncompletos').textContent = dadosIncompletos;
-
-    } catch (error) {
-        console.error('Erro ao carregar estatísticas:', error);
-    }
-}
-
-// ============================================
-// AÇÕES DOS ALUNOS
-// ============================================
-async function editarAluno(alunoId) {
-    try {
-        const aluno = alunosCache.find(a => a.id === alunoId);
-        if (!aluno) {
-            showMessage('Aluno não encontrado', 'error');
-            return;
-        }
-
-        // Preencher formulário com dados do aluno
-        document.getElementById('nomeAluno').value = aluno.nome || '';
-        document.getElementById('turmaAluno').value = aluno.turma || '';
-        document.getElementById('nascimentoAluno').value = aluno.nascimento || '';
-        document.getElementById('responsavelAluno').value = aluno.responsavel || '';
-        
-        if (document.getElementById('telefoneResponsavel')) {
-            document.getElementById('telefoneResponsavel').value = aluno.telefoneResponsavel || '';
-        }
-        if (document.getElementById('emailResponsavel')) {
-            document.getElementById('emailResponsavel').value = aluno.emailResponsavel || '';
-        }
-
-        // Alterar o formulário para modo edição
-        const form = document.getElementById('formAluno');
-        form.setAttribute('data-editing', alunoId);
-        
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.innerHTML = '✅ Atualizar Aluno';
-        submitBtn.className = 'btn btn-warning';
-
-        // Scroll para o formulário
-        document.querySelector('.management-section').scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-        });
-
-        showMessage(`Editando: ${aluno.nome}`, 'info');
-
-    } catch (error) {
-        console.error('Erro ao editar aluno:', error);
-        showMessage('Erro ao carregar dados do aluno', 'error');
-    }
-}
-
-async function atualizarAluno(alunoId, dadosAtualizados) {
-    try {
-        showMessage('Atualizando aluno...', 'loading');
-        
-        await db.collection('alunos').doc(alunoId).update({
-            ...dadosAtualizados,
-            dataAtualizacao: new Date().toISOString()
-        });
-
-        showMessage('✅ Aluno atualizado com sucesso!', 'success');
-        resetarFormulario();
-        carregarAlunos();
-        carregarEstatisticasGestao();
-
-    } catch (error) {
-        console.error('Erro ao atualizar aluno:', error);
-        showMessage(`Erro ao atualizar aluno: ${error.message}`, 'error');
-    }
-}
-
-async function inativarAluno(alunoId, nomeAluno) {
-    if (!confirm(`Tem certeza que deseja inativar o aluno "${nomeAluno}"?\n\nEle será removido da listagem mas os registros históricos serão mantidos.`)) {
-        return;
-    }
-
-    try {
-        showMessage('Inativando aluno...', 'loading');
-        
-        await db.collection('alunos').doc(alunoId).update({
-            ativo: false,
-            dataInativacao: new Date().toISOString()
-        });
-
-        showMessage('✅ Aluno inativado com sucesso!', 'success');
-        carregarAlunos();
-        carregarEstatisticasGestao();
-
-    } catch (error) {
-        console.error('Erro ao inativar aluno:', error);
-        showMessage(`Erro ao inativar aluno: ${error.message}`, 'error');
-    }
-}
-
-function verDetalhesAluno(alunoId) {
-    const aluno = alunosCache.find(a => a.id === alunoId);
-    if (!aluno) {
-        showMessage('Aluno não encontrado', 'error');
-        return;
-    }
-
-    // Criar modal com detalhes (implementação simples)
-    const detalhes = `
-        Nome: ${aluno.nome}
-        Turma: ${aluno.turma}
-        Nascimento: ${aluno.nascimento ? formatarData(aluno.nascimento) : 'Não informado'}
-        Responsável: ${aluno.responsavel || 'Não informado'}
-        Telefone: ${aluno.telefoneResponsavel || 'Não informado'}
-        Email: ${aluno.emailResponsavel || 'Não informado'}
-        Cadastrado em: ${formatarDataHora(aluno.dataCadastro)}
-    `;
-
-    alert(`Detalhes do Aluno:\n\n${detalhes}`);
-}
-
-// ============================================
-// HELPER FUNCTIONS
-// ============================================
-function limparFormAluno() {
-    document.getElementById('formAluno').reset();
-    resetarFormulario();
-    document.getElementById('nomeAluno').focus();
-}
-
-function resetarFormulario() {
-    const form = document.getElementById('formAluno');
-    form.removeAttribute('data-editing');
-    
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.innerHTML = '✅ Cadastrar Aluno';
-    submitBtn.className = 'btn btn-success';
-}
-
-// Modificar a função salvarAluno para suportar edição
-const originalSalvarAluno = salvarAluno;
-salvarAluno = async function(event) {
-    event.preventDefault();
-    
-    const form = document.getElementById('formAluno');
-    const editingId = form.getAttribute('data-editing');
-    
-    if (editingId) {
-        // Modo edição
-        const nome = document.getElementById('nomeAluno').value.trim();
-        const turma = document.getElementById('turmaAluno').value.trim();
-        const nascimento = document.getElementById('nascimentoAluno').value;
-        const responsavel = document.getElementById('responsavelAluno').value.trim();
-        const telefone = document.getElementById('telefoneResponsavel')?.value.trim() || '';
-        const email = document.getElementById('emailResponsavel')?.value.trim() || '';
-
-        if (!nome || !turma) {
-            showMessage('Nome e turma são obrigatórios!', 'error');
-            return;
-        }
-
-        const dadosAtualizados = {
-            nome: nome,
-            turma: turma,
-            nascimento: nascimento || null,
-            responsavel: responsavel || null,
-            telefoneResponsavel: telefone || null,
-            emailResponsavel: email || null
-        };
-
-        await atualizarAluno(editingId, dadosAtualizados);
+  function fillForm(docId, data){
+    el('fId').value = docId || '';
+    el('matriculaAluno').value = data?.matricula || docId || '';
+    el('nomeAluno').value = data?.nome || '';
+    el('turmaAluno').value = data?.turma || '';
+    el('responsavelAluno').value = data?.responsavel || '';
+    el('telefoneResponsavel').value = data?.telefoneResponsavel || '';
+    el('emailResponsavel').value = data?.emailResponsavel || '';
+    if (data?.nascimento?.toDate) {
+      el('nascimentoAluno').value = data.nascimento.toDate().toISOString().slice(0,10);
     } else {
-        // Modo criação
-        await originalSalvarAluno(event);
+      el('nascimentoAluno').value = '';
     }
-};
+    el('statusAluno').value = data?.ativo ? 'true' : 'false';
+  }
 
-function exportarAlunos() {
-    if (alunosCache.length === 0) {
-        showMessage('Nenhum aluno para exportar', 'error');
-        return;
-    }
-    
+  function resetForm(){
+    fillForm('', {});
+    el('formTitulo').textContent = 'Novo aluno';
+    el('btnSalvar').textContent = 'Cadastrar';
+  }
+
+  // ---------- CRUD ----------
+  async function salvarAluno(e){
+    e.preventDefault();
+    const { id, docId, data } = readForm();
+
+    if (!docId) return msgErr('Informe a matrícula (ID).');
+    if (!data.nome) return msgErr('Informe o nome.');
+    if (!data.turma) return msgErr('Informe a turma.');
+
     try {
-        // Preparar dados para export
-        const dadosExport = alunosCache.map(aluno => ({
-            'Nome': aluno.nome,
-            'Turma': aluno.turma,
-            'Data Nascimento': aluno.nascimento ? formatarData(aluno.nascimento) : '',
-            'Responsável': aluno.responsavel || '',
-            'Telefone': aluno.telefoneResponsavel || '',
-            'Email': aluno.emailResponsavel || '',
-            'Data Cadastro': formatarData(aluno.dataCadastro)
-        }));
-
-        // Converter para CSV
-        const csv = convertToCSV(dadosExport);
-        
-        // Download
-        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = `alunos_${new Date().toISOString().split('T')[0]}.csv`;
-        link.click();
-        
-        showMessage('✅ Lista de alunos exportada!', 'success');
-        
-    } catch (error) {
-        console.error('Erro ao exportar:', error);
-        showMessage('Erro ao exportar dados', 'error');
+      msgInfo('Salvando...');
+      if (id) {
+        // edição: mantém docId fixo (id)
+        await col().doc(id).set({ ...data, dataAtualizacao: firebase.firestore.Timestamp.fromDate(new Date()) }, { merge: true });
+      } else {
+        // criação com docId = matrícula
+        await col().doc(docId).set({ ...data, dataCadastro: firebase.firestore.Timestamp.fromDate(new Date()) }, { merge: false });
+      }
+      msgOk('Dados salvos!');
+      resetForm();
+      carregarPagina('first');
+    } catch (e) {
+      console.error(e);
+      msgErr('Erro ao salvar: ' + (e.message || e));
     }
-}
+  }
 
-function convertToCSV(data) {
-    if (!data.length) return '';
-    
-    const headers = Object.keys(data[0]).join(',');
-    const rows = data.map(row => 
-        Object.values(row).map(value => 
-            `"${String(value).replace(/"/g, '""')}"`
-        ).join(',')
-    );
-    
-    return [headers, ...rows].join('\n');
-}
-
-// ============================================
-// CONFIGURAÇÕES ESPECÍFICAS DA PÁGINA
-// ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    // Configurar máscara de telefone
-    const telefoneInput = document.getElementById('telefoneResponsavel');
-    if (telefoneInput) {
-        telefoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 11) {
-                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-            } else if (value.length >= 10) {
-                value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
-            } else if (value.length >= 6) {
-                value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
-            } else if (value.length >= 2) {
-                value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
-            }
-            e.target.value = value;
-        });
+  async function editarAluno(id){
+    try {
+      const d = await col().doc(id).get();
+      if (!d.exists) return msgErr('Registro não encontrado.');
+      fillForm(d.id, d.data());
+      el('formTitulo').textContent = 'Editar aluno';
+      el('btnSalvar').textContent = 'Salvar alterações';
+      el('matriculaAluno').disabled = true; // não permitir trocar docId
+      el('formAluno').scrollIntoView({ behavior: 'smooth' });
+    } catch(e){
+      console.error(e); msgErr('Erro ao carregar aluno.');
     }
-});
+  }
 
-// Exportar funções para uso global
-window.salvarAluno = salvarAluno;
-window.carregarAlunos = carregarAlunos;
-window.limparFormAluno = limparFormAluno;
-window.editarAluno = editarAluno;
-window.inativarAluno = inativarAluno;
-window.verDetalhesAluno = verDetalhesAluno;
-window.exportarAlunos = exportarAlunos;
-window.carregarEstatisticasGestao = carregarEstatisticasGestao;
+  async function excluirAluno(id){
+    if (!confirm('Excluir este aluno?')) return;
+    try {
+      await col().doc(id).delete();
+      msgOk('Aluno excluído.');
+      carregarPagina();
+    } catch(e){
+      console.error(e); msgErr('Erro ao excluir.');
+    }
+  }
+
+  async function inativarAluno(id){
+    if (!confirm('Inativar este aluno?')) return;
+    try {
+      await col().doc(id).update({ ativo: false, dataInativacao: firebase.firestore.Timestamp.fromDate(new Date()) });
+      msgOk('Aluno inativado.');
+      carregarPagina();
+    } catch(e){ console.error(e); msgErr('Erro ao inativar.'); }
+  }
+
+  // ---------- Lista / Paginação ----------
+  function rowHTML(id, d){
+    const dn = d.nascimento?.toDate ? d.nascimento.toDate().toLocaleDateString('pt-BR') : '-';
+    return `
+      <tr>
+        <td>${id}</td>
+        <td>${d.nome || '-'}</td>
+        <td>${d.turma || '-'}</td>
+        <td>${dn}</td>
+        <td>${d.responsavel || '-'}</td>
+        <td>
+          ${(d.telefoneResponsavel || '-')}${d.emailResponsavel ? `<br>${d.emailResponsavel}` : ''}
+        </td>
+        <td>${d.ativo ? '<span class="badge badge-green">Ativo</span>' : '<span class="badge badge-gray">Inativo</span>'}</td>
+        <td style="white-space:nowrap">
+          <button class="btn btn-small" data-edit="${id}">Editar</button>
+          <button class="btn btn-small" data-inativar="${id}">Inativar</button>
+          <button class="btn btn-small btn-danger" data-del="${id}">Excluir</button>
+        </td>
+      </tr>
+    `;
+  }
+
+  async function carregarPagina(direction='first'){
+    const busca = el('busca').value.trim().toLowerCase();
+    let q = col().orderBy('nome').limit(12);
+
+    if (direction === 'next' && lastDoc) q = q.startAfter(lastDoc);
+    if (direction === 'prev') {
+      if (stack.length >= 2) {
+        stack.pop();
+        const anchor = stack[stack.length - 1];
+        q = col().orderBy('nome').limit(12).startAt(anchor);
+      } else {
+        q = col().orderBy('nome').limit(12);
+      }
+    }
+
+    const tbody = el('alunosTableBody');
+    tbody.innerHTML = `<tr><td class="muted" colspan="8">Carregando...</td></tr>`;
+
+    const snap = await q.get();
+    if (snap.empty) {
+      tbody.innerHTML = `<tr><td class="muted" colspan="8">Nenhum aluno encontrado.</td></tr>`;
+      firstDoc = lastDoc = null; cache = [];
+      return;
+    }
+
+    cache = [];
+    snap.forEach(d => {
+      const data = d.data();
+      const ok = !busca
+        || (data.nome && data.nome.toLowerCase().includes(busca))
+        || (data.matricula && String(data.matricula).toLowerCase().includes(busca));
+      if (ok) cache.push({ id: d.id, data });
+    });
+
+    tbody.innerHTML = cache.map(r => rowHTML(r.id, r.data)).join('') || `<tr><td class="muted" colspan="8">Sem resultados.</td></tr>`;
+
+    firstDoc = snap.docs[0];
+    lastDoc = snap.docs[snap.docs.length - 1];
+    if (direction === 'first') stack = [firstDoc];
+    if (direction === 'next') stack.push(firstDoc);
+
+    // bind ações
+    tbody.querySelectorAll('[data-edit]').forEach(b => b.addEventListener('click', () => editarAluno(b.getAttribute('data-edit'))));
+    tbody.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => excluirAluno(b.getAttribute('data-del'))));
+    tbody.querySelectorAll('[data-inativar]').forEach(b => b.addEventListener('click', () => inativarAluno(b.getAttribute('data-inativar'))));
+  }
+
+  // ---------- Exportar CSV ----------
+  function exportarCSV(){
+    if (!cache.length) return msgErr('Nenhum aluno carregado para exportar');
+    const rows = cache.map(a => ({
+      Matricula: a.id,
+      Nome: a.data.nome || '',
+      Turma: a.data.turma || '',
+      Nascimento: a.data.nascimento?.toDate ? a.data.nascimento.toDate().toISOString().slice(0,10) : '',
+      Responsavel: a.data.responsavel || '',
+      Telefone: a.data.telefoneResponsavel || '',
+      Email: a.data.emailResponsavel || '',
+      Status: a.data.ativo ? 'Ativo' : 'Inativo'
+    }));
+    const headers = Object.keys(rows[0]).join(',');
+    const csv = [headers].concat(rows.map(r => Object.values(r).map(v => `"${String(v).replace(/"/g,'""')}"`).join(','))).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `alunos_${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+  }
+
+  // ---------- Init ----------
+  document.addEventListener('DOMContentLoaded', () => {
+    // proteger rota (se tiver auth-guard)
+    if (window.requireAuth) {
+      requireAuth({
+        loginPath: 'login.html',
+        onAuth: () => carregarPagina('first')
+      });
+    } else {
+      carregarPagina('first');
+    }
+
+    // eventos do form
+    el('btnSalvar').addEventListener('click', salvarAluno);
+    el('btnCancelar').addEventListener('click', (e)=>{ e.preventDefault(); el('matriculaAluno').disabled = false; resetForm(); });
+
+    // busca/paginação/export
+    el('btnBuscar').addEventListener('click', () => carregarPagina('first'));
+    el('btnLimparBusca').addEventListener('click', () => { el('busca').value=''; carregarPagina('first'); });
+    el('btnProx').addEventListener('click', () => carregarPagina('next'));
+    el('btnAnt').addEventListener('click', () => carregarPagina('prev'));
+    el('btnExportar').addEventListener('click', exportarCSV);
+
+    // máscara telefone
+    el('telefoneResponsavel').addEventListener('input', (e)=> e.target.value = maskTelefone(e.target.value));
+  });
+
+  // expõe se precisar em outros scripts
+  window.carregarPaginaAlunos = carregarPagina;
+})();
