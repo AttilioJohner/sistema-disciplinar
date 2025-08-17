@@ -313,3 +313,8 @@ window.capitalize = capitalize;
 window.gerarId = gerarId;
 window.debounce = debounce;
 window.fazerBackup = fazerBackup;
+
+// Export functions for Node.js testing environment
+if (typeof module !== 'undefined') {
+    module.exports = { capitalize, gerarId };
+}

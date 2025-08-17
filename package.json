@@ -1,0 +1,16 @@
+{
+  "name": "sistema-disciplinar-revisado",
+  "version": "1.0.0",
+  "description": "Dashboard para gestão disciplinar escolar: alunos, medidas, relatórios e análises.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
