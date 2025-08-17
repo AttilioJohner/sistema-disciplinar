@@ -244,25 +244,29 @@
       return alvo.includes(termo);
     });
 
-    els.tbody.innerHTML = lista
-      .map((a) => {
-        return (
-          '<tr>' +
-            '<td>' + escapeHtml(a.id || '') + '</td>' +
-            '<td>' + escapeHtml(a.nome || '') + '</td>' +
-            '<td>' + escapeHtml(a.turma || '') + '</td>' +
-            '<td>' + escapeHtml(a.nascimento || '') + '</td>' +
-            '<td>' + escapeHtml(a.responsavel || '') + '</td>' +
-            '<td>' + escapeHtml(a.telefone || '') + '</td>' +
-            '<td>' + escapeHtml(a.email || '') + '</td>' +
-            '<td style="white-space:nowrap">' +
-              '<button type="button" class="btn btn-small" data-action="edit" data-id="' + encodeURIComponent(a.id) + '">Editar</button>' +
-              '<button type="button" class="btn btn-small btn-danger" data-action="delete" data-id="' + encodeURIComponent(a.id) + '">Excluir</button>' +
-            '</td>' +
-          '</tr>'
-        );
-      })
-      .join('');
+    if (lista.length === 0) {
+      els.tbody.innerHTML = '<tr><td colspan="8" class="no-data">Nenhum aluno cadastrado.</td></tr>';
+    } else {
+      els.tbody.innerHTML = lista
+        .map((a) => {
+          return (
+            '<tr>' +
+              '<td>' + escapeHtml(a.id || '') + '</td>' +
+              '<td>' + escapeHtml(a.nome || '') + '</td>' +
+              '<td>' + escapeHtml(a.turma || '') + '</td>' +
+              '<td>' + escapeHtml(a.nascimento || '') + '</td>' +
+              '<td>' + escapeHtml(a.responsavel || '') + '</td>' +
+              '<td>' + escapeHtml(a.telefone || '') + '</td>' +
+              '<td>' + escapeHtml(a.email || '') + '</td>' +
+              '<td style="white-space:nowrap">' +
+                '<button type="button" class="btn btn-small" data-action="edit" data-id="' + encodeURIComponent(a.id) + '">Editar</button>' +
+                '<button type="button" class="btn btn-small btn-danger" data-action="delete" data-id="' + encodeURIComponent(a.id) + '">Excluir</button>' +
+              '</td>' +
+            '</tr>'
+          );
+        })
+        .join('');
+    }
 
     if (els.total) {
       els.total.textContent = String(lista.length);
