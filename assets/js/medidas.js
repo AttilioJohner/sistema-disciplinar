@@ -490,6 +490,70 @@ function exportarRegistros() {
     } catch (error) {
         console.error('Erro ao exportar:', error);
         showMessage('Erro ao exportar dados', 'error');
+
+        // routes/medidas.js
+const express = require('express');
+const router = express.Router();
+const { db } = require('../firebase-admin'); // seu arquivo que inicializa o admin
+// opcional: middleware de auth que você já usa
+// const { requireAuth } = require('../middlewares/auth');
+
+function toNumber(v) {
+  const n = Number(v);
+  return Number.isFinite(n) ? n : undefined;
+}
+
+// GET /medidas?alunoId=...&limit=20&startAfter=docId|timestamp
+router.get('/', /*requireAuth,*/ async (req, res) => {
+  try {
+    const { alunoId, limit = 20, startAfter } = req.query;
+    let q = db.collection('medidas').orderBy('data', 'desc');
+
+    if (alunoId) q = q.where('alunoId', '==', String(alunoId));
+    const lim = toNumber(limit) || 20;
+    q = q.limit(Math.min(lim, 100));
+
+    // paginação por cursor (opcional)
+    if (startAfter) {
+      // você pode usar strategy por timestamp ou doc snapshot
+      const ref = await db.collection('medidas').doc(String(startAfter)).get().catch(() => null);
+      if (ref && ref.exists) q = q.startAfter(ref);
+    }
+
+    const snap = await q.get();
+
+    // próximo cursor
+    const last = snap.docs[snap.docs.length - 1];
+    const nextPageToken = last ? last.id : null;
+
+    const itens = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    return res.json({ itens, nextPageToken });
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ erro: 'Falha ao listar medidas', detalhe: String(e.message || e) });
+  }
+});
+
+// GET /alunos/:alunoId/medidas
+router.get('/aluno/:alunoId', /*requireAuth,*/ async (req, res) => {
+  try {
+    const { alunoId } = req.params;
+    const snap = await db.collection('medidas')
+      .where('alunoId', '==', String(alunoId))
+      .orderBy('data', 'desc')
+      .limit(100)
+      .get();
+
+    const itens = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    return res.json({ itens });
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ erro: 'Falha ao listar medidas do aluno', detalhe: String(e.message || e) });
+  }
+});
+
+module.exports = router;
+
     }
 }
 
