@@ -5,7 +5,6 @@
 // ============================================
 // VARIÁVEIS GLOBAIS
 // ============================================
-let alunosCache = [];
 let registrosCache = [];
 let processedData = [];
 let filteredData = [];
@@ -81,15 +80,15 @@ function configurarPesquisa() {
 }
 
 function realizarPesquisa(termo) {
-    // Buscar em alunos se estiver disponível
-    if (alunosCache && alunosCache.length > 0) {
-        const resultados = alunosCache.filter(aluno =>
+    const cache = window.alunosCache || [];
+    if (cache.length > 0) {
+        const resultados = cache.filter(aluno =>
             aluno.nome.toLowerCase().includes(termo) ||
             aluno.turma.toLowerCase().includes(termo) ||
             (aluno.responsavel && aluno.responsavel.toLowerCase().includes(termo)) ||
             (aluno.cpf && aluno.cpf.includes(termo))
         );
-        
+
         if (resultados.length > 0) {
             console.log(`Encontrados ${resultados.length} resultado(s) para: ${termo}`);
             showMessage(`🔍 ${resultados.length} resultado(s) encontrado(s)`, 'info');

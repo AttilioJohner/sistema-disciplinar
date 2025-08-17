@@ -110,6 +110,7 @@
 
     const handler = (snap) => {
       alunosCache = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      window.alunosCache = alunosCache.slice();
       debugLog('onSnapshot size:', snap.size);
       renderTable();
     };
