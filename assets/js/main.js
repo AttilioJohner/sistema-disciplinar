@@ -280,39 +280,43 @@ async function obterTodasMedidas() {
 // ============================================
 // INICIALIZAÇÃO
 // ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Sistema Dashboard Disciplinar carregado');
-    
-    // Configurar funcionalidades globais
-    ativarMenuLateral();
-    configurarPesquisa();
-    configurarAtalhos();
-    configurarValidacoes();
-    
-    // Verificar Firebase após um tempo
-    setTimeout(() => {
-        if (isFirebaseReady()) {
-            showMessage('🔥 Sistema conectado e funcionando!', 'success');
-        } else {
-            showMessage('⚠️ Sistema funcionando em modo offline', 'info');
-        }
-    }, 1000);
-    
-    // Adicionar info da versão
-    console.log('📚 Dashboard Disciplinar v1.0');
-    console.log('🎯 Desenvolvido para gestão escolar eficiente');
-});
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🚀 Sistema Dashboard Disciplinar carregado');
+
+        // Configurar funcionalidades globais
+        ativarMenuLateral();
+        configurarPesquisa();
+        configurarAtalhos();
+        configurarValidacoes();
+
+        // Verificar Firebase após um tempo
+        setTimeout(() => {
+            if (isFirebaseReady()) {
+                showMessage('🔥 Sistema conectado e funcionando!', 'success');
+            } else {
+                showMessage('⚠️ Sistema funcionando em modo offline', 'info');
+            }
+        }, 1000);
+
+        // Adicionar info da versão
+        console.log('📚 Dashboard Disciplinar v1.0');
+        console.log('🎯 Desenvolvido para gestão escolar eficiente');
+    });
+}
 
 // ============================================
 // EXPORTAR FUNÇÕES GLOBAIS
 // ============================================
-window.showMessage = showMessage;
-window.formatarData = formatarData;
-window.formatarDataHora = formatarDataHora;
-window.capitalize = capitalize;
-window.gerarId = gerarId;
-window.debounce = debounce;
-window.fazerBackup = fazerBackup;
+if (typeof window !== 'undefined') {
+    window.showMessage = showMessage;
+    window.formatarData = formatarData;
+    window.formatarDataHora = formatarDataHora;
+    window.capitalize = capitalize;
+    window.gerarId = gerarId;
+    window.debounce = debounce;
+    window.fazerBackup = fazerBackup;
+}
 
 // Export functions for Node.js testing environment
 if (typeof module !== 'undefined') {
