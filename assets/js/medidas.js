@@ -110,6 +110,7 @@ async function salvarMedida(event) {
         limparFormMedida();
         carregarRegistrosRecentes();
         carregarEstatisticasMedidas();
+        carregarTabelaMedidas(alunoId);
 
         // Notificação especial para medidas graves
         if (gravidade === 'Grave' || gravidade === 'Gravíssima') {
@@ -145,7 +146,7 @@ async function carregarSelectsAlunos() {
 
         const selectFalta = document.getElementById('alunoFalta');
         const selectMedida = document.getElementById('alunoMedida');
-        
+
         selectFalta.innerHTML = '<option value="">Selecione o aluno...</option>';
         selectMedida.innerHTML = '<option value="">Selecione o aluno...</option>';
         
@@ -154,6 +155,12 @@ async function carregarSelectsAlunos() {
             selectFalta.innerHTML += option;
             selectMedida.innerHTML += option;
         });
+
+        selectMedida.addEventListener('change', e => {
+            carregarTabelaMedidas(e.target.value);
+        });
+
+        carregarTabelaMedidas(selectMedida.value);
 
     } catch (error) {
         console.error('Erro ao carregar selects de alunos:', error);
@@ -493,6 +500,53 @@ function exportarRegistros() {
     }
 }
 
+async function carregarTabelaMedidas(alunoId) {
+    const tabela = document.getElementById('medidasTable');
+    if (!tabela) return;
+    const tbody = tabela.querySelector('tbody');
+    tbody.innerHTML = '';
+
+    if (!alunoId) {
+        const colCount = tabela.querySelectorAll('thead th').length;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="${colCount}">Selecione um aluno para visualizar as medidas.</td>`;
+        tbody.appendChild(tr);
+        return;
+    }
+
+    try {
+        const resp = await fetch(`/medidas?alunoId=${encodeURIComponent(alunoId)}`);
+        const dados = await resp.json();
+        if (!Array.isArray(dados) || dados.length === 0) {
+            const colCount = tabela.querySelectorAll('thead th').length;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td colspan="${colCount}">Nenhuma medida encontrada.</td>`;
+            tbody.appendChild(tr);
+            return;
+        }
+
+        dados.forEach(m => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${m.data ? new Date(m.data).toLocaleDateString('pt-BR') : ''}</td>
+                <td>${m.peso ?? ''}</td>
+                <td>${m.altura ?? ''}</td>
+                <td>${m.imc ?? ''}</td>
+                <td>${m.cintura ?? ''}</td>
+                <td>${m.quadril ?? ''}</td>
+                <td>${m.observacoes ?? ''}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error('Erro ao carregar medidas:', error);
+        const colCount = tabela.querySelectorAll('thead th').length;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="${colCount}">Erro ao carregar medidas.</td>`;
+        tbody.appendChild(tr);
+    }
+}
+
 // ============================================
 // EXPORTAR FUNÇÕES GLOBAIS
 // ============================================
@@ -509,3 +563,4 @@ window.verDetalhesMedida = verDetalhesMedida;
 window.editarFalta = editarFalta;
 window.editarMedida = editarMedida;
 window.exportarRegistros = exportarRegistros;
+window.carregarTabelaMedidas = carregarTabelaMedidas;
