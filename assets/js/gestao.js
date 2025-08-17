@@ -237,7 +237,7 @@
     const lista = alunosCache.filter((a) => {
       if (!termo) return true;
       const alvo = normalize(
-        [a.id, a.nome, a.turma, a.nascimento, a.responsavel, a.cpf, a.telefone, a.email]
+        [a.id, a.nome, a.turma, a.nascimento, a.responsavel, a.cpf, a.telefone]
           .filter(Boolean)
           .join(' ')
       );
@@ -259,7 +259,6 @@
               '<td>' + escapeHtml(a.responsavel || '') + '</td>' +
               '<td>' + escapeHtml(a.cpf || '') + '</td>' +
               '<td>' + escapeHtml(a.telefone || '') + '</td>' +
-              '<td>' + escapeHtml(a.email || '') + '</td>' +
               '<td style="white-space:nowrap">' +
                 '<button type="button" class="btn btn-small" data-action="edit" data-id="' + encodeURIComponent(a.id) + '">Editar</button>' +
                 '<button type="button" class="btn btn-small btn-danger" data-action="delete" data-id="' + encodeURIComponent(a.id) + '">Excluir</button>' +
