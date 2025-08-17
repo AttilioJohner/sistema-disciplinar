@@ -223,6 +223,12 @@
     transition: transform 0.2s ease;
 }
 
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: #605e5c;
+}
+
 .action-buttons {
     display: flex;
     gap: 4px;

@@ -1,6 +1,6 @@
 // gestao.js — CRUD de Alunos com Firestore (Compat SDK) + Modo Debug
 // Requisitos no HTML:
-// - <form id="alunoForm"> com inputs name="id", "nome", "turma", "nascimento", "responsavel", "telefone", "email"
+// - <form id="alunoForm"> com inputs name="id", "nome", "turma", "nascimento", "responsavel", "cpf", "telefone", "email"
 // - <tbody id="alunosTableBody"></tbody>
 // - Botões: #btnSalvar, #btnCancelar (opcional), e input de busca #busca (opcional)
 // - Elementos auxiliares (opcional): #totalAlunos, #toast
@@ -237,32 +237,37 @@
     const lista = alunosCache.filter((a) => {
       if (!termo) return true;
       const alvo = normalize(
-        [a.id, a.nome, a.turma, a.nascimento, a.responsavel, a.telefone, a.email]
+        [a.id, a.nome, a.turma, a.nascimento, a.responsavel, a.cpf, a.telefone, a.email]
           .filter(Boolean)
           .join(' ')
       );
       return alvo.includes(termo);
     });
 
-    els.tbody.innerHTML = lista
-      .map((a) => {
-        return (
-          '<tr>' +
-            '<td>' + escapeHtml(a.id || '') + '</td>' +
-            '<td>' + escapeHtml(a.nome || '') + '</td>' +
-            '<td>' + escapeHtml(a.turma || '') + '</td>' +
-            '<td>' + escapeHtml(a.nascimento || '') + '</td>' +
-            '<td>' + escapeHtml(a.responsavel || '') + '</td>' +
-            '<td>' + escapeHtml(a.telefone || '') + '</td>' +
-            '<td>' + escapeHtml(a.email || '') + '</td>' +
-            '<td style="white-space:nowrap">' +
-              '<button type="button" class="btn btn-small" data-action="edit" data-id="' + encodeURIComponent(a.id) + '">Editar</button>' +
-              '<button type="button" class="btn btn-small btn-danger" data-action="delete" data-id="' + encodeURIComponent(a.id) + '">Excluir</button>' +
-            '</td>' +
-          '</tr>'
-        );
-      })
-      .join('');
+    if (lista.length === 0) {
+      els.tbody.innerHTML = '<tr><td colspan="9" class="no-data">Nenhum aluno cadastrado.</td></tr>';
+    } else {
+      els.tbody.innerHTML = lista
+        .map((a) => {
+          return (
+            '<tr>' +
+              '<td>' + escapeHtml(a.id || '') + '</td>' +
+              '<td>' + escapeHtml(a.nome || '') + '</td>' +
+              '<td>' + escapeHtml(a.turma || '') + '</td>' +
+              '<td>' + escapeHtml(a.nascimento || '') + '</td>' +
+              '<td>' + escapeHtml(a.responsavel || '') + '</td>' +
+              '<td>' + escapeHtml(a.cpf || '') + '</td>' +
+              '<td>' + escapeHtml(a.telefone || '') + '</td>' +
+              '<td>' + escapeHtml(a.email || '') + '</td>' +
+              '<td style="white-space:nowrap">' +
+                '<button type="button" class="btn btn-small" data-action="edit" data-id="' + encodeURIComponent(a.id) + '">Editar</button>' +
+                '<button type="button" class="btn btn-small btn-danger" data-action="delete" data-id="' + encodeURIComponent(a.id) + '">Excluir</button>' +
+              '</td>' +
+            '</tr>'
+          );
+        })
+        .join('');
+    }
 
     if (els.total) {
       els.total.textContent = String(lista.length);
@@ -279,6 +284,7 @@
     if (data.id != null) data.id = String(data.id).trim();
     if (data.nome != null) data.nome = cleanSpaces(data.nome);
     if (data.turma != null) data.turma = cleanSpaces(data.turma).toUpperCase();
+    if (data.cpf != null) data.cpf = data.cpf.replace(/\D/g, '');
     if (data.telefone != null) data.telefone = data.telefone.trim();
     if (data.email != null) data.email = data.email.trim().toLowerCase();
     return data;
@@ -330,7 +336,7 @@
 
   function sanitizeData(data, opts) {
     opts = opts || {}; var forCreate = !!opts.forCreate; var forUpdate = !!opts.forUpdate;
-    var allowed = ['id', 'nome', 'turma', 'nascimento', 'responsavel', 'telefone', 'email'];
+    var allowed = ['id', 'nome', 'turma', 'nascimento', 'responsavel', 'cpf', 'telefone', 'email'];
     var out = {};
     for (var i = 0; i < allowed.length; i++) {
       var k = allowed[i];
@@ -424,6 +430,7 @@
             turma: '1A',
             nascimento: '2010-01-01',
             responsavel: 'Resp Teste',
+            cpf: '00000000000',
             telefone: '(00) 00000-0000',
             email: 'debug@example.com',
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
