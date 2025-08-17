@@ -113,13 +113,13 @@ function configurarAtalhos() {
         // Ctrl + G para gestão de alunos
         if (e.ctrlKey && e.key === 'g') {
             e.preventDefault();
-            window.location.href = '/páginas/gestao-alunos.html';
+            window.location.href = '/pages/gestao-alunos.html';
         }
         
         // Ctrl + R para relatórios
         if (e.ctrlKey && e.key === 'r') {
             e.preventDefault();
-            window.location.href = '/páginas/relatorios.html';
+            window.location.href = '/pages/relatorios.html';
         }
         
         // ESC para limpar pesquisa
