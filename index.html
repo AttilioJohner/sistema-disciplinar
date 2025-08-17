@@ -23,9 +23,10 @@
   <!-- (Opcional) Chart.js se precisar de gráficos nesta página -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
-  <!-- Scripts do dashboard -->
-  <script src="assets/js/main.js" defer></script>
-</head>
+    <!-- Scripts do dashboard -->
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/dashboard-alunos.js" defer></script>
+  </head>
 <body>
   <!-- Topbar -->
   <div class="top-bar">
@@ -114,18 +115,37 @@
           </div>
         </div>
 
-        <div class="management-section">
-          <div class="management-title">🚀 Acesso Rápido</div>
-          <div class="form-grid">
-            <a href="pages/gestao-alunos.html" class="btn btn-primary" style="padding: 20px; text-align: center; text-decoration: none;">👥 Cadastrar Aluno</a>
-            <a href="pages/medidas-disciplinares.html" class="btn btn-warning" style="padding: 20px; text-align: center; text-decoration: none;">📋 Registrar Falta</a>
-            <a href="pages/relatorios.html" class="btn btn-info" style="padding: 20px; text-align: center; text-decoration: none;">📊 Ver Relatórios</a>
-            <a href="pages/analises.html" class="btn btn-success" style="padding: 20px; text-align: center; text-decoration: none;">📈 Ver Análises</a>
+          <div class="management-section">
+            <div class="management-title">🚀 Acesso Rápido</div>
+            <div class="form-grid">
+              <a href="pages/gestao-alunos.html" class="btn btn-primary" style="padding: 20px; text-align: center; text-decoration: none;">👥 Cadastrar Aluno</a>
+              <a href="pages/medidas-disciplinares.html" class="btn btn-warning" style="padding: 20px; text-align: center; text-decoration: none;">📋 Registrar Falta</a>
+              <a href="pages/relatorios.html" class="btn btn-info" style="padding: 20px; text-align: center; text-decoration: none;">📊 Ver Relatórios</a>
+              <a href="pages/analises.html" class="btn btn-success" style="padding: 20px; text-align: center; text-decoration: none;">📈 Ver Análises</a>
+            </div>
+          </div>
+
+          <div class="management-section">
+            <div class="management-title">👥 Alunos Cadastrados</div>
+            <div class="table-content">
+              <table id="alunosDashboard" class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Turma</th>
+                    <th>Nascimento</th>
+                    <th>Responsável</th>
+                    <th>CPF</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
   <!-- Guard + inicialização do dashboard (só logado) -->
   <script>
@@ -159,8 +179,11 @@
         loginPath: 'pages/login.html',
         onAuth: (user) => {
           if (typeof carregarEstatisticasDashboard === 'function') {
-            carregarEstatisticasDashboard();
-          }
+              carregarEstatisticasDashboard();
+              if (typeof carregarAlunosDashboard === 'function') {
+                carregarAlunosDashboard();
+              }
+            }
           const btn = document.getElementById('btnLogout');
           if (btn) btn.addEventListener('click', () => logout('pages/login.html'));
         }

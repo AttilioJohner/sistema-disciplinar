@@ -12,5 +12,9 @@
   "type": "commonjs",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "firebase-admin": "^11.11.1"
   }
 }
