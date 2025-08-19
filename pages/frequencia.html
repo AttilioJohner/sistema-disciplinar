@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Frequência - Dashboard Disciplinar</title>
+
+  <!-- CSS do seu projeto -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/frequencia.css">
+
+  <!-- Firebase SDK (Compat) - manter esta ORDEM -->
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <!-- Config do Firebase (deve definir window.db e window.isFirebaseReady) -->
+  <script defer src="../assets/js/firebase-config.js"></script>
+
+  <!-- Scripts da aplicação (opcional) -->
+  <script defer src="../assets/js/main.js"></script>
+  <script defer src="../assets/js/ui/toast.js"></script>
+
+  <!-- Frequência específico -->
+  <script defer src="../assets/js/frequencia.js"></script>
+</head>
+
+<body>
+  <!-- BARRA SUPERIOR -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="app-launcher">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <span class="app-name">Dashboard Disciplinar</span>
+    </div>
+    <div class="top-bar-center">
+      <input id="busca" type="text" class="search-box" placeholder="Pesquisar alunos...">
+    </div>
+    <div class="top-bar-right">
+      <div class="user-profile">A</div>
+    </div>
+  </div>
+
+  <!-- LAYOUT PRINCIPAL -->
+  <div class="main-layout">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Módulos Principais</div>
+        <a href="../index.html" class="sidebar-item"><span class="sidebar-icon">🏠</span><span class="sidebar-text">Dashboard</span></a>
+        <a href="controle-disciplinar.html" class="sidebar-item"><span class="sidebar-icon">⚖️</span><span class="sidebar-text">Controle Disciplinar</span></a>
+        <a href="gestao-alunos.html" class="sidebar-item"><span class="sidebar-icon">👥</span><span class="sidebar-text">Gestão de Alunos</span></a>
+        <a href="medidas-disciplinares.html" class="sidebar-item"><span class="sidebar-icon">📋</span><span class="sidebar-text">Medidas Disciplinares</span></a>
+        <a href="frequencia.html" class="sidebar-item active"><span class="sidebar-icon">📅</span><span class="sidebar-text">Frequência</span></a>
+        <a href="relatorios.html" class="sidebar-item"><span class="sidebar-icon">📊</span><span class="sidebar-text">Relatórios</span></a>
+        <a href="analises.html" class="sidebar-item"><span class="sidebar-icon">📈</span><span class="sidebar-text">Análises</span></a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Ferramentas</div>
+        <a href="configuracoes.html" class="sidebar-item"><span class="sidebar-icon">⚙️</span><span class="sidebar-text">Configurações</span></a>
+        <a href="comunicacao.html" class="sidebar-item"><span class="sidebar-icon">📱</span><span class="sidebar-text">Comunicação</span></a>
+        <a href="login.html" class="sidebar-item"><span class="sidebar-icon">🔐</span><span class="sidebar-text">Login/Logout</span></a>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="content-area">
+      <div class="main-content">
+        <!-- TÍTULO -->
+        <div class="module-title">📅 Controle de Frequência</div>
+        
+        <!-- FILTROS E AÇÕES -->
+        <div class="frequencia-header">
+          <div class="filtros-container">
+            <div class="filtro-grupo">
+              <label for="filtro-turma">Turma:</label>
+              <select id="filtro-turma" class="form-select">
+                <option value="">Todos</option>
+              </select>
+            </div>
+            
+            <div class="filtro-grupo">
+              <label for="filtro-mes">Mês:</label>
+              <select id="filtro-mes" class="form-select">
+                <!-- Será preenchido via JS -->
+              </select>
+            </div>
+            
+            <div class="acoes-container">
+              <button id="btn-salvar-lote" class="btn btn-primary" disabled>
+                Salvar Lote
+              </button>
+              <button id="btn-limpar-selecao" class="btn btn-secondary" disabled>
+                Limpar Seleção
+              </button>
+              <button id="btn-exportar-csv" class="btn btn-success">
+                Exportar CSV
+              </button>
+              <button id="btn-recalcular" class="btn btn-warning">
+                Recalcular
+              </button>
+            </div>
+          </div>
+          
+          <div class="estatisticas-rapidas">
+            <div class="stat-item">
+              <span class="stat-label">Média de Faltas:</span>
+              <span id="media-faltas" class="stat-value">0.00%</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Selecionadas:</span>
+              <span id="celulas-selecionadas" class="stat-value">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABELA DE FREQUÊNCIA -->
+        <div class="frequencia-tabela-container">
+          <div class="tabela-scroll">
+            <table id="tabela-frequencia" class="frequencia-tabela">
+              <thead>
+                <tr id="cabecalho-frequencia">
+                  <!-- Será preenchido via JS -->
+                </tr>
+              </thead>
+              <tbody id="corpo-frequencia">
+                <!-- Será preenchido via JS -->
+              </tbody>
+              <tfoot>
+                <tr id="rodape-frequencia">
+                  <!-- Será preenchido via JS -->
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <!-- LOADING -->
+        <div id="loading-frequencia" class="loading-container" style="display: none;">
+          <div class="loading-spinner"></div>
+          <p>Carregando dados de frequência...</p>
+        </div>
+
+        <!-- MODAL SALVAR LOTE -->
+        <div id="modal-lote" class="modal" style="display: none;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Salvar Lote</h3>
+              <button class="modal-close" onclick="fecharModalLote()">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Aplicar para <span id="total-selecionadas">0</span> células selecionadas:</p>
+              <div class="opcoes-lote">
+                <button class="opcao-lote" data-valor="P">P - Presente</button>
+                <button class="opcao-lote" data-valor="F">F - Falta</button>
+                <button class="opcao-lote" data-valor="A">A - Atestado</button>
+                <button class="opcao-lote" data-valor="">Limpar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INSTRUÇÕES -->
+        <div class="instrucoes-container">
+          <div class="instrucoes-header">
+            <h4>📝 Como usar:</h4>
+          </div>
+          <div class="instrucoes-lista">
+            <ul>
+              <li><strong>Clique simples:</strong> Edita célula (P → F → A → vazio → P)</li>
+              <li><strong>Atalhos:</strong> P (presente), F (falta), A (atestado), Backspace (limpar)</li>
+              <li><strong>Shift + Clique:</strong> Seleciona intervalo de células</li>
+              <li><strong>Ctrl + Clique:</strong> Seleção múltipla</li>
+              <li><strong>Salvar Lote:</strong> Aplica valor a todas as células selecionadas</li>
+              <li><strong>Navegação:</strong> Enter (desce), Tab (vai para direita)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container" class="toast-container"></div>
+</body>
+</html>

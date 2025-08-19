@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Permitir leitura e escrita para usuários autenticados
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Regra específica para a coleção de alunos
+    match /alunos/{alunoId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Regra específica para a coleção de medidas disciplinares
+    match /medidas_disciplinares/{medidaId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Regra para subcoleções (se necessário)
+    match /alunos/{alunoId}/medidas/{medidaId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /alunos/{alunoId}/faltas/{faltaId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Regra específica para logs e auditoria
+    match /logs/{logId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Regras para frequência
+    match /frequencia/{frequenciaId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Regras para subcoleções de frequência
+    match /frequencia/{frequenciaId}/alunos/{alunoId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /frequencia/{frequenciaId}/agregadosDia/{dia} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
