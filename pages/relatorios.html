@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios - Dashboard Disciplinar</title>
+    
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../assets/js/firebase-config.js"></script>
+    <script src="../assets/js/auth-guard.js"></script>
+</head>
+
+<body>
+    <!-- BARRA SUPERIOR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <div class="app-launcher">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+            <span class="app-name">Dashboard Disciplinar</span>
+        </div>
+        <div class="top-bar-center">
+            <input type="text" class="search-box" placeholder="Pesquisar relatórios...">
+        </div>
+        <div class="top-bar-right">
+            <div class="user-profile">A</div>
+        </div>
+    </div>
+
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="main-layout">
+        
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Módulos Principais</div>
+                
+                <a href="../index.html" class="sidebar-item">
+                    <span class="sidebar-icon">🏠</span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                
+                <a href="controle-disciplinar.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚖️</span>
+                    <span class="sidebar-text">Controle Disciplinar</span>
+                </a>
+                
+                <a href="gestao-alunos.html" class="sidebar-item">
+                    <span class="sidebar-icon">👥</span>
+                    <span class="sidebar-text">Gestão de Alunos</span>
+                </a>
+                
+                <a href="medidas-disciplinares.html" class="sidebar-item">
+                    <span class="sidebar-icon">📋</span>
+                    <span class="sidebar-text">Medidas Disciplinares</span>
+                </a>
+                
+                <a href="relatorios.html" class="sidebar-item active">
+                    <span class="sidebar-icon">📊</span>
+                    <span class="sidebar-text">Relatórios</span>
+                </a>
+                
+                <a href="analises.html" class="sidebar-item">
+                    <span class="sidebar-icon">📈</span>
+                    <span class="sidebar-text">Análises</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Ferramentas</div>
+                
+                <a href="configuracoes.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚙️</span>
+                    <span class="sidebar-text">Configurações</span>
+                </a>
+                
+                <a href="comunicacao.html" class="sidebar-item">
+                    <span class="sidebar-icon">📱</span>
+                    <span class="sidebar-text">Comunicação</span>
+                </a>
+                
+                <a href="login.html" class="sidebar-item">
+                    <span class="sidebar-icon">🔐</span>
+                    <span class="sidebar-text">Login/Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ÁREA DE CONTEÚDO -->
+        <div class="content-area">
+            <div class="main-content">
+                
+                <!-- TÍTULO -->
+                <div class="module-title">
+                    📊 Módulo de Relatórios
+                </div>
+
+                <!-- ESTATÍSTICAS RÁPIDAS -->
+                <div class="quick-stats">
+                    <div class="stat-card stat-primary">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalAlunos">0</div>
+                            <div class="stat-label">Total de Alunos</div>
+                            <div class="stat-trend">+0% vs mês anterior</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-danger">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalFaltas">0</div>
+                            <div class="stat-label">Total de Faltas</div>
+                            <div class="stat-trend">+0% vs mês anterior</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-warning">
+                        <div class="stat-icon">⚖️</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalMedidas">0</div>
+                            <div class="stat-label">Medidas Aplicadas</div>
+                            <div class="stat-trend">+0% vs mês anterior</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-info">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="mediaFaltas">0.0</div>
+                            <div class="stat-label">Média por Aluno</div>
+                            <div class="stat-trend">+0% vs mês anterior</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FILTROS E PESQUISA -->
+                <div class="filters-section">
+                    <div class="filters-title">
+                        🔍 Filtros e Pesquisa Avançada
+                    </div>
+                    
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">🎯 Filtrar por Turma:</label>
+                            <select id="filtroTurma" class="filter-select" onchange="aplicarFiltros()">
+                                <option value="">Todas as turmas</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">👤 Filtrar por Aluno:</label>
+                            <select id="filtroAluno" class="filter-select" onchange="aplicarFiltros()">
+                                <option value="">Todos os alunos</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">📅 Período:</label>
+                            <select id="filtroPeriodo" class="filter-select" onchange="aplicarFiltros()">
+                                <option value="30">Últimos 30 dias</option>
+                                <option value="90">Últimos 3 meses</option>
+                                <option value="180">Últimos 6 meses</option>
+                                <option value="365">Último ano</option>
+                                <option value="todos">Todos os registros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">📈 Ordenar por:</label>
+                            <select id="filtroOrdenacao" class="filter-select" onchange="aplicarFiltros()">
+                                <option value="nome">Nome (A-Z)</option>
+                                <option value="nomeDesc">Nome (Z-A)</option>
+                                <option value="totalFaltas">Total de Faltas (Maior)</option>
+                                <option value="faltasInjustificadas">Faltas Injustificadas</option>
+                                <option value="ultimaFalta">Última Falta</option>
+                                <option value="totalMedidas">Total de Medidas</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">📋 Tipo de Registro:</label>
+                            <select id="filtroTipo" class="filter-select" onchange="aplicarFiltros()">
+                                <option value="todos">Todos</option>
+                                <option value="faltas">Apenas Faltas</option>
+                                <option value="medidas">Apenas Medidas</option>
+                                <option value="criticos">Casos Críticos</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">🔍 Pesquisar:</label>
+                            <input 
+                                type="text" 
+                                id="pesquisaTexto" 
+                                class="filter-select" 
+                                placeholder="Nome do aluno..."
+                                onkeyup="aplicarFiltros()"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="filters-actions">
+                        <button class="btn btn-primary" onclick="aplicarFiltros()">
+                            🔍 Aplicar Filtros
+                        </button>
+                        <button class="btn btn-secondary" onclick="limparFiltros()">
+                            🔄 Limpar Filtros
+                        </button>
+                        <button class="btn btn-success" onclick="exportarRelatorio()">
+                            📊 Exportar Relatório
+                        </button>
+                        <button class="btn btn-info" onclick="gerarRelatorioCompleto()">
+                            📋 Relatório Completo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RELATÓRIOS DETALHADOS -->
+                <div id="relatorioContainer" class="reports-container">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Carregando relatórios...</p>
+                    </div>
+                </div>
+
+                <!-- RESUMO ESTATÍSTICO -->
+                <div class="management-section" id="resumoEstatistico" style="display: none;">
+                    <div class="management-title">
+                        📈 Resumo Estatístico
+                    </div>
+                    <div id="estatisticasResumo" class="student-stats">
+                        <!-- Estatísticas serão inseridas aqui -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="../assets/js/firebase-config.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    <script src="../assets/js/gestao.js" defer></script>
+    <script src="../assets/js/medidas.js" defer></script>
+    <script src="../assets/js/relatorios.js" defer></script>
+    
+    <script>
+        // Inicialização da página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📊 Página de Relatórios carregada');
+            inicializarModuloRelatorios();
+        });
+
+        // Carregar estatísticas do Firebase
+        async function carregarEstatisticas() {
+            try {
+                if (!window.db) {
+                    if (typeof firebase !== "undefined") {
+                        window.db = firebase.firestore();
+                    } else {
+                        console.error('Firebase não carregado');
+                        return;
+                    }
+                }
+
+                // Buscar dados do Firebase
+                const alunosSnapshot = await db.collection('alunos').get();
+                const medidasSnapshot = await db.collection('medidas_disciplinares').get();
+                
+                const totalAlunos = alunosSnapshot.size;
+                const totalMedidas = medidasSnapshot.size;
+                const totalFaltas = 0; // Por enquanto 0 até implementarmos faltas
+                const mediaFaltas = totalAlunos > 0 ? (totalFaltas / totalAlunos).toFixed(1) : 0;
+
+                // Atualizar interface
+                const elemTotalAlunos = document.getElementById('totalAlunos');
+                const elemTotalFaltas = document.getElementById('totalFaltas');
+                const elemTotalMedidas = document.getElementById('totalMedidas');
+                const elemMediaFaltas = document.getElementById('mediaFaltas');
+
+                if (elemTotalAlunos) elemTotalAlunos.textContent = totalAlunos;
+                if (elemTotalFaltas) elemTotalFaltas.textContent = totalFaltas;
+                if (elemTotalMedidas) elemTotalMedidas.textContent = totalMedidas;
+                if (elemMediaFaltas) elemMediaFaltas.textContent = mediaFaltas;
+
+                console.log(`Estatísticas carregadas: ${totalAlunos} alunos, ${totalMedidas} medidas`);
+
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas:', error);
+            }
+        }
+
+        // Preencher container de relatórios com dados reais
+        async function preencherRelatorioContainer() {
+            try {
+                const container = document.getElementById('relatorioContainer');
+                if (!container) return;
+
+                // Usar dados processados carregados anteriormente
+                if (!window.processedDataRelatorios || window.processedDataRelatorios.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">📊</div>
+                            <h3>Nenhum dado encontrado</h3>
+                            <p>Importe dados dos alunos para visualizar relatórios</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const dados = window.processedDataRelatorios;
+                
+                let html = `
+                    <div class="report-section">
+                        <h3>📋 Resumo Geral</h3>
+                        <div class="report-summary">
+                            <p><strong>Total de alunos:</strong> ${dados.length}</p>
+                            <p><strong>Alunos com medidas disciplinares:</strong> ${dados.filter(a => a.totalMedidas > 0).length}</p>
+                            <p><strong>Total de medidas aplicadas:</strong> ${dados.reduce((sum, a) => sum + a.totalMedidas, 0)}</p>
+                        </div>
+                    </div>
+
+                    <div class="report-section">
+                        <h3>🔍 Alunos com Medidas Disciplinares</h3>
+                        <div class="table-container">
+                `;
+
+                const alunosComMedidas = dados.filter(a => a.totalMedidas > 0);
+                
+                if (alunosComMedidas.length > 0) {
+                    html += `
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Turma</th>
+                                    <th>Medidas</th>
+                                    <th>Status</th>
+                                    <th>Última Ocorrência</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    alunosComMedidas.forEach(aluno => {
+                        const ultimaOcorrencia = aluno.ultimaOcorrencia ? 
+                            new Date(aluno.ultimaOcorrencia).toLocaleDateString('pt-BR') : 
+                            'N/A';
+                        
+                        html += `
+                            <tr>
+                                <td>${aluno.nome}</td>
+                                <td>${aluno.turma}</td>
+                                <td>${aluno.totalMedidas}</td>
+                                <td><span class="status-badge status-${aluno.statusRisco.toLowerCase()}">${aluno.statusRisco}</span></td>
+                                <td>${ultimaOcorrencia}</td>
+                            </tr>
+                        `;
+                    });
+                    
+                    html += `
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    html += `<p>Nenhum aluno com medidas disciplinares encontrado.</p>`;
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+
+                container.innerHTML = html;
+
+            } catch (error) {
+                console.error('Erro ao preencher container de relatórios:', error);
+                document.getElementById('relatorioContainer').innerHTML = `
+                    <div class="error-state">
+                        <div class="error-icon">⚠️</div>
+                        <h3>Erro ao carregar relatórios</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Função de inicialização específica
+        async function inicializarModuloRelatorios() {
+            try {
+                showMessage('Carregando relatórios...', 'loading');
+                
+                // Aguardar Firebase
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                if (isFirebaseReady()) {
+                    await carregarEstatisticas();
+                    await carregarDadosRelatorios();
+                    await preencherRelatorioContainer();
+                    showMessage('✅ Relatórios carregados!', 'success');
+                } else {
+                    showMessage('⚠️ Firebase não conectado - usando dados demo', 'error');
+                    carregarDadosDemoRelatorios();
+                }
+            } catch (error) {
+                console.error('Erro ao carregar relatórios:', error);
+                showMessage('Erro ao carregar relatórios', 'error');
+            }
+        }
+
+        // Carregar dados de demonstração
+        function carregarDadosDemoRelatorios() {
+            document.getElementById('relatorioContainer').innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">📊</div>
+                    <h3>Relatórios Detalhados</h3>
+                    <p>Configure o Firebase para visualizar relatórios completos dos alunos</p>
+                    <button class="btn btn-primary" onclick="inicializarModuloRelatorios()">
+                        🔄 Tentar Novamente
+                    </button>
+                </div>
+            `;
+        }
+    </script>
+    <script>
+        // Proteger página - requer autenticação
+        requireAuth({
+            loginPath: 'login.html',
+            onAuth: function(user) {
+                console.log('Usuário logado nos relatórios:', user.email);
+                // Página já inicializa automaticamente via DOMContentLoaded
+            }
+        });
+    </script>
+
+</body>
+</html>

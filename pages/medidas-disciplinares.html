@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidas Disciplinares - Dashboard Disciplinar</title>
+    
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../assets/js/firebase-config.js"></script>
+    <script src="../assets/js/auth-guard.js"></script>
+    
+    <!-- jsPDF para exportação em PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <!-- BARRA SUPERIOR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <div class="app-launcher">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+            <span class="app-name">Dashboard Disciplinar</span>
+        </div>
+        <div class="top-bar-center">
+            <input type="text" class="search-box" placeholder="Pesquisar registros...">
+        </div>
+        <div class="top-bar-right">
+            <div class="user-profile">A</div>
+        </div>
+    </div>
+
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="main-layout">
+        
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Módulos Principais</div>
+                
+                <a href="../index.html" class="sidebar-item">
+                    <span class="sidebar-icon">🏠</span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                
+                <a href="controle-disciplinar.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚖️</span>
+                    <span class="sidebar-text">Controle Disciplinar</span>
+                </a>
+                
+                <a href="gestao-alunos.html" class="sidebar-item">
+                    <span class="sidebar-icon">👥</span>
+                    <span class="sidebar-text">Gestão de Alunos</span>
+                </a>
+                
+                <a href="medidas-disciplinares.html" class="sidebar-item active">
+                    <span class="sidebar-icon">📋</span>
+                    <span class="sidebar-text">Medidas Disciplinares</span>
+                </a>
+                
+                
+                <a href="relatorios.html" class="sidebar-item">
+                    <span class="sidebar-icon">📊</span>
+                    <span class="sidebar-text">Relatórios</span>
+                </a>
+                
+                <a href="analises.html" class="sidebar-item">
+                    <span class="sidebar-icon">📈</span>
+                    <span class="sidebar-text">Análises</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Ferramentas</div>
+                
+                <a href="configuracoes.html" class="sidebar-item">
+                    <span class="sidebar-icon">⚙️</span>
+                    <span class="sidebar-text">Configurações</span>
+                </a>
+                
+                <a href="comunicacao.html" class="sidebar-item">
+                    <span class="sidebar-icon">📱</span>
+                    <span class="sidebar-text">Comunicação</span>
+                </a>
+                
+                <a href="login.html" class="sidebar-item">
+                    <span class="sidebar-icon">🔐</span>
+                    <span class="sidebar-text">Login/Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ÁREA DE CONTEÚDO -->
+        <div class="content-area">
+            <div class="main-content">
+                
+                <!-- TÍTULO -->
+                <div class="module-title">
+                    📋 Medidas Disciplinares
+                </div>
+
+                <!-- SEÇÃO: REGISTRO DE FALTAS -->
+                <div class="management-section">
+                    <div class="management-title">
+                        📝 Registrar Nova Falta
+                    </div>
+                    
+                    <form id="formFalta" onsubmit="salvarFalta(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Aluno *</label>
+                                <select id="alunoFalta" class="form-select" required>
+                                    <option value="">Selecione o aluno...</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Data *</label>
+                                <input 
+                                    type="date" 
+                                    id="dataFalta" 
+                                    class="form-input" 
+                                    required
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Tipo de Falta *</label>
+                                <select id="tipoFalta" class="form-select" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="F">Falta Injustificada (F)</option>
+                                    <option value="A">Falta Justificada/Abonada (A)</option>
+                                    <option value="P">Presença (P)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Disciplina</label>
+                                <input 
+                                    type="text" 
+                                    id="disciplinaFalta" 
+                                    class="form-input" 
+                                    placeholder="Ex: Matemática, Português..."
+                                >
+                            </div>
+                            
+                            <div class="form-group form-group-full">
+                                <label class="form-label">Observações</label>
+                                <textarea 
+                                    id="observacoesFalta" 
+                                    class="form-textarea" 
+                                    placeholder="Observações opcionais sobre a falta..."
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="limparFormFalta()">
+                                🔄 Limpar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                ✅ Salvar Falta
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- SEÇÃO: MEDIDAS DISCIPLINARES -->
+                <div class="management-section">
+                    <div class="management-title">
+                        ⚖️ Registrar Medida Disciplinar
+                    </div>
+                    
+                    <form id="formMedida" onsubmit="salvarMedida(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Aluno *</label>
+                                <select id="alunoMedida" class="form-select" required>
+                                    <option value="">Selecione o aluno...</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Data da Ocorrência *</label>
+                                <input 
+                                    type="date" 
+                                    id="dataMedida" 
+                                    class="form-input" 
+                                    required
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Tipo de Medida *</label>
+                                <select id="tipoMedida" class="form-select" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Fato Observado Positivo">Fato Observado Positivo (+0,1)</option>
+                                    <option value="Fato Observado Negativo">Fato Observado Negativo (-0,1)</option>
+                                    <option value="Advertência Verbal">Advertência Verbal (-0,3)</option>
+                                    <option value="Advertência Escrita">Advertência Escrita (-0,3)</option>
+                                    <option value="Suspensão">Suspensão (-0,5 por dia)</option>
+                                    <option value="Ação Educativa">Ação Educativa (-1,0)</option>
+                                    <option value="Reunião com Responsáveis">Reunião com Responsáveis</option>
+                                    <option value="Encaminhamento Coordenação">Encaminhamento à Coordenação</option>
+                                    <option value="Trabalho Educativo">Trabalho Educativo</option>
+                                    <option value="Acompanhamento Psicopedagógico">Acompanhamento Psicopedagógico</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Gravidade</label>
+                                <select id="gravidadeMedida" class="form-select">
+                                    <option value="">Selecione...</option>
+                                    <option value="Leve">Leve</option>
+                                    <option value="Moderada">Moderada</option>
+                                    <option value="Grave">Grave</option>
+                                    <option value="Gravíssima">Gravíssima</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="campoSuspensao" style="display: none;">
+                                <label class="form-label">Dias de Suspensão *</label>
+                                <input 
+                                    type="number" 
+                                    id="diasSuspensao" 
+                                    class="form-input" 
+                                    min="1" 
+                                    max="30"
+                                    placeholder="Número de dias"
+                                >
+                            </div>
+                            
+                            <div class="form-group form-group-full">
+                                <label class="form-label">Motivo/Descrição *</label>
+                                <textarea 
+                                    id="motivoMedida" 
+                                    class="form-textarea" 
+                                    required 
+                                    placeholder="Descreva detalhadamente o motivo da medida disciplinar..." 
+                                    rows="4"
+                                ></textarea>
+                            </div>
+                            
+                            <div class="form-group form-group-full">
+                                <label class="form-label">Ações Tomadas</label>
+                                <textarea 
+                                    id="acoesMedida" 
+                                    class="form-textarea" 
+                                    placeholder="Descreva as ações tomadas ou que serão tomadas..." 
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="limparFormMedida()">
+                                🔄 Limpar
+                            </button>
+                            <button type="submit" class="btn btn-warning">
+                                ⚠️ Salvar Medida
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- SEÇÃO: FICHA DISCIPLINAR DO ALUNO -->
+                <div class="management-section">
+                    <div class="management-title">
+                        🔍 Consultar Ficha Disciplinar do Aluno
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Selecionar Turma *</label>
+                            <select id="turmaConsulta" class="form-select" onchange="carregarAlunosPorTurma()" required>
+                                <option value="">Selecione uma turma...</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Selecionar Aluno *</label>
+                            <select id="alunoConsulta" class="form-select" onchange="carregarFichaDisciplinar()" required>
+                                <option value="">Primeiro selecione uma turma...</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success" onclick="exportarFichaPDF()" id="btnExportarPDF" disabled>
+                                📄 Exportar Ficha em PDF
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" class="btn btn-info" onclick="recalcularTodasNotas()">
+                                🔄 Recalcular Todas as Notas
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" class="btn btn-secondary" onclick="analisarTiposMedidas()">
+                                🔍 Analisar Tipos de Medidas
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- ÁREA DE EXIBIÇÃO DA FICHA -->
+                    <div id="fichaAluno" class="ficha-container" style="display: none;">
+                        <!-- Dados pessoais do aluno -->
+                        <div class="ficha-section">
+                            <h3 class="ficha-section-title">👤 Dados Pessoais</h3>
+                            <div id="dadosPessoais" class="dados-pessoais"></div>
+                        </div>
+                        
+                        <!-- Histórico de faltas -->
+                        <div class="ficha-section">
+                            <h3 class="ficha-section-title">❌ Histórico de Faltas</h3>
+                            <div id="historicoFaltas" class="historico-container"></div>
+                        </div>
+                        
+                        <!-- Histórico de medidas disciplinares -->
+                        <div class="ficha-section">
+                            <h3 class="ficha-section-title">⚖️ Histórico de Medidas Disciplinares</h3>
+                            <div id="historicoMedidas" class="historico-container"></div>
+                        </div>
+                        
+                        <!-- Resumo estatístico -->
+                        <div class="ficha-section">
+                            <h3 class="ficha-section-title">📊 Resumo Estatístico</h3>
+                            <div id="resumoEstatistico" class="resumo-stats"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO: REGISTROS RECENTES -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            📋 Registros Recentes
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-info btn-small" onclick="carregarRegistrosRecentes()">
+                                🔄 Atualizar
+                            </button>
+                            <select class="filter-select" onchange="filtrarRegistrosRecentes(this.value)">
+                                <option value="todos">Todos os tipos</option>
+                                <option value="faltas">Apenas Faltas</option>
+                                <option value="medidas">Apenas Medidas</option>
+                            </select>
+                            <button class="btn btn-secondary btn-small" onclick="exportarRegistros()">
+                                📊 Exportar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="registrosRecentes" class="table-content">
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <p>Carregando registros recentes...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO: ESTATÍSTICAS RÁPIDAS -->
+                <div class="quick-stats">
+                    <div class="stat-card stat-danger">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalFaltasHoje">0</div>
+                            <div class="stat-label">Faltas Hoje</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-warning">
+                        <div class="stat-icon">⚖️</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalMedidasSemana">0</div>
+                            <div class="stat-label">Medidas esta Semana</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-info">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalRegistrosMes">0</div>
+                            <div class="stat-label">Registros este Mês</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-primary">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="alunosAfetados">0</div>
+                            <div class="stat-label">Alunos Afetados</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="../assets/js/firebase-config.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    <script src="../assets/js/gestao.js" defer></script>
+    <script src="../assets/js/medidas.js" defer></script>
+    
+    <script>
+        // Inicialização da página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📋 Página de Medidas Disciplinares carregada');
+            inicializarMedidasDisciplinares();
+        });
+
+        // Carregar alunos para os selects dos formulários
+        async function carregarSelectsAlunos() {
+            try {
+                if (!window.db) {
+                    if (typeof firebase !== "undefined") {
+                        window.db = firebase.firestore();
+                    } else {
+                        console.error('Firebase não carregado');
+                        return;
+                    }
+                }
+
+                const snapshot = await db.collection('alunos').get();
+                const alunos = [];
+                
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    alunos.push({
+                        id: doc.id,
+                        codigo: data.codigo || doc.id,
+                        nome: data.nome_completo || data.nome || '',
+                        turma: data.turma || ''
+                    });
+                });
+
+                // Ordenar por nome
+                alunos.sort((a, b) => a.nome.localeCompare(b.nome));
+
+                // Preencher selects se existirem
+                const selects = ['alunoFalta', 'alunoMedida'];
+                selects.forEach(selectId => {
+                    const select = document.getElementById(selectId);
+                    if (select) {
+                        select.innerHTML = '<option value="">Selecione um aluno...</option>';
+                        alunos.forEach(aluno => {
+                            select.innerHTML += `<option value="${aluno.id}">${aluno.nome} (${aluno.turma})</option>`;
+                        });
+                    }
+                });
+
+                console.log(`${alunos.length} alunos carregados nos selects`);
+            } catch (error) {
+                console.error('Erro ao carregar alunos para os selects:', error);
+            }
+        }
+
+        // Controlar exibição do campo de suspensão
+        document.getElementById('tipoMedida').addEventListener('change', function() {
+            const campoSuspensao = document.getElementById('campoSuspensao');
+            const diasSuspensao = document.getElementById('diasSuspensao');
+            
+            if (this.value === 'Suspensão') {
+                campoSuspensao.style.display = 'block';
+                diasSuspensao.required = true;
+            } else {
+                campoSuspensao.style.display = 'none';
+                diasSuspensao.required = false;
+                diasSuspensao.value = '';
+            }
+        });
+
+        // Função para salvar medida disciplinar
+        async function salvarMedida(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const alunoId = document.getElementById('alunoMedida').value;
+            const tipoMedida = document.getElementById('tipoMedida').value;
+            const data = document.getElementById('dataMedida').value;
+            const gravidade = document.getElementById('gravidadeMedida').value;
+            const motivo = document.getElementById('motivoMedida').value;
+            const acoes = document.getElementById('acoesMedida').value;
+            const diasSuspensao = document.getElementById('diasSuspensao').value;
+            
+            if (!alunoId) {
+                alert('Selecione um aluno');
+                return;
+            }
+            
+            if (!tipoMedida) {
+                alert('Selecione o tipo de medida');
+                return;
+            }
+            
+            if (tipoMedida === 'Suspensão' && !diasSuspensao) {
+                alert('Informe o número de dias de suspensão');
+                return;
+            }
+            
+            try {
+                btn.disabled = true;
+                btn.textContent = 'Salvando...';
+                
+                // Buscar dados do aluno
+                const alunoDoc = await window.db.collection('alunos').doc(alunoId).get();
+                if (!alunoDoc.exists) {
+                    throw new Error('Aluno não encontrado');
+                }
+                const dadosAluno = alunoDoc.data();
+                
+                // Preparar dados da medida
+                const medidaData = {
+                    codigo_aluno: dadosAluno.codigo || alunoId,
+                    nome_aluno: dadosAluno.nome_completo || dadosAluno.nome,
+                    turma: dadosAluno.turma,
+                    tipo_medida: tipoMedida,
+                    data: data,
+                    gravidade: gravidade,
+                    especificacao: motivo,
+                    observacao: acoes,
+                    dias_suspensao: tipoMedida === 'Suspensão' ? parseInt(diasSuspensao) : null,
+                    created_at: new Date(),
+                    usuario_responsavel: 'Sistema' // Você pode pegar do usuário logado
+                };
+                
+                // Salvar medida no Firebase
+                await window.db.collection('medidas_disciplinares').add(medidaData);
+                
+                // Atualizar nota disciplinar do aluno
+                await atualizarNotaDisciplinar(alunoId, dadosAluno);
+                
+                // Limpar formulário
+                form.reset();
+                document.getElementById('campoSuspensao').style.display = 'none';
+                document.getElementById('diasSuspensao').required = false;
+                
+                // Mostrar mensagem de sucesso
+                showMessage('✅ Medida disciplinar salva com sucesso!', 'success');
+                
+                // Recarregar registros recentes
+                if (typeof carregarRegistrosRecentes === 'function') {
+                    await carregarRegistrosRecentes();
+                }
+                
+                // Se a ficha do aluno estiver aberta, recarregar
+                if (window.dadosAlunoAtual && window.dadosAlunoAtual.id === alunoId) {
+                    await carregarFichaDisciplinar();
+                }
+                
+            } catch (error) {
+                console.error('Erro ao salvar medida:', error);
+                alert('Erro ao salvar medida: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '⚠️ Salvar Medida';
+            }
+        }
+
+        // Função de inicialização específica
+        async function inicializarMedidasDisciplinares() {
+            try {
+                showMessage('Carregando módulo de medidas...', 'loading');
+                
+                // Definir data atual nos formulários
+                const hoje = new Date().toISOString().split('T')[0];
+                document.getElementById('dataFalta').value = hoje;
+                document.getElementById('dataMedida').value = hoje;
+                
+                // Aguardar Firebase
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                if (isFirebaseReady()) {
+                    await carregarSelectsAlunos();
+                    await carregarTurmas();
+                    
+                    // Inicializar notas disciplinares para alunos que não possuem
+                    try {
+                        console.log('Verificando notas disciplinares...');
+                        await inicializarNotasDisciplinares();
+                    } catch (error) {
+                        console.log('Erro ao inicializar notas disciplinares:', error);
+                    }
+                    
+                    if (typeof carregarRegistrosRecentes === 'function') {
+                        await carregarRegistrosRecentes();
+                    }
+                    if (typeof carregarEstatisticasMedidas === 'function') {
+                        await carregarEstatisticasMedidas();
+                    }
+                    showMessage('✅ Módulo de medidas carregado!', 'success');
+                } else {
+                    showMessage('⚠️ Firebase não conectado - funcionalidade limitada', 'error');
+                    carregarDadosDemoMedidas();
+                }
+            } catch (error) {
+                console.error('Erro ao inicializar medidas:', error);
+                showMessage('Erro ao carregar módulo de medidas', 'error');
+            }
+        }
+
+        // Carregar dados de demonstração
+        function carregarDadosDemoMedidas() {
+            document.getElementById('registrosRecentes').innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">📋</div>
+                    <h3>Nenhum registro encontrado</h3>
+                    <p>Configure o Firebase para começar a registrar faltas e medidas</p>
+                </div>
+            `;
+        }
+    </script>
+    <script>
+        // Proteger página - requer autenticação
+        requireAuth({
+            loginPath: 'login.html',
+            onAuth: function(user) {
+                console.log('Usuário logado nas medidas disciplinares:', user.email);
+                // Página já inicializa automaticamente via DOMContentLoaded
+            }
+        });
+    </script>
+
+</body>
+</html>
