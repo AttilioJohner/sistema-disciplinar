@@ -168,8 +168,8 @@ class FrequenciaManager {
         atestados: totalAtestados,
         percentualPresenca: percentualPresenca,
         dataUltimaFalta: dataUltimaFalta,
-        criadoEm: firebase.firestore.FieldValue.serverTimestamp(),
-        atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
+        criadoEm: new Date().toISOString(),
+        atualizadoEm: new Date().toISOString()
       };
     });
     

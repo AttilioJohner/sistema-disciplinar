@@ -1,0 +1,80 @@
+{
+  "alunos": {
+    "aluno_001": {
+      "id": "aluno_001",
+      "codigo": "2639458",
+      "nome_completo": "Alberto de Jesus Sousa Pereira",
+      "nome": "Alberto de Jesus Sousa Pereira",
+      "turma": "6A",
+      "responsavel": "Maria Pereira",
+      "telefone": "(11) 99999-0001",
+      "email": "responsavel001@email.com",
+      "criadoEm": "2025-08-19T10:00:00.000Z"
+    },
+    "aluno_002": {
+      "id": "aluno_002", 
+      "codigo": "2590632",
+      "nome_completo": "Ana Clara da Silva Coelho",
+      "nome": "Ana Clara da Silva Coelho",
+      "turma": "6A",
+      "responsavel": "João Coelho",
+      "telefone": "(11) 99999-0002",
+      "email": "responsavel002@email.com", 
+      "criadoEm": "2025-08-19T10:00:00.000Z"
+    }
+  },
+  "medidas_disciplinares": {
+    "medida_001": {
+      "id": "medida_001",
+      "codigo_aluno": "2639458",
+      "tipo_medida": "Advertência Verbal",
+      "especificacao": "Conversa em sala de aula",
+      "observacao": "Aluno foi orientado sobre comportamento em aula",
+      "data": "2025-08-15T14:30:00.000Z",
+      "criadoEm": "2025-08-15T14:30:00.000Z"
+    }
+  },
+  "frequencia_diaria": {
+    "sample_loading": {
+      "id": "sample_loading",
+      "codigo": "0000000",
+      "nome": "Carregando dados...",
+      "turma": "...",
+      "diasFrequencia": {},
+      "presencas": 0,
+      "faltas": 0,
+      "atestados": 0,
+      "percentualPresenca": 0,
+      "criadoEm": "2025-08-19T10:00:00.000Z"
+    }
+  },
+  "usuarios": {
+    "admin": {
+      "id": "admin",
+      "email": "admin@escola.com",
+      "nome": "Administrador",
+      "senha": "admin123",
+      "perfil": "administrador",
+      "ativo": true,
+      "criadoEm": "2025-08-19T10:00:00.000Z"
+    }
+  },
+  "configuracoes": {
+    "escola": {
+      "nome": "Escola Municipal",
+      "endereco": "Rua da Escola, 123",
+      "telefone": "(11) 1234-5678",
+      "email": "contato@escola.com"
+    },
+    "sistema": {
+      "versao": "1.0.0",
+      "manutencao": false,
+      "backup_automatico": true
+    }
+  },
+  "metadata": {
+    "ultimo_backup": null,
+    "versao_db": "1.0.0",
+    "total_registros": 0
+  }
+}

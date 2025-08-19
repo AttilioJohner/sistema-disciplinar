@@ -10,17 +10,15 @@
   <link rel="stylesheet" href="../assets/css/dashboard.css">
   <link rel="stylesheet" href="../assets/css/frequencia.css">
   
-  <!-- Firebase SDK -->
-  <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-  <script defer src="../assets/js/firebase-config.js"></script>
-  <script src="../assets/js/auth-guard.js"></script>
+  <!-- Banco de Dados Local -->
+  <script defer src="../assets/js/local-db.js"></script>
+  <script defer src="../assets/js/local-auth.js"></script>
   
   <!-- Scripts da aplicação -->
   <script defer src="../assets/js/main.js"></script>
   <script defer src="../assets/js/ui/toast.js"></script>
   <script defer src="../assets/js/dados-frequencia-agosto.js"></script>
+  <script defer src="../assets/js/populate-db.js"></script>
   <script defer src="../assets/js/frequencia.js"></script>
 </head>
 
@@ -225,11 +223,11 @@
   <div id="toast-container" class="toast-container"></div>
 
   <script>
-    // Proteger página
+    // Proteger página com sistema local
     requireAuth({
       loginPath: 'login.html',
       onAuth: function(user) {
-        console.log('Usuário logado na frequência:', user.email);
+        console.log('Usuário logado na frequência:', user.email || user.displayName);
       }
     });
   </script>
