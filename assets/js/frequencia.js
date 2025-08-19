@@ -18,6 +18,15 @@ class FrequenciaManager {
     await this.waitForFirebase();
     this.setupEventListeners();
     await this.carregarDados();
+    
+    // Se não há dados, tentar carregar automaticamente os dados de agosto
+    if (this.dados.length === 0) {
+      console.log('📊 Nenhum dado encontrado, carregando dados de agosto automaticamente...');
+      setTimeout(() => {
+        this.carregarDadosAgosto();
+      }, 2000);
+    }
+    
     this.atualizarInterface();
     
     console.log('✅ FrequenciaManager inicializado');
@@ -93,9 +102,10 @@ class FrequenciaManager {
         }
       });
 
-      // Se não há dados, não criar dados de exemplo para aguardar os dados reais
+      // Se não há dados, mostrar mensagem informativa
       if (this.dados.length === 0) {
         console.log('Aguardando dados de frequência...');
+        this.mostrarMensagemSemDados();
       }
 
       this.dadosFiltrados = [...this.dados];
@@ -417,6 +427,36 @@ class FrequenciaManager {
       showToast('Erro ao carregar dados de agosto', 'error');
     } finally {
       this.showLoading(false);
+    }
+  }
+
+  // Método para mostrar mensagem quando não há dados
+  mostrarMensagemSemDados() {
+    const tbody = document.getElementById('frequencia-tbody');
+    if (tbody) {
+      tbody.innerHTML = `
+        <tr class="empty-state">
+          <td colspan="7">
+            <div class="empty-message">
+              <div class="empty-icon">📊</div>
+              <p><strong>Nenhum dado de frequência encontrado</strong></p>
+              <p class="empty-subtitle">Clique no botão "Carregar Dados de Agosto" para importar os dados</p>
+              <button id="btn-carregar-dados-inline" class="btn btn-primary" style="margin-top: 10px;">
+                <span class="btn-icon">📊</span>
+                Carregar Dados de Agosto
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+      
+      // Adicionar evento ao botão inline
+      const btnInline = document.getElementById('btn-carregar-dados-inline');
+      if (btnInline) {
+        btnInline.addEventListener('click', () => {
+          this.carregarDadosAgosto();
+        });
+      }
     }
   }
 

@@ -399,23 +399,24 @@
         // Função de inicialização específica
         async function inicializarModuloRelatorios() {
             try {
-                showMessage('Carregando relatórios...', 'loading');
+                console.log('Carregando relatórios...');
                 
                 // Aguardar Firebase
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 
-                if (isFirebaseReady()) {
+                if (window.isFirebaseReady && window.isFirebaseReady()) {
                     await carregarEstatisticas();
-                    await carregarDadosRelatorios();
+                    if (window.carregarDadosRelatorios) {
+                        await window.carregarDadosRelatorios();
+                    }
                     await preencherRelatorioContainer();
-                    showMessage('✅ Relatórios carregados!', 'success');
+                    console.log('✅ Relatórios carregados!');
                 } else {
-                    showMessage('⚠️ Firebase não conectado - usando dados demo', 'error');
+                    console.log('⚠️ Firebase não conectado - usando dados demo');
                     carregarDadosDemoRelatorios();
                 }
             } catch (error) {
                 console.error('Erro ao carregar relatórios:', error);
-                showMessage('Erro ao carregar relatórios', 'error');
             }
         }
 
@@ -431,6 +432,34 @@
                     </button>
                 </div>
             `;
+        }
+
+        // Funções dos filtros
+        function aplicarFiltros() {
+            console.log('Aplicando filtros...');
+            // Implementar lógica de filtros
+        }
+
+        function limparFiltros() {
+            console.log('Limpando filtros...');
+            // Limpar todos os filtros
+            document.getElementById('filtroTurma').value = '';
+            document.getElementById('filtroAluno').value = '';
+            document.getElementById('filtroPeriodo').value = '30';
+            document.getElementById('filtroOrdenacao').value = 'nome';
+            document.getElementById('filtroTipo').value = 'todos';
+            document.getElementById('pesquisaTexto').value = '';
+            aplicarFiltros();
+        }
+
+        function exportarRelatorio() {
+            console.log('Exportando relatório...');
+            // Implementar exportação
+        }
+
+        function gerarRelatorioCompleto() {
+            console.log('Gerando relatório completo...');
+            // Implementar relatório completo
         }
     </script>
     <script>
