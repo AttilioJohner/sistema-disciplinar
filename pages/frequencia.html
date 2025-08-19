@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/frequencia.css">
   
   <!-- Firebase SDK -->
   <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
@@ -19,6 +20,7 @@
   <!-- Scripts da aplicação -->
   <script defer src="../assets/js/main.js"></script>
   <script defer src="../assets/js/ui/toast.js"></script>
+  <script defer src="../assets/js/dados-frequencia-agosto.js"></script>
   <script defer src="../assets/js/frequencia.js"></script>
 </head>
 
@@ -144,6 +146,10 @@
           <h2>📋 Relatório Detalhado por Aluno</h2>
           
           <div class="table-actions">
+            <button id="btn-carregar-dados" class="btn btn-primary">
+              <span class="btn-icon">📊</span>
+              Carregar Dados de Agosto
+            </button>
             <button id="btn-exportar" class="btn btn-success">
               <span class="btn-icon">📄</span>
               Exportar Relatório
