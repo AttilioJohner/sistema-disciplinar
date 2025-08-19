@@ -1,552 +1,963 @@
+// assets/js/frequencia.js
+// Sistema de Controle de Frequência com Firestore
+
 class FrequenciaManager {
   constructor() {
-    this.dadosFrequencia = new Map(); // turma -> {mes, ano, alunos: [...]}
+    this.dadosMensais = {};
+    this.alunosCache = [];
+    this.selectionManager = new SelectionManager();
     this.turmaAtual = '';
     this.mesAtual = '';
-    this.anoAtual = '';
-    
-    this.init();
+    this.diasNoMes = 0;
+    this.debounceTimeout = null;
+    this.isLoading = false;
   }
 
   async init() {
     console.log('🚀 Inicializando FrequenciaManager...');
     
-    // Aguardar Firebase estar pronto
-    while (!window.db) {
-      await new Promise(resolve => setTimeout(resolve, 100));
-    }
-    
+    await this.waitForFirebase();
     this.setupEventListeners();
-    await this.carregarDados();
-    this.renderizarRelatorios();
+    await this.loadTurmasOptions();
+    this.setupDefaultMonth();
+    await this.loadInitialData();
     
-    // Se não há dados, importar automaticamente
-    if (this.dadosFrequencia.size === 0) {
-      console.log('📥 Nenhum dado encontrado, importando automaticamente...');
-      showToast('Importando dados automaticamente...', 'info');
-      await this.importarDadosCSV();
+    console.log('✅ FrequenciaManager inicializado com sucesso');
+  }
+
+  async waitForFirebase() {
+    while (!window.isFirebaseReady?.()) {
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
   }
 
   setupEventListeners() {
-    // Botão importar (opcional - só se existir)
-    const btnImportar = document.getElementById('btn-importar');
-    if (btnImportar) {
-      btnImportar.addEventListener('click', () => {
-        this.importarDadosCSV();
-      });
-    }
-
     // Filtros
     document.getElementById('filtro-turma').addEventListener('change', (e) => {
       this.turmaAtual = e.target.value;
-      this.atualizarFiltroMes();
-      this.renderizarTabela();
+      this.loadData();
     });
 
     document.getElementById('filtro-mes').addEventListener('change', (e) => {
       this.mesAtual = e.target.value;
-      this.renderizarTabela();
+      this.loadData();
     });
 
-    document.getElementById('filtro-ano').addEventListener('change', (e) => {
-      this.anoAtual = e.target.value;
-      this.renderizarTabela();
+    // Botões
+    document.getElementById('btn-salvar-lote').addEventListener('click', () => {
+      this.abrirModalLote();
     });
-  }
 
-  async carregarDados() {
-    try {
-      console.log('📂 Carregando dados do Firebase...');
-      
-      // Buscar todas as coleções de frequência
-      const snapshot = await db.collection('frequencia').get();
-      
-      this.dadosFrequencia.clear();
-      
-      for (const doc of snapshot.docs) {
-        const docId = doc.id; // formato: turma_mes_ano
-        const [turma, mes, ano] = docId.split('_');
-        
-        // Buscar alunos desta turma/mês/ano
-        const alunosSnapshot = await doc.ref.collection('alunos').get();
-        const alunos = [];
-        
-        alunosSnapshot.docs.forEach(alunoDoc => {
-          alunos.push({
-            id: alunoDoc.id,
-            ...alunoDoc.data()
-          });
-        });
-        
-        const chave = `${turma}_${mes}_${ano}`;
-        this.dadosFrequencia.set(chave, {
-          turma,
-          mes,
-          ano,
-          alunos
-        });
+    document.getElementById('btn-limpar-selecao').addEventListener('click', () => {
+      this.selectionManager.clearSelection();
+      this.updateSelectionUI();
+    });
+
+    document.getElementById('btn-exportar-csv').addEventListener('click', () => {
+      this.exportarCSV(this.turmaAtual, this.mesAtual);
+    });
+
+    document.getElementById('btn-recalcular').addEventListener('click', () => {
+      this.recalcularTudoEMesclar();
+    });
+
+    // Busca
+    document.getElementById('busca').addEventListener('input', (e) => {
+      this.filtrarTabela(e.target.value);
+    });
+
+    // Modal
+    document.querySelectorAll('.opcao-lote').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const valor = e.target.dataset.valor;
+        this.aplicarLote(valor);
+      });
+    });
+
+    // Keyboard shortcuts globais
+    document.addEventListener('keydown', (e) => {
+      if (e.target.classList.contains('celula-freq')) {
+        this.handleCellKeyboard(e);
       }
-      
-      console.log(`✅ Carregados ${this.dadosFrequencia.size} períodos de frequência`);
-      this.atualizarFiltros();
-      
-    } catch (error) {
-      console.error('❌ Erro ao carregar dados:', error);
-      showToast('Erro ao carregar dados: ' + error.message, 'error');
-    }
-  }
-
-  atualizarFiltros() {
-    const turmas = new Set();
-    const anos = new Set();
-    
-    for (const [chave, dados] of this.dadosFrequencia) {
-      turmas.add(dados.turma);
-      anos.add(dados.ano);
-    }
-    
-    // Atualizar select de turmas
-    const selectTurma = document.getElementById('filtro-turma');
-    selectTurma.innerHTML = '<option value="">Selecione uma turma</option>';
-    Array.from(turmas).sort().forEach(turma => {
-      const option = document.createElement('option');
-      option.value = turma;
-      option.textContent = turma;
-      selectTurma.appendChild(option);
-    });
-    
-    // Atualizar select de anos
-    const selectAno = document.getElementById('filtro-ano');
-    selectAno.innerHTML = '<option value="">Selecione um ano</option>';
-    Array.from(anos).sort().forEach(ano => {
-      const option = document.createElement('option');
-      option.value = ano;
-      option.textContent = ano;
-      selectAno.appendChild(option);
     });
   }
 
-  atualizarFiltroMes() {
+  setupDefaultMonth() {
+    const now = new Date();
     const selectMes = document.getElementById('filtro-mes');
-    selectMes.innerHTML = '<option value="">Selecione um mês</option>';
     
-    if (!this.turmaAtual) return;
+    // Limpar opções existentes
+    selectMes.innerHTML = '';
     
-    const mesesDisponiveis = new Set();
-    for (const [chave, dados] of this.dadosFrequencia) {
-      if (dados.turma === this.turmaAtual) {
-        mesesDisponiveis.add(dados.mes);
-      }
-    }
-    
-    Array.from(mesesDisponiveis).sort().forEach(mes => {
+    // Adicionar últimos 6 meses e próximos 6 meses
+    for (let i = -6; i <= 6; i++) {
+      const date = new Date(now.getFullYear(), now.getMonth() + i, 1);
+      const value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      const text = date.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long' });
+      
       const option = document.createElement('option');
-      option.value = mes;
-      option.textContent = this.getNomeMes(mes);
+      option.value = value;
+      option.textContent = text;
+      
+      if (i === 0) {
+        option.selected = true;
+        this.mesAtual = value;
+      }
+      
       selectMes.appendChild(option);
-    });
-  }
-
-  getNomeMes(numeroMes) {
-    const meses = [
-      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-    ];
-    return meses[parseInt(numeroMes) - 1] || numeroMes;
-  }
-
-  renderizarRelatorios() {
-    const container = document.getElementById('relatorios-turmas');
-    container.innerHTML = '';
-    
-    // Agrupar por turma
-    const relatoriosPorTurma = new Map();
-    
-    for (const [chave, dados] of this.dadosFrequencia) {
-      const { turma, alunos } = dados;
-      
-      if (!relatoriosPorTurma.has(turma)) {
-        relatoriosPorTurma.set(turma, {
-          totalAlunos: 0,
-          totalPeriodos: 0,
-          ultimoMes: ''
-        });
-      }
-      
-      const relatorio = relatoriosPorTurma.get(turma);
-      relatorio.totalAlunos = Math.max(relatorio.totalAlunos, alunos.length);
-      relatorio.totalPeriodos++;
-      relatorio.ultimoMes = dados.mes + '/' + dados.ano;
     }
-    
-    // Renderizar cards
-    for (const [turma, relatorio] of relatoriosPorTurma) {
-      const card = document.createElement('div');
-      card.className = 'turma-card';
-      card.innerHTML = `
-        <h3>Turma ${turma}</h3>
-        <div class="turma-stats">
-          <span>👥 ${relatorio.totalAlunos} alunos</span>
-          <span>📅 ${relatorio.totalPeriodos} períodos</span>
-        </div>
-        <div class="turma-stats">
-          <span>📆 Último: ${relatorio.ultimoMes}</span>
-        </div>
-      `;
+  }
+
+  async loadTurmasOptions() {
+    try {
+      const alunosSnapshot = await db.collection('alunos').get();
+      const turmas = new Set();
       
-      card.addEventListener('click', () => {
-        document.getElementById('filtro-turma').value = turma;
-        this.turmaAtual = turma;
-        this.atualizarFiltroMes();
-        document.getElementById('filtro-turma').scrollIntoView({ behavior: 'smooth' });
+      alunosSnapshot.docs.forEach(doc => {
+        const aluno = doc.data();
+        if (aluno.turma && aluno.status === 'ativo') {
+          turmas.add(aluno.turma);
+        }
       });
+
+      const selectTurma = document.getElementById('filtro-turma');
+      selectTurma.innerHTML = '<option value="">Todas as turmas</option>';
       
-      container.appendChild(card);
+      Array.from(turmas).sort().forEach(turma => {
+        const option = document.createElement('option');
+        option.value = turma;
+        option.textContent = turma;
+        selectTurma.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Erro ao carregar turmas:', error);
+      showToast('Erro ao carregar turmas', 'error');
     }
   }
 
-  renderizarTabela() {
-    const container = document.getElementById('tabela-container');
-    const thead = document.getElementById('tabela-head');
-    const tbody = document.getElementById('tabela-body');
-    
-    if (!this.turmaAtual || !this.mesAtual || !this.anoAtual) {
-      container.style.display = 'none';
-      return;
-    }
-    
-    const chave = `${this.turmaAtual}_${this.mesAtual}_${this.anoAtual}`;
-    const dados = this.dadosFrequencia.get(chave);
-    
-    if (!dados || !dados.alunos.length) {
-      container.style.display = 'none';
-      showToast('Nenhum dado encontrado para este período', 'warning');
-      return;
-    }
-    
-    // Detectar dias com dados
-    const diasSet = new Set();
-    dados.alunos.forEach(aluno => {
-      if (aluno.dias) {
-        Object.keys(aluno.dias).forEach(dia => diasSet.add(dia));
+  async loadAlunosByTurma(turmaId) {
+    try {
+      let query = db.collection('alunos')
+        .where('status', '==', 'ativo');
+      
+      if (turmaId) {
+        query = query.where('turma', '==', turmaId);
       }
-    });
-    
-    const dias = Array.from(diasSet).sort((a, b) => parseInt(a) - parseInt(b));
-    
-    // Cabeçalho
-    thead.innerHTML = `
-      <tr>
-        <th>Código</th>
-        <th>Nome</th>
-        ${dias.map(dia => `<th>Dia ${dia}</th>`).join('')}
-      </tr>
-    `;
-    
-    // Corpo da tabela
-    tbody.innerHTML = dados.alunos.map(aluno => `
-      <tr>
-        <td>${aluno.codigo || aluno.id}</td>
-        <td>${aluno.nome || 'Nome não informado'}</td>
-        ${dias.map(dia => {
-          const freq = aluno.dias && aluno.dias[dia] ? aluno.dias[dia] : '';
-          return `<td class="freq-${freq}">${freq}</td>`;
-        }).join('')}
-      </tr>
-    `).join('');
-    
-    container.style.display = 'block';
+      
+      const snapshot = await query.orderBy('nome').get();
+      
+      return snapshot.docs.map(doc => ({
+        alunoId: doc.id,
+        id: doc.id,
+        nome: doc.data().nome,
+        turma: doc.data().turma
+      }));
+    } catch (error) {
+      console.error('Erro ao carregar alunos:', error);
+      showToast('Erro ao carregar alunos', 'error');
+      return [];
+    }
   }
 
-  async importarDadosCSV() {
-    showToast('Importando dados...', 'info');
+  getDiasNoMes(ano, mes) {
+    return new Date(ano, mes, 0).getDate();
+  }
+
+  async loadInitialData() {
+    if (!this.mesAtual) return;
     
-    // Usar dados completos do arquivo separado
-    const csvData = window.getDadosFrequencia ? window.getDadosFrequencia() : 'Erro: dados não encontrados';
+    // Se não há turma específica, pegar a primeira disponível
+    if (!this.turmaAtual) {
+      const selectTurma = document.getElementById('filtro-turma');
+      if (selectTurma.options.length > 1) {
+        this.turmaAtual = selectTurma.options[1].value;
+        selectTurma.value = this.turmaAtual;
+      }
+    }
+    
+    await this.loadData();
+  }
+
+  async loadData() {
+    if (!this.turmaAtual || !this.mesAtual) return;
+    
+    this.showLoading(true);
     
     try {
-      await this.processarCSVData(csvData);
-      showToast('Dados importados com sucesso!', 'success');
+      // Calcular dias no mês
+      const [ano, mes] = this.mesAtual.split('-').map(Number);
+      this.diasNoMes = this.getDiasNoMes(ano, mes);
       
-      // Recarregar dados e atualizar interface
-      await this.carregarDados();
-      this.renderizarRelatorios();
+      // Carregar alunos
+      this.alunosCache = await this.loadAlunosByTurma(this.turmaAtual);
       
-      // Selecionar primeira turma automaticamente se houver dados
-      if (this.dadosFrequencia.size > 0) {
-        const primeiraTurma = Array.from(this.dadosFrequencia.keys())[0].split('_')[0];
-        const primeiroMes = Array.from(this.dadosFrequencia.keys())[0].split('_')[1];
-        const primeiroAno = Array.from(this.dadosFrequencia.keys())[0].split('_')[2];
-        
-        document.getElementById('filtro-turma').value = primeiraTurma;
-        document.getElementById('filtro-mes').value = primeiroMes;
-        document.getElementById('filtro-ano').value = primeiroAno;
-        
-        this.turmaAtual = primeiraTurma;
-        this.mesAtual = primeiroMes;
-        this.anoAtual = primeiroAno;
-        
-        this.atualizarFiltroMes();
-        this.renderizarTabela();
-        
-        showToast(`Mostrando dados da turma ${primeiraTurma}`, 'success');
-      }
+      // Garantir documento mensal existe
+      await this.ensureMensalDoc(this.turmaAtual, this.mesAtual);
+      
+      // Carregar dados mensais
+      await this.loadMensalData(this.turmaAtual, this.mesAtual);
+      
+      // Renderizar tabela
+      this.renderTabela(this.alunosCache, this.diasNoMes, this.dadosMensais);
+      
+      // Limpar seleção
+      this.selectionManager.clearSelection();
+      this.updateSelectionUI();
+      
     } catch (error) {
-      console.error('❌ Erro na importação:', error);
-      showToast('Erro na importação: ' + error.message, 'error');
+      console.error('Erro ao carregar dados:', error);
+      showToast('Erro ao carregar dados de frequência', 'error');
+    } finally {
+      this.showLoading(false);
     }
   }
 
-  async processarCSVData(csvData) {
-    // Parse CSV mais robusto para lidar com campos com vírgulas
-    const lines = csvData.trim().split('\n');
-    const header = this.parseCSVLine(lines[0]);
-    const rows = lines.slice(1).map(line => this.parseCSVLine(line));
+  async ensureMensalDoc(turmaId, anoMes) {
+    const docId = `${turmaId}_${anoMes}`;
+    const docRef = db.collection('frequencia').doc(docId);
     
-    console.log('📋 Processando CSV com', rows.length, 'linhas');
-    console.log('📋 Cabeçalho:', header);
-    
-    // Mapear colunas
-    const colunaIndices = {
-      codigo: 0,  // Código
-      nome: 1,    // Nome
-      mes: 2,     // Mês
-      turma: 3,   // turma
-      ano: 4      // ano
-    };
-    
-    // Detectar colunas de dias (a partir do índice 5)
-    const diasColunas = [];
-    for (let i = 5; i < header.length; i++) {
-      const dia = header[i].trim();
-      if (dia && !isNaN(parseInt(dia))) {
-        diasColunas.push({
-          index: i,
-          dia: String(parseInt(dia)).padStart(2, '0')
-        });
-      }
-    }
-    
-    console.log('📅 Dias encontrados:', diasColunas.map(d => d.dia));
-    
-    // Agrupar por turma
-    const dadosPorTurma = new Map();
-    
-    for (const row of rows) {
-      if (row.length < 5) continue;
+    try {
+      const doc = await docRef.get();
       
-      const codigo = row[colunaIndices.codigo]?.trim();
-      const nome = row[colunaIndices.nome]?.trim();
-      const mes = row[colunaIndices.mes]?.trim();
-      const turma = row[colunaIndices.turma]?.trim();
-      const ano = row[colunaIndices.ano]?.trim();
-      
-      if (!codigo || !nome || !mes || !turma || !ano) continue;
-      
-      if (!dadosPorTurma.has(turma)) {
-        dadosPorTurma.set(turma, []);
-      }
-      
-      // Processar dias
-      const dias = {};
-      diasColunas.forEach(({ index, dia }) => {
-        const valor = row[index]?.trim().toUpperCase();
-        if (valor && ['P', 'F', 'A'].includes(valor)) {
-          dias[dia] = valor;
-        }
-      });
-      
-      dadosPorTurma.get(turma).push({
-        codigo,
-        nome,
-        mes,
-        ano,
-        dias
-      });
-    }
-    
-    console.log('🎯 Turmas processadas:', Array.from(dadosPorTurma.keys()));
-    
-    // Salvar no Firebase
-    let totalProcessados = 0;
-    for (const [turma, alunos] of dadosPorTurma.entries()) {
-      console.log(`💾 Salvando turma ${turma} (${alunos.length} alunos)...`);
-      showToast(`Salvando turma ${turma}...`, 'info');
-      
-      const docId = `${turma}_${alunos[0].mes}_${alunos[0].ano}`;
-      
-      // Processar em lotes
-      const LOTE_SIZE = 20;
-      for (let i = 0; i < alunos.length; i += LOTE_SIZE) {
-        const lote = alunos.slice(i, i + LOTE_SIZE);
-        const batch = db.batch();
+      if (!doc.exists) {
+        const [ano, mes] = anoMes.split('-').map(Number);
+        const diasNoMes = this.getDiasNoMes(ano, mes);
         
-        for (const aluno of lote) {
-          const alunoRef = db.collection('frequencia').doc(docId)
-            .collection('alunos').doc(aluno.codigo);
-          
-          batch.set(alunoRef, {
-            nome: aluno.nome,
-            codigo: aluno.codigo,
-            dias: aluno.dias
-          }, { merge: true });
-        }
-        
-        await batch.commit();
-        console.log(`✅ Lote ${Math.floor(i/LOTE_SIZE) + 1} da turma ${turma} salvo`);
-      }
-      
-      totalProcessados += alunos.length;
-    }
-    
-    console.log(`✅ Total processado: ${totalProcessados} alunos`);
-    return totalProcessados;
-  }
-
-  parseCSVLine(line) {
-    // Parse simples de CSV - assumindo que não há vírgulas nos campos
-    return line.split(',').map(field => field.trim());
-  }
-
-  async processarExcelPorAbas(file) {
-    const workbook = await this.lerExcel(file);
-    console.log('📊 Abas encontradas:', workbook.SheetNames);
-    
-    let totalImportados = 0;
-    
-    for (const sheetName of workbook.SheetNames) {
-      console.log(`📄 Processando aba: ${sheetName}`);
-      showToast(`Processando turma ${sheetName}...`, 'info');
-      
-      const worksheet = workbook.Sheets[sheetName];
-      const dados = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false });
-      
-      if (dados.length < 2) {
-        console.warn(`⚠️ Aba ${sheetName} vazia ou sem dados`);
-        continue;
-      }
-      
-      const importados = await this.processarDadosTurma(sheetName, dados);
-      totalImportados += importados;
-    }
-    
-    showToast(`Importação concluída! ${totalImportados} alunos processados`, 'success');
-    await this.carregarDados();
-    this.renderizarRelatorios();
-  }
-
-  async processarDadosTurma(turma, dados) {
-    const header = dados[0];
-    const rows = dados.slice(1);
-    
-    console.log(`📋 Cabeçalho da turma ${turma}:`, header);
-    
-    // Mapear colunas: A=Código, B=Nome, C=Mês, D=Ano, E:Y=Dias
-    const colunaIndices = {
-      codigo: 0,  // A
-      nome: 1,    // B  
-      mes: 2,     // C
-      ano: 3      // D
-    };
-    
-    // Detectar colunas de dias (E em diante)
-    const diasColunas = [];
-    for (let i = 4; i < header.length; i++) {
-      const dia = header[i];
-      if (dia && !isNaN(parseInt(dia))) {
-        diasColunas.push({
-          index: i,
-          dia: String(parseInt(dia)).padStart(2, '0')
-        });
-      }
-    }
-    
-    console.log(`📅 Dias encontrados para ${turma}:`, diasColunas.map(d => d.dia));
-    
-    let processados = 0;
-    let mes = null;
-    let ano = null;
-    
-    // Processar em lotes
-    const LOTE_SIZE = 20;
-    for (let i = 0; i < rows.length; i += LOTE_SIZE) {
-      const lote = rows.slice(i, i + LOTE_SIZE);
-      const batch = db.batch();
-      
-      for (const row of lote) {
-        if (row.length < 4) continue;
-        
-        const codigo = row[colunaIndices.codigo]?.toString().trim();
-        const nome = row[colunaIndices.nome]?.toString().trim();
-        mes = row[colunaIndices.mes]?.toString().trim();
-        ano = row[colunaIndices.ano]?.toString().trim();
-        
-        if (!codigo || !nome || !mes || !ano) continue;
-        
-        // Preparar dados de frequência
-        const diasData = { nome, codigo };
-        const dias = {};
-        
-        diasColunas.forEach(({ index, dia }) => {
-          const valor = row[index]?.toString().trim().toUpperCase();
-          if (valor && ['P', 'F', 'A'].includes(valor)) {
-            dias[dia] = valor;
+        await docRef.set({
+          meta: {
+            turmaId,
+            anoMes,
+            diasNoMes,
+            criadoEm: firebase.firestore.FieldValue.serverTimestamp(),
+            atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
           }
         });
         
-        if (Object.keys(dias).length > 0) {
-          diasData.dias = dias;
-        }
-        
-        // Salvar no Firebase
-        const docId = `${turma}_${mes}_${ano}`;
-        console.log(`💾 Salvando: ${docId} -> aluno ${codigo}`);
-        
-        const alunoRef = db.collection('frequencia').doc(docId)
-          .collection('alunos').doc(codigo);
-        
-        batch.set(alunoRef, diasData, { merge: true });
-        processados++;
+        console.log(`📄 Documento mensal criado: ${docId}`);
       }
-      
-      if (batch._mutations && batch._mutations.length > 0) {
-        console.log(`💾 Commitando lote com ${batch._mutations.length} operações...`);
-        await batch.commit();
-        console.log(`✅ Lote ${Math.floor(i/LOTE_SIZE) + 1} da turma ${turma} salvo no Firebase!`);
-      } else {
-        console.log(`⚠️ Lote ${Math.floor(i/LOTE_SIZE) + 1} vazio, pulando...`);
-      }
-      
-      // Pequena pausa
-      await new Promise(resolve => setTimeout(resolve, 50));
+    } catch (error) {
+      console.error('Erro ao criar documento mensal:', error);
+      throw error;
     }
-    
-    console.log(`✅ Turma ${turma} processada: ${processados} alunos`);
-    return processados;
   }
 
-  async lerExcel(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
+  async loadMensalData(turmaId, anoMes) {
+    const docId = `${turmaId}_${anoMes}`;
+    
+    try {
+      // Carregar dados dos alunos
+      const alunosSnapshot = await db.collection('frequencia').doc(docId)
+        .collection('alunos').get();
       
-      reader.onload = (e) => {
-        try {
-          const data = new Uint8Array(e.target.result);
-          const workbook = XLSX.read(data, { type: 'array' });
-          resolve(workbook);
-        } catch (error) {
-          reject(new Error('Erro ao ler arquivo Excel: ' + error.message));
-        }
+      // Carregar agregados por dia
+      const agregadosSnapshot = await db.collection('frequencia').doc(docId)
+        .collection('agregadosDia').get();
+      
+      this.dadosMensais = {
+        alunos: {},
+        agregadosDia: {}
       };
       
-      reader.onerror = () => reject(new Error('Erro ao ler arquivo'));
-      reader.readAsArrayBuffer(file);
+      alunosSnapshot.docs.forEach(doc => {
+        this.dadosMensais.alunos[doc.id] = doc.data();
+      });
+      
+      agregadosSnapshot.docs.forEach(doc => {
+        this.dadosMensais.agregadosDia[doc.id] = doc.data();
+      });
+      
+    } catch (error) {
+      console.error('Erro ao carregar dados mensais:', error);
+      this.dadosMensais = { alunos: {}, agregadosDia: {} };
+    }
+  }
+
+  renderTabela(alunos, diasNoMes, dadosMensais) {
+    const cabecalho = document.getElementById('cabecalho-frequencia');
+    const corpo = document.getElementById('corpo-frequencia');
+    const rodape = document.getElementById('rodape-frequencia');
+    
+    // Limpar tabela
+    cabecalho.innerHTML = '';
+    corpo.innerHTML = '';
+    rodape.innerHTML = '';
+    
+    // Cabeçalho
+    this.renderCabecalho(cabecalho, diasNoMes);
+    
+    // Corpo - alunos
+    alunos.forEach(aluno => {
+      this.renderLinhaAluno(corpo, aluno, diasNoMes, dadosMensais);
+    });
+    
+    // Rodapé - totais por dia
+    this.renderRodapeAgregados(rodape, diasNoMes, dadosMensais);
+  }
+
+  renderCabecalho(cabecalho, diasNoMes) {
+    const tr = document.createElement('tr');
+    
+    // Colunas fixas
+    tr.innerHTML = `
+      <th class="col-codigo sticky-col">Código</th>
+      <th class="col-nome sticky-col">Nome</th>
+    `;
+    
+    // Dias do mês
+    for (let dia = 1; dia <= diasNoMes; dia++) {
+      const th = document.createElement('th');
+      th.className = 'col-dia';
+      th.textContent = String(dia).padStart(2, '0');
+      tr.appendChild(th);
+    }
+    
+    // Colunas de resumo
+    tr.innerHTML += `
+      <th class="col-resumo">Total F</th>
+      <th class="col-resumo">Total A</th>
+      <th class="col-resumo">Total P</th>
+      <th class="col-resumo">% Faltas</th>
+    `;
+    
+    cabecalho.appendChild(tr);
+  }
+
+  renderLinhaAluno(corpo, aluno, diasNoMes, dadosMensais) {
+    const tr = document.createElement('tr');
+    tr.className = 'linha-aluno';
+    tr.dataset.alunoId = aluno.alunoId;
+    
+    // Dados do aluno
+    const dadosAluno = dadosMensais.alunos[aluno.alunoId] || { dias: {}, resumo: {} };
+    
+    // Colunas fixas
+    const tdCodigo = document.createElement('td');
+    tdCodigo.className = 'col-codigo sticky-col';
+    tdCodigo.textContent = aluno.id;
+    tr.appendChild(tdCodigo);
+    
+    const tdNome = document.createElement('td');
+    tdNome.className = 'col-nome sticky-col';
+    tdNome.textContent = aluno.nome;
+    tr.appendChild(tdNome);
+    
+    // Células de dias
+    for (let dia = 1; dia <= diasNoMes; dia++) {
+      const diaStr = String(dia).padStart(2, '0');
+      const valor = dadosAluno.dias?.[diaStr] || '';
+      
+      const td = document.createElement('td');
+      td.className = 'col-dia celula-freq';
+      td.dataset.alunoId = aluno.alunoId;
+      td.dataset.dia = diaStr;
+      td.textContent = valor;
+      td.tabIndex = 0;
+      
+      if (valor) {
+        td.classList.add(`freq-${valor.toLowerCase()}`);
+      }
+      
+      // Eventos de clique e seleção
+      td.addEventListener('click', (e) => this.handleCellClick(e));
+      td.addEventListener('focus', (e) => this.handleCellFocus(e));
+      
+      tr.appendChild(td);
+    }
+    
+    // Colunas de resumo
+    const resumo = dadosAluno.resumo || {};
+    
+    tr.innerHTML += `
+      <td class="col-resumo total-f">${resumo.totalF || 0}</td>
+      <td class="col-resumo total-a">${resumo.totalA || 0}</td>
+      <td class="col-resumo total-p">${resumo.totalP || 0}</td>
+      <td class="col-resumo percent-faltas">${(resumo.percentualFaltas || 0).toFixed(2)}%</td>
+    `;
+    
+    corpo.appendChild(tr);
+  }
+
+  renderRodapeAgregados(rodape, diasNoMes, dadosMensais) {
+    const tr = document.createElement('tr');
+    tr.className = 'rodape-totais';
+    
+    // Colunas fixas
+    tr.innerHTML = `
+      <td class="sticky-col"><strong>Total do dia</strong></td>
+      <td class="sticky-col"></td>
+    `;
+    
+    // Totais por dia
+    let totalGeralF = 0;
+    let totalGeralA = 0;
+    let totalGeralP = 0;
+    
+    for (let dia = 1; dia <= diasNoMes; dia++) {
+      const diaStr = String(dia).padStart(2, '0');
+      const agregado = dadosMensais.agregadosDia?.[diaStr] || { totais: {} };
+      const totalDia = agregado.totais?.F || 0;
+      
+      totalGeralF += totalDia;
+      totalGeralA += agregado.totais?.A || 0;
+      totalGeralP += agregado.totais?.P || 0;
+      
+      const td = document.createElement('td');
+      td.className = 'col-dia-total';
+      td.textContent = totalDia || '';
+      tr.appendChild(td);
+    }
+    
+    // Totais gerais
+    tr.innerHTML += `
+      <td class="col-resumo"><strong>${totalGeralF}</strong></td>
+      <td class="col-resumo"><strong>${totalGeralA}</strong></td>
+      <td class="col-resumo"><strong>${totalGeralP}</strong></td>
+      <td class="col-resumo"></td>
+    `;
+    
+    rodape.appendChild(tr);
+    
+    // Atualizar estatísticas
+    this.updateEstatisticas(totalGeralF, totalGeralA, totalGeralP);
+  }
+
+  updateEstatisticas(totalF, totalA, totalP) {
+    const total = totalF + totalA + totalP;
+    const mediaFaltas = total > 0 ? (totalF / total * 100) : 0;
+    
+    document.getElementById('media-faltas').textContent = `${mediaFaltas.toFixed(2)}%`;
+  }
+
+  handleCellClick(event) {
+    const cell = event.target;
+    
+    if (event.shiftKey && this.selectionManager.lastSelected) {
+      // Seleção de intervalo
+      this.selectionManager.selectRange(this.selectionManager.lastSelected, cell);
+    } else if (event.ctrlKey || event.metaKey) {
+      // Seleção múltipla
+      this.selectionManager.toggleCell(cell);
+    } else {
+      // Seleção simples + edição
+      this.selectionManager.selectSingle(cell);
+      this.toggleCelula(cell.dataset.alunoId, cell.dataset.dia);
+    }
+    
+    this.updateSelectionUI();
+  }
+
+  handleCellFocus(event) {
+    const cell = event.target;
+    this.selectionManager.selectSingle(cell);
+    this.updateSelectionUI();
+  }
+
+  handleCellKeyboard(event) {
+    const cell = event.target;
+    const alunoId = cell.dataset.alunoId;
+    const dia = cell.dataset.dia;
+    
+    switch (event.key) {
+      case 'P':
+      case 'p':
+        event.preventDefault();
+        this.setCelulaValor(alunoId, dia, 'P');
+        break;
+      case 'F':
+      case 'f':
+        event.preventDefault();
+        this.setCelulaValor(alunoId, dia, 'F');
+        break;
+      case 'A':
+      case 'a':
+        event.preventDefault();
+        this.setCelulaValor(alunoId, dia, 'A');
+        break;
+      case 'Backspace':
+      case 'Delete':
+        event.preventDefault();
+        this.setCelulaValor(alunoId, dia, '');
+        break;
+      case 'Enter':
+        event.preventDefault();
+        this.moveToNextRow(cell);
+        break;
+      case 'Tab':
+        event.preventDefault();
+        this.moveToNextCell(cell, event.shiftKey);
+        break;
+    }
+  }
+
+  moveToNextRow(currentCell) {
+    const currentRow = currentCell.parentElement;
+    const nextRow = currentRow.nextElementSibling;
+    if (nextRow && nextRow.classList.contains('linha-aluno')) {
+      const cellIndex = Array.from(currentRow.children).indexOf(currentCell);
+      const nextCell = nextRow.children[cellIndex];
+      if (nextCell && nextCell.classList.contains('celula-freq')) {
+        nextCell.focus();
+      }
+    }
+  }
+
+  moveToNextCell(currentCell, backwards = false) {
+    const cells = Array.from(document.querySelectorAll('.celula-freq'));
+    const currentIndex = cells.indexOf(currentCell);
+    const nextIndex = backwards ? currentIndex - 1 : currentIndex + 1;
+    
+    if (nextIndex >= 0 && nextIndex < cells.length) {
+      cells[nextIndex].focus();
+    }
+  }
+
+  toggleCelula(alunoId, dia) {
+    const currentValue = this.getCelulaValue(alunoId, dia);
+    let newValue;
+    
+    switch (currentValue) {
+      case 'P': newValue = 'F'; break;
+      case 'F': newValue = 'A'; break;
+      case 'A': newValue = ''; break;
+      default: newValue = 'P'; break;
+    }
+    
+    this.setCelulaValor(alunoId, dia, newValue);
+  }
+
+  setCelulaValor(alunoId, dia, valor) {
+    // Atualizar no cache local
+    if (!this.dadosMensais.alunos[alunoId]) {
+      this.dadosMensais.alunos[alunoId] = { dias: {}, resumo: {} };
+    }
+    
+    this.dadosMensais.alunos[alunoId].dias[dia] = valor;
+    
+    // Atualizar UI
+    const cell = document.querySelector(`[data-aluno-id="${alunoId}"][data-dia="${dia}"]`);
+    if (cell) {
+      cell.textContent = valor;
+      cell.className = 'col-dia celula-freq';
+      if (valor) {
+        cell.classList.add(`freq-${valor.toLowerCase()}`);
+      }
+    }
+    
+    // Salvar com debounce
+    this.saveCelulaDebounced(alunoId, dia, valor);
+  }
+
+  getCelulaValue(alunoId, dia) {
+    return this.dadosMensais.alunos[alunoId]?.dias?.[dia] || '';
+  }
+
+  saveCelulaDebounced(alunoId, dia, valor) {
+    // Cancelar timeout anterior
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
+    }
+    
+    // Novo timeout
+    this.debounceTimeout = setTimeout(async () => {
+      try {
+        await this.saveCelula(alunoId, dia, valor);
+        showToast('Salvo automaticamente', 'success');
+      } catch (error) {
+        console.error('Erro ao salvar célula:', error);
+        showToast('Erro ao salvar', 'error');
+      }
+    }, 400);
+  }
+
+  async saveCelula(alunoId, dia, valor) {
+    const docId = `${this.turmaAtual}_${this.mesAtual}`;
+    const alunoRef = db.collection('frequencia').doc(docId)
+      .collection('alunos').doc(alunoId);
+    
+    try {
+      // Salvar valor da célula
+      await alunoRef.set({
+        [`dias.${dia}`]: valor
+      }, { merge: true });
+      
+      // Recalcular resumo do aluno
+      await this.recalcularResumoAluno(alunoId);
+      
+      // Recalcular agregado do dia
+      await this.recalcularAgregadoDia(dia);
+      
+    } catch (error) {
+      console.error('Erro ao salvar célula:', error);
+      throw error;
+    }
+  }
+
+  async recalcularResumoAluno(alunoId) {
+    const dadosAluno = this.dadosMensais.alunos[alunoId];
+    if (!dadosAluno) return;
+    
+    const resumo = this.calcularResumoAluno(dadosAluno.dias || {});
+    
+    // Atualizar cache local
+    this.dadosMensais.alunos[alunoId].resumo = resumo;
+    
+    // Salvar no Firestore
+    const docId = `${this.turmaAtual}_${this.mesAtual}`;
+    const alunoRef = db.collection('frequencia').doc(docId)
+      .collection('alunos').doc(alunoId);
+    
+    await alunoRef.set({ resumo }, { merge: true });
+    
+    // Atualizar UI da linha
+    this.updateResumoAlunoUI(alunoId, resumo);
+  }
+
+  calcularResumoAluno(diasMap) {
+    const totais = { P: 0, F: 0, A: 0 };
+    
+    Object.values(diasMap).forEach(valor => {
+      if (totais.hasOwnProperty(valor)) {
+        totais[valor]++;
+      }
+    });
+    
+    const total = totais.P + totais.F + totais.A;
+    const percentualFaltas = total > 0 ? (totais.F / total * 100) : 0;
+    
+    return {
+      totalP: totais.P,
+      totalF: totais.F,
+      totalA: totais.A,
+      percentualFaltas
+    };
+  }
+
+  updateResumoAlunoUI(alunoId, resumo) {
+    const linha = document.querySelector(`[data-aluno-id="${alunoId}"]`);
+    if (!linha) return;
+    
+    linha.querySelector('.total-f').textContent = resumo.totalF;
+    linha.querySelector('.total-a').textContent = resumo.totalA;
+    linha.querySelector('.total-p').textContent = resumo.totalP;
+    linha.querySelector('.percent-faltas').textContent = `${resumo.percentualFaltas.toFixed(2)}%`;
+  }
+
+  async recalcularAgregadoDia(dia) {
+    const totais = { P: 0, F: 0, A: 0 };
+    
+    // Contar valores para este dia
+    Object.values(this.dadosMensais.alunos).forEach(dadosAluno => {
+      const valor = dadosAluno.dias?.[dia];
+      if (totais.hasOwnProperty(valor)) {
+        totais[valor]++;
+      }
+    });
+    
+    // Atualizar cache local
+    if (!this.dadosMensais.agregadosDia[dia]) {
+      this.dadosMensais.agregadosDia[dia] = { totais: {} };
+    }
+    this.dadosMensais.agregadosDia[dia].totais = totais;
+    
+    // Salvar no Firestore
+    const docId = `${this.turmaAtual}_${this.mesAtual}`;
+    const agregadoRef = db.collection('frequencia').doc(docId)
+      .collection('agregadosDia').doc(dia);
+    
+    await agregadoRef.set({ totais }, { merge: true });
+    
+    // Atualizar UI do rodapé
+    this.updateAgregadoDiaUI(dia, totais);
+  }
+
+  updateAgregadoDiaUI(dia, totais) {
+    const diaNum = parseInt(dia);
+    const rodape = document.querySelector('.rodape-totais');
+    if (!rodape) return;
+    
+    // Encontrar a célula correta (pular as 2 primeiras colunas fixas)
+    const cellIndex = diaNum + 1; // +1 porque começamos do 0
+    const cell = rodape.children[cellIndex];
+    if (cell) {
+      cell.textContent = totais.F || '';
+    }
+  }
+
+  updateSelectionUI() {
+    const count = this.selectionManager.selectedCells.size;
+    document.getElementById('celulas-selecionadas').textContent = count;
+    document.getElementById('btn-salvar-lote').disabled = count === 0;
+    document.getElementById('btn-limpar-selecao').disabled = count === 0;
+  }
+
+  abrirModalLote() {
+    const count = this.selectionManager.selectedCells.size;
+    if (count === 0) return;
+    
+    document.getElementById('total-selecionadas').textContent = count;
+    document.getElementById('modal-lote').style.display = 'flex';
+  }
+
+  fecharModalLote() {
+    document.getElementById('modal-lote').style.display = 'none';
+  }
+
+  async aplicarLote(valor) {
+    const selectedCells = Array.from(this.selectionManager.selectedCells);
+    if (selectedCells.length === 0) return;
+    
+    this.showLoading(true);
+    
+    try {
+      // Usar batch write para melhor performance
+      const batch = db.batch();
+      const docId = `${this.turmaAtual}_${this.mesAtual}`;
+      
+      const updates = new Map();
+      
+      selectedCells.forEach(cell => {
+        const alunoId = cell.dataset.alunoId;
+        const dia = cell.dataset.dia;
+        
+        // Atualizar cache local
+        if (!this.dadosMensais.alunos[alunoId]) {
+          this.dadosMensais.alunos[alunoId] = { dias: {}, resumo: {} };
+        }
+        this.dadosMensais.alunos[alunoId].dias[dia] = valor;
+        
+        // Atualizar UI
+        cell.textContent = valor;
+        cell.className = 'col-dia celula-freq';
+        if (valor) {
+          cell.classList.add(`freq-${valor.toLowerCase()}`);
+        }
+        
+        // Preparar update para batch
+        if (!updates.has(alunoId)) {
+          updates.set(alunoId, {});
+        }
+        updates.get(alunoId)[`dias.${dia}`] = valor;
+      });
+      
+      // Adicionar updates ao batch
+      updates.forEach((updateData, alunoId) => {
+        const alunoRef = db.collection('frequencia').doc(docId)
+          .collection('alunos').doc(alunoId);
+        batch.set(alunoRef, updateData, { merge: true });
+      });
+      
+      // Executar batch
+      await batch.commit();
+      
+      // Recalcular estatísticas
+      await this.recalcularTudoEMesclar();
+      
+      // Limpar seleção
+      this.selectionManager.clearSelection();
+      this.updateSelectionUI();
+      
+      // Fechar modal
+      this.fecharModalLote();
+      
+      showToast(`Lote aplicado a ${selectedCells.length} células`, 'success');
+      
+    } catch (error) {
+      console.error('Erro ao aplicar lote:', error);
+      showToast('Erro ao aplicar lote', 'error');
+    } finally {
+      this.showLoading(false);
+    }
+  }
+
+  async recalcularTudoEMesclar() {
+    if (!this.turmaAtual || !this.mesAtual) return;
+    
+    this.showLoading(true);
+    
+    try {
+      // Recalcular resumos de todos os alunos
+      const alunosIds = Object.keys(this.dadosMensais.alunos);
+      for (const alunoId of alunosIds) {
+        await this.recalcularResumoAluno(alunoId);
+      }
+      
+      // Recalcular agregados de todos os dias
+      for (let dia = 1; dia <= this.diasNoMes; dia++) {
+        const diaStr = String(dia).padStart(2, '0');
+        await this.recalcularAgregadoDia(diaStr);
+      }
+      
+      // Recarregar dados e rerender
+      await this.loadMensalData(this.turmaAtual, this.mesAtual);
+      this.renderTabela(this.alunosCache, this.diasNoMes, this.dadosMensais);
+      
+      showToast('Estatísticas recalculadas', 'success');
+      
+    } catch (error) {
+      console.error('Erro ao recalcular:', error);
+      showToast('Erro ao recalcular estatísticas', 'error');
+    } finally {
+      this.showLoading(false);
+    }
+  }
+
+  filtrarTabela(searchTerm) {
+    const linhas = document.querySelectorAll('.linha-aluno');
+    const term = searchTerm.toLowerCase().trim();
+    
+    linhas.forEach(linha => {
+      const nome = linha.querySelector('.col-nome').textContent.toLowerCase();
+      const codigo = linha.querySelector('.col-codigo').textContent.toLowerCase();
+      
+      const match = nome.includes(term) || codigo.includes(term);
+      linha.style.display = match ? '' : 'none';
+    });
+  }
+
+  exportarCSV(turmaId, anoMes) {
+    if (!turmaId || !anoMes) {
+      showToast('Selecione uma turma e mês', 'warning');
+      return;
+    }
+    
+    try {
+      let csvContent = 'Código,Nome';
+      
+      // Cabeçalho - dias
+      for (let dia = 1; dia <= this.diasNoMes; dia++) {
+        csvContent += `,${String(dia).padStart(2, '0')}`;
+      }
+      csvContent += ',Total Faltas,Atestado,Presente,% Faltas\n';
+      
+      // Dados dos alunos
+      this.alunosCache.forEach(aluno => {
+        const dadosAluno = this.dadosMensais.alunos[aluno.alunoId] || { dias: {}, resumo: {} };
+        
+        let linha = `${aluno.id},"${aluno.nome}"`;
+        
+        // Dados por dia
+        for (let dia = 1; dia <= this.diasNoMes; dia++) {
+          const diaStr = String(dia).padStart(2, '0');
+          const valor = dadosAluno.dias?.[diaStr] || '';
+          linha += `,${valor}`;
+        }
+        
+        // Resumo
+        const resumo = dadosAluno.resumo || {};
+        linha += `,${resumo.totalF || 0}`;
+        linha += `,${resumo.totalA || 0}`;
+        linha += `,${resumo.totalP || 0}`;
+        linha += `,${(resumo.percentualFaltas || 0).toFixed(2)}%`;
+        
+        csvContent += linha + '\n';
+      });
+      
+      // Download
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `frequencia_${turmaId}_${anoMes}.csv`;
+      link.click();
+      
+      showToast('CSV exportado com sucesso', 'success');
+      
+    } catch (error) {
+      console.error('Erro ao exportar CSV:', error);
+      showToast('Erro ao exportar CSV', 'error');
+    }
+  }
+
+  showLoading(show) {
+    this.isLoading = show;
+    const loading = document.getElementById('loading-frequencia');
+    if (loading) {
+      loading.style.display = show ? 'flex' : 'none';
+    }
+  }
+}
+
+class SelectionManager {
+  constructor() {
+    this.selectedCells = new Set();
+    this.lastSelected = null;
+  }
+
+  selectSingle(cell) {
+    this.clearSelection();
+    this.selectedCells.add(cell);
+    this.lastSelected = cell;
+    this.updateCellAppearance();
+  }
+
+  toggleCell(cell) {
+    if (this.selectedCells.has(cell)) {
+      this.selectedCells.delete(cell);
+    } else {
+      this.selectedCells.add(cell);
+    }
+    this.lastSelected = cell;
+    this.updateCellAppearance();
+  }
+
+  selectRange(startCell, endCell) {
+    // Encontrar todas as células entre start e end
+    const allCells = Array.from(document.querySelectorAll('.celula-freq'));
+    const startIndex = allCells.indexOf(startCell);
+    const endIndex = allCells.indexOf(endCell);
+    
+    if (startIndex === -1 || endIndex === -1) return;
+    
+    const minIndex = Math.min(startIndex, endIndex);
+    const maxIndex = Math.max(startIndex, endIndex);
+    
+    // Selecionar intervalo
+    for (let i = minIndex; i <= maxIndex; i++) {
+      this.selectedCells.add(allCells[i]);
+    }
+    
+    this.lastSelected = endCell;
+    this.updateCellAppearance();
+  }
+
+  clearSelection() {
+    this.selectedCells.clear();
+    this.lastSelected = null;
+    this.updateCellAppearance();
+  }
+
+  updateCellAppearance() {
+    // Remover seleção de todas as células
+    document.querySelectorAll('.celula-freq').forEach(cell => {
+      cell.classList.remove('selected');
+    });
+    
+    // Adicionar seleção às células selecionadas
+    this.selectedCells.forEach(cell => {
+      cell.classList.add('selected');
     });
   }
 }
 
-// Inicializar quando a página carregar
+// Funções globais para compatibilidade
+function initFrequenciaPage() {
+  const manager = new FrequenciaManager();
+  manager.init();
+  window.frequenciaManager = manager;
+}
+
+function fecharModalLote() {
+  if (window.frequenciaManager) {
+    window.frequenciaManager.fecharModalLote();
+  }
+}
+
+// Auto-inicialização quando DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-  new FrequenciaManager();
+  if (document.getElementById('tabela-frequencia')) {
+    initFrequenciaPage();
+  }
 });
+
+// Exportar para uso global
+window.FrequenciaManager = FrequenciaManager;
+window.initFrequenciaPage = initFrequenciaPage;
