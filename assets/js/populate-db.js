@@ -96,11 +96,24 @@ window.addEventListener('localDbReady', () => {
     // Aguardar um pouco para o carregamento dos outros scripts
     setTimeout(() => {
       if (typeof carregarDadosFrequenciaAgosto === 'function') {
+        console.log('🔄 Iniciando população do banco...');
         popularBancoLocal();
+      } else {
+        console.log('⚠️ Função carregarDadosFrequenciaAgosto não encontrada ainda');
+        // Tentar novamente após mais tempo
+        setTimeout(() => {
+          if (typeof carregarDadosFrequenciaAgosto === 'function') {
+            popularBancoLocal();
+          }
+        }, 3000);
       }
-    }, 2000);
+    }, 1000);
   } else {
     console.log(`📚 Banco já possui ${existingData.length} registros`);
+    // Disparar evento mesmo se já tem dados
+    window.dispatchEvent(new CustomEvent('dadosPopulados', { 
+      detail: { total: existingData.length } 
+    }));
   }
 });
 

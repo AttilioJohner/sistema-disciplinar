@@ -19,12 +19,10 @@ class FrequenciaManager {
     this.setupEventListeners();
     await this.carregarDados();
     
-    // Se não há dados, tentar carregar automaticamente os dados de agosto
+    // Se não há dados, mostrar que está aguardando a população automática
     if (this.dados.length === 0) {
-      console.log('📊 Nenhum dado encontrado, carregando dados de agosto automaticamente...');
-      setTimeout(() => {
-        this.carregarDadosAgosto();
-      }, 2000);
+      console.log('📊 Nenhum dado encontrado, aguardando população automática...');
+      this.mostrarMensagemCarregando();
     }
     
     this.atualizarInterface();
@@ -33,9 +31,13 @@ class FrequenciaManager {
   }
 
   async waitForFirebase() {
+    // Aguardar banco local estar pronto
     while (!window.isFirebaseReady?.()) {
       await new Promise(resolve => setTimeout(resolve, 100));
     }
+    
+    // Aguardar um pouco mais para o banco local carregar completamente
+    await new Promise(resolve => setTimeout(resolve, 500));
   }
 
   setupEventListeners() {
@@ -460,6 +462,25 @@ class FrequenciaManager {
     }
   }
 
+  // Método para mostrar mensagem de carregamento
+  mostrarMensagemCarregando() {
+    const tbody = document.getElementById('frequencia-tbody');
+    if (tbody) {
+      tbody.innerHTML = `
+        <tr class="empty-state">
+          <td colspan="7">
+            <div class="empty-message">
+              <div class="empty-icon">⏳</div>
+              <p><strong>Carregando dados de frequência...</strong></p>
+              <p class="empty-subtitle">Aguarde, os dados estão sendo populados automaticamente</p>
+              <div class="loading-spinner" style="margin: 20px auto;"></div>
+            </div>
+          </td>
+        </tr>
+      `;
+    }
+  }
+
   // Método para ver detalhes diários de um aluno
   verDetalhesAluno(alunoId) {
     const aluno = this.dados.find(item => item.id === alunoId);
@@ -541,6 +562,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Expor globalmente para facilitar testes
     window.frequenciaManager = frequenciaManager;
+    
+    // Escutar evento de dados populados
+    window.addEventListener('dadosPopulados', (event) => {
+      console.log(`🔔 Dados populados: ${event.detail.total} registros`);
+      // Recarregar dados após população
+      setTimeout(() => {
+        frequenciaManager.carregarDados();
+      }, 1000);
+    });
   }
 });
 
