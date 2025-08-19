@@ -137,8 +137,8 @@ class FrequenciaManager {
             totalPresencas++;
           } else if (valor === 'F') {
             totalFaltas++;
-            // Assumindo agosto de 2024 para data da última falta
-            dataUltimaFalta = new Date(2024, 7, parseInt(dia)); // Mês 7 = agosto
+            // Assumindo agosto de 2025 para data da última falta
+            dataUltimaFalta = new Date(2025, 7, parseInt(dia)); // Mês 7 = agosto
           } else if (valor === 'A') {
             totalAtestados++;
           }
@@ -326,7 +326,7 @@ class FrequenciaManager {
     });
 
     const csv = this.convertToCSV(dados);
-    this.downloadCSV(csv, 'relatorio_frequencia_agosto_2024.csv');
+    this.downloadCSV(csv, 'relatorio_frequencia_agosto_2025.csv');
     
     showToast('Relatório exportado com sucesso', 'success');
   }

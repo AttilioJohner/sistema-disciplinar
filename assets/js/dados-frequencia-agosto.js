@@ -1,8 +1,8 @@
-// Dados de Frequência de Agosto 2024
+// Dados de Frequência de Agosto 2025
 // Processamento automático dos dados CSV fornecidos
 
 function carregarDadosFrequenciaAgosto() {
-  console.log('🗓️ Carregando dados de frequência de Agosto 2024...');
+  console.log('🗓️ Carregando dados de frequência de Agosto 2025...');
   
   const dadosCSV = `2639458,Alberto de Jesus Sousa Pereira,6A,P,P,P,P,P,P,P,P,P,P,P,P,,,,,,,,,
 2590632,Ana Clara da Silva Coelho,6A,P,P,P,P,P,P,P,P,P,P,P,P,,,,,,,,,
