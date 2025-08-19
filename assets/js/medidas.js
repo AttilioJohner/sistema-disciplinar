@@ -11,7 +11,7 @@
   'use strict';
 
   if (!window.db) {
-    console.error('Firestore (window.db) não encontrado. Verifique firebase-config.js');
+    console.error('Sistema de banco local (window.db) não encontrado. Verifique a configuração.');
     return;
   }
 

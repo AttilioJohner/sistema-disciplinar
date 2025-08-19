@@ -49,13 +49,13 @@
     }
   });
 
-  // Aguarda Firebase disponível via window.isFirebaseReady/window.db
+  // Aguarda sistema local disponível via window.db
   async function ensureFirebase() {
     const maxWaitMs = 12000;
     const start = Date.now();
-    while (!(window.isFirebaseReady && window.isFirebaseReady() && window.db)) {
+    while (!window.db) {
       if (Date.now() - start > maxWaitMs) {
-        throw new Error('Firebase não inicializado. Verifique a ordem dos scripts e o firebase-config.js.');
+        throw new Error('Sistema de banco local não inicializado. Verifique a ordem dos scripts.');
       }
       await sleep(100);
     }
@@ -158,19 +158,19 @@
       let mensagem = 'Erro ao carregar alunos.';
       
       if (err?.code === 'permission-denied') {
-        mensagem = 'Sem permissão para ler dados. Verifique as regras do Firestore e se está logado.';
+        mensagem = 'Sem permissão para ler dados. Verifique se está logado.';
       } else if (err?.code === 'failed-precondition') {
-        mensagem = 'Índice do Firestore necessário. Tentando carregar sem ordenação...';
+        mensagem = 'Erro de pré-condição. Tentando carregar sem ordenação...';
       } else if (err?.message) {
         mensagem = `Erro: ${err.message}`;
       }
       
       toast(mensagem, 'erro');
 
-      // Apenas para permission-denied, mostrar informações de debug
+      // Mostrar informações de debug
       if (err?.code === 'permission-denied') {
-        console.log('Usuário atual:', firebase.auth().currentUser);
-        console.log('Firebase inicializado?', !!window.db);
+        console.log('Usuário atual:', window.localAuth?.getCurrentUser());
+        console.log('Sistema local inicializado?', !!window.db);
       }
     };
 
@@ -180,7 +180,7 @@
       unsubLista = db.collection(COLLECTION).onSnapshot(handler, errorHandler);
     } catch (e) {
       console.error('Falha ao anexar listener:', e);
-      toast('Erro ao conectar com Firestore', 'erro');
+      toast('Erro ao conectar com banco local', 'erro');
     }
   }
 
@@ -504,7 +504,7 @@
     // Garantir que status seja sempre definido
     if (!out.status) out.status = 'ativo';
     
-    var ts = firebase.firestore.FieldValue.serverTimestamp();
+    var ts = new Date().toISOString();
     if (forCreate) { out.createdAt = ts; out.updatedAt = ts; }
     if (forUpdate) { out.updatedAt = ts; }
     return out;
@@ -537,10 +537,10 @@
           totalId: !!els.total,
           toastId: !!els.toast,
           firebaseReady: !!(window.isFirebaseReady && window.isFirebaseReady()),
-          apps: (firebase && firebase.apps) ? firebase.apps.length : 'n/a',
+          apps: 'local',
           hasDb: !!db,
           collection: COLLECTION,
-          user: (firebase && firebase.auth && firebase.auth().currentUser) ? firebase.auth().currentUser.email : null,
+          user: window.localAuth?.getCurrentUser()?.email || null,
           cacheSize: alunosCache.length,
           listenerAttached: !!unsubLista
         };
@@ -550,7 +550,7 @@
       checkFirebase: async function() {
         const out = { ready: false, read: null, write: null };
         try {
-          out.ready = !!(window.isFirebaseReady && window.isFirebaseReady() && db);
+          out.ready = !!db;
           const r = await db.collection(COLLECTION).limit(1).get();
           out.read = { ok: true, size: r.size };
         } catch (e) {
@@ -559,8 +559,8 @@
         try {
           await db.collection(COLLECTION).doc('DEBUG_CHECK').set({
             nome: 'Debug Check', turma: 'DZ',
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
           });
           out.write = { ok: true };
           await db.collection(COLLECTION).doc('DEBUG_CHECK').delete();
@@ -595,8 +595,8 @@
             cpf: '00000000000',
             telefone: '(00) 00000-0000',
             email: 'debug@example.com',
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
           });
           console.log('DEBUG_SAMPLE gravado');
         },
@@ -652,7 +652,7 @@
         if (!data.status) {
           await doc.ref.update({ 
             status: 'ativo',
-            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            updatedAt: new Date().toISOString()
           });
           updated++;
         }

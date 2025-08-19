@@ -1,16 +1,12 @@
 async function carregarAlunosDashboard() {
   try {
-    // Verificar se Firebase está disponível
+    // Verificar se banco local está disponível
     if (!window.db) {
-      if (typeof firebase !== "undefined") {
-        window.db = firebase.firestore();
-      } else {
-        console.error('Firebase não carregado');
-        return;
-      }
+      console.error('Banco local não carregado');
+      return;
     }
 
-    // Buscar alunos no Firestore
+    // Buscar alunos no banco local
     const snapshot = await db.collection("alunos").get();
     const alunos = [];
     snapshot.forEach(doc => {

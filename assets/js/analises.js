@@ -9,16 +9,12 @@ let dadosAnalises = [];
 let processedDataRelatorios = [];
 
 // ============================================
-// CARREGAMENTO DE DADOS DO FIREBASE
+// CARREGAMENTO DE DADOS DO BANCO LOCAL
 // ============================================
 async function carregarDadosRelatorios() {
     try {
         if (!window.db) {
-            if (typeof firebase !== "undefined") {
-                window.db = firebase.firestore();
-            } else {
-                throw new Error('Firebase não carregado');
-            }
+            throw new Error('Sistema de banco local não carregado');
         }
 
         showMessage('Carregando dados para análises...', 'loading');
@@ -117,7 +113,7 @@ async function atualizarAnalises() {
         
         // Verificar se temos dados
         if (!processedDataRelatorios || processedDataRelatorios.length === 0) {
-            if (isFirebaseReady()) {
+            if (window.localAuth?.isReady()) {
                 await carregarDadosRelatorios();
             } else {
                 throw new Error('Dados não disponíveis');

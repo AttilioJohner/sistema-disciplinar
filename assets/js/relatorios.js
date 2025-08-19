@@ -12,7 +12,7 @@
   'use strict';
 
   if (!window.db) {
-    console.error('Firestore (window.db) não encontrado. Verifique firebase-config.js');
+    console.error('Sistema de banco local (window.db) não encontrado. Verifique a configuração.');
     return;
   }
 
@@ -202,11 +202,7 @@
   async function carregarDadosRelatorios() {
     try {
       if (!window.db) {
-        if (typeof firebase !== "undefined") {
-          window.db = firebase.firestore();
-        } else {
-          throw new Error('Firebase não carregado');
-        }
+        throw new Error('Sistema de banco local não carregado');
       }
 
       console.log('Carregando dados para relatórios...');

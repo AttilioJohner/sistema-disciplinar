@@ -106,8 +106,8 @@ function showPreview(data) {
 async function importData() {
     log("Importando...");
     
-    // Verificar se o usuário está autenticado
-    const user = firebase.auth().currentUser;
+    // Verificar se o sistema de autenticação local está disponível
+    const user = window.localAuth?.getCurrentUser();
     if (!user) {
         log("Erro: Você precisa estar logado para importar dados", "error");
         return;
@@ -116,12 +116,8 @@ async function importData() {
     log("Usuário autenticado: " + user.email);
     
     if (!window.db) {
-        if (typeof firebase !== "undefined") {
-            window.db = firebase.firestore();
-        } else {
-            log("Firebase não carregado", "error");
-            return;
-        }
+        log("Sistema de banco local não carregado", "error");
+        return;
     }
     
     let success = 0;
@@ -169,7 +165,7 @@ async function importData() {
 
                 await db.collection("alunos").doc(docId).update({
                     ...dadosMerge,
-                    updated_at: firebase.firestore.FieldValue.serverTimestamp(),
+                    updated_at: new Date().toISOString(),
                     updated_by: user.uid
                 });
                 
@@ -181,7 +177,7 @@ async function importData() {
                 
                 await db.collection("alunos").doc(docId).set({
                     ...aluno,
-                    created_at: firebase.firestore.FieldValue.serverTimestamp(),
+                    created_at: new Date().toISOString(),
                     created_by: user.uid
                 });
                 
@@ -286,8 +282,8 @@ function showMedidasPreview(data) {
 async function importMedidasData() {
     log("Importando medidas...");
     
-    // Verificar se o usuário está autenticado
-    const user = firebase.auth().currentUser;
+    // Verificar se o sistema de autenticação local está disponível
+    const user = window.localAuth?.getCurrentUser();
     if (!user) {
         log("Erro: Você precisa estar logado para importar medidas", "error");
         return;
@@ -296,12 +292,8 @@ async function importMedidasData() {
     log("Usuário autenticado: " + user.email);
     
     if (!window.db) {
-        if (typeof firebase !== "undefined") {
-            window.db = firebase.firestore();
-        } else {
-            log("Firebase não carregado", "error");
-            return;
-        }
+        log("Sistema de banco local não carregado", "error");
+        return;
     }
     
     let success = 0;
@@ -341,7 +333,7 @@ async function importMedidasData() {
 
                 await db.collection("medidas_disciplinares").doc(docId).update({
                     ...dadosMerge,
-                    updated_at: firebase.firestore.FieldValue.serverTimestamp(),
+                    updated_at: new Date().toISOString(),
                     updated_by: user.uid
                 });
                 
@@ -353,7 +345,7 @@ async function importMedidasData() {
                 
                 await db.collection("medidas_disciplinares").doc(docId).set({
                     ...medida,
-                    created_at: firebase.firestore.FieldValue.serverTimestamp(),
+                    created_at: new Date().toISOString(),
                     created_by: user.uid
                 });
                 
