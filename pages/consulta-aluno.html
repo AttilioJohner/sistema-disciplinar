@@ -1667,12 +1667,173 @@
             }
             
             try {
-                // Usar a função de exportação existente mas com dados limitados
-                await exportarFichaPDF();
+                // Verificar se jsPDF está disponível
+                if (typeof window.jsPDF === 'undefined') {
+                    // Carregar jsPDF dinamicamente
+                    await carregarJsPDF();
+                }
+                
+                // Gerar PDF específico para consulta dos pais
+                await gerarPDFConsultaPais();
+                
             } catch (error) {
                 console.error('Erro na exportação:', error);
                 showError('Erro ao gerar PDF. Tente novamente.');
             }
+        }
+        
+        // Carregar jsPDF dinamicamente
+        async function carregarJsPDF() {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+                script.onload = () => {
+                    window.jsPDF = window.jspdf.jsPDF;
+                    resolve();
+                };
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+        
+        // Gerar PDF específico para consulta dos pais
+        async function gerarPDFConsultaPais() {
+            const aluno = window.dadosAlunoAtual;
+            const medidas = window.medidasAtuais || [];
+            
+            // Criar novo documento PDF
+            const doc = new window.jsPDF();
+            
+            // Configuração de cores e fontes
+            const corPrimaria = [41, 49, 80];
+            const corSecundaria = [108, 117, 125];
+            const corDestaque = [220, 53, 69];
+            
+            let yPos = 20;
+            
+            // Cabeçalho
+            doc.setFontSize(20);
+            doc.setTextColor(...corPrimaria);
+            doc.text('📋 Ficha Disciplinar do Aluno', 20, yPos);
+            
+            yPos += 15;
+            doc.setFontSize(12);
+            doc.setTextColor(...corSecundaria);
+            doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
+            
+            // Linha divisória
+            yPos += 10;
+            doc.setDrawColor(200, 200, 200);
+            doc.line(20, yPos, 190, yPos);
+            
+            // Dados do aluno
+            yPos += 15;
+            doc.setFontSize(16);
+            doc.setTextColor(...corPrimaria);
+            doc.text('👤 Dados do Aluno', 20, yPos);
+            
+            yPos += 10;
+            doc.setFontSize(12);
+            doc.setTextColor(...corSecundaria);
+            
+            const dadosAluno = [
+                `Nome: ${aluno.nome_completo}`,
+                `Código: ${aluno.codigo}`,
+                `Turma: ${aluno.turma}`,
+                `Responsável: ${aluno.responsavel}`
+            ];
+            
+            dadosAluno.forEach(linha => {
+                doc.text(linha, 20, yPos);
+                yPos += 7;
+            });
+            
+            // Nota disciplinar atual
+            yPos += 10;
+            const notaAtual = calcularNotaDisciplinar();
+            doc.setFontSize(14);
+            doc.setTextColor(...corDestaque);
+            doc.text(`📊 Nota Disciplinar: ${notaAtual.toFixed(1)}/10,0 pontos`, 20, yPos);
+            
+            // Medidas disciplinares
+            if (medidas.length > 0) {
+                yPos += 20;
+                doc.setFontSize(16);
+                doc.setTextColor(...corPrimaria);
+                doc.text('📋 Medidas Disciplinares', 20, yPos);
+                
+                yPos += 10;
+                doc.setFontSize(10);
+                doc.setTextColor(...corSecundaria);
+                
+                medidas.forEach((medida, index) => {
+                    // Verificar se precisa de nova página
+                    if (yPos > 250) {
+                        doc.addPage();
+                        yPos = 20;
+                    }
+                    
+                    doc.setTextColor(...corDestaque);
+                    doc.text(`${index + 1}. ${medida.data}`, 20, yPos);
+                    yPos += 5;
+                    
+                    doc.setTextColor(...corPrimaria);
+                    const tipoText = doc.splitTextToSize(`${medida.tipo}`, 160);
+                    doc.text(tipoText, 25, yPos);
+                    yPos += tipoText.length * 5;
+                    
+                    if (medida.descricao) {
+                        doc.setTextColor(...corSecundaria);
+                        const descText = doc.splitTextToSize(`Descrição: ${medida.descricao}`, 160);
+                        doc.text(descText, 25, yPos);
+                        yPos += descText.length * 5;
+                    }
+                    
+                    yPos += 5;
+                });
+            } else {
+                yPos += 20;
+                doc.setFontSize(14);
+                doc.setTextColor(...corSecundaria);
+                doc.text('✅ Nenhuma medida disciplinar registrada', 20, yPos);
+            }
+            
+            // Dados de frequência se disponíveis
+            if (window.dadosFrequenciaAluno && window.dadosFrequenciaAluno.length > 0) {
+                yPos += 20;
+                doc.setFontSize(16);
+                doc.setTextColor(...corPrimaria);
+                doc.text('📅 Resumo de Frequência', 20, yPos);
+                
+                const frequencia = window.dadosFrequenciaAluno;
+                const totalDias = frequencia.length;
+                const diasPresentes = frequencia.filter(d => d.status === 'Presente').length;
+                const percentualFrequencia = totalDias > 0 ? (diasPresentes / totalDias * 100) : 0;
+                
+                yPos += 10;
+                doc.setFontSize(12);
+                doc.setTextColor(...corSecundaria);
+                doc.text(`Total de dias letivos: ${totalDias}`, 20, yPos);
+                yPos += 7;
+                doc.text(`Dias presentes: ${diasPresentes}`, 20, yPos);
+                yPos += 7;
+                doc.text(`Percentual de frequência: ${percentualFrequencia.toFixed(1)}%`, 20, yPos);
+            }
+            
+            // Rodapé
+            const pageCount = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setTextColor(150, 150, 150);
+                doc.text(`Dashboard Disciplinar - Página ${i} de ${pageCount}`, 20, 285);
+            }
+            
+            // Salvar PDF
+            const nomeArquivo = `ficha_disciplinar_${aluno.codigo}_${new Date().toISOString().slice(0, 10)}.pdf`;
+            doc.save(nomeArquivo);
+            
+            showSuccess('PDF gerado com sucesso!');
         }
 
         async function exportarHTMLParaPais() {
