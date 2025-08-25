@@ -10,7 +10,10 @@
       "Bash(git config:*)",
       "Bash(git pull:*)",
       "Bash(git checkout:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:attiliojohner.github.io)"
     ],
     "deny": [],
     "ask": []
