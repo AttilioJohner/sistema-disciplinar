@@ -895,6 +895,38 @@
 
       yPos += 10;
 
+      // Buscar dados de frequência do aluno
+      let dadosFrequencia = null;
+      try {
+        if (typeof buscarFrequenciaPorCodigo === 'function') {
+          dadosFrequencia = await buscarFrequenciaPorCodigo(dadosAluno.codigo);
+        }
+      } catch (error) {
+        console.log('Erro ao buscar frequência:', error);
+      }
+
+      // Seção de Frequência
+      if (dadosFrequencia && dadosFrequencia.faltas > 0) {
+        pdf.setFontSize(14);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(`📅 REGISTRO DE FREQUÊNCIA`, margin, yPos);
+        yPos += 10;
+
+        pdf.setFontSize(10);
+        pdf.setFont('helvetica', 'normal');
+        pdf.text(`Total de faltas: ${dadosFrequencia.faltas}`, margin, yPos);
+        yPos += lineHeight;
+        pdf.text(`Percentual de frequência: ${dadosFrequencia.percentual}%`, margin, yPos);
+        yPos += lineHeight;
+        
+        if (dadosFrequencia.situacao) {
+          pdf.setFont('helvetica', 'bold');
+          pdf.text(`Situação: ${dadosFrequencia.situacao}`, margin, yPos);
+          yPos += lineHeight;
+        }
+        yPos += 10;
+      }
+
       // Seção: Histórico de Medidas Disciplinares
       pdf.setFontSize(14);
       pdf.setFont('helvetica', 'bold');
