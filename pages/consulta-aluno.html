@@ -210,7 +210,34 @@
             border-radius: 15px;
             padding: 30px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            margin-top: 20px;
+            margin: 20px 0;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        
+        .btn-voltar {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        .btn-voltar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
         }
 
         .student-header {
@@ -350,6 +377,64 @@
             margin-top: 20px;
         }
         
+        .faltas-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+        
+        .faltas-titulo {
+            background: linear-gradient(135deg, #495057, #6c757d);
+            color: white;
+            padding: 15px 20px;
+            margin: 0;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .faltas-grid-compacta {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 8px;
+            padding: 15px;
+            background: #f8f9fa;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .falta-item-compacta {
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+            font-size: 0.9em;
+        }
+        
+        .falta-item-compacta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .falta-item-compacta .falta-icon {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        .falta-item-compacta .falta-data {
+            font-weight: bold;
+            font-size: 0.85em;
+            margin-bottom: 2px;
+        }
+        
+        .falta-item-compacta .falta-tipo {
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+        
         .mes-section {
             margin-bottom: 30px;
             border: 1px solid #e9ecef;
@@ -460,6 +545,8 @@
             font-size: 2.2em;
             font-weight: bold;
             line-height: 1;
+            word-break: break-all;
+            overflow-wrap: break-word;
         }
         
         .stat-label {
@@ -552,6 +639,22 @@
                 grid-template-columns: 1fr;
             }
             
+            .faltas-grid-compacta {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 6px;
+                padding: 12px;
+            }
+            
+            .falta-item-compacta {
+                padding: 6px 8px;
+                font-size: 0.8em;
+            }
+            
+            .falta-item-compacta .falta-icon {
+                font-size: 1em;
+                margin-right: 6px;
+            }
+            
             .faltas-resumo, .medidas-resumo {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -621,6 +724,12 @@
 
             <!-- Seção de Resultados -->
             <div class="result-section" id="resultSection">
+                <div class="result-header">
+                    <button class="btn-voltar" onclick="voltarAoInicio()">
+                        ← Consultar Outro Aluno
+                    </button>
+                </div>
+                
                 <div class="student-header" id="studentHeader">
                     <div class="student-name" id="studentName"></div>
                     <div class="student-info" id="studentInfo"></div>
@@ -856,48 +965,36 @@
                     <div class="faltas-timeline">
                 `;
                 
-                // Agrupar faltas por mês
-                const faltasPorMes = {};
-                dadosFrequencia.faltas.forEach(falta => {
-                    const mes = falta.data.substring(3, 5); // MM de DD/MM
-                    const mesNome = mes === '08' ? 'Agosto 2025' : 'Mês ' + mes;
-                    if (!faltasPorMes[mesNome]) {
-                        faltasPorMes[mesNome] = [];
-                    }
-                    faltasPorMes[mesNome].push(falta);
-                });
+                // Mostrar todas as faltas em um único container
+                frequenciaHtml += `
+                    <div class="faltas-container">
+                        <h4 class="faltas-titulo">📅 Registro de Faltas</h4>
+                        <div class="faltas-grid-compacta">
+                `;
                 
-                Object.keys(faltasPorMes).forEach(mesNome => {
-                    frequenciaHtml += `
-                        <div class="mes-section">
-                            <h4 class="mes-titulo">${mesNome}</h4>
-                            <div class="faltas-grid">
-                    `;
-                    
-                    faltasPorMes[mesNome].forEach(falta => {
-                        const tipoClasse = falta.marcacao === 'F' ? 'falta-simples' : 
-                                         falta.marcacao === 'FC' ? 'falta-controlada' : 'atestado';
-                        const icone = falta.marcacao === 'F' ? '❌' : 
-                                    falta.marcacao === 'FC' ? '⚠️' : '🏥';
-                        const tipoTexto = falta.marcacao === 'F' ? 'Falta' : 
-                                        falta.marcacao === 'FC' ? 'Falta Controlada' : 'Atestado';
-                        
-                        frequenciaHtml += `
-                            <div class="falta-item ${tipoClasse}">
-                                <div class="falta-icon">${icone}</div>
-                                <div class="falta-info">
-                                    <div class="falta-data">${falta.data}</div>
-                                    <div class="falta-tipo">${tipoTexto}</div>
-                                </div>
-                            </div>
-                        `;
-                    });
+                dadosFrequencia.faltas.forEach(falta => {
+                    const tipoClasse = falta.marcacao === 'F' ? 'falta-simples' : 
+                                     falta.marcacao === 'FC' ? 'falta-controlada' : 'atestado';
+                    const icone = falta.marcacao === 'F' ? '❌' : 
+                                falta.marcacao === 'FC' ? '⚠️' : '🏥';
+                    const tipoTexto = falta.marcacao === 'F' ? 'Falta' : 
+                                    falta.marcacao === 'FC' ? 'Falta Controlada' : 'Atestado';
                     
                     frequenciaHtml += `
+                        <div class="falta-item-compacta ${tipoClasse}">
+                            <div class="falta-icon">${icone}</div>
+                            <div class="falta-info">
+                                <div class="falta-data">${falta.data}</div>
+                                <div class="falta-tipo">${tipoTexto}</div>
                             </div>
                         </div>
                     `;
                 });
+                
+                frequenciaHtml += `
+                        </div>
+                    </div>
+                `;
                 
                 frequenciaHtml += '</div>';
                 document.getElementById('frequenciaInfo').innerHTML = frequenciaHtml;
@@ -992,7 +1089,7 @@
                     <div class="stat-card stat-info">
                         <div class="stat-icon">🎯</div>
                         <div class="stat-content">
-                            <div class="stat-number">${aluno.codigo}</div>
+                            <div class="stat-number" style="font-size: 1.8em;">${aluno.codigo}</div>
                             <div class="stat-label">Código</div>
                         </div>
                     </div>
@@ -1156,6 +1253,26 @@
             searchSection.appendChild(success);
             
             setTimeout(() => success.remove(), 3000);
+        }
+        
+        // Função para voltar ao início
+        function voltarAoInicio() {
+            const resultSection = document.getElementById('resultSection');
+            const searchSection = document.querySelector('.search-section');
+            
+            // Esconder seção de resultados
+            resultSection.style.display = 'none';
+            
+            // Limpar formulário
+            document.getElementById('codigoAluno').value = '';
+            
+            // Rolar para o formulário de busca
+            searchSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Focar no campo de código
+            setTimeout(() => {
+                document.getElementById('codigoAluno').focus();
+            }, 500);
         }
     </script>
 </body>
