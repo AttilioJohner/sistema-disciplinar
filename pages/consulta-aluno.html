@@ -710,6 +710,13 @@
             padding: 25px;
         }
 
+        .links-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
         .info-link {
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -717,8 +724,10 @@
             padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
-            margin-top: 15px;
             transition: transform 0.3s ease;
+            flex: 1;
+            text-align: center;
+            min-width: 150px;
         }
 
         .info-link:hover {
@@ -743,7 +752,7 @@
         .classificacao-content,
         .avisos-content {
             margin-top: 20px;
-            max-height: 400px;
+            max-height: 300px;
             overflow-y: auto;
             border: 1px solid #e9ecef;
             border-radius: 8px;
@@ -808,6 +817,26 @@
         .aviso-section li {
             margin-bottom: 5px;
             line-height: 1.4;
+        }
+
+        /* Garantir rolagem da página */
+        html, body {
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            height: auto !important;
+            min-height: 100vh !important;
+        }
+
+        /* Responsividade dos links */
+        @media (max-width: 768px) {
+            .links-container {
+                flex-direction: column;
+            }
+            
+            .info-link {
+                min-width: auto;
+                flex: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -980,10 +1009,15 @@
                         <h3>Manual e Regulamento</h3>
                     </div>
                     <div class="info-card-content">
-                        <p>Consulte o manual completo e regulamento da escola para conhecer todas as normas e diretrizes.</p>
-                        <a href="#" class="info-link" target="_blank" rel="noopener noreferrer">
-                            📄 Acessar Manual Completo
-                        </a>
+                        <p>Consulte o manual completo e regulamento disciplinar da escola para conhecer todas as normas e diretrizes.</p>
+                        <div class="links-container">
+                            <a href="https://drive.google.com/file/d/14LQpIYD-x81k4-UwFZcJuvN1kyuetshq/view?usp=sharing" class="info-link" target="_blank" rel="noopener noreferrer">
+                                📖 Manual da Escola
+                            </a>
+                            <a href="https://drive.google.com/file/d/1XlJygqsksbywR0EosACPSlwRjEYUJ7UE/view?usp=sharing" class="info-link" target="_blank" rel="noopener noreferrer">
+                                ⚖️ Regulamento Disciplinar
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1033,14 +1067,77 @@
                             <div class="classificacao-section">
                                 <h4 class="classificacao-titulo media">🟡 Faltas Disciplinares de Natureza Média</h4>
                                 <div class="classificacao-lista">
-                                    <div class="falta-item-class">27-62. Faltas médias incluem atrasar chamado, não comparecer, não cumprir medidas, usar aparelhos sem autorização, etc.</div>
+                                    <div class="falta-item-class">27. Atrasar atendimento ao chamado da direção</div>
+                                    <div class="falta-item-class">28. Não comparecer a atividade extraclasse</div>
+                                    <div class="falta-item-class">29. Ausentar-se sem autorização de atividades</div>
+                                    <div class="falta-item-class">30. Não cumprir medida disciplinar imposta</div>
+                                    <div class="falta-item-class">31. Não devolver documento assinado pelo responsável</div>
+                                    <div class="falta-item-class">32. Não devolver material da biblioteca no prazo</div>
+                                    <div class="falta-item-class">33. Não entregar documento ao responsável</div>
+                                    <div class="falta-item-class">34. Não executar tarefa atribuída por autoridade</div>
+                                    <div class="falta-item-class">35. Não zelar pela apresentação pessoal</div>
+                                    <div class="falta-item-class">36. Dirigir memorial sem autorização devida</div>
+                                    <div class="falta-item-class">37. Entrar/sair por local não permitido</div>
+                                    <div class="falta-item-class">38. Espalhar boatos ou notícias tendenciosas</div>
+                                    <div class="falta-item-class">39. Tocar sirene sem ordem</div>
+                                    <div class="falta-item-class">40. Fumar dentro ou nas imediações da escola</div>
+                                    <div class="falta-item-class">41. Ingressar sem uniforme regulamentar</div>
+                                    <div class="falta-item-class">42. Distribuir publicação contra disciplina</div>
+                                    <div class="falta-item-class">43. Contato físico amoroso quando uniformizado</div>
+                                    <div class="falta-item-class">44. Não zelar pelo nome da instituição</div>
+                                    <div class="falta-item-class">45. Negar-se a participar de eventos oficiais</div>
+                                    <div class="falta-item-class">46. Ofender moral por atos ou palavras</div>
+                                    <div class="falta-item-class">47. Portar-se inconvenientemente em sala</div>
+                                    <div class="falta-item-class">48. Desrespeitar em eventos sociais</div>
+                                    <div class="falta-item-class">49. Proferir palavras de baixo calão</div>
+                                    <div class="falta-item-class">50. Transação pecuniária não autorizada</div>
+                                    <div class="falta-item-class">51. Provocar discórdia entre colegas</div>
+                                    <div class="falta-item-class">52. Publicar conteúdo inadequado online</div>
+                                    <div class="falta-item-class">53. Retirar objeto sem autorização</div>
+                                    <div class="falta-item-class">54. Sair de forma sem autorização</div>
+                                    <div class="falta-item-class">55. Entrar/sair de sala sem permissão</div>
+                                    <div class="falta-item-class">56. Ser retirado por mau comportamento</div>
+                                    <div class="falta-item-class">57. Simular doenças para se esquivar</div>
+                                    <div class="falta-item-class">58. Participar de jogos de azar</div>
+                                    <div class="falta-item-class">59. Usar instalações sem autorização</div>
+                                    <div class="falta-item-class">60. Usar uniforme em ambiente inapropriado</div>
+                                    <div class="falta-item-class">61. Usar aparelhos eletrônicos sem autorização</div>
+                                    <div class="falta-item-class">62. Usar distintivos indevidamente</div>
                                 </div>
                             </div>
 
                             <div class="classificacao-section">
                                 <h4 class="classificacao-titulo grave">🔴 Faltas Disciplinares de Natureza Grave</h4>
                                 <div class="classificacao-lista">
-                                    <div class="falta-item-class">63-91. Faltas graves incluem falsificação, danos ao patrimônio, desrespeito a autoridades, uso de substâncias, etc.</div>
+                                    <div class="falta-item-class">63. Assinar documento pelo responsável (falsificação)</div>
+                                    <div class="falta-item-class">64. Causar danos ao patrimônio da escola</div>
+                                    <div class="falta-item-class">65. Causar ou contribuir para acidentes</div>
+                                    <div class="falta-item-class">66. Usar meio não permitido em avaliação (cola)</div>
+                                    <div class="falta-item-class">67. Denegrir nome da escola por procedimentos</div>
+                                    <div class="falta-item-class">68. Desrespeitar, desobedecer autoridades</div>
+                                    <div class="falta-item-class">69. Divulgar apologia às drogas/violência</div>
+                                    <div class="falta-item-class">70. Entrar/ausentar-se da escola sem autorização</div>
+                                    <div class="falta-item-class">71. Extraviar documentos sob responsabilidade</div>
+                                    <div class="falta-item-class">72. Faltar com verdade/usar anonimato</div>
+                                    <div class="falta-item-class">73. Fazer uso de entorpecentes/bebidas</div>
+                                    <div class="falta-item-class">74. Hastear/arriar bandeiras sem autorização</div>
+                                    <div class="falta-item-class">75. Instigar colegas a cometer faltas/delitos</div>
+                                    <div class="falta-item-class">76. Contato físico com conotação libidinosa</div>
+                                    <div class="falta-item-class">77. Usar imagens/vídeos difamatórios</div>
+                                    <div class="falta-item-class">78. Praticar Bullying e Cyberbullying</div>
+                                    <div class="falta-item-class">79. Pichar ou causar poluição visual/sonora</div>
+                                    <div class="falta-item-class">80. Portar objetos que ameacem segurança</div>
+                                    <div class="falta-item-class">81. Desrespeitar símbolos nacionais</div>
+                                    <div class="falta-item-class">82. Manifestação coletiva prejudicial</div>
+                                    <div class="falta-item-class">83. Promover trotes de qualquer natureza</div>
+                                    <div class="falta-item-class">84. Envolver-se em rixa/luta corporal</div>
+                                    <div class="falta-item-class">85. Manifestação política uniformizado</div>
+                                    <div class="falta-item-class">86. Rasurar/alterar documentos</div>
+                                    <div class="falta-item-class">87. Representar escola sem autorização</div>
+                                    <div class="falta-item-class">88. Distribuir material político-partidário</div>
+                                    <div class="falta-item-class">89. Utilizar/subtrair objetos alheios</div>
+                                    <div class="falta-item-class">90. Usar processos fraudulentos em trabalhos</div>
+                                    <div class="falta-item-class">91. Causar destruição ao patrimônio de terceiros</div>
                                 </div>
                             </div>
                         </div>
