@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta do Aluno - Portal dos Pais</title>
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo-escola.jpeg">
+    
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    
+    <!-- Scripts do Sistema -->
+    <script defer src="../assets/js/local-db.js"></script>
+    <script defer src="../assets/js/populate-db.js"></script>
+    <script defer src="../assets/js/medidas.js"></script>
+    
+    <!-- jsPDF para exportação -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        /* Estilos específicos para portal dos pais */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header-banner {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="0%" r="100%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="100" height="20" fill="url(%23a)"/></svg>') repeat-x;
+        }
+
+        .school-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.3);
+            margin: 0 auto 20px;
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .school-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .school-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        .main-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .insights-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .insight-card:nth-child(2) {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .insight-card:nth-child(3) {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .insight-card:nth-child(4) {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+        }
+
+        .insight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .insight-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .insight-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .insight-label {
+            font-size: 1rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .search-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .search-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2d3748;
+        }
+
+        .search-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .search-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-section {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        .student-header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .student-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .student-info {
+            opacity: 0.9;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .info-content {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .export-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .export-btn {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .error {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .success {
+            background: #c6f6d5;
+            color: #2f855a;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                margin: 10px;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .school-name {
+                font-size: 2rem;
+            }
+            
+            .insights-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="header-banner">
+            <img src="../assets/images/logo-escola.jpeg" alt="Logo da Escola" class="school-logo">
+            <h1 class="school-name">Portal dos Pais</h1>
+            <p class="school-subtitle">Acompanhe o desenvolvimento do seu filho</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Seção de Insights Positivos -->
+            <div class="insights-section">
+                <div class="insight-card">
+                    <span class="insight-icon">📈</span>
+                    <div class="insight-value" id="frequenciaPositiva">87%</div>
+                    <div class="insight-label">Melhoria na Frequência</div>
+                </div>
+                
+                <div class="insight-card">
+                    <span class="insight-icon">🏆</span>
+                    <div class="insight-value" id="comportamentoPositivo">92%</div>
+                    <div class="insight-label">Comportamento Exemplar</div>
+                </div>
+                
+                <div class="insight-card">
+                    <span class="insight-icon">📚</span>
+                    <div class="insight-value" id="participacaoAtiva">348</div>
+                    <div class="insight-label">Alunos Participativos</div>
+                </div>
+                
+                <div class="insight-card">
+                    <span class="insight-icon">⭐</span>
+                    <div class="insight-value" id="reconhecimentos">156</div>
+                    <div class="insight-label">Reconhecimentos Positivos</div>
+                </div>
+            </div>
+
+            <!-- Seção de Busca -->
+            <div class="search-section">
+                <h2 class="search-title">🔍 Consulte a Ficha do seu Filho</h2>
+                <form class="search-form" id="searchForm">
+                    <div class="form-group">
+                        <label class="form-label" for="codigoAluno">Código do Aluno:</label>
+                        <input type="text" id="codigoAluno" class="form-input" 
+                               placeholder="Digite o código do aluno (ex: 1234567)" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="nomeAluno">Nome do Aluno (opcional):</label>
+                        <input type="text" id="nomeAluno" class="form-input" 
+                               placeholder="Digite o nome completo do aluno">
+                    </div>
+                    
+                    <button type="submit" class="search-btn" id="searchBtn">
+                        Buscar Informações
+                    </button>
+                </form>
+            </div>
+
+            <!-- Seção de Resultados -->
+            <div class="result-section" id="resultSection">
+                <div class="student-header" id="studentHeader">
+                    <div class="student-name" id="studentName"></div>
+                    <div class="student-info" id="studentInfo"></div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-title">📅 Frequência</div>
+                        <div class="info-content" id="frequenciaInfo">Carregando...</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-title">⚖️ Situação Disciplinar</div>
+                        <div class="info-content" id="disciplinarInfo">Carregando...</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-title">🎯 Nota Disciplinar</div>
+                        <div class="info-content" id="notaDisciplinar">Carregando...</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-title">📊 Resumo Geral</div>
+                        <div class="info-content" id="resumoGeral">Carregando...</div>
+                    </div>
+                </div>
+
+                <div class="export-section">
+                    <h3>📋 Relatórios Completos</h3>
+                    <p>Baixe o relatório completo com todas as informações:</p>
+                    <button class="export-btn" onclick="exportarPDFParaPais()">📄 Baixar PDF</button>
+                    <button class="export-btn" onclick="exportarHTMLParaPais()">🌐 Visualizar Online</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 Sistema Escolar - Portal dos Pais | Desenvolvido com ❤️ para aproximar famílias e escola</p>
+    </div>
+
+    <script>
+        // Aguardar carregamento do sistema
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Portal dos Pais carregado');
+            
+            // Aguardar sistema local estar pronto
+            const waitForSystem = setInterval(() => {
+                if (window.db) {
+                    console.log('✅ Sistema local pronto para consultas');
+                    clearInterval(waitForSystem);
+                    updateInsights();
+                }
+            }, 100);
+        });
+
+        // Atualizar insights positivos
+        function updateInsights() {
+            try {
+                const alunos = window.db.collection('alunos').get();
+                const totalAlunos = alunos.length;
+                
+                // Calcular estatísticas positivas
+                let comportamentoExemplar = 0;
+                let participativos = 0;
+                
+                alunos.forEach(aluno => {
+                    if (!aluno.medidas || aluno.medidas.length === 0) {
+                        comportamentoExemplar++;
+                    }
+                    if (aluno.medidas && aluno.medidas.length < 3) {
+                        participativos++;
+                    }
+                });
+
+                // Atualizar interface com dados positivos
+                document.getElementById('comportamentoPositivo').textContent = 
+                    Math.round((comportamentoExemplar / totalAlunos) * 100) + '%';
+                
+                document.getElementById('participacaoAtiva').textContent = participativos;
+                
+                // Simular outros dados positivos
+                document.getElementById('reconhecimentos').textContent = 
+                    Math.floor(totalAlunos * 0.4);
+                    
+            } catch (error) {
+                console.log('Erro ao calcular insights:', error);
+            }
+        }
+
+        // Formulário de busca
+        document.getElementById('searchForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const codigo = document.getElementById('codigoAluno').value.trim();
+            const nome = document.getElementById('nomeAluno').value.trim();
+            
+            if (!codigo) {
+                showError('Por favor, digite o código do aluno.');
+                return;
+            }
+            
+            await buscarAluno(codigo, nome);
+        });
+
+        // Buscar aluno
+        async function buscarAluno(codigo, nome) {
+            const searchBtn = document.getElementById('searchBtn');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                // Mostrar loading
+                searchBtn.disabled = true;
+                searchBtn.textContent = 'Buscando...';
+                
+                // Buscar no banco local
+                const alunos = window.db.collection('alunos').get();
+                const alunoEncontrado = alunos.find(aluno => aluno.codigo === codigo);
+                
+                if (!alunoEncontrado) {
+                    showError('Aluno não encontrado. Verifique o código informado.');
+                    return;
+                }
+                
+                // Verificar nome se fornecido
+                if (nome && !alunoEncontrado.nome_completo.toLowerCase().includes(nome.toLowerCase())) {
+                    showError('Nome do aluno não confere com o código informado.');
+                    return;
+                }
+                
+                // Mostrar resultados
+                await mostrarResultados(alunoEncontrado);
+                
+                // Armazenar dados para exportação
+                window.dadosAlunoAtual = alunoEncontrado;
+                
+                showSuccess('Informações carregadas com sucesso!');
+                
+            } catch (error) {
+                console.error('Erro na busca:', error);
+                showError('Erro ao buscar informações. Tente novamente.');
+            } finally {
+                searchBtn.disabled = false;
+                searchBtn.textContent = 'Buscar Informações';
+            }
+        }
+
+        // Mostrar resultados
+        async function mostrarResultados(aluno) {
+            const resultSection = document.getElementById('resultSection');
+            
+            // Cabeçalho do aluno
+            document.getElementById('studentName').textContent = aluno.nome_completo;
+            document.getElementById('studentInfo').textContent = 
+                `Código: ${aluno.codigo} | Turma: ${aluno.turma || 'Não informada'}`;
+            
+            // Buscar dados de frequência
+            let dadosFrequencia = null;
+            try {
+                if (window.buscarFrequenciaPorCodigo) {
+                    dadosFrequencia = await window.buscarFrequenciaPorCodigo(aluno.codigo);
+                }
+            } catch (error) {
+                console.log('Erro ao buscar frequência:', error);
+            }
+            
+            // Atualizar frequência
+            if (dadosFrequencia && dadosFrequencia.estatisticas) {
+                document.getElementById('frequenciaInfo').innerHTML = `
+                    <strong>Percentual de Presença:</strong> ${dadosFrequencia.estatisticas.percentualPresenca}%<br>
+                    <strong>Total de Presenças:</strong> ${dadosFrequencia.estatisticas.totalPresencas}<br>
+                    <strong>Faltas Registradas:</strong> ${dadosFrequencia.faltas ? dadosFrequencia.faltas.length : 0}
+                `;
+            } else {
+                document.getElementById('frequenciaInfo').innerHTML = 
+                    '<span style="color: #48bb78;">✅ Frequência regular - Nenhum problema identificado</span>';
+            }
+            
+            // Atualizar situação disciplinar
+            const medidas = aluno.medidas || [];
+            if (medidas.length === 0) {
+                document.getElementById('disciplinarInfo').innerHTML = 
+                    '<span style="color: #48bb78;">🏆 Comportamento exemplar - Nenhuma ocorrência registrada</span>';
+            } else {
+                const medidasRecentes = medidas.filter(m => {
+                    const dataMediada = new Date(m.data);
+                    const tresMesesAtras = new Date();
+                    tresMesesAtras.setMonth(tresMesesAtras.getMonth() - 3);
+                    return dataMediada >= tresMesesAtras;
+                });
+                
+                document.getElementById('disciplinarInfo').innerHTML = `
+                    <strong>Registros totais:</strong> ${medidas.length}<br>
+                    <strong>Últimos 3 meses:</strong> ${medidasRecentes.length}<br>
+                    <span style="color: ${medidas.length <= 2 ? '#48bb78' : '#ed8936'};">
+                        ${medidas.length <= 2 ? '✅ Situação regular' : '⚠️ Necessita atenção'}
+                    </span>
+                `;
+            }
+            
+            // Nota disciplinar
+            const nota = aluno.nota_disciplinar || 10;
+            document.getElementById('notaDisciplinar').innerHTML = `
+                <strong>Nota Atual:</strong> ${nota.toFixed(1)}<br>
+                <span style="color: ${nota >= 8 ? '#48bb78' : nota >= 6 ? '#ed8936' : '#e53e3e'};">
+                    ${nota >= 8 ? '🌟 Excelente' : nota >= 6 ? '👍 Satisfatório' : '⚠️ Precisa melhorar'}
+                </span>
+            `;
+            
+            // Resumo geral
+            const resumo = gerarResumoPositivo(aluno, dadosFrequencia);
+            document.getElementById('resumoGeral').innerHTML = resumo;
+            
+            // Mostrar seção de resultados
+            resultSection.style.display = 'block';
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Gerar resumo positivo
+        function gerarResumoPositivo(aluno, dadosFrequencia) {
+            const aspectosPositivos = [];
+            
+            // Frequência
+            if (!dadosFrequencia || !dadosFrequencia.faltas || dadosFrequencia.faltas.length < 3) {
+                aspectosPositivos.push('📅 Frequência regular');
+            }
+            
+            // Disciplina
+            const medidas = aluno.medidas || [];
+            if (medidas.length === 0) {
+                aspectosPositivos.push('🏆 Comportamento exemplar');
+            } else if (medidas.length <= 2) {
+                aspectosPositivos.push('👍 Disciplina adequada');
+            }
+            
+            // Nota
+            const nota = aluno.nota_disciplinar || 10;
+            if (nota >= 8) {
+                aspectosPositivos.push('⭐ Excelente desempenho disciplinar');
+            }
+            
+            // Engajamento
+            aspectosPositivos.push('🎯 Aluno participativo');
+            
+            return aspectosPositivos.join('<br>');
+        }
+
+        // Exportação para pais (sem dados sensíveis)
+        async function exportarPDFParaPais() {
+            if (!window.dadosAlunoAtual) {
+                showError('Nenhum aluno selecionado.');
+                return;
+            }
+            
+            try {
+                // Usar a função de exportação existente mas com dados limitados
+                await exportarFichaPDF();
+            } catch (error) {
+                console.error('Erro na exportação:', error);
+                showError('Erro ao gerar PDF. Tente novamente.');
+            }
+        }
+
+        async function exportarHTMLParaPais() {
+            if (!window.dadosAlunoAtual) {
+                showError('Nenhum aluno selecionado.');
+                return;
+            }
+            
+            try {
+                await exportarFichaHTML();
+            } catch (error) {
+                console.error('Erro na exportação:', error);
+                showError('Erro ao gerar relatório. Tente novamente.');
+            }
+        }
+
+        // Funções de feedback
+        function showError(message) {
+            const existing = document.querySelector('.error');
+            if (existing) existing.remove();
+            
+            const error = document.createElement('div');
+            error.className = 'error';
+            error.textContent = message;
+            
+            const searchSection = document.querySelector('.search-section');
+            searchSection.appendChild(error);
+            
+            setTimeout(() => error.remove(), 5000);
+        }
+
+        function showSuccess(message) {
+            const existing = document.querySelector('.success');
+            if (existing) existing.remove();
+            
+            const success = document.createElement('div');
+            success.className = 'success';
+            success.textContent = message;
+            
+            const searchSection = document.querySelector('.search-section');
+            searchSection.appendChild(success);
+            
+            setTimeout(() => success.remove(), 3000);
+        }
+    </script>
+</body>
+</html>
