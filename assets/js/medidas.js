@@ -103,6 +103,18 @@
 
   async function criarMedida({ alunoId, tipo, data, descricao, responsavel }) {
     if (!alunoId) throw new Error('Selecione um aluno.');
+    
+    // Buscar dados do aluno para o GitHub
+    let nomeAluno = 'Aluno não encontrado';
+    try {
+      const alunoDoc = await window.db.collection('alunos').doc(alunoId).get();
+      if (alunoDoc.exists) {
+        nomeAluno = alunoDoc.data().nome || alunoDoc.data().nome_completo || `Aluno ${alunoId}`;
+      }
+    } catch (error) {
+      console.log('Erro ao buscar dados do aluno:', error);
+    }
+    
     const med = {
       tipo: tipo || '',               // ex.: "Advertência", "Suspensão", "Orientação"
       data: data || new Date().toISOString(),
@@ -111,8 +123,30 @@
       criadoEm: new Date().toISOString(),
     };
 
+    // Salvar localmente primeiro
     const ref = window.db.collection('alunos').doc(alunoId).collection('medidas');
     const docRef = await ref.add(med);
+    
+    // Tentar salvar no GitHub se configurado
+    if (window.gitHubSync && window.gitHubSync.podeEscrever()) {
+      try {
+        const medidaParaGitHub = {
+          ...med,
+          aluno: nomeAluno,
+          codigo_aluno: alunoId,
+          professor: responsavel,
+          id_local: docRef.id
+        };
+        
+        await window.salvarMedidaAutomatico(medidaParaGitHub);
+        console.log('✅ Medida salva no GitHub automaticamente');
+        
+      } catch (error) {
+        console.warn('⚠️ Não foi possível salvar no GitHub:', error.message);
+        // Não interromper o fluxo - medida já foi salva localmente
+      }
+    }
+    
     return docRef.id;
   }
 

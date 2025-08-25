@@ -401,6 +401,29 @@ class FrequenciaManager {
     }
     
     console.log(`✅ Total processado: ${totalProcessados} alunos`);
+    
+    // Tentar salvar no GitHub se configurado
+    if (window.gitHubSync && window.gitHubSync.podeEscrever()) {
+      try {
+        showToast('📡 Sincronizando com GitHub...', 'info');
+        
+        // Reconstroi os dados CSV originais para salvar no GitHub
+        const dataAtual = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+        const csvOriginal = window.getDadosFrequencia ? window.getDadosFrequencia() : '';
+        
+        if (csvOriginal) {
+          await window.atualizarFrequenciaAutomatico(csvOriginal, dataAtual);
+          console.log('✅ Frequência sincronizada no GitHub');
+          showToast('Dados sincronizados no GitHub!', 'success');
+        }
+        
+      } catch (error) {
+        console.warn('⚠️ Não foi possível sincronizar no GitHub:', error.message);
+        showToast('Aviso: Dados salvos localmente, mas não sincronizados no GitHub', 'warning');
+        // Não interromper o fluxo - dados já foram salvos localmente
+      }
+    }
+    
     return totalProcessados;
   }
 
