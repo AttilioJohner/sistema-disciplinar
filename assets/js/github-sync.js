@@ -1,12 +1,41 @@
 // Sistema de Sincronização com GitHub
 class GitHubDataSync {
     constructor() {
-        this.baseUrl = 'https://raw.githubusercontent.com/AttilioJohner/sistema-disciplinar-revisado/main';
+        this.baseUrl = 'https://raw.githubusercontent.com/AttilioJohner/sistema-disciplinar/main';
+        this.apiUrl = 'https://api.github.com';
+        this.owner = 'AttilioJohner';
+        this.repo = 'sistema-disciplinar';
+        this.branch = 'main';
+        
+        // Arquivos de dados
         this.dataFiles = {
             frequencia: '/dados/frequencia.json',
-            alunos: '/dados/alunos.json',
-            medidas: '/dados/medidas.json'
+            alunos: '/dados/alunos.json', 
+            medidas: '/dados/medidas.json',
+            db: '/data/db.json'
         };
+        
+        // Configuração de autenticação
+        this.token = null;
+        this.userEmail = null;
+        this.userName = null;
+        this.fileShas = {}; // Cache dos SHAs dos arquivos
+        
+        // Inicializar autenticação
+        this.initAuth();
+    }
+    
+    // Inicializar autenticação
+    initAuth() {
+        this.token = localStorage.getItem('github_token');
+        this.userEmail = localStorage.getItem('github_email') || 'sistema@escola.edu.br';
+        this.userName = localStorage.getItem('github_name') || 'Sistema Disciplinar';
+        
+        if (this.token) {
+            console.log('✅ GitHub API configurado para:', this.userName);
+        } else {
+            console.log('⚠️ GitHub API não configurado - modo somente leitura');
+        }
     }
 
     // Carregar dados do GitHub
@@ -186,12 +215,296 @@ class GitHubDataSync {
 
         return stats;
     }
+
+    // ============================================
+    //        NOVOS MÉTODOS DA GITHUB API
+    // ============================================
+
+    // Configurar autenticação GitHub
+    async configurarGitHub(token, email, nome) {
+        this.token = token;
+        this.userEmail = email;
+        this.userName = nome;
+
+        // Testar token
+        const isValid = await this.validarToken();
+        if (isValid) {
+            // Salvar configuração
+            localStorage.setItem('github_token', token);
+            localStorage.setItem('github_email', email);
+            localStorage.setItem('github_name', nome);
+            
+            console.log('✅ GitHub configurado com sucesso!');
+            return true;
+        } else {
+            throw new Error('Token inválido ou sem permissões necessárias');
+        }
+    }
+
+    // Validar token GitHub
+    async validarToken() {
+        if (!this.token) return false;
+        
+        try {
+            const response = await fetch(`${this.apiUrl}/user`, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+            
+            if (response.ok) {
+                const user = await response.json();
+                this.userName = user.name || user.login;
+                return true;
+            }
+            return false;
+        } catch (error) {
+            console.error('Erro ao validar token:', error);
+            return false;
+        }
+    }
+
+    // Obter SHA atual de um arquivo
+    async obterShaArquivo(filePath) {
+        try {
+            const response = await fetch(`${this.apiUrl}/repos/${this.owner}/${this.repo}/contents/${filePath}`, {
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    ...(this.token && { 'Authorization': `Bearer ${this.token}` })
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                this.fileShas[filePath] = data.sha;
+                return data.sha;
+            }
+            
+            return null;
+        } catch (error) {
+            console.error('Erro ao obter SHA:', error);
+            return null;
+        }
+    }
+
+    // Fazer commit automático via GitHub API
+    async commitAutomatico(filePath, conteudo, mensagem) {
+        if (!this.token) {
+            throw new Error('Token GitHub não configurado. Configure nas Configurações do Sistema.');
+        }
+
+        try {
+            // Obter SHA atual se necessário
+            if (!this.fileShas[filePath]) {
+                await this.obterShaArquivo(filePath);
+            }
+
+            // Codificar conteúdo em Base64
+            const contentBase64 = btoa(unescape(encodeURIComponent(conteudo)));
+
+            const requestBody = {
+                message: mensagem,
+                content: contentBase64,
+                branch: this.branch,
+                committer: {
+                    name: this.userName,
+                    email: this.userEmail
+                }
+            };
+
+            // Incluir SHA se arquivo existe
+            if (this.fileShas[filePath]) {
+                requestBody.sha = this.fileShas[filePath];
+            }
+
+            const response = await fetch(`${this.apiUrl}/repos/${this.owner}/${this.repo}/contents/${filePath}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${this.token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                this.fileShas[filePath] = result.content.sha;
+                console.log('✅ Commit realizado:', mensagem);
+                return result;
+            } else {
+                const error = await response.json();
+                throw new Error(`GitHub API Error: ${error.message}`);
+            }
+        } catch (error) {
+            console.error('Erro no commit automático:', error);
+            throw error;
+        }
+    }
+
+    // Salvar dados principais (db.json) automaticamente
+    async salvarDadosAutomatico(dados, tipoOperacao, detalhes = '') {
+        if (!this.token) {
+            console.warn('GitHub API não configurado - dados salvos apenas localmente');
+            return false;
+        }
+
+        try {
+            const conteudo = JSON.stringify(dados, null, 2);
+            const timestamp = new Date().toLocaleString('pt-BR');
+            const mensagem = `${tipoOperacao} - ${timestamp}\n\n${detalhes}\n\n🤖 Atualizado automaticamente pelo Sistema Disciplinar`;
+
+            await this.commitAutomatico('data/db.json', conteudo, mensagem);
+            
+            // Atualizar localStorage também
+            localStorage.setItem('db', JSON.stringify(dados));
+            
+            // Disparar evento para outras páginas
+            window.dispatchEvent(new CustomEvent('dadosAtualizados', { 
+                detail: { tipo: tipoOperacao, dados } 
+            }));
+
+            return true;
+        } catch (error) {
+            console.error('Erro ao salvar dados automaticamente:', error);
+            throw error;
+        }
+    }
+
+    // Adicionar medida disciplinar
+    async adicionarMedidaDisciplinar(medida) {
+        try {
+            // Carregar dados atuais
+            const response = await fetch(`${this.baseUrl}/data/db.json?t=${Date.now()}`);
+            const dadosAtuais = response.ok ? await response.json() : { 
+                alunos: {}, 
+                medidas_disciplinares: {} 
+            };
+
+            // Adicionar nova medida
+            const medidaId = `medida_${Date.now()}`;
+            dadosAtuais.medidas_disciplinares = dadosAtuais.medidas_disciplinares || {};
+            dadosAtuais.medidas_disciplinares[medidaId] = {
+                ...medida,
+                id: medidaId,
+                criadoEm: new Date().toISOString(),
+                criadoPor: this.userName
+            };
+
+            const detalhes = `Aluno: ${medida.aluno || medida.codigo_aluno}\nTipo: ${medida.tipo}\nData: ${medida.data}`;
+            
+            await this.salvarDadosAutomatico(
+                dadosAtuais, 
+                'Adicionar medida disciplinar',
+                detalhes
+            );
+
+            return medidaId;
+        } catch (error) {
+            console.error('Erro ao adicionar medida disciplinar:', error);
+            throw error;
+        }
+    }
+
+    // Atualizar dados de frequência
+    async atualizarFrequencia(dadosFrequencia, data) {
+        try {
+            // Salvar no formato de arquivo JS como antes
+            const fileName = `dados-frequencia-${data}.js`;
+            const filePath = `assets/js/${fileName}`;
+            
+            const conteudo = `// Dados de frequência - ${data}
+// Atualizado em: ${new Date().toLocaleString('pt-BR')}
+// Por: ${this.userName}
+
+const dadosCSV = \`${dadosFrequencia}\`;
+
+// Exportar para uso em módulos
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = dadosCSV;
+}`;
+
+            const mensagem = `Atualizar frequência ${data} - ${new Date().toLocaleString('pt-BR')}
+
+🤖 Atualizado automaticamente pelo Sistema Disciplinar`;
+
+            await this.commitAutomatico(filePath, conteudo, mensagem);
+
+            // Também salvar no localStorage para acesso imediato
+            localStorage.setItem(`frequencia_${data}`, dadosFrequencia);
+
+            return true;
+        } catch (error) {
+            console.error('Erro ao atualizar frequência:', error);
+            throw error;
+        }
+    }
+
+    // Sincronizar dados automaticamente
+    async sincronizarAutomatico() {
+        try {
+            console.log('🔄 Sincronizando dados do GitHub...');
+            
+            // Carregar dados principais
+            const response = await fetch(`${this.baseUrl}/data/db.json?t=${Date.now()}`);
+            if (response.ok) {
+                const dadosGitHub = await response.json();
+                localStorage.setItem('db', JSON.stringify(dadosGitHub));
+                
+                // Disparar evento para atualizar interfaces
+                window.dispatchEvent(new CustomEvent('dadosSincronizados', { 
+                    detail: dadosGitHub 
+                }));
+                
+                console.log('✅ Dados sincronizados automaticamente');
+                return dadosGitHub;
+            }
+            
+            return null;
+        } catch (error) {
+            console.error('Erro na sincronização automática:', error);
+            return null;
+        }
+    }
+
+    // Verificar se está autenticado para escrita
+    podeEscrever() {
+        return !!this.token;
+    }
+
+    // Logout
+    logout() {
+        this.token = null;
+        this.userEmail = null;
+        this.userName = null;
+        this.fileShas = {};
+        
+        localStorage.removeItem('github_token');
+        localStorage.removeItem('github_email');
+        localStorage.removeItem('github_name');
+        
+        console.log('🔓 GitHub desconectado');
+    }
 }
 
 // Instância global
 window.gitHubSync = new GitHubDataSync();
 
-// Funções de conveniência
+// Funções de conveniência antigas
 window.sincronizarFrequencia = () => window.gitHubSync.sincronizarDados('frequencia');
 window.salvarFrequenciaGitHub = (registros) => window.gitHubSync.gerarArquivoParaCommit('frequencia', registros);
 window.verificarAtualizacoesFrequencia = () => window.gitHubSync.verificarAtualizacoes('frequencia');
+
+// Novas funções para GitHub API
+window.configurarGitHubToken = (token, email, nome) => window.gitHubSync.configurarGitHub(token, email, nome);
+window.salvarMedidaAutomatico = (medida) => window.gitHubSync.adicionarMedidaDisciplinar(medida);
+window.atualizarFrequenciaAutomatico = (dados, data) => window.gitHubSync.atualizarFrequencia(dados, data);
+window.sincronizarDadosAutomatico = () => window.gitHubSync.sincronizarAutomatico();
+
+// Inicializar sincronização automática (a cada 3 minutos)
+setInterval(() => {
+    if (window.gitHubSync.podeEscrever()) {
+        window.gitHubSync.sincronizarAutomatico().catch(console.error);
+    }
+}, 3 * 60 * 1000);

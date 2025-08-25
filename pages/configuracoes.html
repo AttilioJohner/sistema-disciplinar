@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/dashboard.css">
+    
+    <!-- GitHub Sync -->
+    <script src="../assets/js/github-sync.js"></script>
 </head>
 
 <body>
@@ -254,6 +257,66 @@
                     </div>
                 </div>
 
+                <!-- CONFIGURAÇÕES DE SINCRONIZAÇÃO GITHUB -->
+                <div class="data-card github-card">
+                    <div class="card-header">
+                        <h3 class="card-title">🐙 Sincronização GitHub</h3>
+                        <p class="card-subtitle">Configure a sincronização automática de dados para trabalho em equipe</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="github-status" id="githubStatus">
+                            <div class="alert alert-warning">
+                                <span class="alert-icon">⚠️</span>
+                                <div class="alert-content">
+                                    <strong>Sincronização não configurada</strong> - Configure um token GitHub para habilitar sincronização automática entre múltiplos usuários.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Token GitHub</label>
+                                <input type="password" id="githubToken" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                                <small class="form-help">Token de acesso pessoal com permissões de repositório</small>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email do Usuário</label>
+                                <input type="email" id="githubEmail" class="form-input" placeholder="seu-email@escola.edu.br">
+                                <small class="form-help">Email para identificação nos commits</small>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Nome do Usuário</label>
+                                <input type="text" id="githubNome" class="form-input" placeholder="Seu Nome">
+                                <small class="form-help">Nome que aparecerá nos commits</small>
+                            </div>
+                        </div>
+                        
+                        <div class="github-info">
+                            <div class="info-box">
+                                <h4>📋 Como obter um Token GitHub:</h4>
+                                <ol class="steps-list">
+                                    <li>Acesse <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a></li>
+                                    <li>Clique em "Generate new token" → "Classic"</li>
+                                    <li>Selecione as permissões: <code>repo</code> (acesso completo ao repositório)</li>
+                                    <li>Copie o token gerado e cole no campo acima</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-success" onclick="configurarGitHub()">
+                                🔗 Conectar GitHub
+                            </button>
+                            <button class="btn btn-secondary" onclick="testarConexaoGitHub()" id="testarBtn" disabled>
+                                🧪 Testar Conexão
+                            </button>
+                            <button class="btn btn-warning" onclick="desconectarGitHub()" id="desconectarBtn" disabled>
+                                🔓 Desconectar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- GERENCIAMENTO DE DADOS -->
                 <div class="data-card">
                     <div class="card-header">
@@ -423,6 +486,11 @@
         function inicializarConfiguracoes() {
             carregarConfiguracoesSalvas();
             atualizarEstatisticasSistema();
+            
+            // Aguardar carregamento do GitHub Sync
+            setTimeout(() => {
+                verificarStatusGitHub();
+            }, 500);
         }
 
         // Carregar configurações salvas
@@ -785,6 +853,125 @@
             return icons[type] || 'ℹ️';
         }
 
+        // ============================================
+        //           FUNÇÕES DO GITHUB
+        // ============================================
+        
+        // Verificar status do GitHub ao carregar
+        function verificarStatusGitHub() {
+            const statusDiv = document.getElementById('githubStatus');
+            const testarBtn = document.getElementById('testarBtn');
+            const desconectarBtn = document.getElementById('desconectarBtn');
+            
+            if (window.gitHubSync && window.gitHubSync.podeEscrever()) {
+                // GitHub configurado
+                statusDiv.innerHTML = `
+                    <div class="alert alert-success">
+                        <span class="alert-icon">✅</span>
+                        <div class="alert-content">
+                            <strong>GitHub conectado!</strong> Sincronização automática ativada para: ${window.gitHubSync.userName}
+                        </div>
+                    </div>
+                `;
+                
+                // Preencher campos
+                document.getElementById('githubEmail').value = window.gitHubSync.userEmail || '';
+                document.getElementById('githubNome').value = window.gitHubSync.userName || '';
+                
+                testarBtn.disabled = false;
+                desconectarBtn.disabled = false;
+            } else {
+                // GitHub não configurado
+                statusDiv.innerHTML = `
+                    <div class="alert alert-warning">
+                        <span class="alert-icon">⚠️</span>
+                        <div class="alert-content">
+                            <strong>Sincronização não configurada</strong> - Configure um token GitHub para habilitar sincronização automática entre múltiplos usuários.
+                        </div>
+                    </div>
+                `;
+                
+                testarBtn.disabled = true;
+                desconectarBtn.disabled = true;
+            }
+        }
+        
+        // Configurar GitHub
+        async function configurarGitHub() {
+            const token = document.getElementById('githubToken').value.trim();
+            const email = document.getElementById('githubEmail').value.trim();
+            const nome = document.getElementById('githubNome').value.trim();
+            
+            if (!token) {
+                showMessage('Por favor, insira o token GitHub', 'error');
+                return;
+            }
+            
+            if (!email) {
+                showMessage('Por favor, insira seu email', 'error');
+                return;
+            }
+            
+            if (!nome) {
+                showMessage('Por favor, insira seu nome', 'error');
+                return;
+            }
+            
+            try {
+                showMessage('🔄 Testando conexão com GitHub...', 'info');
+                
+                await window.configurarGitHubToken(token, email, nome);
+                
+                showMessage('✅ GitHub configurado com sucesso!', 'success');
+                verificarStatusGitHub();
+                
+                // Limpar campo de token por segurança
+                document.getElementById('githubToken').value = '';
+                
+            } catch (error) {
+                console.error('Erro ao configurar GitHub:', error);
+                showMessage(`Erro: ${error.message}`, 'error');
+            }
+        }
+        
+        // Testar conexão GitHub
+        async function testarConexaoGitHub() {
+            try {
+                showMessage('🧪 Testando conexão...', 'info');
+                
+                const isValid = await window.gitHubSync.validarToken();
+                
+                if (isValid) {
+                    showMessage('✅ Conexão com GitHub funcionando perfeitamente!', 'success');
+                    
+                    // Testar sincronização
+                    await window.sincronizarDadosAutomatico();
+                    showMessage('📡 Sincronização de dados realizada com sucesso!', 'success');
+                } else {
+                    showMessage('❌ Token inválido ou expirado', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Erro no teste:', error);
+                showMessage(`Erro no teste: ${error.message}`, 'error');
+            }
+        }
+        
+        // Desconectar GitHub
+        function desconectarGitHub() {
+            if (confirm('Tem certeza que deseja desconectar o GitHub?\n\nIsso desabilitará a sincronização automática.')) {
+                window.gitHubSync.logout();
+                
+                // Limpar campos
+                document.getElementById('githubToken').value = '';
+                document.getElementById('githubEmail').value = '';
+                document.getElementById('githubNome').value = '';
+                
+                verificarStatusGitHub();
+                showMessage('🔓 GitHub desconectado', 'info');
+            }
+        }
+
         // Funções expostas globalmente
         window.salvarConfiguracoesEscola = salvarConfiguracoesEscola;
         window.salvarConfigracoesSistema = salvarConfigracoesSistema;
@@ -796,6 +983,9 @@
         window.exportarTodosDados = exportarTodosDados;
         window.limparDadosAntigos = limparDadosAntigos;
         window.resetarSistema = resetarSistema;
+        window.configurarGitHub = configurarGitHub;
+        window.testarConexaoGitHub = testarConexaoGitHub;
+        window.desconectarGitHub = desconectarGitHub;
     </script>
     <script>
   document.addEventListener('DOMContentLoaded', () => {
