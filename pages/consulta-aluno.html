@@ -211,8 +211,6 @@
             padding: 30px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             margin: 20px 0;
-            max-height: 80vh;
-            overflow-y: auto;
             position: relative;
         }
         
@@ -616,6 +614,36 @@
             font-size: 0.9em;
             color: #6c757d;
             font-style: italic;
+        }
+        
+        .nota-disciplinar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .nota-explicacao {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .explicacao-titulo {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        
+        .explicacao-conteudo {
+            font-size: 0.9em;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+        
+        .explicacao-conteudo strong {
+            color: #495057;
         }
 
         @media (max-width: 768px) {
@@ -1050,14 +1078,29 @@
                 document.getElementById('disciplinarInfo').innerHTML = disciplinarHtml;
             }
             
-            // Nota disciplinar
-            const nota = aluno.nota_disciplinar || 10;
+            // Calcular nota disciplinar correta
+            const notaCalculada = calcularNotaDisciplinarAluno(aluno, medidas);
+            const notaExibir = notaCalculada || 8.0;
+            
             document.getElementById('notaDisciplinar').innerHTML = `
-                <div class="stat-card stat-${nota >= 8 ? 'success' : nota >= 6 ? 'warning' : 'danger'}">
-                    <div class="stat-icon">${nota >= 8 ? '⭐' : nota >= 6 ? '👍' : '⚠️'}</div>
-                    <div class="stat-content">
-                        <div class="stat-number">${nota.toFixed(1)}</div>
-                        <div class="stat-label">${nota >= 8 ? 'Excelente' : nota >= 6 ? 'Satisfatório' : 'Precisa melhorar'}</div>
+                <div class="nota-disciplinar-container">
+                    <div class="stat-card stat-${notaExibir >= 8 ? 'success' : notaExibir >= 6 ? 'warning' : 'danger'}">
+                        <div class="stat-icon">${notaExibir >= 8 ? '⭐' : notaExibir >= 6 ? '👍' : '⚠️'}</div>
+                        <div class="stat-content">
+                            <div class="stat-number">${notaExibir.toFixed(1)}</div>
+                            <div class="stat-label">${notaExibir >= 8 ? 'Excelente' : notaExibir >= 6 ? 'Satisfatório' : 'Precisa melhorar'}</div>
+                        </div>
+                    </div>
+                    <div class="nota-explicacao">
+                        <div class="explicacao-titulo">📚 Como funciona a Nota Disciplinar?</div>
+                        <div class="explicacao-conteudo">
+                            • <strong>Nota inicial:</strong> 8,0 pontos para todos os alunos<br>
+                            • <strong>Comportamentos positivos:</strong> +0,1 ponto<br>
+                            • <strong>Advertências:</strong> -0,3 pontos<br>
+                            • <strong>Suspensões:</strong> -0,5 pontos por dia<br>
+                            • <strong>Ações educativas:</strong> -1,0 ponto<br>
+                            • <strong>Nota mínima:</strong> 0,0 pontos
+                        </div>
                     </div>
                 </div>
             `;
@@ -1255,6 +1298,93 @@
             setTimeout(() => success.remove(), 3000);
         }
         
+        // Função para calcular pontos de uma medida (copiada da página de medidas disciplinares)
+        function calcularPontosMedida(tipoMedida, diasSuspensao = 1) {
+            if (!tipoMedida) return 0;
+            
+            // Normalizar o tipo de medida para minúsculas e remover acentos/espaços extras
+            const tipoNormalizado = tipoMedida.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+                .replace(/\s+/g, ' ') // Normaliza espaços
+                .trim();
+            
+            // Mapeamento flexível de tipos de medida
+            const mapeamentos = {
+                // Tipos positivos
+                'fato observado positivo': 0.1,
+                'fato positivo': 0.1,
+                'comportamento positivo': 0.1,
+                'observacao positiva': 0.1,
+                'elogio': 0.1,
+                
+                // Tipos negativos
+                'fato observado negativo': -0.1,
+                'fato negativo': -0.1,
+                'comportamento negativo': -0.1,
+                'observacao negativa': -0.1,
+                'ocorrencia': -0.1,
+                
+                // Advertências
+                'advertencia verbal': -0.3,
+                'advertencia escrita': -0.3,
+                'advertencia': -0.3,
+                'adv verbal': -0.3,
+                'adv escrita': -0.3,
+                'chamada atencao': -0.3,
+                
+                // Suspensões
+                'suspensao': -0.5 * parseInt(diasSuspensao || 1),
+                'suspensao temporaria': -0.5 * parseInt(diasSuspensao || 1),
+                'afastamento': -0.5 * parseInt(diasSuspensao || 1),
+                
+                // Ações educativas
+                'acao educativa': -1.0,
+                'medida educativa': -1.0,
+                'atividade educativa': -1.0,
+                'trabalho educativo': -1.0,
+                'orientacao educativa': -1.0,
+                'encaminhamento': -1.0
+            };
+            
+            // Buscar correspondência exata ou parcial
+            let pontos = mapeamentos[tipoNormalizado];
+            
+            // Se não encontrou correspondência exata, tentar busca parcial
+            if (pontos === undefined) {
+                for (const [tipo, valor] of Object.entries(mapeamentos)) {
+                    if (tipoNormalizado.includes(tipo) || tipo.includes(tipoNormalizado)) {
+                        pontos = valor;
+                        break;
+                    }
+                }
+            }
+            
+            return pontos || 0;
+        }
+
+        // Função para calcular nota disciplinar de um aluno
+        function calcularNotaDisciplinarAluno(aluno, medidas) {
+            try {
+                let notaBase = 8.0; // Nota inicial sempre 8
+                
+                // Calcular pontos das medidas
+                let totalPontos = 0;
+                medidas.forEach(medida => {
+                    const pontos = calcularPontosMedida(medida.tipo_medida || medida.tipo, medida.dias_suspensao);
+                    totalPontos += pontos;
+                });
+
+                // Nota final = nota base + pontos acumulados (não pode ser menor que 0)
+                const notaFinal = Math.max(0, notaBase + totalPontos);
+                return Math.round(notaFinal * 10) / 10; // Arredondar para 1 casa decimal
+                
+            } catch (error) {
+                console.error('Erro ao calcular nota disciplinar:', error);
+                return 8.0; // Retorna nota inicial em caso de erro
+            }
+        }
+
         // Função para voltar ao início
         function voltarAoInicio() {
             const resultSection = document.getElementById('resultSection');
