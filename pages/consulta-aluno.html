@@ -1702,131 +1702,234 @@
             
             // Criar novo documento PDF
             const doc = new window.jsPDF();
+            const pageWidth = doc.internal.pageSize.width;
+            const pageHeight = doc.internal.pageSize.height;
+            const margin = 20;
+            const contentWidth = pageWidth - (margin * 2);
             
-            // Configuração de cores e fontes
-            const corPrimaria = [41, 49, 80];
-            const corSecundaria = [108, 117, 125];
-            const corDestaque = [220, 53, 69];
+            let yPos = margin;
             
-            let yPos = 20;
-            
-            // Cabeçalho
-            doc.setFontSize(20);
-            doc.setTextColor(...corPrimaria);
-            doc.text('📋 Ficha Disciplinar do Aluno', 20, yPos);
-            
-            yPos += 15;
-            doc.setFontSize(12);
-            doc.setTextColor(...corSecundaria);
-            doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, 20, yPos);
-            
-            // Linha divisória
-            yPos += 10;
-            doc.setDrawColor(200, 200, 200);
-            doc.line(20, yPos, 190, yPos);
-            
-            // Dados do aluno
-            yPos += 15;
-            doc.setFontSize(16);
-            doc.setTextColor(...corPrimaria);
-            doc.text('👤 Dados do Aluno', 20, yPos);
-            
-            yPos += 10;
-            doc.setFontSize(12);
-            doc.setTextColor(...corSecundaria);
-            
-            const dadosAluno = [
-                `Nome: ${aluno.nome_completo}`,
-                `Código: ${aluno.codigo}`,
-                `Turma: ${aluno.turma}`,
-                `Responsável: ${aluno.responsavel}`
-            ];
-            
-            dadosAluno.forEach(linha => {
-                doc.text(linha, 20, yPos);
-                yPos += 7;
-            });
-            
-            // Nota disciplinar atual
-            yPos += 10;
-            const notaAtual = calcularNotaDisciplinar();
-            const notaFormatada = typeof notaAtual === 'number' ? notaAtual.toFixed(1) : '8.0';
-            doc.setFontSize(14);
-            doc.setTextColor(...corDestaque);
-            doc.text(`📊 Nota Disciplinar: ${notaFormatada}/10,0 pontos`, 20, yPos);
-            
-            // Medidas disciplinares
-            if (medidas.length > 0) {
-                yPos += 20;
-                doc.setFontSize(16);
-                doc.setTextColor(...corPrimaria);
-                doc.text('📋 Medidas Disciplinares', 20, yPos);
-                
-                yPos += 10;
-                doc.setFontSize(10);
-                doc.setTextColor(...corSecundaria);
-                
-                medidas.forEach((medida, index) => {
-                    // Verificar se precisa de nova página
-                    if (yPos > 250) {
-                        doc.addPage();
-                        yPos = 20;
-                    }
-                    
-                    doc.setTextColor(...corDestaque);
-                    doc.text(`${index + 1}. ${medida.data}`, 20, yPos);
-                    yPos += 5;
-                    
-                    doc.setTextColor(...corPrimaria);
-                    const tipoText = doc.splitTextToSize(`${medida.tipo}`, 160);
-                    doc.text(tipoText, 25, yPos);
-                    yPos += tipoText.length * 5;
-                    
-                    if (medida.descricao) {
-                        doc.setTextColor(...corSecundaria);
-                        const descText = doc.splitTextToSize(`Descrição: ${medida.descricao}`, 160);
-                        doc.text(descText, 25, yPos);
-                        yPos += descText.length * 5;
-                    }
-                    
-                    yPos += 5;
-                });
-            } else {
-                yPos += 20;
-                doc.setFontSize(14);
-                doc.setTextColor(...corSecundaria);
-                doc.text('✅ Nenhuma medida disciplinar registrada', 20, yPos);
+            // Função para adicionar nova página se necessário
+            function checkNewPage(neededSpace = 20) {
+                if (yPos + neededSpace > pageHeight - margin) {
+                    doc.addPage();
+                    yPos = margin;
+                    return true;
+                }
+                return false;
             }
             
-            // Dados de frequência se disponíveis
+            // Cabeçalho principal
+            doc.setFontSize(22);
+            doc.setTextColor(41, 49, 80);
+            doc.setFont("helvetica", "bold");
+            
+            // Título centralizado
+            const titulo = "FICHA DISCIPLINAR DO ALUNO";
+            const tituloWidth = doc.getTextWidth(titulo);
+            const tituloX = (pageWidth - tituloWidth) / 2;
+            doc.text(titulo, tituloX, yPos);
+            
+            yPos += 10;
+            
+            // Data de geração
+            doc.setFontSize(12);
+            doc.setTextColor(108, 117, 125);
+            doc.setFont("helvetica", "normal");
+            const dataGeracao = `Gerado em: ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}`;
+            const dataWidth = doc.getTextWidth(dataGeracao);
+            const dataX = (pageWidth - dataWidth) / 2;
+            doc.text(dataGeracao, dataX, yPos);
+            
+            yPos += 20;
+            
+            // Linha divisória
+            doc.setDrawColor(200, 200, 200);
+            doc.setLineWidth(0.5);
+            doc.line(margin, yPos, pageWidth - margin, yPos);
+            yPos += 20;
+            
+            // SEÇÃO: Dados do Aluno
+            doc.setFontSize(16);
+            doc.setTextColor(41, 49, 80);
+            doc.setFont("helvetica", "bold");
+            doc.text("DADOS DO ALUNO", margin, yPos);
+            yPos += 15;
+            
+            // Box com dados do aluno
+            doc.setDrawColor(230, 230, 230);
+            doc.setFillColor(248, 249, 250);
+            const boxHeight = 35;
+            doc.rect(margin, yPos - 5, contentWidth, boxHeight, 'FD');
+            
+            doc.setFontSize(12);
+            doc.setTextColor(33, 37, 41);
+            doc.setFont("helvetica", "normal");
+            
+            // Dados em duas colunas
+            const colWidth = contentWidth / 2;
+            doc.text(`Nome: ${aluno.nome_completo}`, margin + 5, yPos + 5);
+            doc.text(`Código: ${aluno.codigo}`, margin + colWidth + 5, yPos + 5);
+            doc.text(`Turma: ${aluno.turma}`, margin + 5, yPos + 15);
+            doc.text(`Responsável: ${aluno.responsavel}`, margin + colWidth + 5, yPos + 15);
+            
+            yPos += boxHeight + 20;
+            
+            // SEÇÃO: Nota Disciplinar
+            checkNewPage(30);
+            doc.setFontSize(16);
+            doc.setTextColor(41, 49, 80);
+            doc.setFont("helvetica", "bold");
+            doc.text("AVALIAÇÃO DISCIPLINAR", margin, yPos);
+            yPos += 15;
+            
+            const notaAtual = calcularNotaDisciplinar();
+            const notaFormatada = typeof notaAtual === 'number' ? notaAtual.toFixed(1) : '8.0';
+            
+            // Box da nota
+            doc.setDrawColor(40, 167, 69);
+            doc.setFillColor(212, 237, 218);
+            doc.rect(margin, yPos - 5, contentWidth, 20, 'FD');
+            
+            doc.setFontSize(14);
+            doc.setTextColor(25, 135, 84);
+            doc.setFont("helvetica", "bold");
+            const notaText = `Nota Disciplinar: ${notaFormatada} / 10,0 pontos`;
+            const notaTextWidth = doc.getTextWidth(notaText);
+            const notaX = (pageWidth - notaTextWidth) / 2;
+            doc.text(notaText, notaX, yPos + 8);
+            
+            yPos += 30;
+            
+            // SEÇÃO: Medidas Disciplinares
+            checkNewPage(40);
+            doc.setFontSize(16);
+            doc.setTextColor(41, 49, 80);
+            doc.setFont("helvetica", "bold");
+            doc.text("HISTÓRICO DISCIPLINAR", margin, yPos);
+            yPos += 15;
+            
+            if (medidas.length > 0) {
+                medidas.forEach((medida, index) => {
+                    checkNewPage(40);
+                    
+                    // Header da medida
+                    doc.setDrawColor(220, 53, 69);
+                    doc.setFillColor(248, 215, 218);
+                    doc.rect(margin, yPos - 3, contentWidth, 12, 'FD');
+                    
+                    doc.setFontSize(11);
+                    doc.setTextColor(220, 53, 69);
+                    doc.setFont("helvetica", "bold");
+                    doc.text(`${index + 1}. ${medida.data || 'Data não informada'}`, margin + 3, yPos + 5);
+                    yPos += 18;
+                    
+                    // Tipo da medida
+                    doc.setFontSize(12);
+                    doc.setTextColor(33, 37, 41);
+                    doc.setFont("helvetica", "bold");
+                    const tipoLines = doc.splitTextToSize(`Tipo: ${medida.tipo || 'Não especificado'}`, contentWidth - 10);
+                    doc.text(tipoLines, margin + 5, yPos);
+                    yPos += tipoLines.length * 6 + 5;
+                    
+                    // Descrição
+                    if (medida.descricao && medida.descricao.trim()) {
+                        doc.setFont("helvetica", "normal");
+                        doc.setTextColor(108, 117, 125);
+                        const descLines = doc.splitTextToSize(`Descrição: ${medida.descricao}`, contentWidth - 10);
+                        doc.text(descLines, margin + 5, yPos);
+                        yPos += descLines.length * 5 + 5;
+                    }
+                    
+                    // Professor responsável
+                    if (medida.professor && medida.professor.trim()) {
+                        doc.setFont("helvetica", "italic");
+                        doc.setTextColor(108, 117, 125);
+                        doc.text(`Professor: ${medida.professor}`, margin + 5, yPos);
+                        yPos += 8;
+                    }
+                    
+                    yPos += 10; // Espaçamento entre medidas
+                });
+            } else {
+                // Mensagem quando não há medidas
+                doc.setDrawColor(40, 167, 69);
+                doc.setFillColor(212, 237, 218);
+                doc.rect(margin, yPos - 5, contentWidth, 25, 'FD');
+                
+                doc.setFontSize(14);
+                doc.setTextColor(25, 135, 84);
+                doc.setFont("helvetica", "bold");
+                const msgPositiva = "Nenhuma medida disciplinar registrada";
+                const msgWidth = doc.getTextWidth(msgPositiva);
+                const msgX = (pageWidth - msgWidth) / 2;
+                doc.text(msgPositiva, msgX, yPos + 8);
+                
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "normal");
+                const parabenText = "Parabéns pelo excelente comportamento!";
+                const parabenWidth = doc.getTextWidth(parabenText);
+                const parabenX = (pageWidth - parabenWidth) / 2;
+                doc.text(parabenText, parabenX, yPos + 18);
+                
+                yPos += 30;
+            }
+            
+            // SEÇÃO: Frequência (se disponível)
             if (window.dadosFrequenciaAluno && window.dadosFrequenciaAluno.length > 0) {
-                yPos += 20;
+                checkNewPage(40);
+                
                 doc.setFontSize(16);
-                doc.setTextColor(...corPrimaria);
-                doc.text('📅 Resumo de Frequência', 20, yPos);
+                doc.setTextColor(41, 49, 80);
+                doc.setFont("helvetica", "bold");
+                doc.text("RESUMO DE FREQUÊNCIA", margin, yPos);
+                yPos += 15;
                 
                 const frequencia = window.dadosFrequenciaAluno;
                 const totalDias = frequencia.length;
                 const diasPresentes = frequencia.filter(d => d.status === 'Presente').length;
                 const percentualFrequencia = totalDias > 0 ? (diasPresentes / totalDias * 100) : 0;
                 
-                yPos += 10;
+                // Box da frequência
+                const corFrequencia = percentualFrequencia >= 75 ? [40, 167, 69] : [220, 53, 69];
+                const bgFrequencia = percentualFrequencia >= 75 ? [212, 237, 218] : [248, 215, 218];
+                
+                doc.setDrawColor(...corFrequencia);
+                doc.setFillColor(...bgFrequencia);
+                doc.rect(margin, yPos - 5, contentWidth, 30, 'FD');
+                
                 doc.setFontSize(12);
-                doc.setTextColor(...corSecundaria);
-                doc.text(`Total de dias letivos: ${totalDias}`, 20, yPos);
-                yPos += 7;
-                doc.text(`Dias presentes: ${diasPresentes}`, 20, yPos);
-                yPos += 7;
-                doc.text(`Percentual de frequência: ${percentualFrequencia.toFixed(1)}%`, 20, yPos);
+                doc.setTextColor(...corFrequencia);
+                doc.setFont("helvetica", "bold");
+                
+                doc.text(`Total de dias letivos: ${totalDias}`, margin + 10, yPos + 5);
+                doc.text(`Dias presentes: ${diasPresentes}`, margin + 10, yPos + 15);
+                doc.text(`Percentual de frequência: ${percentualFrequencia.toFixed(1)}%`, margin + 10, yPos + 25);
+                
+                yPos += 40;
             }
             
-            // Rodapé
-            const pageCount = doc.internal.getNumberOfPages();
-            for (let i = 1; i <= pageCount; i++) {
+            // Rodapé em todas as páginas
+            const totalPages = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= totalPages; i++) {
                 doc.setPage(i);
-                doc.setFontSize(8);
+                
+                // Linha do rodapé
+                doc.setDrawColor(200, 200, 200);
+                doc.setLineWidth(0.5);
+                doc.line(margin, pageHeight - 25, pageWidth - margin, pageHeight - 25);
+                
+                // Texto do rodapé
+                doc.setFontSize(9);
                 doc.setTextColor(150, 150, 150);
-                doc.text(`Dashboard Disciplinar - Página ${i} de ${pageCount}`, 20, 285);
+                doc.setFont("helvetica", "normal");
+                
+                const rodapeEsquerda = "Dashboard Disciplinar - Sistema de Gestão Escolar";
+                doc.text(rodapeEsquerda, margin, pageHeight - 15);
+                
+                const rodapeDireita = `Página ${i} de ${totalPages}`;
+                const rodapeWidth = doc.getTextWidth(rodapeDireita);
+                doc.text(rodapeDireita, pageWidth - margin - rodapeWidth, pageHeight - 15);
             }
             
             // Salvar PDF
