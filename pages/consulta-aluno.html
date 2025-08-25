@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta do Aluno - Portal dos Pais</title>
-    <link rel="icon" type="image/jpeg" href="../assets/images/logo-escola.jpeg">
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo-escola.jpeg" style="border-radius: 50%;">
     
     <!-- CSS Externos -->
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -653,6 +653,163 @@
             color: #495057;
         }
 
+        /* Estilos para seção de informações adicionais */
+        .info-adicional-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 50px 20px;
+            margin-top: 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-card-large {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card-large:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-icon {
+            font-size: 2em;
+        }
+
+        .info-card-header h3 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .info-card-content {
+            padding: 25px;
+        }
+
+        .info-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .info-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform 0.3s ease;
+        }
+
+        .info-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .classificacao-content,
+        .avisos-content {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .classificacao-section,
+        .aviso-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin: 10px;
+        }
+
+        .classificacao-titulo {
+            margin: 0 0 15px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        .classificacao-titulo.leve {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+        }
+
+        .classificacao-titulo.media {
+            background: linear-gradient(135deg, #fff3cd, #fde2a3);
+            color: #856404;
+        }
+
+        .classificacao-titulo.grave {
+            background: linear-gradient(135deg, #f8d7da, #f1aeb5);
+            color: #721c24;
+        }
+
+        .classificacao-lista {
+            display: grid;
+            gap: 8px;
+        }
+
+        .falta-item-class {
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .aviso-section h4 {
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .aviso-section ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .aviso-section li {
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
         @media (max-width: 768px) {
             .hero-section {
                 margin: 10px;
@@ -805,6 +962,124 @@
                     <p>Baixe o relatório completo com todas as informações:</p>
                     <button class="export-btn" onclick="exportarPDFParaPais()">📄 Baixar PDF</button>
                     <button class="export-btn" onclick="exportarHTMLParaPais()">🌐 Visualizar Online</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container de Informações Adicionais -->
+    <div class="info-adicional-section">
+        <div class="main-content">
+            <h2 class="section-title">📚 Informações Importantes</h2>
+            
+            <div class="info-cards-grid">
+                <!-- Manual e Regulamento -->
+                <div class="info-card-large">
+                    <div class="info-card-header">
+                        <span class="info-icon">📖</span>
+                        <h3>Manual e Regulamento</h3>
+                    </div>
+                    <div class="info-card-content">
+                        <p>Consulte o manual completo e regulamento da escola para conhecer todas as normas e diretrizes.</p>
+                        <a href="#" class="info-link" target="_blank" rel="noopener noreferrer">
+                            📄 Acessar Manual Completo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Classificação das Medidas -->
+                <div class="info-card-large">
+                    <div class="info-card-header">
+                        <span class="info-icon">⚖️</span>
+                        <h3>Classificação das Medidas Disciplinares</h3>
+                    </div>
+                    <div class="info-card-content">
+                        <button class="info-btn" onclick="toggleMedidasClassificacao()">
+                            📋 Ver Classificação das Faltas
+                        </button>
+                        <div id="medidasClassificacao" class="classificacao-content" style="display: none;">
+                            <div class="classificacao-section">
+                                <h4 class="classificacao-titulo leve">🟢 Faltas Disciplinares de Natureza Leve</h4>
+                                <div class="classificacao-lista">
+                                    <div class="falta-item-class">1. Apresentar-se com uniforme diferente do estabelecido</div>
+                                    <div class="falta-item-class">2. Apresentar-se com barba ou bigode sem fazer</div>
+                                    <div class="falta-item-class">3. Cabelo em desalinho ou fora do padrão</div>
+                                    <div class="falta-item-class">4. Chegar atrasado para início das aulas</div>
+                                    <div class="falta-item-class">5. Não levar material necessário</div>
+                                    <div class="falta-item-class">6. Adentrar dependência sem autorização</div>
+                                    <div class="falta-item-class">7. Consumir alimentos durante aula</div>
+                                    <div class="falta-item-class">8. Conversar quando estiver em forma</div>
+                                    <div class="falta-item-class">9. Não entregar objeto encontrado</div>
+                                    <div class="falta-item-class">10. Não retribuir cumprimentos</div>
+                                    <div class="falta-item-class">11. Deixar material em local inapropriado</div>
+                                    <div class="falta-item-class">12. Descartar lixo inadequadamente</div>
+                                    <div class="falta-item-class">13. Dobrar uniforme desfigurando</div>
+                                    <div class="falta-item-class">14. Debruçar e dormir durante aulas</div>
+                                    <div class="falta-item-class">15. Executar ordem unida displicentemente</div>
+                                    <div class="falta-item-class">16. Fazer barulho excessivo</div>
+                                    <div class="falta-item-class">17. Não comunicar irregularidade</div>
+                                    <div class="falta-item-class">18. Perturbar estudo dos colegas</div>
+                                    <div class="falta-item-class">19. Usar publicação estranha em sala</div>
+                                    <div class="falta-item-class">20. Retardar atividade sem motivo</div>
+                                    <div class="falta-item-class">21. Sentar no chão uniformizado</div>
+                                    <div class="falta-item-class">22. Utilizar jogos no colégio</div>
+                                    <div class="falta-item-class">23. Piercing/brinco fora padrão (aluna)</div>
+                                    <div class="falta-item-class">24. Piercing/brinco (aluno)</div>
+                                    <div class="falta-item-class">25. Usar boné/capuz durante atividade</div>
+                                    <div class="falta-item-class">26. Ficar em sala nos intervalos</div>
+                                </div>
+                            </div>
+
+                            <div class="classificacao-section">
+                                <h4 class="classificacao-titulo media">🟡 Faltas Disciplinares de Natureza Média</h4>
+                                <div class="classificacao-lista">
+                                    <div class="falta-item-class">27-62. Faltas médias incluem atrasar chamado, não comparecer, não cumprir medidas, usar aparelhos sem autorização, etc.</div>
+                                </div>
+                            </div>
+
+                            <div class="classificacao-section">
+                                <h4 class="classificacao-titulo grave">🔴 Faltas Disciplinares de Natureza Grave</h4>
+                                <div class="classificacao-lista">
+                                    <div class="falta-item-class">63-91. Faltas graves incluem falsificação, danos ao patrimônio, desrespeito a autoridades, uso de substâncias, etc.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avisos Gerais -->
+                <div class="info-card-large">
+                    <div class="info-card-header">
+                        <span class="info-icon">📢</span>
+                        <h3>Avisos Gerais e Obrigações</h3>
+                    </div>
+                    <div class="info-card-content">
+                        <button class="info-btn" onclick="toggleAvisosGerais()">
+                            📋 Ver Obrigações e Recomendações
+                        </button>
+                        <div id="avisosGerais" class="avisos-content" style="display: none;">
+                            <div class="aviso-section">
+                                <h4>👔 Apresentação Individual</h4>
+                                <p>A apresentação individual é fundamental no Sistema Colégio Cívico-Militar.</p>
+                            </div>
+                            <div class="aviso-section">
+                                <h4>📱 Aparelhos Eletrônicos</h4>
+                                <p>Uso condicionado à autorização. Fones proibidos durante aulas.</p>
+                            </div>
+                            <div class="aviso-section">
+                                <h4>🚭 Substâncias Proibidas</h4>
+                                <p>Bebidas alcoólicas, cigarros e drogas são terminantemente proibidas.</p>
+                            </div>
+                            <div class="aviso-section">
+                                <h4>💕 Relacionamentos</h4>
+                                <p>Manifestações de namoro não são permitidas no colégio.</p>
+                            </div>
+                            <div class="aviso-section">
+                                <h4>⏰ Pontualidade</h4>
+                                <p><strong>Descumprimento de horários impacta na nota disciplinar!</strong></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1451,6 +1726,34 @@
             setTimeout(() => {
                 document.getElementById('codigoAluno').focus();
             }, 500);
+        }
+        
+        // Função para mostrar/esconder classificação das medidas
+        function toggleMedidasClassificacao() {
+            const content = document.getElementById('medidasClassificacao');
+            const btn = event.target;
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                btn.textContent = '📋 Ocultar Classificação das Faltas';
+            } else {
+                content.style.display = 'none';
+                btn.textContent = '📋 Ver Classificação das Faltas';
+            }
+        }
+        
+        // Função para mostrar/esconder avisos gerais
+        function toggleAvisosGerais() {
+            const content = document.getElementById('avisosGerais');
+            const btn = event.target;
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                btn.textContent = '📋 Ocultar Obrigações e Recomendações';
+            } else {
+                content.style.display = 'none';
+                btn.textContent = '📋 Ver Obrigações e Recomendações';
+            }
         }
     </script>
 </body>
