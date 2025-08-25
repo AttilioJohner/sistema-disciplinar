@@ -575,8 +575,7 @@
         }
         
         .medida-item {
-            display: flex;
-            align-items: flex-start;
+            display: block;
             padding: 15px;
             margin-bottom: 15px;
             background: white;
@@ -588,32 +587,40 @@
         .medida-data {
             font-weight: bold;
             color: #495057;
-            margin-right: 20px;
-            min-width: 100px;
             font-size: 0.9em;
+            margin-bottom: 8px;
+            display: block;
+            text-align: left;
         }
         
         .medida-content {
-            flex-grow: 1;
+            text-align: left;
         }
         
         .medida-tipo {
             font-weight: bold;
             color: #dc3545;
-            font-size: 1.1em;
-            margin-bottom: 5px;
+            font-size: 1em;
+            margin-bottom: 8px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.3;
         }
         
         .medida-descricao {
             color: #495057;
             margin-bottom: 8px;
             line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         .medida-providencias {
             font-size: 0.9em;
             color: #6c757d;
             font-style: italic;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         .nota-disciplinar-container {
@@ -688,12 +695,20 @@
             }
             
             .medida-item {
-                flex-direction: column;
+                padding: 12px;
             }
             
             .medida-data {
-                margin-bottom: 10px;
-                margin-right: 0;
+                font-size: 0.85em;
+                margin-bottom: 6px;
+            }
+            
+            .medida-tipo {
+                font-size: 0.95em;
+            }
+            
+            .medida-descricao {
+                font-size: 0.9em;
             }
         }
     </style>
@@ -1063,7 +1078,7 @@
                     
                     disciplinarHtml += `
                         <div class="medida-item">
-                            <div class="medida-data">${dataFormatada}</div>
+                            <div class="medida-data">📅 ${dataFormatada}</div>
                             <div class="medida-content">
                                 <div class="medida-tipo">${medida.tipo_medida || medida.tipo || 'Não informado'}</div>
                                 <div class="medida-descricao">${medida.especificacao || medida.descricao_falta || medida.motivo || 'Não informado'}</div>
