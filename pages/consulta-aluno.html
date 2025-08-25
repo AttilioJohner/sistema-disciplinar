@@ -1376,16 +1376,30 @@
                 }
                 
                 console.log(`📋 Encontradas ${medidas.length} medidas para o aluno ${aluno.codigo}`);
+                
+                // Armazenar medidas para exportação
+                window.medidasAtuais = medidas;
+                
             } catch (error) {
                 console.log('Erro ao buscar medidas:', error);
+                window.medidasAtuais = [];
             }
             
             // Buscar dados de frequência usando a mesma lógica da página de medidas
             let dadosFrequencia = null;
             try {
                 dadosFrequencia = await buscarFrequenciaPorCodigo(aluno.codigo);
+                
+                // Armazenar dados de frequência para exportação
+                if (dadosFrequencia && dadosFrequencia.faltas) {
+                    window.dadosFrequenciaAluno = dadosFrequencia.faltas;
+                } else {
+                    window.dadosFrequenciaAluno = [];
+                }
+                
             } catch (error) {
                 console.log('Erro ao buscar frequência:', error);
+                window.dadosFrequenciaAluno = [];
             }
             
             // Atualizar frequência com detalhes completos
@@ -1700,6 +1714,10 @@
             const aluno = window.dadosAlunoAtual;
             const medidas = window.medidasAtuais || [];
             
+            console.log('🔍 Debug PDF - Dados do aluno:', aluno);
+            console.log('🔍 Debug PDF - Medidas:', medidas);
+            console.log('🔍 Debug PDF - Frequência:', window.dadosFrequenciaAluno);
+            
             // Criar novo documento PDF
             const doc = new window.jsPDF();
             const pageWidth = doc.internal.pageSize.width;
@@ -1887,8 +1905,14 @@
                 
                 const frequencia = window.dadosFrequenciaAluno;
                 const totalDias = frequencia.length;
-                const diasPresentes = frequencia.filter(d => d.status === 'Presente').length;
-                const percentualFrequencia = totalDias > 0 ? (diasPresentes / totalDias * 100) : 0;
+                
+                // Contar baseado na marcação (F = Falta, P = Presente, etc)
+                const faltas = frequencia.filter(d => d.marcacao === 'F').length;
+                const presencas = frequencia.filter(d => d.marcacao === 'P').length;
+                const atestados = frequencia.filter(d => d.marcacao === 'A').length;
+                
+                const diasComputados = presencas + faltas; // Não contar atestados
+                const percentualFrequencia = diasComputados > 0 ? (presencas / diasComputados * 100) : 100;
                 
                 // Box da frequência
                 const corFrequencia = percentualFrequencia >= 75 ? [40, 167, 69] : [220, 53, 69];
@@ -1896,17 +1920,24 @@
                 
                 doc.setDrawColor(...corFrequencia);
                 doc.setFillColor(...bgFrequencia);
-                doc.rect(margin, yPos - 5, contentWidth, 30, 'FD');
+                doc.rect(margin, yPos - 5, contentWidth, 40, 'FD');
                 
                 doc.setFontSize(12);
                 doc.setTextColor(...corFrequencia);
                 doc.setFont("helvetica", "bold");
                 
                 doc.text(`Total de dias letivos: ${totalDias}`, margin + 10, yPos + 5);
-                doc.text(`Dias presentes: ${diasPresentes}`, margin + 10, yPos + 15);
-                doc.text(`Percentual de frequência: ${percentualFrequencia.toFixed(1)}%`, margin + 10, yPos + 25);
+                doc.text(`Presenças: ${presencas}`, margin + 10, yPos + 15);
+                doc.text(`Faltas: ${faltas}`, margin + 10, yPos + 25);
+                if (atestados > 0) {
+                    doc.text(`Atestados: ${atestados}`, margin + 10, yPos + 35);
+                }
                 
-                yPos += 40;
+                // Percentual em destaque
+                doc.setFontSize(14);
+                doc.text(`Percentual de frequência: ${percentualFrequencia.toFixed(1)}%`, margin + 10, yPos + (atestados > 0 ? 50 : 40));
+                
+                yPos += (atestados > 0 ? 60 : 50);
             }
             
             // Rodapé em todas as páginas
