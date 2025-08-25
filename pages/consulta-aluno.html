@@ -990,7 +990,6 @@
                     <h3>📋 Relatórios Completos</h3>
                     <p>Baixe o relatório completo com todas as informações:</p>
                     <button class="export-btn" onclick="exportarPDFParaPais()">📄 Baixar PDF</button>
-                    <button class="export-btn" onclick="exportarHTMLParaPais()">🌐 Visualizar Online</button>
                 </div>
             </div>
         </div>
@@ -1751,9 +1750,10 @@
             // Nota disciplinar atual
             yPos += 10;
             const notaAtual = calcularNotaDisciplinar();
+            const notaFormatada = typeof notaAtual === 'number' ? notaAtual.toFixed(1) : '8.0';
             doc.setFontSize(14);
             doc.setTextColor(...corDestaque);
-            doc.text(`📊 Nota Disciplinar: ${notaAtual.toFixed(1)}/10,0 pontos`, 20, yPos);
+            doc.text(`📊 Nota Disciplinar: ${notaFormatada}/10,0 pontos`, 20, yPos);
             
             // Medidas disciplinares
             if (medidas.length > 0) {
@@ -1836,19 +1836,6 @@
             showSuccess('PDF gerado com sucesso!');
         }
 
-        async function exportarHTMLParaPais() {
-            if (!window.dadosAlunoAtual) {
-                showError('Nenhum aluno selecionado.');
-                return;
-            }
-            
-            try {
-                await exportarFichaHTML();
-            } catch (error) {
-                console.error('Erro na exportação:', error);
-                showError('Erro ao gerar relatório. Tente novamente.');
-            }
-        }
 
         // Funções de feedback
         function showError(message) {
