@@ -177,7 +177,7 @@ window.limparERepopularBanco = async function() {
 };
 
 // Função para buscar frequência de um aluno específico pelo código
-async function buscarFrequenciaPorCodigo(codigoAluno) {
+window.buscarFrequenciaPorCodigo = async function buscarFrequenciaPorCodigo(codigoAluno) {
   try {
     console.log(`🔍 Buscando frequência para aluno: ${codigoAluno}`);
     

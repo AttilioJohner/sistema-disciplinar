@@ -898,15 +898,18 @@
       // Buscar dados de frequência do aluno
       let dadosFrequencia = null;
       try {
-        if (typeof buscarFrequenciaPorCodigo === 'function') {
-          dadosFrequencia = await buscarFrequenciaPorCodigo(dadosAluno.codigo);
+        if (typeof window.buscarFrequenciaPorCodigo === 'function') {
+          dadosFrequencia = await window.buscarFrequenciaPorCodigo(dadosAluno.codigo);
+          console.log('Dados de frequência obtidos:', dadosFrequencia);
+        } else {
+          console.log('Função buscarFrequenciaPorCodigo não encontrada');
         }
       } catch (error) {
         console.log('Erro ao buscar frequência:', error);
       }
 
       // Seção de Frequência
-      if (dadosFrequencia && dadosFrequencia.faltas > 0) {
+      if (dadosFrequencia && dadosFrequencia.faltas && dadosFrequencia.faltas.length > 0) {
         pdf.setFontSize(14);
         pdf.setFont('helvetica', 'bold');
         pdf.text(`📅 REGISTRO DE FREQUÊNCIA`, margin, yPos);
@@ -914,16 +917,52 @@
 
         pdf.setFontSize(10);
         pdf.setFont('helvetica', 'normal');
-        pdf.text(`Total de faltas: ${dadosFrequencia.faltas}`, margin, yPos);
-        yPos += lineHeight;
-        pdf.text(`Percentual de frequência: ${dadosFrequencia.percentual}%`, margin, yPos);
+        pdf.text(`Total de faltas: ${dadosFrequencia.faltas.length}`, margin, yPos);
         yPos += lineHeight;
         
-        if (dadosFrequencia.situacao) {
-          pdf.setFont('helvetica', 'bold');
-          pdf.text(`Situação: ${dadosFrequencia.situacao}`, margin, yPos);
+        if (dadosFrequencia.estatisticas) {
+          pdf.text(`Total de presenças: ${dadosFrequencia.estatisticas.totalPresencas}`, margin, yPos);
+          yPos += lineHeight;
+          pdf.text(`Percentual de presença: ${dadosFrequencia.estatisticas.percentualPresenca}%`, margin, yPos);
           yPos += lineHeight;
         }
+        
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(`Detalhes das faltas:`, margin, yPos);
+        yPos += lineHeight;
+        
+        pdf.setFont('helvetica', 'normal');
+        dadosFrequencia.faltas.forEach((falta, index) => {
+          if (yPos > 250) {
+            pdf.addPage();
+            yPos = 20;
+          }
+          const dataFormatada = `${falta.dia}/08/2025`;
+          const tipo = falta.marcacao === 'F' ? 'Falta' : falta.marcacao === 'FC' ? 'Falta Compensada' : 'Atestado';
+          pdf.text(`• ${dataFormatada} - ${tipo}`, margin + 5, yPos);
+          yPos += lineHeight;
+        });
+        
+        yPos += 10;
+      } else if (dadosFrequencia) {
+        // Mostrar mesmo se não houver faltas
+        pdf.setFontSize(14);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(`📅 REGISTRO DE FREQUÊNCIA`, margin, yPos);
+        yPos += 10;
+
+        pdf.setFontSize(10);
+        pdf.setFont('helvetica', 'normal');
+        pdf.text(`Nenhuma falta registrada`, margin, yPos);
+        yPos += lineHeight;
+        
+        if (dadosFrequencia.estatisticas) {
+          pdf.text(`Total de presenças: ${dadosFrequencia.estatisticas.totalPresencas}`, margin, yPos);
+          yPos += lineHeight;
+          pdf.text(`Percentual de presença: ${dadosFrequencia.estatisticas.percentualPresenca}%`, margin, yPos);
+          yPos += lineHeight;
+        }
+        
         yPos += 10;
       }
 
