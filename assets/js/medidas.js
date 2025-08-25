@@ -806,6 +806,20 @@
 
       const dadosAluno = window.dadosAlunoAtual;
       const dataAtual = new Date().toLocaleDateString('pt-BR');
+
+      // Buscar dados de frequência ANTES de gerar o PDF
+      let dadosFrequencia = null;
+      try {
+        if (typeof window.buscarFrequenciaPorCodigo === 'function') {
+          console.log('🔍 Buscando frequência para PDF - Aluno:', dadosAluno.codigo);
+          dadosFrequencia = await window.buscarFrequenciaPorCodigo(dadosAluno.codigo);
+          console.log('📋 Dados de frequência obtidos para PDF:', dadosFrequencia);
+        } else {
+          console.log('❌ Função buscarFrequenciaPorCodigo não encontrada para PDF');
+        }
+      } catch (error) {
+        console.log('❌ Erro ao buscar frequência para PDF:', error);
+      }
       
       // Criar novo documento PDF
       const { jsPDF } = window.jsPDF;
@@ -895,18 +909,6 @@
 
       yPos += 10;
 
-      // Buscar dados de frequência do aluno
-      let dadosFrequencia = null;
-      try {
-        if (typeof window.buscarFrequenciaPorCodigo === 'function') {
-          dadosFrequencia = await window.buscarFrequenciaPorCodigo(dadosAluno.codigo);
-          console.log('Dados de frequência obtidos:', dadosFrequencia);
-        } else {
-          console.log('Função buscarFrequenciaPorCodigo não encontrada');
-        }
-      } catch (error) {
-        console.log('Erro ao buscar frequência:', error);
-      }
 
       // Seção de Frequência
       if (dadosFrequencia && dadosFrequencia.faltas && dadosFrequencia.faltas.length > 0) {
@@ -1054,9 +1056,21 @@
   }
 
   // Método alternativo de exportação (abre em nova janela para impressão)
-  function exportarFichaHTML() {
+  async function exportarFichaHTML() {
     const dadosAluno = window.dadosAlunoAtual;
     const dataAtual = new Date().toLocaleDateString('pt-BR');
+    
+    // Buscar dados de frequência para HTML
+    let dadosFrequencia = null;
+    try {
+      if (typeof window.buscarFrequenciaPorCodigo === 'function') {
+        console.log('🔍 Buscando frequência para HTML - Aluno:', dadosAluno.codigo);
+        dadosFrequencia = await window.buscarFrequenciaPorCodigo(dadosAluno.codigo);
+        console.log('📋 Dados de frequência obtidos para HTML:', dadosFrequencia);
+      }
+    } catch (error) {
+      console.log('❌ Erro ao buscar frequência para HTML:', error);
+    }
     
     const htmlContent = `
       <!DOCTYPE html>
@@ -1093,6 +1107,31 @@
           <div class="data-item"><span class="data-label">CPF:</span> ${dadosAluno.cpf || 'Não informado'}</div>
           <div class="data-item"><span class="data-label">Nome da Mãe:</span> ${dadosAluno.nome_mae || 'Não informado'}</div>
         </div>
+
+        ${dadosFrequencia ? `
+        <div class="section">
+          <div class="section-title">📅 REGISTRO DE FREQUÊNCIA</div>
+          ${dadosFrequencia.faltas && dadosFrequencia.faltas.length > 0 ? `
+            <div class="data-item"><span class="data-label">Total de faltas:</span> ${dadosFrequencia.faltas.length}</div>
+            ${dadosFrequencia.estatisticas ? `
+              <div class="data-item"><span class="data-label">Total de presenças:</span> ${dadosFrequencia.estatisticas.totalPresencas}</div>
+              <div class="data-item"><span class="data-label">Percentual de presença:</span> ${dadosFrequencia.estatisticas.percentualPresenca}%</div>
+            ` : ''}
+            <div style="margin-top: 10px;"><strong>Detalhes das faltas:</strong></div>
+            ${dadosFrequencia.faltas.map(falta => {
+              const dataFormatada = `${falta.dia}/08/2025`;
+              const tipo = falta.marcacao === 'F' ? 'Falta' : falta.marcacao === 'FC' ? 'Falta Compensada' : 'Atestado';
+              return `<div style="margin-left: 20px;">• ${dataFormatada} - ${tipo}</div>`;
+            }).join('')}
+          ` : `
+            <div class="data-item">Nenhuma falta registrada</div>
+            ${dadosFrequencia.estatisticas ? `
+              <div class="data-item"><span class="data-label">Total de presenças:</span> ${dadosFrequencia.estatisticas.totalPresencas}</div>
+              <div class="data-item"><span class="data-label">Percentual de presença:</span> ${dadosFrequencia.estatisticas.percentualPresenca}%</div>
+            ` : ''}
+          `}
+        </div>
+        ` : ''}
 
         <div class="section">
           <div class="section-title">⚖️ HISTÓRICO DE MEDIDAS DISCIPLINARES (${dadosAluno.medidas.length} registros)</div>
