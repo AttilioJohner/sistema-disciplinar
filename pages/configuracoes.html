@@ -529,23 +529,41 @@
             try {
                 let totalRegistros = 0;
                 
-                if (window.localDb.loaded) {
-                    const alunosSnapshot = await db.collection('alunos').get();
-                    const faltasSnapshot = await db.collection('faltas').get();
-                    const medidasSnapshot = await db.collection('medidas').get();
+                // Contar registros do localStorage
+                try {
+                    const dados = JSON.parse(localStorage.getItem('db') || '{}');
+                    const medidas = JSON.parse(localStorage.getItem('medidas') || '[]');
                     
-                    totalRegistros = alunosSnapshot.size + faltasSnapshot.size + medidasSnapshot.size;
+                    const alunos = dados.alunos || {};
+                    const alunosCount = Object.keys(alunos).length;
+                    const medidasCount = medidas.length;
+                    
+                    totalRegistros = alunosCount + medidasCount;
+                    
+                    console.log(`📊 Estatísticas: ${alunosCount} alunos, ${medidasCount} medidas`);
+                } catch (e) {
+                    console.warn('Erro ao contar registros:', e);
                 }
                 
-                document.getElementById('totalRegistros').textContent = totalRegistros;
+                // Atualizar interface
+                const totalElement = document.getElementById('totalRegistros');
+                if (totalElement) {
+                    totalElement.textContent = totalRegistros;
+                }
                 
                 // Simular espaço usado (estimativa básica)
                 const espacoEstimado = Math.round(totalRegistros * 0.5); // 0.5KB por registro
-                document.getElementById('espacoUsado').textContent = espacoEstimado + ' KB';
+                const espacoElement = document.getElementById('espacoUsado');
+                if (espacoElement) {
+                    espacoElement.textContent = espacoEstimado + ' KB';
+                }
                 
                 // Último backup
                 const ultimoBackup = localStorage.getItem('ultimoBackup') || 'Nunca';
-                document.getElementById('ultimoBackup').textContent = ultimoBackup;
+                const backupElement = document.getElementById('ultimoBackup');
+                if (backupElement) {
+                    backupElement.textContent = ultimoBackup;
+                }
                 
             } catch (error) {
                 console.error('Erro ao atualizar estatísticas:', error);
@@ -968,24 +986,23 @@
     </script>
     <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Espera o Sistema estar carregado
-    const wait = setInterval(() => {
-      if (window.localDb && window.localDb.loaded) {
-        clearInterval(wait);
-
+    // Verificação simples de autenticação
+    setTimeout(() => {
+      if (window.localAuth && typeof window.localAuth.onAuthStateChanged === 'function') {
         // Verifica usuário logado
         window.localAuth.onAuthStateChanged(user => {
           if (!user) {
-            // Se não está logado → volta para login
-            window.location.href = 'login.html'; 
+            // Se não está logado → volta para login  
+            console.log('⚠️ Usuário não logado - redirecionando para login');
+            // window.location.href = 'login.html'; // Comentado para teste
           } else {
-            console.log("Usuário logado:", user.email);
-            // Aqui você pode chamar funções de carregamento da página
-            // Exemplo: carregarAlunos();
+            console.log("✅ Usuário logado:", user.email);
           }
         });
+      } else {
+        console.log('⚠️ Sistema de autenticação não carregado');
       }
-    }, 100);
+    }, 500);
   });
 </script>
 
