@@ -1040,6 +1040,15 @@
                     return;
                 }
                 
+                // Verificar se usuário está autenticado
+                if (!window.localAuth.getCurrentUser()) {
+                    if (container) {
+                        container.innerHTML = '<p class="no-users">⏳ Aguardando autenticação...</p>';
+                    }
+                    setTimeout(carregarListaUsuarios, 1000);
+                    return;
+                }
+                
                 const usuarios = await window.localAuth.listUsers();
                 
                 if (!container) return;

@@ -110,13 +110,25 @@ class LocalAuth {
         const isExpired = (Date.now() - authData.timestamp) > (24 * 60 * 60 * 1000);
         
         if (!isExpired) {
+          // Recuperar dados atualizados do usuário do sistema
+          const users = this.getRegisteredUsers();
+          const userData = users[authData.user.email] || authData.user;
+          
           this.currentUser = {
-            ...authData.user,
+            uid: authData.user.uid,
+            email: authData.user.email,
+            displayName: userData.displayName || authData.user.displayName,
+            role: userData.role || authData.user.role || 'admin',
+            emailVerified: true,
             updatePassword: async (newPassword) => {
               return new Promise((resolve, reject) => {
                 setTimeout(() => {
                   if (newPassword && newPassword.length >= 6) {
-                    console.log('🔒 Senha atualizada (simulado)');
+                    // Atualizar senha no sistema
+                    const users = this.getRegisteredUsers();
+                    users[this.currentUser.email].password = newPassword;
+                    localStorage.setItem('system_users', JSON.stringify(users));
+                    console.log('🔒 Senha atualizada com sucesso');
                     resolve();
                   } else {
                     reject(new Error('Senha deve ter pelo menos 6 caracteres'));
@@ -126,6 +138,7 @@ class LocalAuth {
             }
           };
           this.isAuthenticated = true;
+          console.log('🔑 Sessão recuperada:', this.currentUser.email, 'Role:', this.currentUser.role);
           callback(this.currentUser);
           return;
         } else {

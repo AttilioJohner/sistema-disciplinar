@@ -32,6 +32,10 @@
 
   <!-- PapaParse para ler CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  
+  <!-- Scripts do Sistema -->
+  <script src="../assets/js/local-auth.js"></script>
+  <script src="../assets/js/local-db.js"></script>
 </head>
 <body>
   <h1>📥 Importar dados via CSV</h1>
@@ -72,12 +76,21 @@
   </div>
 
   <script>
-    // Garante login
-    window.localAuth.onAuthStateChanged(user => {
-      if (!user) {
-        alert("Faça login para importar.");
-        window.location.href = "login.html";
-      }
+    // Garante login - com verificação de carregamento
+    document.addEventListener('DOMContentLoaded', () => {
+      const checkAuth = () => {
+        if (window.localAuth && typeof window.localAuth.onAuthStateChanged === 'function') {
+          window.localAuth.onAuthStateChanged(user => {
+            if (!user) {
+              alert("Faça login para importar.");
+              window.location.href = "login.html";
+            }
+          });
+        } else {
+          setTimeout(checkAuth, 500);
+        }
+      };
+      checkAuth();
     });
 
     const el = (id)=>document.getElementById(id);
