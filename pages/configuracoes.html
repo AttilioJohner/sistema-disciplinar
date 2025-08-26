@@ -524,35 +524,6 @@
             });
         }
 
-        // Verificar status do Sistema Local
-            const textoElement = document.getElementById('statusTexto');
-            
-            if (window.localDb.loaded) {
-                try {
-                    if (conectado) {
-                        statusElement.style.backgroundColor = '#d4edda';
-                        statusElement.style.color = '#155724';
-                        textoElement.textContent = '✅ Conectado';
-                        
-                        // Mostrar Project ID se disponível
-                        if (window.localConfig && window.localConfig.projectId) {
-                            document.getElementById('projectId').value = window.localConfig.projectId;
-                        }
-                    } else {
-                        throw new Error('Falha na conexão');
-                    }
-                } catch (error) {
-                    statusElement.style.backgroundColor = '#f8d7da';
-                    statusElement.style.color = '#721c24';
-                    textoElement.textContent = '❌ Erro na conexão';
-                }
-            } else {
-                statusElement.style.backgroundColor = '#fff3cd';
-                statusElement.style.color = '#856404';
-                textoElement.textContent = '⚠️ Sistema Local configurado';
-            }
-        }
-
         // Atualizar estatísticas do sistema
         async function atualizarEstatisticasSistema() {
             try {
