@@ -5,25 +5,59 @@ class LocalAuth {
     this.isAuthenticated = false;
   }
 
+  // Obter usuários cadastrados
+  getRegisteredUsers() {
+    const users = localStorage.getItem('system_users');
+    if (!users) {
+      // Criar usuário padrão se não existir
+      const defaultUsers = {
+        'admin@escola.com': {
+          password: 'admin123',
+          displayName: 'Administrador',
+          role: 'admin',
+          createdAt: new Date().toISOString()
+        }
+      };
+      localStorage.setItem('system_users', JSON.stringify(defaultUsers));
+      return defaultUsers;
+    }
+    return JSON.parse(users);
+  }
+
   // Fazer login
   async signInWithEmailAndPassword(email, password) {
     return new Promise((resolve, reject) => {
       // Simular delay de rede
       setTimeout(() => {
-        // Login básico para desenvolvimento
-        if ((email === 'admin@escola.com' && password === 'admin123') || 
-            (email === 'admin' && password === 'admin123')) {
+        const users = this.getRegisteredUsers();
+        
+        // Verificar login básico ou usuários cadastrados
+        const isDefaultLogin = (email === 'admin@escola.com' && password === 'admin123') || 
+                              (email === 'admin' && password === 'admin123');
+        
+        const userExists = users[email] && users[email].password === password;
+        
+        if (isDefaultLogin || userExists) {
+          const userData = users[email] || {
+            displayName: 'Administrador',
+            role: 'admin'
+          };
           
           this.currentUser = {
-            uid: 'admin-user',
-            email: 'admin@escola.com',
-            displayName: 'Administrador',
+            uid: email.replace('@', '_').replace('.', '_'),
+            email: email === 'admin' ? 'admin@escola.com' : email,
+            displayName: userData.displayName || 'Usuário',
+            role: userData.role || 'admin',
             emailVerified: true,
             updatePassword: async (newPassword) => {
               return new Promise((resolve, reject) => {
                 setTimeout(() => {
                   if (newPassword && newPassword.length >= 6) {
-                    console.log('🔒 Senha atualizada (simulado)');
+                    // Atualizar senha no sistema
+                    const users = this.getRegisteredUsers();
+                    users[this.currentUser.email].password = newPassword;
+                    localStorage.setItem('system_users', JSON.stringify(users));
+                    console.log('🔒 Senha atualizada com sucesso');
                     resolve();
                   } else {
                     reject(new Error('Senha deve ter pelo menos 6 caracteres'));
@@ -41,7 +75,7 @@ class LocalAuth {
             timestamp: Date.now()
           }));
           
-          console.log('✅ Login realizado com sucesso');
+          console.log('✅ Login realizado com sucesso:', this.currentUser.email);
           resolve({ user: this.currentUser });
         } else {
           reject(new Error('Email ou senha incorretos'));
@@ -126,9 +160,104 @@ class LocalAuth {
     });
   }
 
-  // Criar usuário (para futuras implementações)
-  async createUserWithEmailAndPassword(email, password) {
-    return Promise.reject(new Error('Criação de usuários não implementada'));
+  // Criar usuário
+  async createUserWithEmailAndPassword(email, password, displayName = '', role = 'user') {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const users = this.getRegisteredUsers();
+        
+        // Verificar se usuário já existe
+        if (users[email]) {
+          reject(new Error('Este email já está cadastrado'));
+          return;
+        }
+        
+        // Validar dados
+        if (!email || !email.includes('@')) {
+          reject(new Error('Email inválido'));
+          return;
+        }
+        
+        if (!password || password.length < 6) {
+          reject(new Error('Senha deve ter pelo menos 6 caracteres'));
+          return;
+        }
+        
+        // Criar usuário
+        users[email] = {
+          password: password,
+          displayName: displayName || email.split('@')[0],
+          role: role,
+          createdAt: new Date().toISOString(),
+          createdBy: this.currentUser?.email || 'system'
+        };
+        
+        localStorage.setItem('system_users', JSON.stringify(users));
+        
+        console.log('👤 Novo usuário criado:', email);
+        resolve({
+          user: {
+            uid: email.replace('@', '_').replace('.', '_'),
+            email: email,
+            displayName: users[email].displayName,
+            role: users[email].role
+          }
+        });
+      }, 500);
+    });
+  }
+
+  // Listar usuários (apenas para admins)
+  async listUsers() {
+    if (!this.currentUser || this.currentUser.role !== 'admin') {
+      throw new Error('Acesso negado: apenas administradores podem listar usuários');
+    }
+    
+    const users = this.getRegisteredUsers();
+    return Object.keys(users).map(email => ({
+      email: email,
+      displayName: users[email].displayName,
+      role: users[email].role,
+      createdAt: users[email].createdAt
+    }));
+  }
+
+  // Excluir usuário (apenas para admins)
+  async deleteUser(email) {
+    if (!this.currentUser || this.currentUser.role !== 'admin') {
+      throw new Error('Acesso negado: apenas administradores podem excluir usuários');
+    }
+    
+    if (email === 'admin@escola.com') {
+      throw new Error('Não é possível excluir o usuário administrador principal');
+    }
+    
+    const users = this.getRegisteredUsers();
+    if (!users[email]) {
+      throw new Error('Usuário não encontrado');
+    }
+    
+    delete users[email];
+    localStorage.setItem('system_users', JSON.stringify(users));
+    console.log('🗑️ Usuário excluído:', email);
+    return true;
+  }
+
+  // Alterar papel do usuário
+  async updateUserRole(email, newRole) {
+    if (!this.currentUser || this.currentUser.role !== 'admin') {
+      throw new Error('Acesso negado: apenas administradores podem alterar papéis');
+    }
+    
+    const users = this.getRegisteredUsers();
+    if (!users[email]) {
+      throw new Error('Usuário não encontrado');
+    }
+    
+    users[email].role = newRole;
+    localStorage.setItem('system_users', JSON.stringify(users));
+    console.log('👑 Papel do usuário alterado:', email, '->', newRole);
+    return true;
   }
 }
 
