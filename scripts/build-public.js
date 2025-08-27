@@ -30,10 +30,33 @@ for(const item of itemsToCopy){
   }
 }
 
-// 404 para GitHub Pages
+// 404 personalizado para GitHub Pages e Netlify
 const notFound = path.join('public','404.html');
 if(!fs.existsSync(notFound)){
-  fs.writeFileSync(notFound, '<!doctype html><meta charset="utf-8"><title>404</title><p>Recurso não encontrado.</p>');
+  const html404 = `<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>404 - Página Não Encontrada | Sistema Disciplinar</title>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif;margin:0;padding:40px;text-align:center;background:#f5f5f5}
+    .container{max-width:400px;margin:0 auto;background:white;padding:40px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+    h1{color:#d73527;margin-bottom:20px}
+    p{color:#666;margin-bottom:30px}
+    a{color:#0078d4;text-decoration:none;padding:12px 24px;background:#f0f8ff;border-radius:6px;display:inline-block}
+    a:hover{background:#e6f3ff}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>404</h1>
+    <p>Página não encontrada</p>
+    <a href="/">← Voltar ao Dashboard</a>
+  </div>
+</body>
+</html>`;
+  fs.writeFileSync(notFound, html404);
 }
 
 // Varredura para bloquear arquivos indevidos no build

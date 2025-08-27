@@ -1,0 +1,52 @@
+[build]
+  # Comando para build
+  command = "npm run build"
+  # Diretório de publicação
+  publish = "public"
+
+[build.environment]
+  # Versão do Node.js
+  NODE_VERSION = "18"
+
+# Redirects para SPA (Single Page Application)
+[[redirects]]
+  from = "/pages/*"
+  to = "/pages/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/assets/*"  
+  to = "/assets/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/components/*"
+  to = "/components/:splat"
+  status = 200
+
+# Fallback para 404
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Headers de segurança
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Headers específicos para arquivos estáticos
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Headers para HTML (sem cache agressivo)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

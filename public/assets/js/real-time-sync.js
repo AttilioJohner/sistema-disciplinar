@@ -92,7 +92,7 @@ class RealTimeSync {
             
             const response = await fetch(`${this.gitHub.apiUrl}/repos/${this.gitHub.owner}/${this.gitHub.repo}/commits/main`, {
                 headers: {
-                    'Authorization': `Bearer ${this.gitHub.token}`,
+                    'Authorization': `token ${this.gitHub.token}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
@@ -141,9 +141,11 @@ class RealTimeSync {
         }
 
         try {
+            console.log('🔍 Debug - Token completo:', this.gitHub.token);
+            console.log('🔍 Debug - Token length:', this.gitHub.token?.length);
             const response = await fetch(`${this.gitHub.apiUrl}/repos/${this.gitHub.owner}/${this.gitHub.repo}/commits/main`, {
                 headers: {
-                    'Authorization': `Bearer ${this.gitHub.token}`,
+                    'Authorization': `token ${this.gitHub.token}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
