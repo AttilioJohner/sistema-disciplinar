@@ -191,6 +191,16 @@ class RealTimeSync {
                         author: commit.committer.name
                     });
 
+                    // Disparar evento global para todos os componentes
+                    window.dispatchEvent(new CustomEvent('dadosSincronizados', {
+                        detail: {
+                            tipo: 'sincronizacao_remota',
+                            dados: dadosAtualizados,
+                            autor: commit.committer.name,
+                            commit: commit.sha
+                        }
+                    }));
+
                     // Mostrar notificação para o usuário
                     this.showSyncNotification(commit);
                 }

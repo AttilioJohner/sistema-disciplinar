@@ -264,6 +264,11 @@
     const payload = sanitizeData(data, { forCreate: true });
     await ref.set(payload, { merge: false });
     debugLog('CREATE ok', { id: docId, payload });
+    
+    // Disparar evento de atualização
+    window.dispatchEvent(new CustomEvent('dadosAtualizados', { 
+      detail: { tipo: 'aluno_criado', dados: payload, id: docId } 
+    }));
   }
 
   async function updateAluno(docId, data) {
@@ -844,10 +849,19 @@
   // Listener para mudanças remotas
   window.addEventListener('dadosSincronizados', function(event) {
     console.log('🔄 Dados sincronizados detectados - recarregando alunos');
-    if (event.detail && event.detail.alunos) {
-      // Recarregar lista de alunos
+    
+    // Limpar cache para forçar reload completo
+    alunosCache = [];
+    
+    // Sempre recarregar lista quando há sincronização
+    setTimeout(() => {
       startLiveList();
-    }
+    }, 100);
+    
+    // Force update statistics as well
+    setTimeout(() => {
+      updateStatistics();
+    }, 200);
   });
 
   // Listener para mudanças de dados

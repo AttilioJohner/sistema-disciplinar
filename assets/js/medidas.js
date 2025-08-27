@@ -1515,6 +1515,10 @@
     window.addEventListener('dadosSincronizados', function(event) {
       console.log('📡 Dados sincronizados detectados - recarregando medidas disciplinares');
       
+      // Invalidar caches primeiro
+      cacheRegistros = { data: null, timestamp: 0 };
+      cacheEstatisticas = { data: null, timestamp: 0 };
+      
       // Recarregar estatísticas
       setTimeout(() => {
         carregarEstatisticasMedidas();
@@ -1534,6 +1538,13 @@
           }
         }, 1500);
       }
+      
+      // Recarregar turmas e alunos se necessário
+      setTimeout(() => {
+        if (typeof carregarTurmas === 'function') {
+          carregarTurmas();
+        }
+      }, 2000);
     });
 
     // Modificar função de salvar para usar GitHub
