@@ -16,7 +16,8 @@
       "WebSearch",
       "WebFetch(domain:api.github.com)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:attiliojohner.github.io)"
+      "WebFetch(domain:attiliojohner.github.io)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
