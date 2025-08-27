@@ -281,3 +281,11 @@
     });
   });
 </script>
+<script src="assets/js/auth-utils.js" defer></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof requireAuth === 'function') requireAuth();
+  });
+</script>
+</body>
+</html>
