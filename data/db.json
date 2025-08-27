@@ -3871,6 +3871,18 @@
       "cpf_responsavel": "",
       "email": "responsavel352@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
+    },
+    "0101": {
+      "codigo": "0101",
+      "nome_completo": "aluno teste",
+      "turma": "1B",
+      "status": "ativo",
+      "created_at": "2025-08-27T12:36:30.498Z",
+      "updated_at": "2025-08-27T12:36:30.498Z",
+      "createdAt": "2025-08-27T12:36:30.498Z",
+      "updatedAt": "2025-08-27T12:36:30.498Z",
+      "id": "0101",
+      "atualizadoEm": "2025-08-27T12:36:30.499Z"
     }
   },
   "medidas_disciplinares": {
@@ -6132,34 +6144,5 @@
     }
   },
   "frequencia_diaria": {},
-  "usuarios": {
-    "admin": {
-      "id": "admin",
-      "email": "admin@escola.com",
-      "nome": "Administrador",
-      "senha": "admin123",
-      "perfil": "administrador",
-      "ativo": true,
-      "criadoEm": "2025-08-19T10:00:00.000Z"
-    }
-  },
-  "configuracoes": {
-    "escola": {
-      "nome": "Escola Municipal",
-      "endereco": "Rua da Escola, 123",
-      "telefone": "(11) 1234-5678",
-      "email": "contato@escola.com"
-    },
-    "sistema": {
-      "versao": "1.0.0",
-      "manutencao": false,
-      "backup_automatico": true
-    }
-  },
-  "metadata": {
-    "ultimo_backup": "2025-08-20T19:58:47.820Z",
-    "versao_db": "1.0.0",
-    "total_registros": 352,
-    "total_medidas": 87
-  }
+  "timestamp": "2025-08-27T12:38:47.866Z"
 }
