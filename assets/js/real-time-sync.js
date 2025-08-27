@@ -156,7 +156,12 @@ class RealTimeSync {
                     console.log('🔄 Mudanças detectadas no repositório');
                     console.log(`📍 ${this.lastCommitSha.substring(0, 7)} → ${currentSha.substring(0, 7)}`);
                     
-                    await this.handleRemoteChanges(commit);
+                    // Verificar se não é mudança própria (evitar loop)
+                    if (!this.isUpdating) {
+                        await this.handleRemoteChanges(commit);
+                    } else {
+                        console.log('⏭️ Ignorando mudança própria para evitar loop');
+                    }
                 }
 
                 this.lastCommitSha = currentSha;
@@ -323,10 +328,12 @@ class RealTimeSync {
         
         if (event.type === 'local_change') {
             console.log('📤 Processando mudança local para sincronização');
-            // A mudança já foi salva pelo sistema GitHub, apenas aguardar
+            // A mudança já foi salva pelo sistema GitHub, aguardar um pouco mais
             setTimeout(() => {
-                this.checkForChanges();
-            }, 2000);
+                if (!this.isUpdating) {
+                    this.checkForChanges();
+                }
+            }, 5000); // Aumentar delay para evitar conflitos
         }
     }
 
