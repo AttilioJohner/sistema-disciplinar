@@ -27,7 +27,20 @@ class GitHubDataSync {
     
     // Inicializar autenticação
     initAuth() {
+        // Tentar token do usuário primeiro
         this.token = localStorage.getItem('github_token');
+        
+        // Se não tiver token individual, usar token compartilhado da equipe
+        if (!this.token) {
+            // TOKEN COMPARTILHADO - substitua pelo seu token real
+            this.token = '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'; // Token compartilhado da equipe
+            
+            // Se ainda não tiver token válido, desabilitar
+            if (this.token === 'COLE_SEU_TOKEN_AQUI') {
+                this.token = null;
+            }
+        }
+        
         this.userEmail = localStorage.getItem('github_email') || 'sistema@escola.edu.br';
         this.userName = localStorage.getItem('github_name') || 'Sistema Disciplinar';
         
