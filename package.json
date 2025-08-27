@@ -1,19 +1,14 @@
 {
-  "name": "sistema-disciplinar-revisado",
+  "name": "sistema-disciplinar",
   "version": "1.0.0",
-  "description": "Dashboard para gestão disciplinar escolar: alunos, medidas, relatórios e análises.",
-  "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "dev": "http-server public -p 5173 -c-1",
+    "build": "node scripts/build-public.js",
+    "clean": "rimraf public && mkdir public"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "private": "true",
   "devDependencies": {
-    "jest": "^29.7.0"
-  },
-  "dependencies": {
-    "express": "^4.19.2"
+    "http-server": "^14.1.1",
+    "rimraf": "^6.0.1"
   }
 }
