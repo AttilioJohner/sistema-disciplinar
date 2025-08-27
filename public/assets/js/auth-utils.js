@@ -6,12 +6,28 @@
 
   async function getClaims(user) {
     if (!user) return { roles: [] };
-    const res = await user.getIdTokenResult(true);
-    const token = res.claims || {};
-    let roles = [];
-    if (Array.isArray(token.roles)) roles = token.roles;
-    else if (token.roles && typeof token.roles === 'object') roles = Object.keys(token.roles).filter(k => token.roles[k]);
-    return { roles, raw: token };
+    
+    // Sistema Local - usar role diretamente
+    if (user.role && typeof user.role === 'string') {
+      return { roles: [user.role], raw: { role: user.role } };
+    }
+    
+    // Firebase - usar getIdTokenResult
+    if (user.getIdTokenResult && typeof user.getIdTokenResult === 'function') {
+      try {
+        const res = await user.getIdTokenResult(true);
+        const token = res.claims || {};
+        let roles = [];
+        if (Array.isArray(token.roles)) roles = token.roles;
+        else if (token.roles && typeof token.roles === 'object') roles = Object.keys(token.roles).filter(k => token.roles[k]);
+        return { roles, raw: token };
+      } catch (error) {
+        console.warn('Erro ao obter claims do Firebase:', error);
+      }
+    }
+    
+    // Fallback
+    return { roles: ['user'], raw: {} };
   }
 
   function hasRole(claims, role) {
@@ -27,19 +43,45 @@
   }
 
   function requireAuth() {
-    firebase.auth().onAuthStateChanged(async (user) => {
-      if (!user) {
-        if (!location.pathname.endsWith('/login.html')) location.href = loginUrl();
-        return;
-      }
-      const claims = await getClaims(user);
-      window.__USER__ = { user, claims };
-      applyRoleGates(claims);
-    });
+    // Verificar se existe sistema local primeiro
+    if (window.localAuth && typeof window.localAuth.onAuthStateChanged === 'function') {
+      window.localAuth.onAuthStateChanged(async (user) => {
+        if (!user) {
+          if (!location.pathname.endsWith('/login.html')) location.href = loginUrl();
+          return;
+        }
+        const claims = await getClaims(user);
+        window.__USER__ = { user, claims };
+        applyRoleGates(claims);
+      });
+    }
+    // Fallback para Firebase se disponível
+    else if (typeof firebase !== 'undefined' && firebase.auth) {
+      firebase.auth().onAuthStateChanged(async (user) => {
+        if (!user) {
+          if (!location.pathname.endsWith('/login.html')) location.href = loginUrl();
+          return;
+        }
+        const claims = await getClaims(user);
+        window.__USER__ = { user, claims };
+        applyRoleGates(claims);
+      });
+    }
+    // Sem sistema de auth disponível
+    else {
+      console.warn('⚠️ Nenhum sistema de autenticação encontrado');
+    }
   }
 
   async function signOut() {
-    await firebase.auth().signOut();
+    // Logout do sistema local
+    if (window.localAuth && typeof window.localAuth.logout === 'function') {
+      await window.localAuth.logout();
+    }
+    // Logout do Firebase se disponível
+    else if (typeof firebase !== 'undefined' && firebase.auth) {
+      await firebase.auth().signOut();
+    }
     location.href = loginUrl();
   }
 
