@@ -172,7 +172,9 @@
           nascimento: data.nascimento || '',
           responsavel: data.responsavel || '',
           cpf: data.cpf_responsavel || data.cpf || '',
-          telefone: data.telefone_responsavel || data.telefone || '',
+          telefone: data.telefone || data.telefone_responsavel || '',
+          telefone1: data.telefone1 || data.telefone || '',
+          telefone2: data.telefone2 || '',
           email: data.email || '',
           ...data // Manter campos originais também
         };
@@ -464,7 +466,7 @@
               '<td>' + escapeHtml(a.turma || '') + '</td>' +
               '<td class="' + statusClass + '">' + statusIcon + ' ' + escapeHtml(a.status || 'ativo') + '</td>' +
               '<td>' + escapeHtml(a.responsavel || '') + '</td>' +
-              '<td>' + escapeHtml(a.telefone1 || '') + '</td>' +
+              '<td>' + escapeHtml(a.telefone1 || a.telefone || '') + '</td>' +
               '<td>' + escapeHtml(a.telefone2 || '') + '</td>' +
               '<td style="white-space:nowrap">' +
                 '<button type="button" class="btn btn-small" data-action="edit" data-id="' + encodeURIComponent(a.id) + '">Editar</button>' +
@@ -492,7 +494,8 @@
     if (data.nome != null) data.nome = cleanSpaces(data.nome);
     if (data.turma != null) data.turma = cleanSpaces(data.turma).toUpperCase();
     if (data.cpf != null) data.cpf = data.cpf.replace(/\D/g, '');
-    if (data.telefone != null) data.telefone = data.telefone.trim();
+    if (data.telefone1 != null) data.telefone1 = data.telefone1.trim();
+    if (data.telefone2 != null) data.telefone2 = data.telefone2.trim();
     if (data.email != null) data.email = data.email.trim().toLowerCase();
     return data;
   }
@@ -507,7 +510,7 @@
       turma: data.turma || '',
       status: data.status || 'ativo',
       responsavel: data.responsavel || '',
-      telefone1: data.telefone1 || '',
+      telefone1: data.telefone1 || data.telefone || '',
       telefone2: data.telefone2 || ''
     };
     
