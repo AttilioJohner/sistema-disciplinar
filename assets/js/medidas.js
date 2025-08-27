@@ -1502,4 +1502,107 @@
   // Expor funções globais
   window.carregarRegistrosRecentes = carregarRegistrosRecentes;
   window.carregarEstatisticasMedidas = carregarEstatisticasMedidas;
+
+  // ========================================
+  // INTEGRAÇÃO COM SINCRONIZAÇÃO EM TEMPO REAL
+  // ========================================
+  
+  // Integrar com sistema de sincronização GitHub
+  function integrarSincronizacao() {
+    console.log('🔄 Integrando medidas disciplinares com sincronização em tempo real');
+
+    // Listener para dados sincronizados do GitHub
+    window.addEventListener('dadosSincronizados', function(event) {
+      console.log('📡 Dados sincronizados detectados - recarregando medidas disciplinares');
+      
+      // Recarregar estatísticas
+      setTimeout(() => {
+        carregarEstatisticasMedidas();
+      }, 500);
+
+      // Recarregar registros recentes
+      setTimeout(() => {
+        carregarRegistrosRecentes();
+      }, 1000);
+
+      // Se há uma ficha disciplinar aberta, recarregar
+      const alunoConsulta = document.getElementById('alunoConsulta');
+      if (alunoConsulta && alunoConsulta.value) {
+        setTimeout(() => {
+          if (typeof carregarFichaDisciplinar === 'function') {
+            carregarFichaDisciplinar();
+          }
+        }, 1500);
+      }
+    });
+
+    // Modificar função de salvar para usar GitHub
+    const originalCriarMedida = criarMedida;
+    criarMedida = async function(data) {
+      try {
+        const resultado = await originalCriarMedida(data);
+        
+        // Sincronizar com GitHub se disponível
+        if (window.gitHubSync && window.gitHubSync.podeEscrever()) {
+          try {
+            // Obter dados completos atualizados
+            const dadosCompletos = await obterDadosCompletos();
+            await window.gitHubSync.salvarDadosAutomatico(
+              dadosCompletos, 
+              'Adicionar medida disciplinar',
+              `Aluno: ${data.nome_aluno || data.codigo_aluno}\nTipo: ${data.tipo_medida}\nData: ${data.data}`
+            );
+          } catch (syncError) {
+            console.warn('Aviso: Erro na sincronização automática:', syncError.message);
+            // Não falhar a operação principal por erro de sync
+          }
+        }
+
+        return resultado;
+      } catch (error) {
+        console.error('Erro ao criar medida:', error);
+        throw error;
+      }
+    };
+  }
+
+  // Obter dados completos para sincronização
+  async function obterDadosCompletos() {
+    try {
+      const dadosCompletos = {
+        alunos: {},
+        medidas_disciplinares: {},
+        frequencia_diaria: {},
+        timestamp: new Date().toISOString()
+      };
+
+      // Carregar alunos
+      const alunosSnap = await window.db.collection('alunos').get();
+      alunosSnap.forEach(doc => {
+        dadosCompletos.alunos[doc.id] = {
+          id: doc.id,
+          ...doc.data()
+        };
+      });
+
+      // Carregar medidas disciplinares
+      const medidasSnap = await window.db.collection('medidas_disciplinares').get();
+      medidasSnap.forEach(doc => {
+        dadosCompletos.medidas_disciplinares[doc.id] = {
+          id: doc.id,
+          ...doc.data()
+        };
+      });
+
+      return dadosCompletos;
+    } catch (error) {
+      console.error('Erro ao obter dados completos:', error);
+      throw error;
+    }
+  }
+
+  // Inicializar integração quando estiver pronto
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(integrarSincronizacao, 2000);
+  });
 })();

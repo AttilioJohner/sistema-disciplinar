@@ -839,4 +839,22 @@
 
   // LIMPEZA
   window.addEventListener('beforeunload', function(){ stopLiveList(); });
+
+  // SINCRONIZAÇÃO EM TEMPO REAL
+  // Listener para mudanças remotas
+  window.addEventListener('dadosSincronizados', function(event) {
+    console.log('🔄 Dados sincronizados detectados - recarregando alunos');
+    if (event.detail && event.detail.alunos) {
+      // Recarregar lista de alunos
+      startLiveList();
+    }
+  });
+
+  // Listener para mudanças de dados
+  window.addEventListener('dadosAtualizados', function(event) {
+    console.log('📡 Dados atualizados localmente - sincronizando com GitHub');
+    if (window.gitHubSync && window.gitHubSync.podeEscrever()) {
+      // A sincronização já é feita automaticamente pelo sistema GitHub
+    }
+  });
 })();
