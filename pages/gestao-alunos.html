@@ -131,32 +131,23 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="fld-nasc">Data de Nascimento</label>
-              <input class="form-input" id="fld-nasc" name="nascimento" type="date" />
-            </div>
-
-            <div class="form-group">
               <label class="form-label" for="fld-resp">Responsável</label>
               <input class="form-input" id="fld-resp" name="responsavel" placeholder="Nome do responsável" />
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="fld-cpf">CPF do Responsável</label>
-              <input class="form-input" id="fld-cpf" name="cpf" placeholder="000.000.000-00" />
+              <label class="form-label" for="fld-tel1">Telefone 1</label>
+              <input class="form-input" id="fld-tel1" name="telefone1" placeholder="+5566999999999" />
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="fld-tel">Telefone do Responsável</label>
-              <input class="form-input" id="fld-tel" name="telefone" placeholder="(11) 99999-9999" />
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="fld-email">Email do Responsável</label>
-              <input class="form-input" id="fld-email" name="email" type="email" placeholder="email@exemplo.com" />
+              <label class="form-label" for="fld-tel2">Telefone 2</label>
+              <input class="form-input" id="fld-tel2" name="telefone2" placeholder="+5566888888888" />
             </div>
 
             <div class="form-actions">
               <button id="btnCancelar" type="button" class="btn btn-secondary">🔄 Limpar</button>
+              <button id="btnExcluir" type="button" class="btn btn-danger" style="display: none;">🗑️ Excluir</button>
               <button id="btnSalvar" type="submit" class="btn btn-success">✅ Salvar</button>
             </div>
           </form>
@@ -216,12 +207,10 @@
                   <th>ID</th>
                   <th>Nome</th>
                   <th>Turma</th>
-                  <th>Turno</th>
                   <th>Status</th>
-                  <th>Nascimento</th>
                   <th>Responsável</th>
-                  <th>CPF</th>
-                  <th>Telefone</th>
+                  <th>Telefone 1</th>
+                  <th>Telefone 2</th>
                   <th>Ações</th>
                 </tr>
               </thead>

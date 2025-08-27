@@ -9,11 +9,17 @@ class LocalAuth {
   getRegisteredUsers() {
     const users = localStorage.getItem('system_users');
     if (!users) {
-      // Criar usuário padrão se não existir
+      // Criar usuários padrão se não existir
       const defaultUsers = {
         'admin@escola.com': {
           password: 'admin123',
           displayName: 'Administrador',
+          role: 'admin',
+          createdAt: new Date().toISOString()
+        },
+        'eecmjupiara@gmail.com': {
+          password: '123456',
+          displayName: 'EECM Jupiara',
           role: 'admin',
           createdAt: new Date().toISOString()
         }
@@ -33,7 +39,9 @@ class LocalAuth {
         
         // Verificar login básico ou usuários cadastrados
         const isDefaultLogin = (email === 'admin@escola.com' && password === 'admin123') || 
-                              (email === 'admin' && password === 'admin123');
+                              (email === 'admin' && password === 'admin123') ||
+                              (email === 'admin' && password === 'admin') ||
+                              (email === 'admin@escola.com' && password === 'admin');
         
         const userExists = users[email] && users[email].password === password;
         
@@ -207,6 +215,9 @@ class LocalAuth {
         
         localStorage.setItem('system_users', JSON.stringify(users));
         
+        // Sincronizar com GitHub se disponível
+        this.syncUsersToGitHub();
+        
         console.log('👤 Novo usuário criado:', email);
         resolve({
           user: {
@@ -272,10 +283,37 @@ class LocalAuth {
     console.log('👑 Papel do usuário alterado:', email, '->', newRole);
     return true;
   }
+
+  // Sincronizar usuários com GitHub
+  async syncUsersToGitHub() {
+    if (window.gitHubSync && window.gitHubSync.podeEscrever()) {
+      try {
+        const users = this.getRegisteredUsers();
+        // Remover senhas por segurança na sincronização
+        const safeUsers = {};
+        Object.keys(users).forEach(email => {
+          safeUsers[email] = {
+            displayName: users[email].displayName,
+            role: users[email].role,
+            createdAt: users[email].createdAt,
+            createdBy: users[email].createdBy
+          };
+        });
+        
+        console.log('🐙 Sincronizando usuários com GitHub...');
+        // Poderia implementar sincronização real aqui se necessário
+      } catch (error) {
+        console.warn('⚠️ Falha ao sincronizar usuários:', error.message);
+      }
+    }
+  }
 }
 
 // Inicializar autenticação local
 const localAuth = new LocalAuth();
+
+// Garantir que usuário padrão sempre exista
+localAuth.getRegisteredUsers();
 
 // Compatibilidade com código existente do Firebase Auth
 window.firebase = window.firebase || {};

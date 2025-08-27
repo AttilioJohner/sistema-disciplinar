@@ -80,6 +80,7 @@
     els.tbody = document.getElementById('alunosTableBody');
     els.btnSalvar = document.getElementById('btnSalvar') || queryByType(els.form, 'submit');
     els.btnCancelar = document.getElementById('btnCancelar');
+    els.btnExcluir = document.getElementById('btnExcluir');
     els.busca = document.getElementById('busca');
     els.total = document.getElementById('totalAlunos');
     els.toast = document.getElementById('toast');
@@ -97,6 +98,14 @@
       els.btnCancelar.addEventListener('click', (e) => {
         e.preventDefault();
         resetForm();
+      });
+    }
+    if (els.btnExcluir) {
+      els.btnExcluir.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (editingId) {
+          await onDelete(editingId);
+        }
       });
     }
     if (els.busca) {
@@ -163,7 +172,7 @@
           nascimento: data.nascimento || '',
           responsavel: data.responsavel || '',
           cpf: data.cpf_responsavel || data.cpf || '',
-          telefone: data.telefone || data.telefone_responsavel || '',
+          telefone: data.telefone_responsavel || data.telefone || '',
           email: data.email || '',
           ...data // Manter campos originais também
         };
@@ -451,14 +460,12 @@
           return (
             '<tr data-id="' + escapeHtml(a.id) + '">' +
               '<td>' + escapeHtml(a.codigo || a.id || '') + '</td>' +
-              '<td>' + escapeHtml(a.nome || '') + '</td>' +
+              '<td>' + escapeHtml(a.nome_completo || a.nome || '') + '</td>' +
               '<td>' + escapeHtml(a.turma || '') + '</td>' +
-              '<td>' + escapeHtml(a.turno || '') + '</td>' +
               '<td class="' + statusClass + '">' + statusIcon + ' ' + escapeHtml(a.status || 'ativo') + '</td>' +
-              '<td>' + escapeHtml(a.nascimento || '') + '</td>' +
               '<td>' + escapeHtml(a.responsavel || '') + '</td>' +
-              '<td>' + escapeHtml(a.cpf || '') + '</td>' +
-              '<td>' + escapeHtml(a.telefone || '') + '</td>' +
+              '<td>' + escapeHtml(a.telefone1 || '') + '</td>' +
+              '<td>' + escapeHtml(a.telefone2 || '') + '</td>' +
               '<td style="white-space:nowrap">' +
                 '<button type="button" class="btn btn-small" data-action="edit" data-id="' + encodeURIComponent(a.id) + '">Editar</button>' +
                 deleteButton +
@@ -492,12 +499,26 @@
 
   function fillForm(data) {
     if (!els.form) return;
-    for (const k in data) {
-      if (!Object.prototype.hasOwnProperty.call(data, k)) continue;
-      const v = data[k];
+    
+    // Mapear campos corretamente
+    const mappedData = {
+      id: data.codigo || data.id || '',
+      nome: data.nome_completo || data.nome || '',
+      turma: data.turma || '',
+      status: data.status || 'ativo',
+      responsavel: data.responsavel || '',
+      telefone1: data.telefone1 || '',
+      telefone2: data.telefone2 || ''
+    };
+    
+    for (const k in mappedData) {
+      if (!Object.prototype.hasOwnProperty.call(mappedData, k)) continue;
+      const v = mappedData[k];
       const input = els.form.querySelector('[name="' + cssEscape(k) + '"]');
       if (input) input.value = v == null ? '' : String(v);
     }
+    
+    debugLog('fillForm mapeado:', mappedData);
   }
 
   function resetForm() {
@@ -513,13 +534,15 @@
         idInput.disabled = true; // docId não muda
         idInput.classList.add('is-disabled');
       }
-      if (els.btnSalvar) els.btnSalvar.textContent = 'Atualizar';
+      if (els.btnSalvar) els.btnSalvar.textContent = '✅ Atualizar';
+      if (els.btnExcluir) els.btnExcluir.style.display = 'inline-block';
     } else {
       if (idInput) {
         idInput.disabled = false;
         idInput.classList.remove('is-disabled');
       }
-      if (els.btnSalvar) els.btnSalvar.textContent = 'Salvar';
+      if (els.btnSalvar) els.btnSalvar.textContent = '✅ Salvar';
+      if (els.btnExcluir) els.btnExcluir.style.display = 'none';
     }
   }
 
@@ -536,18 +559,41 @@
 
   function sanitizeData(data, opts) {
     opts = opts || {}; var forCreate = !!opts.forCreate; var forUpdate = !!opts.forUpdate;
-    var allowed = ['id', 'nome', 'turma', 'status', 'nascimento', 'responsavel', 'cpf', 'telefone', 'email'];
+    
+    // Mapear campos do formulário para a estrutura do banco
     var out = {};
-    for (var i = 0; i < allowed.length; i++) {
-      var k = allowed[i];
-      if (data[k] != null && data[k] !== '') out[k] = data[k];
-    }
+    
+    // Campos obrigatórios
+    if (data.id) out.codigo = String(data.id).trim();
+    if (data.nome) out.nome_completo = String(data.nome).trim();
+    if (data.turma) out.turma = String(data.turma).trim();
+    
+    // Campos opcionais
+    if (data.status) out.status = String(data.status).trim();
+    if (data.responsavel) out.responsavel = String(data.responsavel).trim();
+    if (data.telefone1) out.telefone1 = String(data.telefone1).trim();
+    if (data.telefone2) out.telefone2 = String(data.telefone2).trim();
+    
+    // Criar campo combinado para compatibilidade
+    const telefones = [data.telefone1, data.telefone2].filter(t => t && t.trim()).join(' / ');
+    if (telefones) out.telefone_responsavel = telefones;
+    
     // Garantir que status seja sempre definido
     if (!out.status) out.status = 'ativo';
     
     var ts = new Date().toISOString();
-    if (forCreate) { out.createdAt = ts; out.updatedAt = ts; }
-    if (forUpdate) { out.updatedAt = ts; }
+    if (forCreate) { 
+      out.created_at = ts; 
+      out.updated_at = ts;
+      out.createdAt = ts; // compatibilidade
+      out.updatedAt = ts; // compatibilidade
+    }
+    if (forUpdate) { 
+      out.updated_at = ts;
+      out.updatedAt = ts; // compatibilidade
+    }
+    
+    debugLog('sanitizeData mapeado:', out);
     return out;
   }
 
@@ -616,12 +662,21 @@
           const snap = await db.collection(COLLECTION).get();
           const rows = snap.docs.map(function(d){ return { id: d.id, ...d.data() }; });
           
+          // Debug: verificar estrutura dos telefones
+          if (rows.length > 0) {
+            console.log('📱 Debug telefones - Primeiro aluno:', {
+              telefone1: rows[0].telefone1,
+              telefone2: rows[0].telefone2,
+              telefone_responsavel: rows[0].telefone_responsavel,
+              campos_disponiveis: Object.keys(rows[0]).filter(k => k.includes('tel'))
+            });
+          }
+          
           // Ordenar por nome no JavaScript e limitar a 25
           rows.sort((a, b) => (a.nome_completo || a.nome || '').localeCompare(b.nome_completo || b.nome || ''));
           const limitedRows = rows.slice(0, 25);
           
           console.log('readOnce ->', limitedRows.length, 'doc(s)');
-          console.dir(limitedRows);
           alunosCache = limitedRows;
           renderTable();
           return limitedRows;

@@ -119,6 +119,41 @@ body {
     transform: scale(1.05);
 }
 
+/* Botão Logout */
+.btn-logout {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #d13438, #c13438);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(209, 52, 56, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 70px;
+    justify-content: center;
+}
+
+.btn-logout:hover {
+    background: linear-gradient(135deg, #c13438, #b12832);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(209, 52, 56, 0.3);
+}
+
+.btn-logout:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(209, 52, 56, 0.2);
+}
+
+.btn-logout:before {
+    content: "🚪";
+    font-size: 12px;
+}
+
 /* ============================================
    LAYOUT PRINCIPAL
 ============================================ */

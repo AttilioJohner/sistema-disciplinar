@@ -862,65 +862,68 @@
             }
         }
 
-        // Função de inicialização específica
+        // Função de inicialização otimizada com carregamento progressivo
         async function inicializarMedidasDisciplinares() {
             try {
-                showMessage('Carregando módulo de medidas...', 'loading');
+                showMessage('Carregando módulo de medidas...', 'success');
                 
-                // Definir data atual no formulário de medidas
+                // Definir data atual no formulário de medidas (operação rápida)
                 const hoje = new Date().toISOString().split('T')[0];
                 const dataMedida = document.getElementById('dataMedida');
                 if (dataMedida) {
                     dataMedida.value = hoje;
                 }
                 
-                // Aguardar Sistema Local
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                if (window.localDb.loaded) {
-                    await carregarSelectsAlunos();
-                    await carregarTurmasEAlunos();
-                    
-                    // Inicializar notas disciplinares para alunos que não possuem
-                    try {
-                        console.log('Verificando notas disciplinares...');
-                        await inicializarNotasDisciplinares();
-                    } catch (error) {
-                        console.log('Erro ao inicializar notas disciplinares:', error);
-                    }
-                    
-                    if (typeof carregarRegistrosRecentes === 'function') {
-                        console.log('📋 Carregando registros recentes...');
-                        await carregarRegistrosRecentes();
-                    } else if (typeof window.carregarRegistrosRecentes === 'function') {
-                        console.log('📋 Carregando registros recentes (window)...');
-                        await window.carregarRegistrosRecentes();
-                    } else {
-                        console.warn('❌ Função carregarRegistrosRecentes não encontrada');
-                    }
-                    if (typeof carregarEstatisticasMedidas === 'function') {
-                        console.log('📊 Carregando estatísticas...');
-                        await carregarEstatisticasMedidas();
-                    } else if (typeof window.carregarEstatisticasMedidas === 'function') {
-                        console.log('📊 Carregando estatísticas (window)...');
-                        await window.carregarEstatisticasMedidas();
-                    } else {
-                        console.warn('❌ Função carregarEstatisticasMedidas não encontrada');
-                    }
-
-                    // Carregar alertas
-                    if (typeof carregarAlertas === 'function') {
-                        console.log('🚨 Carregando alertas...');
-                        await carregarAlertas();
-                    } else {
-                        console.warn('❌ Função carregarAlertas não encontrada');
-                    }
-
-                    showMessage('✅ Módulo de medidas carregado!', 'success');
-                } else {
-                    showMessage('⚠️ Sistema Local não conectado - funcionalidade limitada', 'error');
-                    carregarDadosDemoMedidas();
+                // Verificar se sistema está pronto (sem espera desnecessária)
+                if (!window.localDb.loaded) {
+                    showMessage('⚠️ Sistema Local não conectado - aguardando...', 'warning');
+                    await new Promise(resolve => {
+                        const check = setInterval(() => {
+                            if (window.localDb.loaded) {
+                                clearInterval(check);
+                                resolve();
+                            }
+                        }, 200);
+                    });
                 }
+                
+                // ETAPA 1: Carregamento essencial (rápido)
+                showMessage('📋 Carregando interface básica...', 'info');
+                await Promise.all([
+                    carregarSelectsAlunos(),
+                    carregarTurmasEAlunos()
+                ]);
+                
+                showMessage('✅ Interface pronta! Carregando dados em background...', 'success');
+                
+                // ETAPA 2: Carregamento em background (não bloqueia)
+                setTimeout(async () => {
+                    try {
+                        // Carregar estatísticas em background
+                        if (typeof carregarEstatisticasMedidas === 'function') {
+                            await carregarEstatisticasMedidas();
+                        } else if (typeof window.carregarEstatisticasMedidas === 'function') {
+                            await window.carregarEstatisticasMedidas();
+                        }
+                        
+                        // Carregar registros recentes em background
+                        if (typeof carregarRegistrosRecentes === 'function') {
+                            await carregarRegistrosRecentes();
+                        } else if (typeof window.carregarRegistrosRecentes === 'function') {
+                            await window.carregarRegistrosRecentes();
+                        }
+                        
+                        // Carregar alertas em background
+                        if (typeof carregarAlertas === 'function') {
+                            await carregarAlertas();
+                        }
+                        
+                        console.log('✅ Carregamento completo finalizado');
+                    } catch (error) {
+                        console.warn('Erro no carregamento em background:', error);
+                    }
+                }, 100);
+                
             } catch (error) {
                 console.error('Erro ao inicializar medidas:', error);
                 showMessage('Erro ao carregar módulo de medidas', 'error');

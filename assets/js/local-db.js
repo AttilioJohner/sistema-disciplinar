@@ -8,11 +8,33 @@ class LocalDatabase {
       : 'https://raw.githubusercontent.com/AttilioJohner/sistema-disciplinar-revisado/main/data/db.json';
   }
 
-  // Carregar dados do arquivo JSON
+  // Carregar dados do localStorage primeiro, depois do arquivo JSON como backup
   async loadData() {
     try {
       console.log('🔄 Carregando banco de dados local...');
       
+      // Primeiro tenta carregar do localStorage
+      const localData = localStorage.getItem('db');
+      if (localData) {
+        try {
+          this.data = JSON.parse(localData);
+          this.loaded = true;
+          
+          console.log('✅ Banco de dados local carregado do localStorage:', {
+            alunos: Object.keys(this.data.alunos || {}).length,
+            medidas: (this.data.medidas || this.data.medidas_disciplinares || {}).length || Object.keys(this.data.medidas_disciplinares || {}).length,
+            frequencia: Object.keys(this.data.frequencia || this.data.frequencia_diaria || {}).length
+          });
+          
+          return this.data;
+        } catch (parseError) {
+          console.warn('⚠️ Erro ao parsear dados do localStorage:', parseError.message);
+          localStorage.removeItem('db');
+        }
+      }
+      
+      // Se não há dados no localStorage, carrega do arquivo remoto
+      console.log('📡 Carregando dados iniciais do arquivo remoto...');
       const response = await fetch(this.baseUrl);
       if (!response.ok) {
         throw new Error(`Erro ao carregar dados: ${response.status}`);
@@ -21,11 +43,14 @@ class LocalDatabase {
       this.data = await response.json();
       this.loaded = true;
       
-      console.log('✅ Banco de dados local carregado:', {
+      console.log('✅ Banco de dados local carregado do arquivo remoto:', {
         alunos: Object.keys(this.data.alunos || {}).length,
         medidas: Object.keys(this.data.medidas_disciplinares || {}).length,
         frequencia: Object.keys(this.data.frequencia_diaria || {}).length
       });
+      
+      // Salva no localStorage para próxima vez
+      await this.saveData();
       
       return this.data;
     } catch (error) {
@@ -64,11 +89,27 @@ class LocalDatabase {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
   }
 
-  // Salvar dados (simulação - em produção seria read-only)
+  // Salvar dados no localStorage
   async saveData() {
-    console.log('💾 Dados seriam salvos:', this.data);
-    // Em um sistema real, enviaria para GitHub via API ou webhook
-    return true;
+    try {
+      localStorage.setItem('db', JSON.stringify(this.data));
+      console.log('💾 Dados salvos no localStorage:', Object.keys(this.data).map(key => `${key}: ${Object.keys(this.data[key] || {}).length}`));
+      
+      // Se GitHub sync está configurado, também sincronizar
+      if (window.gitHubSync && window.gitHubSync.podeEscrever()) {
+        try {
+          await window.gitHubSync.sincronizarAutomatico();
+          console.log('🐙 Dados sincronizados com GitHub');
+        } catch (error) {
+          console.warn('⚠️ Falha na sincronização com GitHub:', error.message);
+        }
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('❌ Erro ao salvar dados:', error);
+      return false;
+    }
   }
 }
 
@@ -214,17 +255,22 @@ class LocalDocument {
 }
 
 class LocalQuery {
-  constructor(db, collectionName, filters = []) {
+  constructor(db, collectionName, filters = [], limitCount = null) {
     this.db = db;
     this.collectionName = collectionName;
     this.filters = filters;
+    this.limitCount = limitCount;
   }
 
   where(field, operator, value) {
     return new LocalQuery(this.db, this.collectionName, [
       ...this.filters,
       { field, operator, value }
-    ]);
+    ], this.limitCount);
+  }
+
+  limit(count) {
+    return new LocalQuery(this.db, this.collectionName, this.filters, count);
   }
 
   async get() {
@@ -261,6 +307,11 @@ class LocalQuery {
             return true;
         }
       });
+    }
+
+    // Aplicar limit se especificado
+    if (this.limitCount !== null && this.limitCount > 0) {
+      results = results.slice(0, this.limitCount);
     }
 
     return {
