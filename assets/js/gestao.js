@@ -865,10 +865,69 @@
   });
 
   // Listener para mudanças de dados
-  window.addEventListener('dadosAtualizados', function(event) {
+  window.addEventListener('dadosAtualizados', async function(event) {
     console.log('📡 Dados atualizados localmente - sincronizando com GitHub');
     if (window.gitHubSync && window.gitHubSync.podeEscrever()) {
-      // A sincronização já é feita automaticamente pelo sistema GitHub
+      try {
+        // Obter todos os dados atualizados
+        const dadosCompletos = await obterDadosCompletosGestao();
+        
+        // Sincronizar com GitHub
+        await window.gitHubSync.salvarDadosAutomatico(
+          dadosCompletos, 
+          `Atualização: ${event.detail.tipo}`,
+          `${event.detail.tipo} - ID: ${event.detail.id || 'N/A'}`
+        );
+        
+        console.log('✅ Dados sincronizados com GitHub após mudança local');
+      } catch (error) {
+        console.error('❌ Erro ao sincronizar com GitHub:', error);
+      }
     }
   });
+
+  // Função para obter dados completos para sincronização
+  async function obterDadosCompletosGestao() {
+    const dadosCompletos = {
+      alunos: {},
+      medidas_disciplinares: {},
+      frequencia_diaria: {},
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      // Carregar alunos
+      const alunosSnap = await window.db.collection('alunos').get();
+      alunosSnap.forEach(doc => {
+        dadosCompletos.alunos[doc.id] = doc.data();
+      });
+
+      // Carregar medidas disciplinares
+      const medidasSnap = await window.db.collection('medidas_disciplinares').get();
+      medidasSnap.forEach(doc => {
+        dadosCompletos.medidas_disciplinares[doc.id] = doc.data();
+      });
+
+      // Carregar frequência (se existir)
+      try {
+        const frequenciaSnap = await window.db.collection('frequencia_diaria').get();
+        frequenciaSnap.forEach(doc => {
+          dadosCompletos.frequencia_diaria[doc.id] = doc.data();
+        });
+      } catch (err) {
+        // Frequência pode não existir ainda
+      }
+
+      console.log('📦 Dados completos preparados:', {
+        alunos: Object.keys(dadosCompletos.alunos).length,
+        medidas: Object.keys(dadosCompletos.medidas_disciplinares).length,
+        frequencia: Object.keys(dadosCompletos.frequencia_diaria).length
+      });
+
+      return dadosCompletos;
+    } catch (error) {
+      console.error('❌ Erro ao obter dados completos:', error);
+      throw error;
+    }
+  }
 })();
