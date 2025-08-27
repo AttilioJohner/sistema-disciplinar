@@ -455,12 +455,30 @@ if (typeof module !== 'undefined' && module.exports) {
         }
     }
 
-    // Sincronizar dados automaticamente
+    // Sincronizar dados automaticamente (bidirecional)
     async sincronizarAutomatico() {
         try {
-            console.log('🔄 Sincronizando dados do GitHub...');
+            console.log('🔄 Sincronizando dados...');
             
-            // Carregar dados principais
+            // Se puder escrever, fazer upload dos dados locais
+            if (this.podeEscrever()) {
+                const dadosLocais = localStorage.getItem('db');
+                if (dadosLocais) {
+                    try {
+                        const dados = JSON.parse(dadosLocais);
+                        console.log('📤 Enviando dados locais para GitHub...');
+                        
+                        await this.salvarDadosGitHub('/data/db.json', dados);
+                        console.log('✅ Dados locais enviados para GitHub');
+                        return dados;
+                    } catch (error) {
+                        console.warn('⚠️ Erro ao enviar dados, baixando do GitHub:', error);
+                    }
+                }
+            }
+            
+            // Senão, carregar dados do GitHub
+            console.log('📥 Baixando dados do GitHub...');
             const response = await fetch(`${this.baseUrl}/data/db.json?t=${Date.now()}`);
             if (response.ok) {
                 const dadosGitHub = await response.json();
@@ -471,7 +489,7 @@ if (typeof module !== 'undefined' && module.exports) {
                     detail: dadosGitHub 
                 }));
                 
-                console.log('✅ Dados sincronizados automaticamente');
+                console.log('✅ Dados baixados do GitHub');
                 return dadosGitHub;
             }
             
