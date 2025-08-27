@@ -29,12 +29,20 @@ class RealTimeSync {
         // Aguardar sistema GitHub estar pronto
         await this.waitForGitHub();
         
-        // Verificar se há configuração
-        if (this.gitHub && this.gitHub.token) {
-            this.enabled = true;
-            console.log('✅ Sincronização automática habilitada');
+        // Verificar se há configuração e testar token
+        if (this.gitHub && this.gitHub.token && this.gitHub.token !== 'COLE_SEU_TOKEN_AQUI') {
+            // Testar se token funciona antes de habilitar
+            const tokenWorks = await this.testToken();
+            if (tokenWorks) {
+                this.enabled = true;
+                console.log('✅ Sincronização automática habilitada - token válido');
+            } else {
+                this.enabled = false;
+                console.log('❌ Token inválido - sincronização desabilitada');
+            }
         } else {
-            console.log('⚠️ Sincronização automática desabilitada - configure GitHub token');
+            this.enabled = false;
+            console.log('⚠️ Sincronização automática desabilitada - token não encontrado');
         }
         
         // Inicializar listeners
@@ -55,6 +63,25 @@ class RealTimeSync {
         }
         this.gitHub = window.gitHubSync;
         console.log('🔗 Real-time sync conectado ao GitHub:', this.gitHub?.token ? 'Token disponível' : 'Sem token');
+    }
+
+    // Testar se o token funciona
+    async testToken() {
+        try {
+            if (!this.gitHub || !this.gitHub.token) return false;
+            
+            const response = await fetch(`${this.gitHub.apiUrl}/repos/${this.gitHub.owner}/${this.gitHub.repo}`, {
+                headers: {
+                    'Authorization': `token ${this.gitHub.token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+            
+            return response.ok;
+        } catch (error) {
+            console.warn('Erro ao testar token:', error);
+            return false;
+        }
     }
 
     // Configurar listeners de eventos
