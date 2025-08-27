@@ -2,7 +2,7 @@
 class RealTimeSync {
     constructor() {
         this.enabled = false;
-        this.pollInterval = 30000; // 30 segundos
+        this.pollInterval = 3000; // 3 segundos para teste
         this.pollTimer = null;
         this.lastCommitSha = null;
         this.isUpdating = false;
@@ -122,7 +122,7 @@ class RealTimeSync {
             this.checkForChanges();
         }, this.pollInterval);
 
-        console.log(`🔁 Polling iniciado (${this.pollInterval / 1000}s)`);
+        console.log(`🔁 Polling iniciado a cada ${this.pollInterval / 1000}s`);
     }
 
     // Parar polling
@@ -360,7 +360,7 @@ class RealTimeSync {
 
     // Configurar sincronização
     configure(options) {
-        if (options.pollInterval && options.pollInterval >= 10000) {
+        if (options.pollInterval && options.pollInterval >= 1000) {
             this.pollInterval = options.pollInterval;
             console.log(`⏱️ Intervalo de polling alterado para ${this.pollInterval / 1000}s`);
             

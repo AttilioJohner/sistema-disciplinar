@@ -1522,12 +1522,12 @@
       // Recarregar estatísticas
       setTimeout(() => {
         carregarEstatisticasMedidas();
-      }, 500);
+      }, 100);
 
       // Recarregar registros recentes
       setTimeout(() => {
         carregarRegistrosRecentes();
-      }, 1000);
+      }, 200);
 
       // Se há uma ficha disciplinar aberta, recarregar
       const alunoConsulta = document.getElementById('alunoConsulta');
@@ -1536,7 +1536,7 @@
           if (typeof carregarFichaDisciplinar === 'function') {
             carregarFichaDisciplinar();
           }
-        }, 1500);
+        }, 300);
       }
       
       // Recarregar turmas e alunos se necessário
@@ -1544,7 +1544,7 @@
         if (typeof carregarTurmas === 'function') {
           carregarTurmas();
         }
-      }, 2000);
+      }, 400);
     });
 
     // Modificar função de salvar para usar GitHub

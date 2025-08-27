@@ -856,12 +856,12 @@
     // Sempre recarregar lista quando há sincronização
     setTimeout(() => {
       startLiveList();
-    }, 100);
+    }, 50);
     
     // Force update statistics as well
     setTimeout(() => {
       updateStatistics();
-    }, 200);
+    }, 100);
   });
 
   // Listener para mudanças de dados
