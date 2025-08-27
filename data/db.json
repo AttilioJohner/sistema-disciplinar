@@ -1,29 +1,5 @@
 {
   "alunos": {
-    "111": {
-      "codigo": "111",
-      "nome_completo": "attilio",
-      "turma": "1B",
-      "status": "ativo",
-      "created_at": "2025-08-27T16:53:09.900Z",
-      "updated_at": "2025-08-27T16:53:09.900Z",
-      "createdAt": "2025-08-27T16:53:09.900Z",
-      "updatedAt": "2025-08-27T16:53:09.900Z",
-      "id": "111",
-      "atualizadoEm": "2025-08-27T16:53:09.900Z"
-    },
-    "113": {
-      "codigo": "113",
-      "nome_completo": "testeerr",
-      "turma": "1B",
-      "status": "ativo",
-      "created_at": "2025-08-27T16:58:24.979Z",
-      "updated_at": "2025-08-27T16:58:24.979Z",
-      "createdAt": "2025-08-27T16:58:24.979Z",
-      "updatedAt": "2025-08-27T16:58:24.979Z",
-      "id": "113",
-      "atualizadoEm": "2025-08-27T16:58:24.979Z"
-    },
     "aluno_001": {
       "id": "aluno_001",
       "codigo": "2639458",
@@ -32,8 +8,12 @@
       "turma": "6A",
       "responsavel": "Responsável Alberto",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0001",
       "email": "responsavel001@email.com",
-      "criadoEm": "2025-08-20T11:57:26.306Z"
+      "criadoEm": "2025-08-20T11:57:26.306Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.612Z",
+      "atualizadoEm": "2025-08-26T15:01:56.612Z"
     },
     "aluno_002": {
       "id": "aluno_002",
@@ -43,8 +23,12 @@
       "turma": "6A",
       "responsavel": "Responsável Ana",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0002",
       "email": "responsavel002@email.com",
-      "criadoEm": "2025-08-20T11:57:26.306Z"
+      "criadoEm": "2025-08-20T11:57:26.306Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.614Z",
+      "atualizadoEm": "2025-08-26T15:01:56.614Z"
     },
     "aluno_003": {
       "id": "aluno_003",
@@ -54,8 +38,12 @@
       "turma": "6A",
       "responsavel": "Responsável Ana",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0003",
       "email": "responsavel003@email.com",
-      "criadoEm": "2025-08-20T11:57:26.306Z"
+      "criadoEm": "2025-08-20T11:57:26.306Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.616Z",
+      "atualizadoEm": "2025-08-26T15:01:56.616Z"
     },
     "aluno_004": {
       "id": "aluno_004",
@@ -65,8 +53,12 @@
       "turma": "6A",
       "responsavel": "Responsável Aysha",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0004",
       "email": "responsavel004@email.com",
-      "criadoEm": "2025-08-20T11:57:26.306Z"
+      "criadoEm": "2025-08-20T11:57:26.306Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.617Z",
+      "atualizadoEm": "2025-08-26T15:01:56.617Z"
     },
     "aluno_005": {
       "id": "aluno_005",
@@ -76,8 +68,12 @@
       "turma": "6A",
       "responsavel": "Responsável Azaff",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0005",
       "email": "responsavel005@email.com",
-      "criadoEm": "2025-08-20T11:57:26.306Z"
+      "criadoEm": "2025-08-20T11:57:26.306Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.619Z",
+      "atualizadoEm": "2025-08-26T15:01:56.619Z"
     },
     "aluno_006": {
       "id": "aluno_006",
@@ -87,8 +83,12 @@
       "turma": "6A",
       "responsavel": "Responsável Bruna",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0006",
       "email": "responsavel006@email.com",
-      "criadoEm": "2025-08-20T11:57:26.306Z"
+      "criadoEm": "2025-08-20T11:57:26.306Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.620Z",
+      "atualizadoEm": "2025-08-26T15:01:56.620Z"
     },
     "aluno_007": {
       "id": "aluno_007",
@@ -98,8 +98,12 @@
       "turma": "6A",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0007",
       "email": "responsavel007@email.com",
-      "criadoEm": "2025-08-20T11:57:26.306Z"
+      "criadoEm": "2025-08-20T11:57:26.306Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.622Z",
+      "atualizadoEm": "2025-08-26T15:01:56.622Z"
     },
     "aluno_008": {
       "id": "aluno_008",
@@ -109,8 +113,12 @@
       "turma": "6A",
       "responsavel": "Responsável Eduarda",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0008",
       "email": "responsavel008@email.com",
-      "criadoEm": "2025-08-20T11:57:26.306Z"
+      "criadoEm": "2025-08-20T11:57:26.306Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.623Z",
+      "atualizadoEm": "2025-08-26T15:01:56.623Z"
     },
     "aluno_009": {
       "id": "aluno_009",
@@ -120,8 +128,12 @@
       "turma": "6A",
       "responsavel": "Responsável Enzo",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0009",
       "email": "responsavel009@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.624Z",
+      "atualizadoEm": "2025-08-26T15:01:56.624Z"
     },
     "aluno_010": {
       "id": "aluno_010",
@@ -131,8 +143,12 @@
       "turma": "6A",
       "responsavel": "Responsável Enzo",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0010",
       "email": "responsavel010@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.626Z",
+      "atualizadoEm": "2025-08-26T15:01:56.626Z"
     },
     "aluno_011": {
       "id": "aluno_011",
@@ -142,8 +158,12 @@
       "turma": "6A",
       "responsavel": "Responsável Everton",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0011",
       "email": "responsavel011@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.627Z",
+      "atualizadoEm": "2025-08-26T15:01:56.627Z"
     },
     "aluno_012": {
       "id": "aluno_012",
@@ -153,8 +173,12 @@
       "turma": "6A",
       "responsavel": "Responsável Felipe",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0012",
       "email": "responsavel012@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.628Z",
+      "atualizadoEm": "2025-08-26T15:01:56.628Z"
     },
     "aluno_013": {
       "id": "aluno_013",
@@ -164,8 +188,12 @@
       "turma": "6A",
       "responsavel": "Responsável Gabriela",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0013",
       "email": "responsavel013@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.630Z",
+      "atualizadoEm": "2025-08-26T15:01:56.630Z"
     },
     "aluno_014": {
       "id": "aluno_014",
@@ -175,8 +203,12 @@
       "turma": "6A",
       "responsavel": "Responsável Graziely",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0014",
       "email": "responsavel014@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.633Z",
+      "atualizadoEm": "2025-08-26T15:01:56.633Z"
     },
     "aluno_015": {
       "id": "aluno_015",
@@ -186,8 +218,12 @@
       "turma": "6A",
       "responsavel": "Responsável Hector",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0015",
       "email": "responsavel015@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.634Z",
+      "atualizadoEm": "2025-08-26T15:01:56.634Z"
     },
     "aluno_016": {
       "id": "aluno_016",
@@ -197,8 +233,12 @@
       "turma": "6A",
       "responsavel": "Responsável José",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0016",
       "email": "responsavel016@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.635Z",
+      "atualizadoEm": "2025-08-26T15:01:56.635Z"
     },
     "aluno_017": {
       "id": "aluno_017",
@@ -208,8 +248,12 @@
       "turma": "6A",
       "responsavel": "Responsável Kamila",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0017",
       "email": "responsavel017@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.636Z",
+      "atualizadoEm": "2025-08-26T15:01:56.636Z"
     },
     "aluno_018": {
       "id": "aluno_018",
@@ -219,8 +263,12 @@
       "turma": "6A",
       "responsavel": "Responsável Kawanny",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0018",
       "email": "responsavel018@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.637Z",
+      "atualizadoEm": "2025-08-26T15:01:56.637Z"
     },
     "aluno_019": {
       "id": "aluno_019",
@@ -230,8 +278,12 @@
       "turma": "6A",
       "responsavel": "Responsável Ludmila",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0019",
       "email": "responsavel019@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.638Z",
+      "atualizadoEm": "2025-08-26T15:01:56.638Z"
     },
     "aluno_020": {
       "id": "aluno_020",
@@ -241,8 +293,12 @@
       "turma": "6A",
       "responsavel": "Responsável Luna",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0020",
       "email": "responsavel020@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.639Z",
+      "atualizadoEm": "2025-08-26T15:01:56.639Z"
     },
     "aluno_021": {
       "id": "aluno_021",
@@ -252,8 +308,12 @@
       "turma": "6A",
       "responsavel": "Responsável Malvina",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0021",
       "email": "responsavel021@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.640Z",
+      "atualizadoEm": "2025-08-26T15:01:56.640Z"
     },
     "aluno_022": {
       "id": "aluno_022",
@@ -263,8 +323,12 @@
       "turma": "6A",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0022",
       "email": "responsavel022@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.642Z",
+      "atualizadoEm": "2025-08-26T15:01:56.642Z"
     },
     "aluno_023": {
       "id": "aluno_023",
@@ -274,8 +338,12 @@
       "turma": "6A",
       "responsavel": "Responsável Mariana",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0023",
       "email": "responsavel023@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.643Z",
+      "atualizadoEm": "2025-08-26T15:01:56.643Z"
     },
     "aluno_024": {
       "id": "aluno_024",
@@ -285,8 +353,12 @@
       "turma": "6A",
       "responsavel": "Responsável Nathiely",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0024",
       "email": "responsavel024@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.644Z",
+      "atualizadoEm": "2025-08-26T15:01:56.644Z"
     },
     "aluno_025": {
       "id": "aluno_025",
@@ -296,8 +368,12 @@
       "turma": "6A",
       "responsavel": "Responsável Nicolly",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0025",
       "email": "responsavel025@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.645Z",
+      "atualizadoEm": "2025-08-26T15:01:56.645Z"
     },
     "aluno_026": {
       "id": "aluno_026",
@@ -307,8 +383,12 @@
       "turma": "6A",
       "responsavel": "Responsável Nikolas",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0026",
       "email": "responsavel026@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.647Z",
+      "atualizadoEm": "2025-08-26T15:01:56.647Z"
     },
     "aluno_027": {
       "id": "aluno_027",
@@ -318,8 +398,12 @@
       "turma": "6A",
       "responsavel": "Responsável Pedro",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0027",
       "email": "responsavel027@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.649Z",
+      "atualizadoEm": "2025-08-26T15:01:56.649Z"
     },
     "aluno_028": {
       "id": "aluno_028",
@@ -329,8 +413,12 @@
       "turma": "6A",
       "responsavel": "Responsável Pedro",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0028",
       "email": "responsavel028@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.650Z",
+      "atualizadoEm": "2025-08-26T15:01:56.650Z"
     },
     "aluno_029": {
       "id": "aluno_029",
@@ -340,8 +428,12 @@
       "turma": "6A",
       "responsavel": "Responsável Rafael",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0029",
       "email": "responsavel029@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.651Z",
+      "atualizadoEm": "2025-08-26T15:01:56.651Z"
     },
     "aluno_030": {
       "id": "aluno_030",
@@ -351,8 +443,12 @@
       "turma": "6A",
       "responsavel": "Responsável Rafael",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0030",
       "email": "responsavel030@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.652Z",
+      "atualizadoEm": "2025-08-26T15:01:56.652Z"
     },
     "aluno_031": {
       "id": "aluno_031",
@@ -362,8 +458,12 @@
       "turma": "6A",
       "responsavel": "Responsável Ruan",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0031",
       "email": "responsavel031@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.653Z",
+      "atualizadoEm": "2025-08-26T15:01:56.653Z"
     },
     "aluno_032": {
       "id": "aluno_032",
@@ -373,8 +473,12 @@
       "turma": "6A",
       "responsavel": "Responsável Wenia",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0032",
       "email": "responsavel032@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.654Z",
+      "atualizadoEm": "2025-08-26T15:01:56.654Z"
     },
     "aluno_033": {
       "id": "aluno_033",
@@ -384,8 +488,12 @@
       "turma": "6B",
       "responsavel": "Responsável Andril",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0033",
       "email": "responsavel033@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.656Z",
+      "atualizadoEm": "2025-08-26T15:01:56.656Z"
     },
     "aluno_034": {
       "id": "aluno_034",
@@ -395,8 +503,12 @@
       "turma": "6B",
       "responsavel": "Responsável Anna",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0034",
       "email": "responsavel034@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.657Z",
+      "atualizadoEm": "2025-08-26T15:01:56.657Z"
     },
     "aluno_035": {
       "id": "aluno_035",
@@ -406,8 +518,12 @@
       "turma": "6B",
       "responsavel": "Responsável Brenda",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0035",
       "email": "responsavel035@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.658Z",
+      "atualizadoEm": "2025-08-26T15:01:56.658Z"
     },
     "aluno_036": {
       "id": "aluno_036",
@@ -417,8 +533,12 @@
       "turma": "6B",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0036",
       "email": "responsavel036@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.659Z",
+      "atualizadoEm": "2025-08-26T15:01:56.659Z"
     },
     "aluno_037": {
       "id": "aluno_037",
@@ -428,8 +548,12 @@
       "turma": "6B",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0037",
       "email": "responsavel037@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.660Z",
+      "atualizadoEm": "2025-08-26T15:01:56.660Z"
     },
     "aluno_038": {
       "id": "aluno_038",
@@ -439,8 +563,12 @@
       "turma": "6B",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0038",
       "email": "responsavel038@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.663Z",
+      "atualizadoEm": "2025-08-26T15:01:56.663Z"
     },
     "aluno_039": {
       "id": "aluno_039",
@@ -450,8 +578,12 @@
       "turma": "6B",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0039",
       "email": "responsavel039@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.664Z",
+      "atualizadoEm": "2025-08-26T15:01:56.664Z"
     },
     "aluno_040": {
       "id": "aluno_040",
@@ -461,8 +593,12 @@
       "turma": "6B",
       "responsavel": "Responsável Ellize",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0040",
       "email": "responsavel040@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.665Z",
+      "atualizadoEm": "2025-08-26T15:01:56.665Z"
     },
     "aluno_041": {
       "id": "aluno_041",
@@ -472,8 +608,12 @@
       "turma": "6B",
       "responsavel": "Responsável Emanuelly",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0041",
       "email": "responsavel041@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.666Z",
+      "atualizadoEm": "2025-08-26T15:01:56.666Z"
     },
     "aluno_042": {
       "id": "aluno_042",
@@ -483,8 +623,12 @@
       "turma": "6B",
       "responsavel": "Responsável Heitor",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0042",
       "email": "responsavel042@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.668Z",
+      "atualizadoEm": "2025-08-26T15:01:56.668Z"
     },
     "aluno_043": {
       "id": "aluno_043",
@@ -494,8 +638,12 @@
       "turma": "6B",
       "responsavel": "Responsável Isabella",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0043",
       "email": "responsavel043@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.669Z",
+      "atualizadoEm": "2025-08-26T15:01:56.669Z"
     },
     "aluno_044": {
       "id": "aluno_044",
@@ -505,8 +653,12 @@
       "turma": "6B",
       "responsavel": "Responsável Isadora",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0044",
       "email": "responsavel044@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.670Z",
+      "atualizadoEm": "2025-08-26T15:01:56.670Z"
     },
     "aluno_045": {
       "id": "aluno_045",
@@ -516,8 +668,12 @@
       "turma": "6B",
       "responsavel": "Responsável Jhennyfer",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0045",
       "email": "responsavel045@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.671Z",
+      "atualizadoEm": "2025-08-26T15:01:56.671Z"
     },
     "aluno_046": {
       "id": "aluno_046",
@@ -527,8 +683,12 @@
       "turma": "6B",
       "responsavel": "Responsável João",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0046",
       "email": "responsavel046@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.672Z",
+      "atualizadoEm": "2025-08-26T15:01:56.672Z"
     },
     "aluno_047": {
       "id": "aluno_047",
@@ -538,8 +698,12 @@
       "turma": "6B",
       "responsavel": "Responsável José",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0047",
       "email": "responsavel047@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.673Z",
+      "atualizadoEm": "2025-08-26T15:01:56.673Z"
     },
     "aluno_048": {
       "id": "aluno_048",
@@ -549,8 +713,12 @@
       "turma": "6B",
       "responsavel": "Responsável Júlia",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0048",
       "email": "responsavel048@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.674Z",
+      "atualizadoEm": "2025-08-26T15:01:56.674Z"
     },
     "aluno_049": {
       "id": "aluno_049",
@@ -560,8 +728,12 @@
       "turma": "6B",
       "responsavel": "Responsável Kassyellen",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0049",
       "email": "responsavel049@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.676Z",
+      "atualizadoEm": "2025-08-26T15:01:56.676Z"
     },
     "aluno_050": {
       "id": "aluno_050",
@@ -571,8 +743,12 @@
       "turma": "6B",
       "responsavel": "Responsável Kauane",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0050",
       "email": "responsavel050@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.677Z",
+      "atualizadoEm": "2025-08-26T15:01:56.677Z"
     },
     "aluno_051": {
       "id": "aluno_051",
@@ -582,8 +758,12 @@
       "turma": "6B",
       "responsavel": "Responsável Kevim",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0051",
       "email": "responsavel051@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.679Z",
+      "atualizadoEm": "2025-08-26T15:01:56.679Z"
     },
     "aluno_052": {
       "id": "aluno_052",
@@ -593,8 +773,12 @@
       "turma": "6B",
       "responsavel": "Responsável Lucas",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0052",
       "email": "responsavel052@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.681Z",
+      "atualizadoEm": "2025-08-26T15:01:56.681Z"
     },
     "aluno_053": {
       "id": "aluno_053",
@@ -604,8 +788,12 @@
       "turma": "6B",
       "responsavel": "Responsável Luís",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0053",
       "email": "responsavel053@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.682Z",
+      "atualizadoEm": "2025-08-26T15:01:56.682Z"
     },
     "aluno_054": {
       "id": "aluno_054",
@@ -615,8 +803,12 @@
       "turma": "6B",
       "responsavel": "Responsável Luiz",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0054",
       "email": "responsavel054@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.683Z",
+      "atualizadoEm": "2025-08-26T15:01:56.683Z"
     },
     "aluno_055": {
       "id": "aluno_055",
@@ -626,8 +818,12 @@
       "turma": "6B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0055",
       "email": "responsavel055@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.685Z",
+      "atualizadoEm": "2025-08-26T15:01:56.685Z"
     },
     "aluno_056": {
       "id": "aluno_056",
@@ -637,8 +833,12 @@
       "turma": "6B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0056",
       "email": "responsavel056@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.686Z",
+      "atualizadoEm": "2025-08-26T15:01:56.686Z"
     },
     "aluno_057": {
       "id": "aluno_057",
@@ -648,8 +848,12 @@
       "turma": "6B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0057",
       "email": "responsavel057@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.687Z",
+      "atualizadoEm": "2025-08-26T15:01:56.687Z"
     },
     "aluno_058": {
       "id": "aluno_058",
@@ -659,8 +863,12 @@
       "turma": "6B",
       "responsavel": "Responsável Paulo",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0058",
       "email": "responsavel058@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.688Z",
+      "atualizadoEm": "2025-08-26T15:01:56.688Z"
     },
     "aluno_059": {
       "id": "aluno_059",
@@ -670,8 +878,12 @@
       "turma": "6B",
       "responsavel": "Responsável Paulo",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0059",
       "email": "responsavel059@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.689Z",
+      "atualizadoEm": "2025-08-26T15:01:56.689Z"
     },
     "aluno_060": {
       "id": "aluno_060",
@@ -681,8 +893,12 @@
       "turma": "6B",
       "responsavel": "Responsável Pedro",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0060",
       "email": "responsavel060@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.690Z",
+      "atualizadoEm": "2025-08-26T15:01:56.690Z"
     },
     "aluno_061": {
       "id": "aluno_061",
@@ -692,8 +908,12 @@
       "turma": "6B",
       "responsavel": "Responsável Rhuanna",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0061",
       "email": "responsavel061@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.691Z",
+      "atualizadoEm": "2025-08-26T15:01:56.691Z"
     },
     "aluno_062": {
       "id": "aluno_062",
@@ -703,8 +923,12 @@
       "turma": "6B",
       "responsavel": "Responsável Roger",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0062",
       "email": "responsavel062@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.693Z",
+      "atualizadoEm": "2025-08-26T15:01:56.693Z"
     },
     "aluno_063": {
       "id": "aluno_063",
@@ -714,8 +938,12 @@
       "turma": "6B",
       "responsavel": "Responsável Victor",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0063",
       "email": "responsavel063@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.695Z",
+      "atualizadoEm": "2025-08-26T15:01:56.695Z"
     },
     "aluno_064": {
       "id": "aluno_064",
@@ -725,8 +953,12 @@
       "turma": "6B",
       "responsavel": "Responsável Vitória",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0064",
       "email": "responsavel064@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.697Z",
+      "atualizadoEm": "2025-08-26T15:01:56.697Z"
     },
     "aluno_065": {
       "id": "aluno_065",
@@ -736,8 +968,12 @@
       "turma": "6B",
       "responsavel": "Responsável Yasmin",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0065",
       "email": "responsavel065@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.698Z",
+      "atualizadoEm": "2025-08-26T15:01:56.698Z"
     },
     "aluno_066": {
       "id": "aluno_066",
@@ -747,8 +983,12 @@
       "turma": "7B",
       "responsavel": "Responsável Albedias",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0066",
       "email": "responsavel066@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.699Z",
+      "atualizadoEm": "2025-08-26T15:01:56.699Z"
     },
     "aluno_067": {
       "id": "aluno_067",
@@ -758,8 +998,12 @@
       "turma": "7B",
       "responsavel": "Responsável Alexsandro",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0067",
       "email": "responsavel067@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.700Z",
+      "atualizadoEm": "2025-08-26T15:01:56.700Z"
     },
     "aluno_068": {
       "id": "aluno_068",
@@ -769,8 +1013,12 @@
       "turma": "7B",
       "responsavel": "Responsável Ana",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0068",
       "email": "responsavel068@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.701Z",
+      "atualizadoEm": "2025-08-26T15:01:56.701Z"
     },
     "aluno_069": {
       "id": "aluno_069",
@@ -780,8 +1028,12 @@
       "turma": "7B",
       "responsavel": "Responsável Ana",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0069",
       "email": "responsavel069@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.703Z",
+      "atualizadoEm": "2025-08-26T15:01:56.703Z"
     },
     "aluno_070": {
       "id": "aluno_070",
@@ -791,8 +1043,12 @@
       "turma": "7B",
       "responsavel": "Responsável Antônio",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0070",
       "email": "responsavel070@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.704Z",
+      "atualizadoEm": "2025-08-26T15:01:56.704Z"
     },
     "aluno_071": {
       "id": "aluno_071",
@@ -802,8 +1058,12 @@
       "turma": "7B",
       "responsavel": "Responsável Arthur",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0071",
       "email": "responsavel071@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.705Z",
+      "atualizadoEm": "2025-08-26T15:01:56.705Z"
     },
     "aluno_072": {
       "id": "aluno_072",
@@ -813,8 +1073,12 @@
       "turma": "7B",
       "responsavel": "Responsável Aysha",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0072",
       "email": "responsavel072@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.707Z",
+      "atualizadoEm": "2025-08-26T15:01:56.707Z"
     },
     "aluno_073": {
       "id": "aluno_073",
@@ -824,8 +1088,12 @@
       "turma": "7B",
       "responsavel": "Responsável Diego",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0073",
       "email": "responsavel073@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.708Z",
+      "atualizadoEm": "2025-08-26T15:01:56.708Z"
     },
     "aluno_074": {
       "id": "aluno_074",
@@ -835,8 +1103,12 @@
       "turma": "7B",
       "responsavel": "Responsável Dyogo",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0074",
       "email": "responsavel074@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.710Z",
+      "atualizadoEm": "2025-08-26T15:01:56.710Z"
     },
     "aluno_075": {
       "id": "aluno_075",
@@ -846,8 +1118,12 @@
       "turma": "7B",
       "responsavel": "Responsável Edgar",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0075",
       "email": "responsavel075@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.711Z",
+      "atualizadoEm": "2025-08-26T15:01:56.711Z"
     },
     "aluno_076": {
       "id": "aluno_076",
@@ -857,8 +1133,12 @@
       "turma": "7B",
       "responsavel": "Responsável Eduardo",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0076",
       "email": "responsavel076@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.713Z",
+      "atualizadoEm": "2025-08-26T15:01:56.713Z"
     },
     "aluno_077": {
       "id": "aluno_077",
@@ -868,8 +1148,12 @@
       "turma": "7B",
       "responsavel": "Responsável Eduardo",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0077",
       "email": "responsavel077@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.714Z",
+      "atualizadoEm": "2025-08-26T15:01:56.714Z"
     },
     "aluno_078": {
       "id": "aluno_078",
@@ -879,8 +1163,12 @@
       "turma": "7B",
       "responsavel": "Responsável Emilly",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0078",
       "email": "responsavel078@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.715Z",
+      "atualizadoEm": "2025-08-26T15:01:56.715Z"
     },
     "aluno_079": {
       "id": "aluno_079",
@@ -890,8 +1178,12 @@
       "turma": "7B",
       "responsavel": "Responsável Giovani",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0079",
       "email": "responsavel079@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.717Z",
+      "atualizadoEm": "2025-08-26T15:01:56.717Z"
     },
     "aluno_080": {
       "id": "aluno_080",
@@ -901,8 +1193,12 @@
       "turma": "7B",
       "responsavel": "Responsável Jhonnatan",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0080",
       "email": "responsavel080@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.718Z",
+      "atualizadoEm": "2025-08-26T15:01:56.718Z"
     },
     "aluno_081": {
       "id": "aluno_081",
@@ -912,8 +1208,12 @@
       "turma": "7B",
       "responsavel": "Responsável João",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0081",
       "email": "responsavel081@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.719Z",
+      "atualizadoEm": "2025-08-26T15:01:56.719Z"
     },
     "aluno_082": {
       "id": "aluno_082",
@@ -923,8 +1223,12 @@
       "turma": "7B",
       "responsavel": "Responsável José",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0082",
       "email": "responsavel082@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.720Z",
+      "atualizadoEm": "2025-08-26T15:01:56.720Z"
     },
     "aluno_083": {
       "id": "aluno_083",
@@ -934,8 +1238,12 @@
       "turma": "7B",
       "responsavel": "Responsável Juan",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0083",
       "email": "responsavel083@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.722Z",
+      "atualizadoEm": "2025-08-26T15:01:56.722Z"
     },
     "aluno_084": {
       "id": "aluno_084",
@@ -945,8 +1253,12 @@
       "turma": "7B",
       "responsavel": "Responsável Keven",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0084",
       "email": "responsavel084@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.723Z",
+      "atualizadoEm": "2025-08-26T15:01:56.723Z"
     },
     "aluno_085": {
       "id": "aluno_085",
@@ -956,8 +1268,12 @@
       "turma": "7B",
       "responsavel": "Responsável Manoel",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0085",
       "email": "responsavel085@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.724Z",
+      "atualizadoEm": "2025-08-26T15:01:56.724Z"
     },
     "aluno_086": {
       "id": "aluno_086",
@@ -967,8 +1283,12 @@
       "turma": "7B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0086",
       "email": "responsavel086@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.726Z",
+      "atualizadoEm": "2025-08-26T15:01:56.726Z"
     },
     "aluno_087": {
       "id": "aluno_087",
@@ -978,8 +1298,12 @@
       "turma": "7B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0087",
       "email": "responsavel087@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.727Z",
+      "atualizadoEm": "2025-08-26T15:01:56.727Z"
     },
     "aluno_088": {
       "id": "aluno_088",
@@ -989,8 +1313,12 @@
       "turma": "7B",
       "responsavel": "Responsável Noemi",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0088",
       "email": "responsavel088@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.729Z",
+      "atualizadoEm": "2025-08-26T15:01:56.729Z"
     },
     "aluno_089": {
       "id": "aluno_089",
@@ -1000,8 +1328,12 @@
       "turma": "7B",
       "responsavel": "Responsável Odair",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0089",
       "email": "responsavel089@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.731Z",
+      "atualizadoEm": "2025-08-26T15:01:56.731Z"
     },
     "aluno_090": {
       "id": "aluno_090",
@@ -1011,8 +1343,12 @@
       "turma": "7B",
       "responsavel": "Responsável Pamella",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0090",
       "email": "responsavel090@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.733Z",
+      "atualizadoEm": "2025-08-26T15:01:56.733Z"
     },
     "aluno_091": {
       "id": "aluno_091",
@@ -1022,8 +1358,12 @@
       "turma": "7B",
       "responsavel": "Responsável Samira",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0091",
       "email": "responsavel091@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.734Z",
+      "atualizadoEm": "2025-08-26T15:01:56.734Z"
     },
     "aluno_092": {
       "id": "aluno_092",
@@ -1033,8 +1373,12 @@
       "turma": "7B",
       "responsavel": "Responsável Sophia",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0092",
       "email": "responsavel092@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.736Z",
+      "atualizadoEm": "2025-08-26T15:01:56.736Z"
     },
     "aluno_093": {
       "id": "aluno_093",
@@ -1044,8 +1388,12 @@
       "turma": "7B",
       "responsavel": "Responsável Vitor",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0093",
       "email": "responsavel093@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.737Z",
+      "atualizadoEm": "2025-08-26T15:01:56.737Z"
     },
     "aluno_094": {
       "id": "aluno_094",
@@ -1055,8 +1403,12 @@
       "turma": "7B",
       "responsavel": "Responsável Vitor",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0094",
       "email": "responsavel094@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.738Z",
+      "atualizadoEm": "2025-08-26T15:01:56.738Z"
     },
     "aluno_095": {
       "id": "aluno_095",
@@ -1066,8 +1418,12 @@
       "turma": "7B",
       "responsavel": "Responsável Vitória",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0095",
       "email": "responsavel095@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.739Z",
+      "atualizadoEm": "2025-08-26T15:01:56.739Z"
     },
     "aluno_096": {
       "id": "aluno_096",
@@ -1077,8 +1433,12 @@
       "turma": "7B",
       "responsavel": "Responsável Ysabella",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0096",
       "email": "responsavel096@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.741Z",
+      "atualizadoEm": "2025-08-26T15:01:56.741Z"
     },
     "aluno_097": {
       "id": "aluno_097",
@@ -1088,8 +1448,12 @@
       "turma": "7A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0097",
       "email": "responsavel097@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.742Z",
+      "atualizadoEm": "2025-08-26T15:01:56.742Z"
     },
     "aluno_098": {
       "id": "aluno_098",
@@ -1099,8 +1463,12 @@
       "turma": "7A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0098",
       "email": "responsavel098@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.743Z",
+      "atualizadoEm": "2025-08-26T15:01:56.743Z"
     },
     "aluno_099": {
       "id": "aluno_099",
@@ -1110,8 +1478,12 @@
       "turma": "7A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0099",
       "email": "responsavel099@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.745Z",
+      "atualizadoEm": "2025-08-26T15:01:56.745Z"
     },
     "aluno_100": {
       "id": "aluno_100",
@@ -1121,8 +1493,12 @@
       "turma": "7A",
       "responsavel": "Responsável CALEBE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0100",
       "email": "responsavel100@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.747Z",
+      "atualizadoEm": "2025-08-26T15:01:56.747Z"
     },
     "aluno_101": {
       "id": "aluno_101",
@@ -1132,8 +1508,12 @@
       "turma": "7A",
       "responsavel": "Responsável CARLOS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0101",
       "email": "responsavel101@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.6,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.748Z",
+      "atualizadoEm": "2025-08-26T15:01:56.748Z"
     },
     "aluno_102": {
       "id": "aluno_102",
@@ -1143,8 +1523,12 @@
       "turma": "7A",
       "responsavel": "Responsável CARLOS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0102",
       "email": "responsavel102@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.749Z",
+      "atualizadoEm": "2025-08-26T15:01:56.749Z"
     },
     "aluno_103": {
       "id": "aluno_103",
@@ -1154,8 +1538,12 @@
       "turma": "7A",
       "responsavel": "Responsável CLARICE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0103",
       "email": "responsavel103@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.750Z",
+      "atualizadoEm": "2025-08-26T15:01:56.750Z"
     },
     "aluno_104": {
       "id": "aluno_104",
@@ -1165,8 +1553,12 @@
       "turma": "7A",
       "responsavel": "Responsável DAVI",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0104",
       "email": "responsavel104@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.752Z",
+      "atualizadoEm": "2025-08-26T15:01:56.752Z"
     },
     "aluno_105": {
       "id": "aluno_105",
@@ -1176,8 +1568,12 @@
       "turma": "7A",
       "responsavel": "Responsável EDUARDO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0105",
       "email": "responsavel105@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.753Z",
+      "atualizadoEm": "2025-08-26T15:01:56.753Z"
     },
     "aluno_106": {
       "id": "aluno_106",
@@ -1187,8 +1583,12 @@
       "turma": "7A",
       "responsavel": "Responsável EMANUEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0106",
       "email": "responsavel106@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.754Z",
+      "atualizadoEm": "2025-08-26T15:01:56.754Z"
     },
     "aluno_107": {
       "id": "aluno_107",
@@ -1198,8 +1598,12 @@
       "turma": "7A",
       "responsavel": "Responsável ESTELA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0107",
       "email": "responsavel107@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.756Z",
+      "atualizadoEm": "2025-08-26T15:01:56.756Z"
     },
     "aluno_108": {
       "id": "aluno_108",
@@ -1209,8 +1613,12 @@
       "turma": "7A",
       "responsavel": "Responsável EVANILDO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0108",
       "email": "responsavel108@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.757Z",
+      "atualizadoEm": "2025-08-26T15:01:56.757Z"
     },
     "aluno_109": {
       "id": "aluno_109",
@@ -1220,8 +1628,12 @@
       "turma": "7A",
       "responsavel": "Responsável EVERSON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0109",
       "email": "responsavel109@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.5,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.758Z",
+      "atualizadoEm": "2025-08-26T15:01:56.758Z"
     },
     "aluno_110": {
       "id": "aluno_110",
@@ -1231,8 +1643,12 @@
       "turma": "7A",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0110",
       "email": "responsavel110@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.760Z",
+      "atualizadoEm": "2025-08-26T15:01:56.760Z"
     },
     "aluno_111": {
       "id": "aluno_111",
@@ -1242,8 +1658,12 @@
       "turma": "7A",
       "responsavel": "Responsável GEOVANNA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0111",
       "email": "responsavel111@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.761Z",
+      "atualizadoEm": "2025-08-26T15:01:56.761Z"
     },
     "aluno_112": {
       "id": "aluno_112",
@@ -1253,8 +1673,12 @@
       "turma": "7A",
       "responsavel": "Responsável ISABELLA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0112",
       "email": "responsavel112@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.763Z",
+      "atualizadoEm": "2025-08-26T15:01:56.763Z"
     },
     "aluno_113": {
       "id": "aluno_113",
@@ -1264,8 +1688,12 @@
       "turma": "7A",
       "responsavel": "Responsável JAMILLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0113",
       "email": "responsavel113@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.764Z",
+      "atualizadoEm": "2025-08-26T15:01:56.764Z"
     },
     "aluno_114": {
       "id": "aluno_114",
@@ -1275,8 +1703,12 @@
       "turma": "7A",
       "responsavel": "Responsável JOAO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0114",
       "email": "responsavel114@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.765Z",
+      "atualizadoEm": "2025-08-26T15:01:56.765Z"
     },
     "aluno_115": {
       "id": "aluno_115",
@@ -1286,8 +1718,12 @@
       "turma": "7A",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0115",
       "email": "responsavel115@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.767Z",
+      "atualizadoEm": "2025-08-26T15:01:56.767Z"
     },
     "aluno_116": {
       "id": "aluno_116",
@@ -1297,8 +1733,12 @@
       "turma": "7A",
       "responsavel": "Responsável JOELSON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0116",
       "email": "responsavel116@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.768Z",
+      "atualizadoEm": "2025-08-26T15:01:56.768Z"
     },
     "aluno_117": {
       "id": "aluno_117",
@@ -1308,8 +1748,12 @@
       "turma": "7A",
       "responsavel": "Responsável KHALIL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0117",
       "email": "responsavel117@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.769Z",
+      "atualizadoEm": "2025-08-26T15:01:56.769Z"
     },
     "aluno_118": {
       "id": "aluno_118",
@@ -1319,8 +1763,12 @@
       "turma": "7A",
       "responsavel": "Responsável LUIZ",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0118",
       "email": "responsavel118@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.770Z",
+      "atualizadoEm": "2025-08-26T15:01:56.770Z"
     },
     "aluno_119": {
       "id": "aluno_119",
@@ -1330,8 +1778,12 @@
       "turma": "7A",
       "responsavel": "Responsável MATEUS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0119",
       "email": "responsavel119@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.772Z",
+      "atualizadoEm": "2025-08-26T15:01:56.772Z"
     },
     "aluno_120": {
       "id": "aluno_120",
@@ -1341,8 +1793,12 @@
       "turma": "7A",
       "responsavel": "Responsável MAYANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0120",
       "email": "responsavel120@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.774Z",
+      "atualizadoEm": "2025-08-26T15:01:56.774Z"
     },
     "aluno_121": {
       "id": "aluno_121",
@@ -1352,8 +1808,12 @@
       "turma": "7A",
       "responsavel": "Responsável MILENA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0121",
       "email": "responsavel121@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.776Z",
+      "atualizadoEm": "2025-08-26T15:01:56.776Z"
     },
     "aluno_122": {
       "id": "aluno_122",
@@ -1363,8 +1823,12 @@
       "turma": "7A",
       "responsavel": "Responsável NATÃ",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0122",
       "email": "responsavel122@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.777Z",
+      "atualizadoEm": "2025-08-26T15:01:56.777Z"
     },
     "aluno_123": {
       "id": "aluno_123",
@@ -1374,8 +1838,12 @@
       "turma": "7A",
       "responsavel": "Responsável NICOLAS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0123",
       "email": "responsavel123@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.779Z",
+      "atualizadoEm": "2025-08-26T15:01:56.779Z"
     },
     "aluno_124": {
       "id": "aluno_124",
@@ -1385,8 +1853,12 @@
       "turma": "7A",
       "responsavel": "Responsável PEDRO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0124",
       "email": "responsavel124@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.780Z",
+      "atualizadoEm": "2025-08-26T15:01:56.780Z"
     },
     "aluno_125": {
       "id": "aluno_125",
@@ -1396,8 +1868,12 @@
       "turma": "7A",
       "responsavel": "Responsável QUÉZIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0125",
       "email": "responsavel125@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.781Z",
+      "atualizadoEm": "2025-08-26T15:01:56.781Z"
     },
     "aluno_126": {
       "id": "aluno_126",
@@ -1407,8 +1883,12 @@
       "turma": "7A",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0126",
       "email": "responsavel126@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.783Z",
+      "atualizadoEm": "2025-08-26T15:01:56.783Z"
     },
     "aluno_127": {
       "id": "aluno_127",
@@ -1418,8 +1898,12 @@
       "turma": "7A",
       "responsavel": "Responsável RHIAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0127",
       "email": "responsavel127@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.6,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.784Z",
+      "atualizadoEm": "2025-08-26T15:01:56.784Z"
     },
     "aluno_128": {
       "id": "aluno_128",
@@ -1429,8 +1913,12 @@
       "turma": "7A",
       "responsavel": "Responsável RHUAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0128",
       "email": "responsavel128@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.785Z",
+      "atualizadoEm": "2025-08-26T15:01:56.785Z"
     },
     "aluno_129": {
       "id": "aluno_129",
@@ -1440,8 +1928,12 @@
       "turma": "7A",
       "responsavel": "Responsável THÁRCYLLA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0129",
       "email": "responsavel129@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.786Z",
+      "atualizadoEm": "2025-08-26T15:01:56.786Z"
     },
     "aluno_130": {
       "id": "aluno_130",
@@ -1451,8 +1943,12 @@
       "turma": "7A",
       "responsavel": "Responsável VINICIUS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0130",
       "email": "responsavel130@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.788Z",
+      "atualizadoEm": "2025-08-26T15:01:56.788Z"
     },
     "aluno_131": {
       "id": "aluno_131",
@@ -1462,8 +1958,12 @@
       "turma": "8A",
       "responsavel": "Responsável ALICE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0131",
       "email": "responsavel131@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.789Z",
+      "atualizadoEm": "2025-08-26T15:01:56.789Z"
     },
     "aluno_132": {
       "id": "aluno_132",
@@ -1473,8 +1973,12 @@
       "turma": "8A",
       "responsavel": "Responsável ALIFFER",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0132",
       "email": "responsavel132@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.790Z",
+      "atualizadoEm": "2025-08-26T15:01:56.790Z"
     },
     "aluno_133": {
       "id": "aluno_133",
@@ -1484,8 +1988,12 @@
       "turma": "8A",
       "responsavel": "Responsável AMITIELY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0133",
       "email": "responsavel133@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.792Z",
+      "atualizadoEm": "2025-08-26T15:01:56.792Z"
     },
     "aluno_134": {
       "id": "aluno_134",
@@ -1495,8 +2003,12 @@
       "turma": "8A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0134",
       "email": "responsavel134@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.793Z",
+      "atualizadoEm": "2025-08-26T15:01:56.793Z"
     },
     "aluno_135": {
       "id": "aluno_135",
@@ -1506,8 +2018,12 @@
       "turma": "8A",
       "responsavel": "Responsável ANDRE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0135",
       "email": "responsavel135@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.794Z",
+      "atualizadoEm": "2025-08-26T15:01:56.795Z"
     },
     "aluno_136": {
       "id": "aluno_136",
@@ -1517,8 +2033,12 @@
       "turma": "8A",
       "responsavel": "Responsável ANDREZA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0136",
       "email": "responsavel136@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.797Z",
+      "atualizadoEm": "2025-08-26T15:01:56.797Z"
     },
     "aluno_137": {
       "id": "aluno_137",
@@ -1528,8 +2048,12 @@
       "turma": "8A",
       "responsavel": "Responsável CINTHIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0137",
       "email": "responsavel137@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.798Z",
+      "atualizadoEm": "2025-08-26T15:01:56.798Z"
     },
     "aluno_138": {
       "id": "aluno_138",
@@ -1539,8 +2063,12 @@
       "turma": "8A",
       "responsavel": "Responsável DANILO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0138",
       "email": "responsavel138@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.800Z",
+      "atualizadoEm": "2025-08-26T15:01:56.800Z"
     },
     "aluno_139": {
       "id": "aluno_139",
@@ -1550,8 +2078,12 @@
       "turma": "8A",
       "responsavel": "Responsável DAVI",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0139",
       "email": "responsavel139@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.802Z",
+      "atualizadoEm": "2025-08-26T15:01:56.802Z"
     },
     "aluno_140": {
       "id": "aluno_140",
@@ -1561,8 +2093,12 @@
       "turma": "8A",
       "responsavel": "Responsável DRIKA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0140",
       "email": "responsavel140@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.803Z",
+      "atualizadoEm": "2025-08-26T15:01:56.803Z"
     },
     "aluno_141": {
       "id": "aluno_141",
@@ -1572,8 +2108,12 @@
       "turma": "8A",
       "responsavel": "Responsável ELISABETE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0141",
       "email": "responsavel141@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.806Z",
+      "atualizadoEm": "2025-08-26T15:01:56.806Z"
     },
     "aluno_142": {
       "id": "aluno_142",
@@ -1583,8 +2123,12 @@
       "turma": "8A",
       "responsavel": "Responsável EMANUELLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0142",
       "email": "responsavel142@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.807Z",
+      "atualizadoEm": "2025-08-26T15:01:56.807Z"
     },
     "aluno_143": {
       "id": "aluno_143",
@@ -1594,8 +2138,12 @@
       "turma": "8A",
       "responsavel": "Responsável ERIVELTON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0143",
       "email": "responsavel143@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.809Z",
+      "atualizadoEm": "2025-08-26T15:01:56.809Z"
     },
     "aluno_144": {
       "id": "aluno_144",
@@ -1605,8 +2153,12 @@
       "turma": "8A",
       "responsavel": "Responsável GABRIELLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0144",
       "email": "responsavel144@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.811Z",
+      "atualizadoEm": "2025-08-26T15:01:56.811Z"
     },
     "aluno_145": {
       "id": "aluno_145",
@@ -1616,8 +2168,12 @@
       "turma": "8A",
       "responsavel": "Responsável GUSTAVO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0145",
       "email": "responsavel145@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.812Z",
+      "atualizadoEm": "2025-08-26T15:01:56.812Z"
     },
     "aluno_146": {
       "id": "aluno_146",
@@ -1627,8 +2183,12 @@
       "turma": "8A",
       "responsavel": "Responsável JANIELY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0146",
       "email": "responsavel146@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.814Z",
+      "atualizadoEm": "2025-08-26T15:01:56.814Z"
     },
     "aluno_147": {
       "id": "aluno_147",
@@ -1638,8 +2198,12 @@
       "turma": "8A",
       "responsavel": "Responsável JHEYMISON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0147",
       "email": "responsavel147@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.815Z",
+      "atualizadoEm": "2025-08-26T15:01:56.815Z"
     },
     "aluno_148": {
       "id": "aluno_148",
@@ -1649,8 +2213,12 @@
       "turma": "8A",
       "responsavel": "Responsável JOSIEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0148",
       "email": "responsavel148@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.816Z",
+      "atualizadoEm": "2025-08-26T15:01:56.816Z"
     },
     "aluno_149": {
       "id": "aluno_149",
@@ -1660,8 +2228,12 @@
       "turma": "8A",
       "responsavel": "Responsável LUCAS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0149",
       "email": "responsavel149@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.817Z",
+      "atualizadoEm": "2025-08-26T15:01:56.817Z"
     },
     "aluno_150": {
       "id": "aluno_150",
@@ -1671,8 +2243,12 @@
       "turma": "8A",
       "responsavel": "Responsável LUCAS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0150",
       "email": "responsavel150@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.819Z",
+      "atualizadoEm": "2025-08-26T15:01:56.819Z"
     },
     "aluno_151": {
       "id": "aluno_151",
@@ -1682,8 +2258,12 @@
       "turma": "8A",
       "responsavel": "Responsável LUIZ",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0151",
       "email": "responsavel151@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.821Z",
+      "atualizadoEm": "2025-08-26T15:01:56.821Z"
     },
     "aluno_152": {
       "id": "aluno_152",
@@ -1693,8 +2273,12 @@
       "turma": "8A",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0152",
       "email": "responsavel152@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.823Z",
+      "atualizadoEm": "2025-08-26T15:01:56.823Z"
     },
     "aluno_153": {
       "id": "aluno_153",
@@ -1704,8 +2288,12 @@
       "turma": "8A",
       "responsavel": "Responsável MATHEUS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0153",
       "email": "responsavel153@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.824Z",
+      "atualizadoEm": "2025-08-26T15:01:56.824Z"
     },
     "aluno_154": {
       "id": "aluno_154",
@@ -1715,8 +2303,12 @@
       "turma": "8A",
       "responsavel": "Responsável MILENA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0154",
       "email": "responsavel154@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.825Z",
+      "atualizadoEm": "2025-08-26T15:01:56.825Z"
     },
     "aluno_155": {
       "id": "aluno_155",
@@ -1726,8 +2318,12 @@
       "turma": "8A",
       "responsavel": "Responsável PEDRO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0155",
       "email": "responsavel155@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.827Z",
+      "atualizadoEm": "2025-08-26T15:01:56.827Z"
     },
     "aluno_156": {
       "id": "aluno_156",
@@ -1737,8 +2333,12 @@
       "turma": "8A",
       "responsavel": "Responsável PIETRA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0156",
       "email": "responsavel156@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.828Z",
+      "atualizadoEm": "2025-08-26T15:01:56.828Z"
     },
     "aluno_157": {
       "id": "aluno_157",
@@ -1748,8 +2348,12 @@
       "turma": "8A",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0157",
       "email": "responsavel157@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.4,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.830Z",
+      "atualizadoEm": "2025-08-26T15:01:56.830Z"
     },
     "aluno_158": {
       "id": "aluno_158",
@@ -1759,8 +2363,12 @@
       "turma": "8A",
       "responsavel": "Responsável REINIVAL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0158",
       "email": "responsavel158@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.832Z",
+      "atualizadoEm": "2025-08-26T15:01:56.832Z"
     },
     "aluno_159": {
       "id": "aluno_159",
@@ -1770,8 +2378,12 @@
       "turma": "8A",
       "responsavel": "Responsável RYAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0159",
       "email": "responsavel159@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.833Z",
+      "atualizadoEm": "2025-08-26T15:01:56.833Z"
     },
     "aluno_160": {
       "id": "aluno_160",
@@ -1781,8 +2393,12 @@
       "turma": "8A",
       "responsavel": "Responsável SAMUEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0160",
       "email": "responsavel160@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.835Z",
+      "atualizadoEm": "2025-08-26T15:01:56.835Z"
     },
     "aluno_161": {
       "id": "aluno_161",
@@ -1792,8 +2408,12 @@
       "turma": "8A",
       "responsavel": "Responsável STEPHANY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0161",
       "email": "responsavel161@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.836Z",
+      "atualizadoEm": "2025-08-26T15:01:56.836Z"
     },
     "aluno_162": {
       "id": "aluno_162",
@@ -1803,8 +2423,12 @@
       "turma": "8A",
       "responsavel": "Responsável YASMIM",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0162",
       "email": "responsavel162@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.837Z",
+      "atualizadoEm": "2025-08-26T15:01:56.837Z"
     },
     "aluno_163": {
       "id": "aluno_163",
@@ -1814,8 +2438,12 @@
       "turma": "8B",
       "responsavel": "Responsável ACENDINO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0163",
       "email": "responsavel163@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.839Z",
+      "atualizadoEm": "2025-08-26T15:01:56.839Z"
     },
     "aluno_164": {
       "id": "aluno_164",
@@ -1825,8 +2453,12 @@
       "turma": "8B",
       "responsavel": "Responsável ALAENE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0164",
       "email": "responsavel164@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.840Z",
+      "atualizadoEm": "2025-08-26T15:01:56.840Z"
     },
     "aluno_165": {
       "id": "aluno_165",
@@ -1836,8 +2468,12 @@
       "turma": "8B",
       "responsavel": "Responsável ALEXANDRE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0165",
       "email": "responsavel165@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.841Z",
+      "atualizadoEm": "2025-08-26T15:01:56.841Z"
     },
     "aluno_166": {
       "id": "aluno_166",
@@ -1847,8 +2483,12 @@
       "turma": "8B",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0166",
       "email": "responsavel166@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.843Z",
+      "atualizadoEm": "2025-08-26T15:01:56.843Z"
     },
     "aluno_167": {
       "id": "aluno_167",
@@ -1858,8 +2498,12 @@
       "turma": "8B",
       "responsavel": "Responsável ARIELLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0167",
       "email": "responsavel167@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.844Z",
+      "atualizadoEm": "2025-08-26T15:01:56.844Z"
     },
     "aluno_168": {
       "id": "aluno_168",
@@ -1869,8 +2513,12 @@
       "turma": "8B",
       "responsavel": "Responsável ARTHUR",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0168",
       "email": "responsavel168@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.846Z",
+      "atualizadoEm": "2025-08-26T15:01:56.847Z"
     },
     "aluno_169": {
       "id": "aluno_169",
@@ -1880,8 +2528,12 @@
       "turma": "8B",
       "responsavel": "Responsável CARLOS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0169",
       "email": "responsavel169@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.848Z",
+      "atualizadoEm": "2025-08-26T15:01:56.848Z"
     },
     "aluno_170": {
       "id": "aluno_170",
@@ -1891,8 +2543,12 @@
       "turma": "8B",
       "responsavel": "Responsável ÉRIKA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0170",
       "email": "responsavel170@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.849Z",
+      "atualizadoEm": "2025-08-26T15:01:56.849Z"
     },
     "aluno_171": {
       "id": "aluno_171",
@@ -1902,8 +2558,12 @@
       "turma": "8B",
       "responsavel": "Responsável ESTEFANE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0171",
       "email": "responsavel171@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.850Z",
+      "atualizadoEm": "2025-08-26T15:01:56.850Z"
     },
     "aluno_172": {
       "id": "aluno_172",
@@ -1913,8 +2573,12 @@
       "turma": "8B",
       "responsavel": "Responsável FELIPE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0172",
       "email": "responsavel172@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.851Z",
+      "atualizadoEm": "2025-08-26T15:01:56.851Z"
     },
     "aluno_173": {
       "id": "aluno_173",
@@ -1924,8 +2588,12 @@
       "turma": "8B",
       "responsavel": "Responsável GABRIELA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0173",
       "email": "responsavel173@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.852Z",
+      "atualizadoEm": "2025-08-26T15:01:56.852Z"
     },
     "aluno_174": {
       "id": "aluno_174",
@@ -1935,8 +2603,12 @@
       "turma": "8B",
       "responsavel": "Responsável GUILHERME",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0174",
       "email": "responsavel174@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.854Z",
+      "atualizadoEm": "2025-08-26T15:01:56.854Z"
     },
     "aluno_175": {
       "id": "aluno_175",
@@ -1946,8 +2618,12 @@
       "turma": "8B",
       "responsavel": "Responsável GUSTAVO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0175",
       "email": "responsavel175@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.5,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.855Z",
+      "atualizadoEm": "2025-08-26T15:01:56.855Z"
     },
     "aluno_176": {
       "id": "aluno_176",
@@ -1957,8 +2633,12 @@
       "turma": "8B",
       "responsavel": "Responsável JACIARA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0176",
       "email": "responsavel176@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.856Z",
+      "atualizadoEm": "2025-08-26T15:01:56.856Z"
     },
     "aluno_177": {
       "id": "aluno_177",
@@ -1968,8 +2648,12 @@
       "turma": "8B",
       "responsavel": "Responsável JANIEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0177",
       "email": "responsavel177@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.858Z",
+      "atualizadoEm": "2025-08-26T15:01:56.858Z"
     },
     "aluno_178": {
       "id": "aluno_178",
@@ -1979,8 +2663,12 @@
       "turma": "8B",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0178",
       "email": "responsavel178@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.859Z",
+      "atualizadoEm": "2025-08-26T15:01:56.859Z"
     },
     "aluno_179": {
       "id": "aluno_179",
@@ -1990,8 +2678,12 @@
       "turma": "8B",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0179",
       "email": "responsavel179@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.860Z",
+      "atualizadoEm": "2025-08-26T15:01:56.860Z"
     },
     "aluno_180": {
       "id": "aluno_180",
@@ -2001,8 +2693,12 @@
       "turma": "8B",
       "responsavel": "Responsável JOSE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0180",
       "email": "responsavel180@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.861Z",
+      "atualizadoEm": "2025-08-26T15:01:56.861Z"
     },
     "aluno_181": {
       "id": "aluno_181",
@@ -2012,8 +2708,12 @@
       "turma": "8B",
       "responsavel": "Responsável JOSE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0181",
       "email": "responsavel181@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.863Z",
+      "atualizadoEm": "2025-08-26T15:01:56.863Z"
     },
     "aluno_182": {
       "id": "aluno_182",
@@ -2023,8 +2723,12 @@
       "turma": "8B",
       "responsavel": "Responsável LAIS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0182",
       "email": "responsavel182@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.864Z",
+      "atualizadoEm": "2025-08-26T15:01:56.864Z"
     },
     "aluno_183": {
       "id": "aluno_183",
@@ -2034,8 +2738,12 @@
       "turma": "8B",
       "responsavel": "Responsável LAURA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0183",
       "email": "responsavel183@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.866Z",
+      "atualizadoEm": "2025-08-26T15:01:56.866Z"
     },
     "aluno_184": {
       "id": "aluno_184",
@@ -2045,8 +2753,12 @@
       "turma": "8B",
       "responsavel": "Responsável LAVÍNIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0184",
       "email": "responsavel184@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.867Z",
+      "atualizadoEm": "2025-08-26T15:01:56.867Z"
     },
     "aluno_185": {
       "id": "aluno_185",
@@ -2056,8 +2768,12 @@
       "turma": "8B",
       "responsavel": "Responsável LAYLA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0185",
       "email": "responsavel185@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.869Z",
+      "atualizadoEm": "2025-08-26T15:01:56.869Z"
     },
     "aluno_186": {
       "id": "aluno_186",
@@ -2067,8 +2783,12 @@
       "turma": "8B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0186",
       "email": "responsavel186@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.871Z",
+      "atualizadoEm": "2025-08-26T15:01:56.871Z"
     },
     "aluno_187": {
       "id": "aluno_187",
@@ -2078,8 +2798,12 @@
       "turma": "8B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0187",
       "email": "responsavel187@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.872Z",
+      "atualizadoEm": "2025-08-26T15:01:56.872Z"
     },
     "aluno_188": {
       "id": "aluno_188",
@@ -2089,8 +2813,12 @@
       "turma": "8B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0188",
       "email": "responsavel188@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.873Z",
+      "atualizadoEm": "2025-08-26T15:01:56.873Z"
     },
     "aluno_189": {
       "id": "aluno_189",
@@ -2100,8 +2828,12 @@
       "turma": "8B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0189",
       "email": "responsavel189@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.875Z",
+      "atualizadoEm": "2025-08-26T15:01:56.875Z"
     },
     "aluno_190": {
       "id": "aluno_190",
@@ -2111,8 +2843,12 @@
       "turma": "8B",
       "responsavel": "Responsável OTÁVIO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0190",
       "email": "responsavel190@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.876Z",
+      "atualizadoEm": "2025-08-26T15:01:56.876Z"
     },
     "aluno_191": {
       "id": "aluno_191",
@@ -2122,8 +2858,12 @@
       "turma": "8B",
       "responsavel": "Responsável PEDRO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0191",
       "email": "responsavel191@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.878Z",
+      "atualizadoEm": "2025-08-26T15:01:56.878Z"
     },
     "aluno_192": {
       "id": "aluno_192",
@@ -2133,8 +2873,12 @@
       "turma": "8B",
       "responsavel": "Responsável RHUAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0192",
       "email": "responsavel192@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.879Z",
+      "atualizadoEm": "2025-08-26T15:01:56.879Z"
     },
     "aluno_193": {
       "id": "aluno_193",
@@ -2144,8 +2888,12 @@
       "turma": "8B",
       "responsavel": "Responsável THAILA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0193",
       "email": "responsavel193@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.881Z",
+      "atualizadoEm": "2025-08-26T15:01:56.881Z"
     },
     "aluno_194": {
       "id": "aluno_194",
@@ -2155,8 +2903,12 @@
       "turma": "8B",
       "responsavel": "Responsável WILIAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0194",
       "email": "responsavel194@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.882Z",
+      "atualizadoEm": "2025-08-26T15:01:56.882Z"
     },
     "aluno_195": {
       "id": "aluno_195",
@@ -2166,8 +2918,12 @@
       "turma": "8B",
       "responsavel": "Responsável VITÓRIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0195",
       "email": "responsavel195@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.883Z",
+      "atualizadoEm": "2025-08-26T15:01:56.883Z"
     },
     "aluno_196": {
       "id": "aluno_196",
@@ -2177,8 +2933,12 @@
       "turma": "9A",
       "responsavel": "Responsável ALESSON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0196",
       "email": "responsavel196@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.885Z",
+      "atualizadoEm": "2025-08-26T15:01:56.885Z"
     },
     "aluno_197": {
       "id": "aluno_197",
@@ -2188,8 +2948,12 @@
       "turma": "9A",
       "responsavel": "Responsável ALEX",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0197",
       "email": "responsavel197@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.886Z",
+      "atualizadoEm": "2025-08-26T15:01:56.886Z"
     },
     "aluno_198": {
       "id": "aluno_198",
@@ -2199,8 +2963,12 @@
       "turma": "9A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0198",
       "email": "responsavel198@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.887Z",
+      "atualizadoEm": "2025-08-26T15:01:56.887Z"
     },
     "aluno_199": {
       "id": "aluno_199",
@@ -2210,8 +2978,12 @@
       "turma": "9A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0199",
       "email": "responsavel199@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.889Z",
+      "atualizadoEm": "2025-08-26T15:01:56.889Z"
     },
     "aluno_200": {
       "id": "aluno_200",
@@ -2221,8 +2993,12 @@
       "turma": "9A",
       "responsavel": "Responsável ANNY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0200",
       "email": "responsavel200@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.890Z",
+      "atualizadoEm": "2025-08-26T15:01:56.890Z"
     },
     "aluno_201": {
       "id": "aluno_201",
@@ -2232,8 +3008,12 @@
       "turma": "9A",
       "responsavel": "Responsável BLAINO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0201",
       "email": "responsavel201@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.891Z",
+      "atualizadoEm": "2025-08-26T15:01:56.891Z"
     },
     "aluno_202": {
       "id": "aluno_202",
@@ -2243,8 +3023,12 @@
       "turma": "9A",
       "responsavel": "Responsável CAMILA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0202",
       "email": "responsavel202@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.892Z",
+      "atualizadoEm": "2025-08-26T15:01:56.892Z"
     },
     "aluno_203": {
       "id": "aluno_203",
@@ -2254,8 +3038,12 @@
       "turma": "9A",
       "responsavel": "Responsável CEZAR",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0203",
       "email": "responsavel203@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.893Z",
+      "atualizadoEm": "2025-08-26T15:01:56.893Z"
     },
     "aluno_204": {
       "id": "aluno_204",
@@ -2265,8 +3053,12 @@
       "turma": "9A",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0204",
       "email": "responsavel204@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.895Z",
+      "atualizadoEm": "2025-08-26T15:01:56.895Z"
     },
     "aluno_205": {
       "id": "aluno_205",
@@ -2276,8 +3068,12 @@
       "turma": "9A",
       "responsavel": "Responsável HELOISA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0205",
       "email": "responsavel205@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.897Z",
+      "atualizadoEm": "2025-08-26T15:01:56.897Z"
     },
     "aluno_206": {
       "id": "aluno_206",
@@ -2287,8 +3083,12 @@
       "turma": "9A",
       "responsavel": "Responsável IDELSON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0206",
       "email": "responsavel206@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.898Z",
+      "atualizadoEm": "2025-08-26T15:01:56.898Z"
     },
     "aluno_207": {
       "id": "aluno_207",
@@ -2298,8 +3098,12 @@
       "turma": "9A",
       "responsavel": "Responsável ISA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0207",
       "email": "responsavel207@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.900Z",
+      "atualizadoEm": "2025-08-26T15:01:56.900Z"
     },
     "aluno_208": {
       "id": "aluno_208",
@@ -2309,8 +3113,12 @@
       "turma": "9A",
       "responsavel": "Responsável ISADORA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0208",
       "email": "responsavel208@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.901Z",
+      "atualizadoEm": "2025-08-26T15:01:56.901Z"
     },
     "aluno_209": {
       "id": "aluno_209",
@@ -2320,8 +3128,12 @@
       "turma": "9A",
       "responsavel": "Responsável ISADORA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0209",
       "email": "responsavel209@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.903Z",
+      "atualizadoEm": "2025-08-26T15:01:56.903Z"
     },
     "aluno_210": {
       "id": "aluno_210",
@@ -2331,8 +3143,12 @@
       "turma": "9A",
       "responsavel": "Responsável IZABELLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0210",
       "email": "responsavel210@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.904Z",
+      "atualizadoEm": "2025-08-26T15:01:56.904Z"
     },
     "aluno_211": {
       "id": "aluno_211",
@@ -2342,8 +3158,12 @@
       "turma": "9A",
       "responsavel": "Responsável JAMILLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0211",
       "email": "responsavel211@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.905Z",
+      "atualizadoEm": "2025-08-26T15:01:56.905Z"
     },
     "aluno_212": {
       "id": "aluno_212",
@@ -2353,8 +3173,12 @@
       "turma": "9A",
       "responsavel": "Responsável JHON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0212",
       "email": "responsavel212@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.906Z",
+      "atualizadoEm": "2025-08-26T15:01:56.906Z"
     },
     "aluno_213": {
       "id": "aluno_213",
@@ -2364,8 +3188,12 @@
       "turma": "9A",
       "responsavel": "Responsável JULIANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0213",
       "email": "responsavel213@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.908Z",
+      "atualizadoEm": "2025-08-26T15:01:56.908Z"
     },
     "aluno_214": {
       "id": "aluno_214",
@@ -2375,8 +3203,12 @@
       "turma": "9A",
       "responsavel": "Responsável KETLYN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0214",
       "email": "responsavel214@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.2,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.909Z",
+      "atualizadoEm": "2025-08-26T15:01:56.909Z"
     },
     "aluno_215": {
       "id": "aluno_215",
@@ -2386,8 +3218,12 @@
       "turma": "9A",
       "responsavel": "Responsável KEVELLYN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0215",
       "email": "responsavel215@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.910Z",
+      "atualizadoEm": "2025-08-26T15:01:56.910Z"
     },
     "aluno_216": {
       "id": "aluno_216",
@@ -2397,8 +3233,12 @@
       "turma": "9A",
       "responsavel": "Responsável LUAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0216",
       "email": "responsavel216@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.912Z",
+      "atualizadoEm": "2025-08-26T15:01:56.912Z"
     },
     "aluno_217": {
       "id": "aluno_217",
@@ -2408,8 +3248,12 @@
       "turma": "9A",
       "responsavel": "Responsável LUCCA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0217",
       "email": "responsavel217@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.914Z",
+      "atualizadoEm": "2025-08-26T15:01:56.914Z"
     },
     "aluno_218": {
       "id": "aluno_218",
@@ -2419,8 +3263,12 @@
       "turma": "9A",
       "responsavel": "Responsável LUIZ",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0218",
       "email": "responsavel218@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.916Z",
+      "atualizadoEm": "2025-08-26T15:01:56.916Z"
     },
     "aluno_219": {
       "id": "aluno_219",
@@ -2430,8 +3278,12 @@
       "turma": "9A",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0219",
       "email": "responsavel219@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.917Z",
+      "atualizadoEm": "2025-08-26T15:01:56.917Z"
     },
     "aluno_220": {
       "id": "aluno_220",
@@ -2441,8 +3293,12 @@
       "turma": "9A",
       "responsavel": "Responsável MICHELLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0220",
       "email": "responsavel220@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.918Z",
+      "atualizadoEm": "2025-08-26T15:01:56.918Z"
     },
     "aluno_221": {
       "id": "aluno_221",
@@ -2452,8 +3308,12 @@
       "turma": "9A",
       "responsavel": "Responsável PAULA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0221",
       "email": "responsavel221@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.919Z",
+      "atualizadoEm": "2025-08-26T15:01:56.919Z"
     },
     "aluno_222": {
       "id": "aluno_222",
@@ -2463,8 +3323,12 @@
       "turma": "9A",
       "responsavel": "Responsável YAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0222",
       "email": "responsavel222@email.com",
-      "criadoEm": "2025-08-20T11:57:26.307Z"
+      "criadoEm": "2025-08-20T11:57:26.307Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.921Z",
+      "atualizadoEm": "2025-08-26T15:01:56.921Z"
     },
     "aluno_223": {
       "id": "aluno_223",
@@ -2474,8 +3338,12 @@
       "turma": "9B",
       "responsavel": "Responsável AMANDA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0223",
       "email": "responsavel223@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.922Z",
+      "atualizadoEm": "2025-08-26T15:01:56.922Z"
     },
     "aluno_224": {
       "id": "aluno_224",
@@ -2485,8 +3353,12 @@
       "turma": "9B",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0224",
       "email": "responsavel224@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.923Z",
+      "atualizadoEm": "2025-08-26T15:01:56.924Z"
     },
     "aluno_225": {
       "id": "aluno_225",
@@ -2496,8 +3368,12 @@
       "turma": "9B",
       "responsavel": "Responsável ANTÔNIO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0225",
       "email": "responsavel225@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.2,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.925Z",
+      "atualizadoEm": "2025-08-26T15:01:56.925Z"
     },
     "aluno_226": {
       "id": "aluno_226",
@@ -2507,8 +3383,12 @@
       "turma": "9B",
       "responsavel": "Responsável DANIEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0226",
       "email": "responsavel226@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.926Z",
+      "atualizadoEm": "2025-08-26T15:01:56.926Z"
     },
     "aluno_227": {
       "id": "aluno_227",
@@ -2518,8 +3398,12 @@
       "turma": "9B",
       "responsavel": "Responsável DANILO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0227",
       "email": "responsavel227@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.928Z",
+      "atualizadoEm": "2025-08-26T15:01:56.928Z"
     },
     "aluno_228": {
       "id": "aluno_228",
@@ -2529,8 +3413,12 @@
       "turma": "9B",
       "responsavel": "Responsável DOUGLAS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0228",
       "email": "responsavel228@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.931Z",
+      "atualizadoEm": "2025-08-26T15:01:56.931Z"
     },
     "aluno_229": {
       "id": "aluno_229",
@@ -2540,8 +3428,12 @@
       "turma": "9B",
       "responsavel": "Responsável EMILY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0229",
       "email": "responsavel229@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.932Z",
+      "atualizadoEm": "2025-08-26T15:01:56.932Z"
     },
     "aluno_230": {
       "id": "aluno_230",
@@ -2551,8 +3443,12 @@
       "turma": "9B",
       "responsavel": "Responsável EVELIN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0230",
       "email": "responsavel230@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.933Z",
+      "atualizadoEm": "2025-08-26T15:01:56.933Z"
     },
     "aluno_231": {
       "id": "aluno_231",
@@ -2562,8 +3458,12 @@
       "turma": "9B",
       "responsavel": "Responsável FRANCISCO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0231",
       "email": "responsavel231@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.934Z",
+      "atualizadoEm": "2025-08-26T15:01:56.934Z"
     },
     "aluno_232": {
       "id": "aluno_232",
@@ -2573,8 +3473,12 @@
       "turma": "9B",
       "responsavel": "Responsável HELEN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0232",
       "email": "responsavel232@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.935Z",
+      "atualizadoEm": "2025-08-26T15:01:56.936Z"
     },
     "aluno_233": {
       "id": "aluno_233",
@@ -2584,8 +3488,12 @@
       "turma": "9B",
       "responsavel": "Responsável ISAAC",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0233",
       "email": "responsavel233@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.5,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.937Z",
+      "atualizadoEm": "2025-08-26T15:01:56.937Z"
     },
     "aluno_234": {
       "id": "aluno_234",
@@ -2595,8 +3503,12 @@
       "turma": "9B",
       "responsavel": "Responsável ITALO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0234",
       "email": "responsavel234@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.939Z",
+      "atualizadoEm": "2025-08-26T15:01:56.939Z"
     },
     "aluno_235": {
       "id": "aluno_235",
@@ -2606,8 +3518,12 @@
       "turma": "9B",
       "responsavel": "Responsável JAMYLLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0235",
       "email": "responsavel235@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.941Z",
+      "atualizadoEm": "2025-08-26T15:01:56.941Z"
     },
     "aluno_236": {
       "id": "aluno_236",
@@ -2617,8 +3533,12 @@
       "turma": "9B",
       "responsavel": "Responsável JARDSON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0236",
       "email": "responsavel236@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.943Z",
+      "atualizadoEm": "2025-08-26T15:01:56.943Z"
     },
     "aluno_237": {
       "id": "aluno_237",
@@ -2628,8 +3548,12 @@
       "turma": "9B",
       "responsavel": "Responsável JOICE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0237",
       "email": "responsavel237@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.944Z",
+      "atualizadoEm": "2025-08-26T15:01:56.944Z"
     },
     "aluno_238": {
       "id": "aluno_238",
@@ -2639,8 +3563,12 @@
       "turma": "9B",
       "responsavel": "Responsável JULIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0238",
       "email": "responsavel238@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.6,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.947Z",
+      "atualizadoEm": "2025-08-26T15:01:56.947Z"
     },
     "aluno_239": {
       "id": "aluno_239",
@@ -2650,8 +3578,12 @@
       "turma": "9B",
       "responsavel": "Responsável KAROLINE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0239",
       "email": "responsavel239@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.949Z",
+      "atualizadoEm": "2025-08-26T15:01:56.949Z"
     },
     "aluno_240": {
       "id": "aluno_240",
@@ -2661,8 +3593,12 @@
       "turma": "9B",
       "responsavel": "Responsável KESSILYN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0240",
       "email": "responsavel240@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.951Z",
+      "atualizadoEm": "2025-08-26T15:01:56.951Z"
     },
     "aluno_241": {
       "id": "aluno_241",
@@ -2672,8 +3608,12 @@
       "turma": "9B",
       "responsavel": "Responsável KEVILIN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0241",
       "email": "responsavel241@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.952Z",
+      "atualizadoEm": "2025-08-26T15:01:56.952Z"
     },
     "aluno_242": {
       "id": "aluno_242",
@@ -2683,8 +3623,12 @@
       "turma": "9B",
       "responsavel": "Responsável MANOELLE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0242",
       "email": "responsavel242@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.954Z",
+      "atualizadoEm": "2025-08-26T15:01:56.954Z"
     },
     "aluno_243": {
       "id": "aluno_243",
@@ -2694,8 +3638,12 @@
       "turma": "9B",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0243",
       "email": "responsavel243@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.956Z",
+      "atualizadoEm": "2025-08-26T15:01:56.956Z"
     },
     "aluno_244": {
       "id": "aluno_244",
@@ -2705,8 +3653,12 @@
       "turma": "9B",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0244",
       "email": "responsavel244@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.957Z",
+      "atualizadoEm": "2025-08-26T15:01:56.957Z"
     },
     "aluno_245": {
       "id": "aluno_245",
@@ -2716,8 +3668,12 @@
       "turma": "9B",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0245",
       "email": "responsavel245@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.958Z",
+      "atualizadoEm": "2025-08-26T15:01:56.958Z"
     },
     "aluno_246": {
       "id": "aluno_246",
@@ -2727,8 +3683,12 @@
       "turma": "9B",
       "responsavel": "Responsável MATHEUS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0246",
       "email": "responsavel246@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.960Z",
+      "atualizadoEm": "2025-08-26T15:01:56.960Z"
     },
     "aluno_247": {
       "id": "aluno_247",
@@ -2738,8 +3698,12 @@
       "turma": "9B",
       "responsavel": "Responsável PIETRO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0247",
       "email": "responsavel247@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.962Z",
+      "atualizadoEm": "2025-08-26T15:01:56.962Z"
     },
     "aluno_248": {
       "id": "aluno_248",
@@ -2749,8 +3713,12 @@
       "turma": "9B",
       "responsavel": "Responsável STHEFANY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0248",
       "email": "responsavel248@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.964Z",
+      "atualizadoEm": "2025-08-26T15:01:56.964Z"
     },
     "aluno_249": {
       "id": "aluno_249",
@@ -2760,8 +3728,12 @@
       "turma": "9B",
       "responsavel": "Responsável VICENTE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0249",
       "email": "responsavel249@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.965Z",
+      "atualizadoEm": "2025-08-26T15:01:56.965Z"
     },
     "aluno_250": {
       "id": "aluno_250",
@@ -2771,8 +3743,12 @@
       "turma": "9E",
       "responsavel": "Responsável BRENA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0250",
       "email": "responsavel250@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.967Z",
+      "atualizadoEm": "2025-08-26T15:01:56.967Z"
     },
     "aluno_251": {
       "id": "aluno_251",
@@ -2782,8 +3758,12 @@
       "turma": "9E",
       "responsavel": "Responsável DARLAM",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0251",
       "email": "responsavel251@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.2,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.968Z",
+      "atualizadoEm": "2025-08-26T15:01:56.968Z"
     },
     "aluno_252": {
       "id": "aluno_252",
@@ -2793,8 +3773,12 @@
       "turma": "9E",
       "responsavel": "Responsável ENZO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0252",
       "email": "responsavel252@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.969Z",
+      "atualizadoEm": "2025-08-26T15:01:56.969Z"
     },
     "aluno_253": {
       "id": "aluno_253",
@@ -2804,8 +3788,12 @@
       "turma": "9E",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0253",
       "email": "responsavel253@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.4,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.971Z",
+      "atualizadoEm": "2025-08-26T15:01:56.971Z"
     },
     "aluno_254": {
       "id": "aluno_254",
@@ -2815,8 +3803,12 @@
       "turma": "9E",
       "responsavel": "Responsável GEOVANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0254",
       "email": "responsavel254@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.972Z",
+      "atualizadoEm": "2025-08-26T15:01:56.973Z"
     },
     "aluno_255": {
       "id": "aluno_255",
@@ -2826,8 +3818,12 @@
       "turma": "9E",
       "responsavel": "Responsável HELOÁ",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0255",
       "email": "responsavel255@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.974Z",
+      "atualizadoEm": "2025-08-26T15:01:56.974Z"
     },
     "aluno_256": {
       "id": "aluno_256",
@@ -2837,8 +3833,12 @@
       "turma": "9E",
       "responsavel": "Responsável HELOÍZA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0256",
       "email": "responsavel256@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.975Z",
+      "atualizadoEm": "2025-08-26T15:01:56.975Z"
     },
     "aluno_257": {
       "id": "aluno_257",
@@ -2848,8 +3848,12 @@
       "turma": "9E",
       "responsavel": "Responsável ICARO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0257",
       "email": "responsavel257@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.977Z",
+      "atualizadoEm": "2025-08-26T15:01:56.977Z"
     },
     "aluno_258": {
       "id": "aluno_258",
@@ -2859,8 +3863,12 @@
       "turma": "9E",
       "responsavel": "Responsável JACKSON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0258",
       "email": "responsavel258@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.980Z",
+      "atualizadoEm": "2025-08-26T15:01:56.980Z"
     },
     "aluno_259": {
       "id": "aluno_259",
@@ -2870,8 +3878,12 @@
       "turma": "9E",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0259",
       "email": "responsavel259@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.4,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.982Z",
+      "atualizadoEm": "2025-08-26T15:01:56.982Z"
     },
     "aluno_260": {
       "id": "aluno_260",
@@ -2881,8 +3893,12 @@
       "turma": "9E",
       "responsavel": "Responsável KAUANNE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0260",
       "email": "responsavel260@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.983Z",
+      "atualizadoEm": "2025-08-26T15:01:56.983Z"
     },
     "aluno_261": {
       "id": "aluno_261",
@@ -2892,8 +3908,12 @@
       "turma": "9E",
       "responsavel": "Responsável KHEREN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0261",
       "email": "responsavel261@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.984Z",
+      "atualizadoEm": "2025-08-26T15:01:56.984Z"
     },
     "aluno_262": {
       "id": "aluno_262",
@@ -2903,8 +3923,12 @@
       "turma": "9E",
       "responsavel": "Responsável LORENA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0262",
       "email": "responsavel262@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.986Z",
+      "atualizadoEm": "2025-08-26T15:01:56.986Z"
     },
     "aluno_263": {
       "id": "aluno_263",
@@ -2914,8 +3938,12 @@
       "turma": "9E",
       "responsavel": "Responsável LOANY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0263",
       "email": "responsavel263@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.987Z",
+      "atualizadoEm": "2025-08-26T15:01:56.987Z"
     },
     "aluno_264": {
       "id": "aluno_264",
@@ -2925,8 +3953,12 @@
       "turma": "9E",
       "responsavel": "Responsável NAUENE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0264",
       "email": "responsavel264@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.989Z",
+      "atualizadoEm": "2025-08-26T15:01:56.989Z"
     },
     "aluno_265": {
       "id": "aluno_265",
@@ -2936,8 +3968,12 @@
       "turma": "9E",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0265",
       "email": "responsavel265@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.990Z",
+      "atualizadoEm": "2025-08-26T15:01:56.990Z"
     },
     "aluno_266": {
       "id": "aluno_266",
@@ -2947,8 +3983,12 @@
       "turma": "9E",
       "responsavel": "Responsável RENAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0266",
       "email": "responsavel266@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.992Z",
+      "atualizadoEm": "2025-08-26T15:01:56.992Z"
     },
     "aluno_267": {
       "id": "aluno_267",
@@ -2958,8 +3998,12 @@
       "turma": "9E",
       "responsavel": "Responsável STHEPHANY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0267",
       "email": "responsavel267@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.993Z",
+      "atualizadoEm": "2025-08-26T15:01:56.993Z"
     },
     "aluno_268": {
       "id": "aluno_268",
@@ -2969,8 +4013,12 @@
       "turma": "9E",
       "responsavel": "Responsável VALQUIRIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0268",
       "email": "responsavel268@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.996Z",
+      "atualizadoEm": "2025-08-26T15:01:56.996Z"
     },
     "aluno_269": {
       "id": "aluno_269",
@@ -2980,8 +4028,12 @@
       "turma": "9E",
       "responsavel": "Responsável VALTAIR",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0269",
       "email": "responsavel269@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.998Z",
+      "atualizadoEm": "2025-08-26T15:01:56.998Z"
     },
     "aluno_270": {
       "id": "aluno_270",
@@ -2991,8 +4043,12 @@
       "turma": "9E",
       "responsavel": "Responsável VICTOR",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0270",
       "email": "responsavel270@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:56.999Z",
+      "atualizadoEm": "2025-08-26T15:01:56.999Z"
     },
     "aluno_271": {
       "id": "aluno_271",
@@ -3002,8 +4058,12 @@
       "turma": "9E",
       "responsavel": "Responsável VICTOR",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0271",
       "email": "responsavel271@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.000Z",
+      "atualizadoEm": "2025-08-26T15:01:57.000Z"
     },
     "aluno_272": {
       "id": "aluno_272",
@@ -3013,8 +4073,12 @@
       "turma": "9E",
       "responsavel": "Responsável VITOR",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0272",
       "email": "responsavel272@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.002Z",
+      "atualizadoEm": "2025-08-26T15:01:57.002Z"
     },
     "aluno_273": {
       "id": "aluno_273",
@@ -3024,8 +4088,12 @@
       "turma": "9E",
       "responsavel": "Responsável WASHINGTON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0273",
       "email": "responsavel273@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.003Z",
+      "atualizadoEm": "2025-08-26T15:01:57.003Z"
     },
     "aluno_274": {
       "id": "aluno_274",
@@ -3035,8 +4103,12 @@
       "turma": "1B",
       "responsavel": "Responsável ALAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0274",
       "email": "responsavel274@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.005Z",
+      "atualizadoEm": "2025-08-26T15:01:57.005Z"
     },
     "aluno_275": {
       "id": "aluno_275",
@@ -3046,8 +4118,12 @@
       "turma": "1B",
       "responsavel": "Responsável ALANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0275",
       "email": "responsavel275@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.006Z",
+      "atualizadoEm": "2025-08-26T15:01:57.006Z"
     },
     "aluno_276": {
       "id": "aluno_276",
@@ -3057,8 +4133,12 @@
       "turma": "1B",
       "responsavel": "Responsável ALEXSANDRO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0276",
       "email": "responsavel276@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.007Z",
+      "atualizadoEm": "2025-08-26T15:01:57.007Z"
     },
     "aluno_277": {
       "id": "aluno_277",
@@ -3068,8 +4148,12 @@
       "turma": "1B",
       "responsavel": "Responsável EMERSON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0277",
       "email": "responsavel277@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.009Z",
+      "atualizadoEm": "2025-08-26T15:01:57.009Z"
     },
     "aluno_278": {
       "id": "aluno_278",
@@ -3079,8 +4163,12 @@
       "turma": "1B",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0278",
       "email": "responsavel278@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.012Z",
+      "atualizadoEm": "2025-08-26T15:01:57.012Z"
     },
     "aluno_279": {
       "id": "aluno_279",
@@ -3090,8 +4178,12 @@
       "turma": "1B",
       "responsavel": "Responsável GABRIELLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0279",
       "email": "responsavel279@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.014Z",
+      "atualizadoEm": "2025-08-26T15:01:57.014Z"
     },
     "aluno_280": {
       "id": "aluno_280",
@@ -3101,8 +4193,12 @@
       "turma": "1B",
       "responsavel": "Responsável HALLISON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0280",
       "email": "responsavel280@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.016Z",
+      "atualizadoEm": "2025-08-26T15:01:57.016Z"
     },
     "aluno_281": {
       "id": "aluno_281",
@@ -3112,8 +4208,12 @@
       "turma": "1B",
       "responsavel": "Responsável INGRID",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0281",
       "email": "responsavel281@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.018Z",
+      "atualizadoEm": "2025-08-26T15:01:57.018Z"
     },
     "aluno_282": {
       "id": "aluno_282",
@@ -3123,8 +4223,12 @@
       "turma": "1B",
       "responsavel": "Responsável JUAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0282",
       "email": "responsavel282@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.020Z",
+      "atualizadoEm": "2025-08-26T15:01:57.020Z"
     },
     "aluno_283": {
       "id": "aluno_283",
@@ -3134,8 +4238,12 @@
       "turma": "1B",
       "responsavel": "Responsável JULIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0283",
       "email": "responsavel283@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.022Z",
+      "atualizadoEm": "2025-08-26T15:01:57.022Z"
     },
     "aluno_284": {
       "id": "aluno_284",
@@ -3145,8 +4253,12 @@
       "turma": "1B",
       "responsavel": "Responsável JULIANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0284",
       "email": "responsavel284@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.023Z",
+      "atualizadoEm": "2025-08-26T15:01:57.023Z"
     },
     "aluno_285": {
       "id": "aluno_285",
@@ -3156,8 +4268,12 @@
       "turma": "1B",
       "responsavel": "Responsável KAUANY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0285",
       "email": "responsavel285@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.024Z",
+      "atualizadoEm": "2025-08-26T15:01:57.024Z"
     },
     "aluno_286": {
       "id": "aluno_286",
@@ -3167,8 +4283,12 @@
       "turma": "1B",
       "responsavel": "Responsável LARISSA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0286",
       "email": "responsavel286@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.026Z",
+      "atualizadoEm": "2025-08-26T15:01:57.026Z"
     },
     "aluno_287": {
       "id": "aluno_287",
@@ -3178,8 +4298,12 @@
       "turma": "1B",
       "responsavel": "Responsável LARISSA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0287",
       "email": "responsavel287@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.027Z",
+      "atualizadoEm": "2025-08-26T15:01:57.028Z"
     },
     "aluno_288": {
       "id": "aluno_288",
@@ -3189,8 +4313,12 @@
       "turma": "1B",
       "responsavel": "Responsável LUCAS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0288",
       "email": "responsavel288@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.030Z",
+      "atualizadoEm": "2025-08-26T15:01:57.030Z"
     },
     "aluno_289": {
       "id": "aluno_289",
@@ -3200,8 +4328,12 @@
       "turma": "1B",
       "responsavel": "Responsável LUIZ",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0289",
       "email": "responsavel289@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.032Z",
+      "atualizadoEm": "2025-08-26T15:01:57.032Z"
     },
     "aluno_290": {
       "id": "aluno_290",
@@ -3211,8 +4343,12 @@
       "turma": "1B",
       "responsavel": "Responsável MAILANE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0290",
       "email": "responsavel290@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.033Z",
+      "atualizadoEm": "2025-08-26T15:01:57.033Z"
     },
     "aluno_291": {
       "id": "aluno_291",
@@ -3222,8 +4358,12 @@
       "turma": "1B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0291",
       "email": "responsavel291@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.035Z",
+      "atualizadoEm": "2025-08-26T15:01:57.035Z"
     },
     "aluno_292": {
       "id": "aluno_292",
@@ -3233,8 +4373,12 @@
       "turma": "1B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0292",
       "email": "responsavel292@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.036Z",
+      "atualizadoEm": "2025-08-26T15:01:57.036Z"
     },
     "aluno_293": {
       "id": "aluno_293",
@@ -3244,8 +4388,12 @@
       "turma": "1B",
       "responsavel": "Responsável MAURICIO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0293",
       "email": "responsavel293@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.6,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.038Z",
+      "atualizadoEm": "2025-08-26T15:01:57.038Z"
     },
     "aluno_294": {
       "id": "aluno_294",
@@ -3255,8 +4403,12 @@
       "turma": "1B",
       "responsavel": "Responsável NATHALIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0294",
       "email": "responsavel294@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.039Z",
+      "atualizadoEm": "2025-08-26T15:01:57.039Z"
     },
     "aluno_295": {
       "id": "aluno_295",
@@ -3266,8 +4418,12 @@
       "turma": "1B",
       "responsavel": "Responsável NATHAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0295",
       "email": "responsavel295@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.041Z",
+      "atualizadoEm": "2025-08-26T15:01:57.041Z"
     },
     "aluno_296": {
       "id": "aluno_296",
@@ -3277,8 +4433,12 @@
       "turma": "1B",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0296",
       "email": "responsavel296@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.042Z",
+      "atualizadoEm": "2025-08-26T15:01:57.042Z"
     },
     "aluno_297": {
       "id": "aluno_297",
@@ -3288,8 +4448,12 @@
       "turma": "1B",
       "responsavel": "Responsável SOFIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0297",
       "email": "responsavel297@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.044Z",
+      "atualizadoEm": "2025-08-26T15:01:57.044Z"
     },
     "aluno_298": {
       "id": "aluno_298",
@@ -3299,8 +4463,12 @@
       "turma": "1B",
       "responsavel": "Responsável VICTOR",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0298",
       "email": "responsavel298@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.047Z",
+      "atualizadoEm": "2025-08-26T15:01:57.047Z"
     },
     "aluno_299": {
       "id": "aluno_299",
@@ -3310,8 +4478,12 @@
       "turma": "1B",
       "responsavel": "Responsável VITÓRIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0299",
       "email": "responsavel299@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.049Z",
+      "atualizadoEm": "2025-08-26T15:01:57.049Z"
     },
     "aluno_300": {
       "id": "aluno_300",
@@ -3321,8 +4493,12 @@
       "turma": "1B",
       "responsavel": "Responsável YAGO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0300",
       "email": "responsavel300@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.050Z",
+      "atualizadoEm": "2025-08-26T15:01:57.050Z"
     },
     "aluno_301": {
       "id": "aluno_301",
@@ -3332,8 +4508,12 @@
       "turma": "1B",
       "responsavel": "Responsável YOHHAM",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0301",
       "email": "responsavel301@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.052Z",
+      "atualizadoEm": "2025-08-26T15:01:57.052Z"
     },
     "aluno_302": {
       "id": "aluno_302",
@@ -3343,8 +4523,12 @@
       "turma": "1C",
       "responsavel": "Responsável ALESSANDRA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0302",
       "email": "responsavel302@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.054Z",
+      "atualizadoEm": "2025-08-26T15:01:57.054Z"
     },
     "aluno_303": {
       "id": "aluno_303",
@@ -3354,8 +4538,12 @@
       "turma": "1C",
       "responsavel": "Responsável ANTONIEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0303",
       "email": "responsavel303@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.056Z",
+      "atualizadoEm": "2025-08-26T15:01:57.056Z"
     },
     "aluno_304": {
       "id": "aluno_304",
@@ -3365,8 +4553,12 @@
       "turma": "1C",
       "responsavel": "Responsável ARTHUR",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0304",
       "email": "responsavel304@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.057Z",
+      "atualizadoEm": "2025-08-26T15:01:57.057Z"
     },
     "aluno_305": {
       "id": "aluno_305",
@@ -3376,8 +4568,12 @@
       "turma": "1C",
       "responsavel": "Responsável BRUNO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0305",
       "email": "responsavel305@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.059Z",
+      "atualizadoEm": "2025-08-26T15:01:57.059Z"
     },
     "aluno_306": {
       "id": "aluno_306",
@@ -3387,8 +4583,12 @@
       "turma": "1C",
       "responsavel": "Responsável DAVI",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0306",
       "email": "responsavel306@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.061Z",
+      "atualizadoEm": "2025-08-26T15:01:57.061Z"
     },
     "aluno_307": {
       "id": "aluno_307",
@@ -3398,8 +4598,12 @@
       "turma": "1C",
       "responsavel": "Responsável DUAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0307",
       "email": "responsavel307@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.063Z",
+      "atualizadoEm": "2025-08-26T15:01:57.063Z"
     },
     "aluno_308": {
       "id": "aluno_308",
@@ -3409,8 +4613,12 @@
       "turma": "1C",
       "responsavel": "Responsável EMANUELY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0308",
       "email": "responsavel308@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.065Z",
+      "atualizadoEm": "2025-08-26T15:01:57.065Z"
     },
     "aluno_309": {
       "id": "aluno_309",
@@ -3420,8 +4628,12 @@
       "turma": "1C",
       "responsavel": "Responsável ISADORA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0309",
       "email": "responsavel309@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.067Z",
+      "atualizadoEm": "2025-08-26T15:01:57.067Z"
     },
     "aluno_310": {
       "id": "aluno_310",
@@ -3431,8 +4643,12 @@
       "turma": "1C",
       "responsavel": "Responsável JAIR",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0310",
       "email": "responsavel310@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.069Z",
+      "atualizadoEm": "2025-08-26T15:01:57.069Z"
     },
     "aluno_311": {
       "id": "aluno_311",
@@ -3442,8 +4658,12 @@
       "turma": "1C",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0311",
       "email": "responsavel311@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.071Z",
+      "atualizadoEm": "2025-08-26T15:01:57.071Z"
     },
     "aluno_312": {
       "id": "aluno_312",
@@ -3453,8 +4673,12 @@
       "turma": "1C",
       "responsavel": "Responsável JOÂO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0312",
       "email": "responsavel312@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.073Z",
+      "atualizadoEm": "2025-08-26T15:01:57.073Z"
     },
     "aluno_313": {
       "id": "aluno_313",
@@ -3464,8 +4688,12 @@
       "turma": "1C",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0313",
       "email": "responsavel313@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.075Z",
+      "atualizadoEm": "2025-08-26T15:01:57.075Z"
     },
     "aluno_314": {
       "id": "aluno_314",
@@ -3475,8 +4703,12 @@
       "turma": "1C",
       "responsavel": "Responsável JULIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0314",
       "email": "responsavel314@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.077Z",
+      "atualizadoEm": "2025-08-26T15:01:57.077Z"
     },
     "aluno_315": {
       "id": "aluno_315",
@@ -3486,8 +4718,12 @@
       "turma": "1C",
       "responsavel": "Responsável KEMILLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0315",
       "email": "responsavel315@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.079Z",
+      "atualizadoEm": "2025-08-26T15:01:57.079Z"
     },
     "aluno_316": {
       "id": "aluno_316",
@@ -3497,8 +4733,12 @@
       "turma": "1C",
       "responsavel": "Responsável KEMILLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0316",
       "email": "responsavel316@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.080Z",
+      "atualizadoEm": "2025-08-26T15:01:57.080Z"
     },
     "aluno_317": {
       "id": "aluno_317",
@@ -3508,8 +4748,12 @@
       "turma": "1C",
       "responsavel": "Responsável KEVER",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0317",
       "email": "responsavel317@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.082Z",
+      "atualizadoEm": "2025-08-26T15:01:57.082Z"
     },
     "aluno_318": {
       "id": "aluno_318",
@@ -3519,8 +4763,12 @@
       "turma": "1C",
       "responsavel": "Responsável LEONARDO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0318",
       "email": "responsavel318@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.084Z",
+      "atualizadoEm": "2025-08-26T15:01:57.084Z"
     },
     "aluno_319": {
       "id": "aluno_319",
@@ -3530,8 +4778,12 @@
       "turma": "1C",
       "responsavel": "Responsável LUCAS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0319",
       "email": "responsavel319@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.085Z",
+      "atualizadoEm": "2025-08-26T15:01:57.085Z"
     },
     "aluno_320": {
       "id": "aluno_320",
@@ -3541,8 +4793,12 @@
       "turma": "1C",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0320",
       "email": "responsavel320@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.086Z",
+      "atualizadoEm": "2025-08-26T15:01:57.086Z"
     },
     "aluno_321": {
       "id": "aluno_321",
@@ -3552,8 +4808,12 @@
       "turma": "1C",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0321",
       "email": "responsavel321@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.087Z",
+      "atualizadoEm": "2025-08-26T15:01:57.087Z"
     },
     "aluno_322": {
       "id": "aluno_322",
@@ -3563,8 +4823,12 @@
       "turma": "1C",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0322",
       "email": "responsavel322@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.089Z",
+      "atualizadoEm": "2025-08-26T15:01:57.089Z"
     },
     "aluno_323": {
       "id": "aluno_323",
@@ -3574,8 +4838,12 @@
       "turma": "1C",
       "responsavel": "Responsável MARIANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0323",
       "email": "responsavel323@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.090Z",
+      "atualizadoEm": "2025-08-26T15:01:57.090Z"
     },
     "aluno_324": {
       "id": "aluno_324",
@@ -3585,8 +4853,12 @@
       "turma": "1C",
       "responsavel": "Responsável MARIANI",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0324",
       "email": "responsavel324@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.092Z",
+      "atualizadoEm": "2025-08-26T15:01:57.092Z"
     },
     "aluno_325": {
       "id": "aluno_325",
@@ -3596,8 +4868,12 @@
       "turma": "1C",
       "responsavel": "Responsável MELISSA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0325",
       "email": "responsavel325@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.094Z",
+      "atualizadoEm": "2025-08-26T15:01:57.094Z"
     },
     "aluno_326": {
       "id": "aluno_326",
@@ -3607,8 +4883,12 @@
       "turma": "1C",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0326",
       "email": "responsavel326@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.096Z",
+      "atualizadoEm": "2025-08-26T15:01:57.096Z"
     },
     "aluno_327": {
       "id": "aluno_327",
@@ -3618,8 +4898,12 @@
       "turma": "1C",
       "responsavel": "Responsável RUAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0327",
       "email": "responsavel327@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.099Z",
+      "atualizadoEm": "2025-08-26T15:01:57.099Z"
     },
     "aluno_328": {
       "id": "aluno_328",
@@ -3629,8 +4913,12 @@
       "turma": "1C",
       "responsavel": "Responsável STEPHANIE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0328",
       "email": "responsavel328@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.101Z",
+      "atualizadoEm": "2025-08-26T15:01:57.101Z"
     },
     "aluno_329": {
       "id": "aluno_329",
@@ -3640,8 +4928,12 @@
       "turma": "1C",
       "responsavel": "Responsável TALYA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0329",
       "email": "responsavel329@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.102Z",
+      "atualizadoEm": "2025-08-26T15:01:57.102Z"
     },
     "aluno_330": {
       "id": "aluno_330",
@@ -3651,8 +4943,12 @@
       "turma": "1C",
       "responsavel": "Responsável YOSBEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0330",
       "email": "responsavel330@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.6,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.103Z",
+      "atualizadoEm": "2025-08-26T15:01:57.103Z"
     },
     "aluno_331": {
       "id": "aluno_331",
@@ -3662,8 +4958,12 @@
       "turma": "2A",
       "responsavel": "Responsável ARIADINE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0331",
       "email": "responsavel331@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.105Z",
+      "atualizadoEm": "2025-08-26T15:01:57.105Z"
     },
     "aluno_332": {
       "id": "aluno_332",
@@ -3673,8 +4973,12 @@
       "turma": "2A",
       "responsavel": "Responsável BRUNA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0332",
       "email": "responsavel332@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.106Z",
+      "atualizadoEm": "2025-08-26T15:01:57.106Z"
     },
     "aluno_333": {
       "id": "aluno_333",
@@ -3684,8 +4988,12 @@
       "turma": "2A",
       "responsavel": "Responsável CAROLINE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0333",
       "email": "responsavel333@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.6,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.107Z",
+      "atualizadoEm": "2025-08-26T15:01:57.107Z"
     },
     "aluno_334": {
       "id": "aluno_334",
@@ -3695,8 +5003,12 @@
       "turma": "2A",
       "responsavel": "Responsável EDUARDO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0334",
       "email": "responsavel334@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.109Z",
+      "atualizadoEm": "2025-08-26T15:01:57.109Z"
     },
     "aluno_335": {
       "id": "aluno_335",
@@ -3706,8 +5018,12 @@
       "turma": "2A",
       "responsavel": "Responsável EMANUELLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0335",
       "email": "responsavel335@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.110Z",
+      "atualizadoEm": "2025-08-26T15:01:57.110Z"
     },
     "aluno_336": {
       "id": "aluno_336",
@@ -3717,8 +5033,12 @@
       "turma": "2A",
       "responsavel": "Responsável ESTEFANY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0336",
       "email": "responsavel336@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.113Z",
+      "atualizadoEm": "2025-08-26T15:01:57.113Z"
     },
     "aluno_337": {
       "id": "aluno_337",
@@ -3728,8 +5048,12 @@
       "turma": "2A",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0337",
       "email": "responsavel337@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.114Z",
+      "atualizadoEm": "2025-08-26T15:01:57.114Z"
     },
     "aluno_338": {
       "id": "aluno_338",
@@ -3739,8 +5063,12 @@
       "turma": "2A",
       "responsavel": "Responsável GABRIELLY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0338",
       "email": "responsavel338@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.116Z",
+      "atualizadoEm": "2025-08-26T15:01:57.116Z"
     },
     "aluno_339": {
       "id": "aluno_339",
@@ -3750,8 +5078,12 @@
       "turma": "2A",
       "responsavel": "Responsável GIOVANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0339",
       "email": "responsavel339@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.7,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.117Z",
+      "atualizadoEm": "2025-08-26T15:01:57.117Z"
     },
     "aluno_340": {
       "id": "aluno_340",
@@ -3761,8 +5093,12 @@
       "turma": "2A",
       "responsavel": "Responsável IASMIM",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0340",
       "email": "responsavel340@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.119Z",
+      "atualizadoEm": "2025-08-26T15:01:57.119Z"
     },
     "aluno_341": {
       "id": "aluno_341",
@@ -3772,8 +5108,12 @@
       "turma": "2A",
       "responsavel": "Responsável JANAINA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0341",
       "email": "responsavel341@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.120Z",
+      "atualizadoEm": "2025-08-26T15:01:57.120Z"
     },
     "aluno_342": {
       "id": "aluno_342",
@@ -3783,8 +5123,12 @@
       "turma": "2A",
       "responsavel": "Responsável JENNIFER",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0342",
       "email": "responsavel342@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.121Z",
+      "atualizadoEm": "2025-08-26T15:01:57.121Z"
     },
     "aluno_343": {
       "id": "aluno_343",
@@ -3794,8 +5138,12 @@
       "turma": "2A",
       "responsavel": "Responsável JHÚLIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0343",
       "email": "responsavel343@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.123Z",
+      "atualizadoEm": "2025-08-26T15:01:57.123Z"
     },
     "aluno_344": {
       "id": "aluno_344",
@@ -3805,8 +5153,12 @@
       "turma": "2A",
       "responsavel": "Responsável JOYCE",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0344",
       "email": "responsavel344@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.124Z",
+      "atualizadoEm": "2025-08-26T15:01:57.124Z"
     },
     "aluno_345": {
       "id": "aluno_345",
@@ -3816,8 +5168,12 @@
       "turma": "2A",
       "responsavel": "Responsável JULIANA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0345",
       "email": "responsavel345@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.125Z",
+      "atualizadoEm": "2025-08-26T15:01:57.125Z"
     },
     "aluno_346": {
       "id": "aluno_346",
@@ -3827,8 +5183,12 @@
       "turma": "2A",
       "responsavel": "Responsável LUAN",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0346",
       "email": "responsavel346@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.126Z",
+      "atualizadoEm": "2025-08-26T15:01:57.126Z"
     },
     "aluno_347": {
       "id": "aluno_347",
@@ -3838,8 +5198,12 @@
       "turma": "2A",
       "responsavel": "Responsável NATHALY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0347",
       "email": "responsavel347@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.128Z",
+      "atualizadoEm": "2025-08-26T15:01:57.128Z"
     },
     "aluno_348": {
       "id": "aluno_348",
@@ -3849,8 +5213,12 @@
       "turma": "2A",
       "responsavel": "Responsável PABLO",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0348",
       "email": "responsavel348@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.130Z",
+      "atualizadoEm": "2025-08-26T15:01:57.130Z"
     },
     "aluno_349": {
       "id": "aluno_349",
@@ -3860,8 +5228,12 @@
       "turma": "2A",
       "responsavel": "Responsável PÉROLA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0349",
       "email": "responsavel349@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.132Z",
+      "atualizadoEm": "2025-08-26T15:01:57.132Z"
     },
     "aluno_350": {
       "id": "aluno_350",
@@ -3871,8 +5243,12 @@
       "turma": "2A",
       "responsavel": "Responsável RICHARLISON",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0350",
       "email": "responsavel350@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.133Z",
+      "atualizadoEm": "2025-08-26T15:01:57.133Z"
     },
     "aluno_351": {
       "id": "aluno_351",
@@ -3882,8 +5258,12 @@
       "turma": "2A",
       "responsavel": "Responsável SHTEFANNY",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0351",
       "email": "responsavel351@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 8,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.134Z",
+      "atualizadoEm": "2025-08-26T15:01:57.134Z"
     },
     "aluno_352": {
       "id": "aluno_352",
@@ -3893,8 +5273,12 @@
       "turma": "2A",
       "responsavel": "Responsável VITORIA",
       "cpf_responsavel": "",
+      "telefone": "(11) 99999-0352",
       "email": "responsavel352@email.com",
-      "criadoEm": "2025-08-20T11:57:26.308Z"
+      "criadoEm": "2025-08-20T11:57:26.308Z",
+      "nota_disciplinar": 7.9,
+      "ultima_atualizacao_nota": "2025-08-26T15:01:57.136Z",
+      "atualizadoEm": "2025-08-26T15:01:57.136Z"
     }
   },
   "medidas_disciplinares": {
