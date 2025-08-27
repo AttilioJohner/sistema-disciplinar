@@ -33,7 +33,7 @@ class GitHubDataSync {
         // Se não tiver token individual, usar token compartilhado da equipe
         if (!this.token) {
             // TOKEN COMPARTILHADO - substitua pelo seu token real
-            this.token = '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'; // Token compartilhado da equipe
+            this.token = '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'; // Token compartilhado da equipe
             
             // Se ainda não tiver token válido, desabilitar
             if (this.token === 'COLE_SEU_TOKEN_AQUI') {
