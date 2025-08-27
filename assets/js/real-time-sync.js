@@ -92,7 +92,7 @@ class RealTimeSync {
             
             const response = await fetch(`${this.gitHub.apiUrl}/repos/${this.gitHub.owner}/${this.gitHub.repo}/commits/main`, {
                 headers: {
-                    'Authorization': `Bearer ${this.gitHub.token}`,
+                    'Authorization': `token ${this.gitHub.token}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
@@ -143,7 +143,7 @@ class RealTimeSync {
         try {
             const response = await fetch(`${this.gitHub.apiUrl}/repos/${this.gitHub.owner}/${this.gitHub.repo}/commits/main`, {
                 headers: {
-                    'Authorization': `Bearer ${this.gitHub.token}`,
+                    'Authorization': `token ${this.gitHub.token}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
