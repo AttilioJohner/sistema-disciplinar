@@ -9,6 +9,37 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <style>
+        .restore-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .restore-container .form-input {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .data-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .action-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .action-card.restore {
+            background: #fff3cd;
+            border-color: #ffeaa7;
+        }
+    </style>
     
     <!-- GitHub Sync -->
     <script src="../assets/js/github-sync.js"></script>
@@ -393,10 +424,12 @@
                                 <div class="action-content">
                                     <h4 class="action-title">Restaurar Dados</h4>
                                     <p class="action-description">Restaurar dados a partir de um arquivo de backup</p>
-                                    <input type="file" id="arquivoRestore" accept=".json" class="form-input" style="margin-bottom: 10px;">
-                                    <button class="btn btn-warning" onclick="restaurarBackup()">
-                                        📂 Restaurar Backup
-                                    </button>
+                                    <div class="restore-container">
+                                        <input type="file" id="arquivoRestore" accept=".json" class="form-input">
+                                        <button class="btn btn-warning" onclick="restaurarBackup()">
+                                            📂 Restaurar
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -419,21 +452,6 @@
                                 </div>
                             </div>
                             
-                            <div class="action-card danger">
-                                <div class="action-icon">🗑️</div>
-                                <div class="action-content">
-                                    <h4 class="action-title">Limpeza de Dados</h4>
-                                    <p class="action-description">⚠️ <strong>CUIDADO:</strong> Ação irreversível</p>
-                                    <div class="danger-zone">
-                                        <button class="btn btn-secondary" onclick="limparDadosAntigos()">
-                                            🗑️ Limpar Dados Antigos
-                                        </button>
-                                        <button class="btn btn-danger" onclick="resetarSistema()" style="margin-top: 5px;">
-                                            ⚠️ Reset Completo
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
