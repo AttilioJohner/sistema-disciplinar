@@ -141,6 +141,7 @@ class RealTimeSync {
         }
 
         try {
+            console.log('🔍 Debug - Token disponível:', this.gitHub.token ? 'SIM' : 'NÃO', this.gitHub.token?.substring(0, 8) + '...');
             const response = await fetch(`${this.gitHub.apiUrl}/repos/${this.gitHub.owner}/${this.gitHub.repo}/commits/main`, {
                 headers: {
                     'Authorization': `token ${this.gitHub.token}`,
