@@ -32,7 +32,9 @@
       "Bash(npm run build:*)",
       "Bash(grep:*)",
       "Bash([ -f public/pages/login.html ])",
-      "Bash([ -f public/assets/js/auth-utils.js ])"
+      "Bash([ -f public/assets/js/auth-utils.js ])",
+      "Bash(for f in auto-sync-github.js consolidar-dados.js dados-frequencia.js firebase-admin.js gerar-frequencia-completa.js import-csv-completo.js process-medidas.js server.js test-import.js)",
+      "Bash(npm run import:csv:*)"
     ],
     "deny": [],
     "ask": []

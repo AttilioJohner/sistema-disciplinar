@@ -2,6 +2,12 @@
 
 const fs = require('fs');
 
+// Carregar variáveis de ambiente
+try { require('dotenv').config(); } catch (e) { /* dotenv opcional */ }
+
+const CSV_ENCODING = process.env.CSV_ENCODING || 'utf8';
+const CSV_DELIMITER = process.env.DEFAULT_CSV_DELIMITER || ',';
+
 console.log('📥 Importando CSV completo...');
 
 // Usar os dados CSV que você forneceu

@@ -4,7 +4,19 @@ const fs = require('fs');
 const { execSync } = require('child_process');
 const path = require('path');
 
+// Carregar variáveis de ambiente
+try { require('dotenv').config(); } catch (e) { /* dotenv opcional */ }
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_REPO = process.env.GITHUB_REPO;
+const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
+
 console.log('🚀 Auto-sync para GitHub iniciado...');
+
+if (!GITHUB_TOKEN || !GITHUB_REPO) {
+  console.error('❌ GITHUB_TOKEN e GITHUB_REPO devem estar definidos no .env');
+  process.exit(1);
+}
 
 try {
     // Verificar se há dados para sincronizar
