@@ -163,7 +163,7 @@
           nascimento: data.nascimento || '',
           responsavel: data.responsavel || '',
           cpf: data.cpf_responsavel || data.cpf || '',
-          telefone: data.telefone_responsavel || data.telefone || '',
+          telefone: data.telefone || data.telefone_responsavel || '',
           email: data.email || '',
           ...data // Manter campos originais também
         };
