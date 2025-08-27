@@ -1,5 +1,17 @@
 {
   "alunos": {
+    "111": {
+      "codigo": "111",
+      "nome_completo": "attilio",
+      "turma": "1B",
+      "status": "ativo",
+      "created_at": "2025-08-27T16:53:09.900Z",
+      "updated_at": "2025-08-27T16:53:09.900Z",
+      "createdAt": "2025-08-27T16:53:09.900Z",
+      "updatedAt": "2025-08-27T16:53:09.900Z",
+      "id": "111",
+      "atualizadoEm": "2025-08-27T16:53:09.900Z"
+    },
     "aluno_001": {
       "id": "aluno_001",
       "codigo": "2639458",
