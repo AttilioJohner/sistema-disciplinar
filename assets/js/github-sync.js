@@ -468,7 +468,7 @@ if (typeof module !== 'undefined' && module.exports) {
                         const dados = JSON.parse(dadosLocais);
                         console.log('📤 Enviando dados locais para GitHub...');
                         
-                        await this.salvarDadosGitHub('/data/db.json', dados);
+                        await this.salvarDadosAutomatico(dados, 'sincronizacao_completa', 'Sync automático dos dados locais');
                         console.log('✅ Dados locais enviados para GitHub');
                         return dados;
                     } catch (error) {
