@@ -4,10 +4,14 @@ async function carregarDadosFrequenciaCSV() {
     console.log('📥 Carregando dados de frequência do arquivo CSV...');
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     const response = await fetch('./assets/js/dados-frequencia-agosto.js');
 =======
     const response = await fetch('../assets/js/dados-frequencia-agosto.js');
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+    const response = await fetch('./assets/js/dados-frequencia-agosto.js');
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     if (!response.ok) {
       throw new Error('Erro ao carregar arquivo: ' + response.status);
     }
@@ -186,10 +190,14 @@ window.buscarFrequenciaPorCodigo = async function buscarFrequenciaPorCodigo(codi
     console.log(`🔍 Buscando frequência para aluno: ${codigoAluno}`);
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     const response = await fetch('./assets/js/dados-frequencia-agosto.js');
 =======
     const response = await fetch('../assets/js/dados-frequencia-agosto.js');
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+    const response = await fetch('./assets/js/dados-frequencia-agosto.js');
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     if (!response.ok) {
       throw new Error('Erro ao carregar arquivo: ' + response.status);
     }

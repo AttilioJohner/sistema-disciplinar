@@ -376,18 +376,27 @@
 
   // ======= FUNÇÕES PARA MEDIDAS DISCIPLINARES IMPORTADAS =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   // Cache para registros recentes (3 minutos)
   let cacheRegistros = { data: null, timestamp: 0 };
   const CACHE_REGISTROS_DURATION = 3 * 60 * 1000; // 3 minutos
 
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   async function carregarRegistrosRecentes() {
     try {
       const container = document.getElementById('registrosRecentes');
       if (!container) return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       // Verificar cache
       const agora = Date.now();
       if (cacheRegistros.data && (agora - cacheRegistros.timestamp) < CACHE_REGISTROS_DURATION) {
@@ -396,6 +405,7 @@
         return;
       }
 
+<<<<<<< HEAD
       console.log('🔄 Carregando registros recentes...');
 
       // Buscar medidas disciplinares recentes (limitado para melhor performance)
@@ -408,22 +418,31 @@
       if (medidas.length === 0) {
         html = `
 =======
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       console.log('🔄 Carregando registros recentes...');
 
-      // Buscar medidas disciplinares recentes
-      const medidas = await listarUltimasMedidasSistema({ limit: 50 });
+      // Buscar medidas disciplinares recentes (limitado para melhor performance)
+      const medidas = await listarUltimasMedidasSistema({ limit: 20 });
       
       console.log(`📊 Encontradas ${medidas.length} medidas disciplinares`);
       
+      let html = '';
+      
       if (medidas.length === 0) {
+<<<<<<< HEAD
         container.innerHTML = `
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+        html = `
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
           <div class="empty-state">
             <div class="empty-icon">📋</div>
             <h3>Nenhum registro encontrado</h3>
             <p>Importe dados do Excel ou cadastre novas medidas</p>
           </div>
         `;
+<<<<<<< HEAD
 <<<<<<< HEAD
       } else {
         html = '<div class="records-list">';
@@ -472,34 +491,53 @@
       
       for (const medida of medidas) {
         const dataFormatada = medida.data ? new Date(medida.data).toLocaleDateString('pt-BR') : 'Data não informada';
+=======
+      } else {
+        html = '<div class="records-list">';
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         
-        // Calcular pontos da medida
-        const pontos = calcularPontosMedida(medida.tipo_medida, medida.dias_suspensao);
-        const corPontos = pontos > 0 ? '#107c10' : pontos < 0 ? '#dc3545' : '#605e5c';
-        const sinalPontos = pontos > 0 ? '+' : '';
+        // Processar apenas os primeiros 15 para otimizar
+        const medidasLimitadas = medidas.slice(0, 15);
         
-        html += `
-          <div class="record-item" style="border-left: 4px solid ${corPontos}; margin-bottom: 12px; padding: 12px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <div class="record-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <div class="record-type medida" style="background: ${corPontos}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">📋 ${medida.tipo_medida || 'Medida Disciplinar'}</div>
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="color: ${corPontos}; font-weight: bold; font-size: 14px;">${sinalPontos}${pontos}</span>
-                <div class="record-date" style="color: #6c757d; font-size: 12px;">${dataFormatada}</div>
+        for (const medida of medidasLimitadas) {
+          const dataFormatada = medida.data ? new Date(medida.data).toLocaleDateString('pt-BR') : 'Data não informada';
+          
+          // Calcular pontos da medida
+          const pontos = calcularPontosMedida(medida.tipo_medida, medida.dias_suspensao);
+          const corPontos = pontos > 0 ? '#107c10' : pontos < 0 ? '#dc3545' : '#605e5c';
+          const sinalPontos = pontos > 0 ? '+' : '';
+          
+          html += `
+            <div class="record-item" style="border-left: 4px solid ${corPontos}; margin-bottom: 12px; padding: 12px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div class="record-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div class="record-type medida" style="background: ${corPontos}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">📋 ${medida.tipo_medida || 'Medida Disciplinar'}</div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="color: ${corPontos}; font-weight: bold; font-size: 14px;">${sinalPontos}${pontos}</span>
+                  <div class="record-date" style="color: #6c757d; font-size: 12px;">${dataFormatada}</div>
+                </div>
+              </div>
+              <div class="record-content">
+                <div class="record-student" style="font-weight: bold; margin-bottom: 4px;">${medida.nome_aluno || 'Nome não informado'} (${medida.codigo_aluno || 'Código N/A'})</div>
+                <div class="record-class" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Turma: ${medida.turma || 'N/A'}</div>
+                <div class="record-description" style="margin-bottom: 4px;">${medida.especificacao || 'Sem especificação'}</div>
+                ${medida.observacao ? `<div class="record-observation" style="font-size: 12px; color: #6c757d; font-style: italic;">Obs: ${medida.observacao}</div>` : ''}
+                ${medida.nr_medida ? `<div class="record-number" style="font-size: 12px; color: #495057;">Nº: ${medida.nr_medida}</div>` : ''}
               </div>
             </div>
-            <div class="record-content">
-              <div class="record-student" style="font-weight: bold; margin-bottom: 4px;">${medida.nome_aluno || 'Nome não informado'} (${medida.codigo_aluno || 'Código N/A'})</div>
-              <div class="record-class" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Turma: ${medida.turma || 'N/A'}</div>
-              <div class="record-description" style="margin-bottom: 4px;">${medida.especificacao || 'Sem especificação'}</div>
-              ${medida.observacao ? `<div class="record-observation" style="font-size: 12px; color: #6c757d; font-style: italic;">Obs: ${medida.observacao}</div>` : ''}
-              ${medida.nr_medida ? `<div class="record-number" style="font-size: 12px; color: #495057;">Nº: ${medida.nr_medida}</div>` : ''}
-            </div>
-          </div>
-        `;
+          `;
+        }
+        
+        html += '</div>';
       }
+<<<<<<< HEAD
       
       html += '</div>';
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+
+      // Salvar no cache
+      cacheRegistros = { data: html, timestamp: agora };
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       container.innerHTML = html;
 
     } catch (error) {
@@ -517,6 +555,9 @@
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   // Cache para estatísticas (5 minutos)
   let cacheEstatisticas = { data: null, timestamp: 0 };
   const CACHE_DURATION = 5 * 60 * 1000; // 5 minutos
@@ -531,10 +572,13 @@
         return;
       }
 
+<<<<<<< HEAD
 =======
   async function carregarEstatisticasMedidas() {
     try {
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       console.log('📊 Carregando estatísticas de medidas...');
       
       // Buscar todas as medidas disciplinares
@@ -567,6 +611,7 @@
       });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       // Salvar no cache
       const stats = { medidasHoje, medidasSemana, medidasMes, alunosAfetados: alunosAfetados.size };
       cacheEstatisticas = { data: stats, timestamp: agora };
@@ -576,18 +621,23 @@
       atualizarInterfaceEstatisticas(stats);
 =======
       console.log(`📈 Estatísticas: Hoje: ${medidasHoje}, Semana: ${medidasSemana}, Mês: ${medidasMes}, Alunos: ${alunosAfetados.size}`);
+=======
+      // Salvar no cache
+      const stats = { medidasHoje, medidasSemana, medidasMes, alunosAfetados: alunosAfetados.size };
+      cacheEstatisticas = { data: stats, timestamp: agora };
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 
-      // Atualizar interface
-      const elemHoje = document.getElementById('totalFaltasHoje');
-      const elemSemana = document.getElementById('totalMedidasSemana');
-      const elemMes = document.getElementById('totalRegistrosMes');
-      const elemAfetados = document.getElementById('alunosAfetados');
+      console.log(`📈 Estatísticas: Hoje: ${medidasHoje}, Semana: ${medidasSemana}, Mês: ${medidasMes}, Alunos: ${alunosAfetados.size}`);
       
+<<<<<<< HEAD
       if (elemHoje) elemHoje.textContent = medidasHoje;
       if (elemSemana) elemSemana.textContent = medidasSemana;
       if (elemMes) elemMes.textContent = medidasMes;
       if (elemAfetados) elemAfetados.textContent = alunosAfetados.size;
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+      atualizarInterfaceEstatisticas(stats);
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 
     } catch (error) {
       console.error('Erro ao carregar estatísticas:', error);
@@ -595,6 +645,9 @@
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   function atualizarInterfaceEstatisticas(stats) {
     const elemHoje = document.getElementById('totalFaltasHoje');
     const elemSemana = document.getElementById('totalMedidasSemana');
@@ -607,8 +660,11 @@
     if (elemAfetados) elemAfetados.textContent = stats.alunosAfetados;
   }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   // Exponha algumas funções caso precise em outros módulos
   window.medidasModule = {
     criarFalta,
@@ -1578,6 +1634,9 @@
   window.carregarRegistrosRecentes = carregarRegistrosRecentes;
   window.carregarEstatisticasMedidas = carregarEstatisticasMedidas;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 
   // ========================================
   // INTEGRAÇÃO COM SINCRONIZAÇÃO EM TEMPO REAL
@@ -1692,6 +1751,9 @@
   document.addEventListener('DOMContentLoaded', function() {
     setTimeout(integrarSincronizacao, 2000);
   });
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 })();

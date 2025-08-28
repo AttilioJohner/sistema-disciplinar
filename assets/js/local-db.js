@@ -9,15 +9,22 @@ class LocalDatabase {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   // Carregar dados do localStorage primeiro, depois do arquivo JSON como backup
 =======
   // Carregar dados do arquivo JSON
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+  // Carregar dados do localStorage primeiro, depois do arquivo JSON como backup
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   async loadData() {
     try {
       console.log('🔄 Carregando banco de dados local...');
       
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       // Primeiro tenta carregar do localStorage
       const localData = localStorage.getItem('db');
       if (localData) {
@@ -40,8 +47,11 @@ class LocalDatabase {
       
       // Se não há dados no localStorage, carrega do arquivo remoto
       console.log('📡 Carregando dados iniciais do arquivo remoto...');
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       const response = await fetch(this.baseUrl);
       if (!response.ok) {
         throw new Error(`Erro ao carregar dados: ${response.status}`);
@@ -51,21 +61,31 @@ class LocalDatabase {
       this.loaded = true;
       
 <<<<<<< HEAD
+<<<<<<< HEAD
       console.log('✅ Banco de dados local carregado do arquivo remoto:', {
 =======
       console.log('✅ Banco de dados local carregado:', {
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+      console.log('✅ Banco de dados local carregado do arquivo remoto:', {
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         alunos: Object.keys(this.data.alunos || {}).length,
         medidas: Object.keys(this.data.medidas_disciplinares || {}).length,
         frequencia: Object.keys(this.data.frequencia_diaria || {}).length
       });
       
 <<<<<<< HEAD
+<<<<<<< HEAD
       // Salva no localStorage para próxima vez
       await this.saveData();
       
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+      // Salva no localStorage para próxima vez
+      await this.saveData();
+      
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       return this.data;
     } catch (error) {
       console.error('❌ Erro ao carregar banco de dados local:', error);
@@ -104,6 +124,7 @@ class LocalDatabase {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   // Salvar dados no localStorage
   async saveData() {
     try {
@@ -132,6 +153,29 @@ class LocalDatabase {
     // Em um sistema real, enviaria para GitHub via API ou webhook
     return true;
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+  // Salvar dados no localStorage
+  async saveData() {
+    try {
+      localStorage.setItem('db', JSON.stringify(this.data));
+      console.log('💾 Dados salvos no localStorage:', Object.keys(this.data).map(key => `${key}: ${Object.keys(this.data[key] || {}).length}`));
+      
+      // Se GitHub sync está configurado, também sincronizar
+      if (window.gitHubSync && window.gitHubSync.podeEscrever()) {
+        try {
+          await window.gitHubSync.sincronizarAutomatico();
+          console.log('🐙 Dados sincronizados com GitHub');
+        } catch (error) {
+          console.warn('⚠️ Falha na sincronização com GitHub:', error.message);
+        }
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('❌ Erro ao salvar dados:', error);
+      return false;
+    }
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   }
 }
 
@@ -278,6 +322,7 @@ class LocalDocument {
 
 class LocalQuery {
 <<<<<<< HEAD
+<<<<<<< HEAD
   constructor(db, collectionName, filters = [], limitCount = null) {
     this.db = db;
     this.collectionName = collectionName;
@@ -289,6 +334,13 @@ class LocalQuery {
     this.collectionName = collectionName;
     this.filters = filters;
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+  constructor(db, collectionName, filters = [], limitCount = null) {
+    this.db = db;
+    this.collectionName = collectionName;
+    this.filters = filters;
+    this.limitCount = limitCount;
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   }
 
   where(field, operator, value) {
@@ -296,14 +348,20 @@ class LocalQuery {
       ...this.filters,
       { field, operator, value }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     ], this.limitCount);
   }
 
   limit(count) {
     return new LocalQuery(this.db, this.collectionName, this.filters, count);
+<<<<<<< HEAD
 =======
     ]);
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   }
 
   async get() {
@@ -343,13 +401,19 @@ class LocalQuery {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     // Aplicar limit se especificado
     if (this.limitCount !== null && this.limitCount > 0) {
       results = results.slice(0, this.limitCount);
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     return {
       docs: results,
       size: results.length,

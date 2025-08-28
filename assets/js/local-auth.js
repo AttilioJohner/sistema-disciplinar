@@ -10,10 +10,14 @@ class LocalAuth {
     const users = localStorage.getItem('system_users');
     if (!users) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       // Criar usuários padrão se não existir
 =======
       // Criar usuário padrão se não existir
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+      // Criar usuários padrão se não existir
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       const defaultUsers = {
         'admin@escola.com': {
           password: 'admin123',
@@ -21,14 +25,20 @@ class LocalAuth {
           role: 'admin',
           createdAt: new Date().toISOString()
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         },
         'eecmjupiara@gmail.com': {
           password: '123456',
           displayName: 'EECM Jupiara',
           role: 'admin',
           createdAt: new Date().toISOString()
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         }
       };
       localStorage.setItem('system_users', JSON.stringify(defaultUsers));
@@ -47,12 +57,18 @@ class LocalAuth {
         // Verificar login básico ou usuários cadastrados
         const isDefaultLogin = (email === 'admin@escola.com' && password === 'admin123') || 
 <<<<<<< HEAD
+<<<<<<< HEAD
                               (email === 'admin' && password === 'admin123') ||
                               (email === 'admin' && password === 'admin') ||
                               (email === 'admin@escola.com' && password === 'admin');
 =======
                               (email === 'admin' && password === 'admin123');
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+                              (email === 'admin' && password === 'admin123') ||
+                              (email === 'admin' && password === 'admin') ||
+                              (email === 'admin@escola.com' && password === 'admin');
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         
         const userExists = users[email] && users[email].password === password;
         
@@ -227,11 +243,17 @@ class LocalAuth {
         localStorage.setItem('system_users', JSON.stringify(users));
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Sincronizar com GitHub se disponível
         this.syncUsersToGitHub();
         
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+        // Sincronizar com GitHub se disponível
+        this.syncUsersToGitHub();
+        
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         console.log('👤 Novo usuário criado:', email);
         resolve({
           user: {
@@ -298,6 +320,9 @@ class LocalAuth {
     return true;
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 
   // Sincronizar usuários com GitHub
   async syncUsersToGitHub() {
@@ -322,19 +347,28 @@ class LocalAuth {
       }
     }
   }
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 }
 
 // Inicializar autenticação local
 const localAuth = new LocalAuth();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Garantir que usuário padrão sempre exista
 localAuth.getRegisteredUsers();
 
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+// Garantir que usuário padrão sempre exista
+localAuth.getRegisteredUsers();
+
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 // Compatibilidade com código existente do Firebase Auth
 window.firebase = window.firebase || {};
 window.firebase.auth = () => localAuth;

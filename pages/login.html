@@ -91,6 +91,9 @@
     function msgOk(t){ if (typeof showMessage==='function') showMessage(t,'success'); else alert(t) }
     function msgErro(t){ if (typeof showMessage==='function') showMessage(t,'error'); else alert(t) }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     
     // Credenciais válidas como fallback
     const validCredentials = [
@@ -104,8 +107,11 @@
     function isValidCredential(email, password) {
       return validCredentials.some(cred => cred.email === email && cred.password === password);
     }
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 
     function atualizarUI(user){
       const container = document.getElementById('loginContainer');
@@ -144,6 +150,9 @@
       btn.disabled = true; btn.textContent = '⏳ Entrando...';
       try {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         console.log('🔑 Tentando login com:', { email, senha: senha.length + ' caracteres' });
         
         // Primeiro, verificar credenciais básicas
@@ -176,6 +185,7 @@
           remember: lembrar
         }));
         
+<<<<<<< HEAD
         msgOk('✅ Login realizado!');
         
         setTimeout(() => {
@@ -189,11 +199,20 @@
                   : firebase.auth.Auth.Persistence.SESSION
         );
         await window.localAuth.signInWithEmailAndPassword(email, senha);
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         msgOk('✅ Login realizado!');
-        window.location.href = '../index.html';
+        
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 1000);
       } catch (err){
+<<<<<<< HEAD
         console.error(err);
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+        console.error('❌ Erro de login:', err);
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         msgErro('❌ Falha no login: ' + (err?.message || err));
       } finally {
         btn.disabled = false; btn.textContent = '🔐 Entrar no Sistema';

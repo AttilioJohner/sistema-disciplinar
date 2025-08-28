@@ -61,10 +61,14 @@
         <a href="pages/configuracoes.html" class="sidebar-item"><span class="sidebar-icon">⚙️</span><span class="sidebar-text">Configurações</span></a>
         <a href="pages/comunicacao.html" class="sidebar-item"><span class="sidebar-icon">📱</span><span class="sidebar-text">Comunicação</span></a>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <a href="#" id="sidebarLogout" class="sidebar-item"><span class="sidebar-icon">🚪</span><span class="sidebar-text">Logout</span></a>
 =======
         <a href="pages/login.html" class="sidebar-item"><span class="sidebar-icon">🔐</span><span class="sidebar-text">Login/Logout</span></a>
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+        <a href="#" id="sidebarLogout" class="sidebar-item"><span class="sidebar-icon">🚪</span><span class="sidebar-text">Logout</span></a>
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       </div>
     </div>
 
@@ -190,6 +194,9 @@
 
   document.addEventListener('DOMContentLoaded', () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     // Verificar fallback de login antes do requireAuth
     const loginFallback = localStorage.getItem('loginSuccess');
     if (loginFallback && !window.localAuth?.getCurrentUser()) {
@@ -218,8 +225,11 @@
       }
     }
     
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     requireAuth({
       loginPath: 'pages/login.html',
       onAuth: (user) => {
@@ -230,6 +240,7 @@
           }
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         // Função de logout compatible com local-auth
         const btn = document.getElementById('btnLogout');
@@ -278,6 +289,51 @@
         const btn = document.getElementById('btnLogout');
         if (btn) btn.addEventListener('click', () => logout('pages/login.html'));
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+        // Função de logout compatible com local-auth
+        const btn = document.getElementById('btnLogout');
+        if (btn) {
+          btn.addEventListener('click', async () => {
+            try {
+              if (window.localAuth && typeof window.localAuth.signOut === 'function') {
+                await window.localAuth.signOut();
+                showMessage('👋 Logout realizado com sucesso!', 'success');
+                setTimeout(() => {
+                  window.location.href = 'pages/login.html';
+                }, 1000);
+              } else {
+                console.warn('Sistema de autenticação não disponível');
+                window.location.href = 'pages/login.html';
+              }
+            } catch (error) {
+              console.error('Erro no logout:', error);
+              window.location.href = 'pages/login.html';
+            }
+          });
+        }
+
+        // Logout da sidebar
+        const sidebarLogout = document.getElementById('sidebarLogout');
+        if (sidebarLogout) {
+          sidebarLogout.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+              if (window.localAuth && typeof window.localAuth.signOut === 'function') {
+                await window.localAuth.signOut();
+                showMessage('👋 Logout realizado com sucesso!', 'success');
+                setTimeout(() => {
+                  window.location.href = 'pages/login.html';
+                }, 1000);
+              } else {
+                window.location.href = 'pages/login.html';
+              }
+            } catch (error) {
+              console.error('Erro no logout:', error);
+              window.location.href = 'pages/login.html';
+            }
+          });
+        }
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 
         // === Toggle "Alunos Cadastrados" ===
         const toggleBtn = document.getElementById('toggleAlunosBtn');

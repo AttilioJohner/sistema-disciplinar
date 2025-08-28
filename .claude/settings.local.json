@@ -17,12 +17,18 @@
       "WebFetch(domain:api.github.com)",
       "WebFetch(domain:github.com)",
 <<<<<<< HEAD
+<<<<<<< HEAD
       "WebFetch(domain:attiliojohner.github.io)",
       "Bash(git rm:*)",
       "Bash(git rebase:*)"
 =======
       "WebFetch(domain:attiliojohner.github.io)"
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+      "WebFetch(domain:attiliojohner.github.io)",
+      "Bash(git rm:*)",
+      "Bash(git rebase:*)"
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     ],
     "deny": [],
     "ask": []

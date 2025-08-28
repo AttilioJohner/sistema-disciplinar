@@ -81,9 +81,13 @@
     els.btnSalvar = document.getElementById('btnSalvar') || queryByType(els.form, 'submit');
     els.btnCancelar = document.getElementById('btnCancelar');
 <<<<<<< HEAD
+<<<<<<< HEAD
     els.btnExcluir = document.getElementById('btnExcluir');
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+    els.btnExcluir = document.getElementById('btnExcluir');
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     els.busca = document.getElementById('busca');
     els.total = document.getElementById('totalAlunos');
     els.toast = document.getElementById('toast');
@@ -104,6 +108,9 @@
       });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     if (els.btnExcluir) {
       els.btnExcluir.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -112,8 +119,11 @@
         }
       });
     }
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     if (els.busca) {
       els.busca.addEventListener('input', () => renderTable());
     }
@@ -179,12 +189,18 @@
           responsavel: data.responsavel || '',
           cpf: data.cpf_responsavel || data.cpf || '',
 <<<<<<< HEAD
+<<<<<<< HEAD
           telefone: data.telefone || data.telefone_responsavel || '',
           telefone1: data.telefone1 || data.telefone || '',
           telefone2: data.telefone2 || '',
 =======
           telefone: data.telefone_responsavel || data.telefone || '',
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+          telefone: data.telefone || data.telefone_responsavel || '',
+          telefone1: data.telefone1 || data.telefone || '',
+          telefone2: data.telefone2 || '',
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
           email: data.email || '',
           ...data // Manter campos originais também
         };
@@ -275,13 +291,19 @@
     await ref.set(payload, { merge: false });
     debugLog('CREATE ok', { id: docId, payload });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     
     // Disparar evento de atualização
     window.dispatchEvent(new CustomEvent('dadosAtualizados', { 
       detail: { tipo: 'aluno_criado', dados: payload, id: docId } 
     }));
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   }
 
   async function updateAluno(docId, data) {
@@ -481,6 +503,7 @@
             '<tr data-id="' + escapeHtml(a.id) + '">' +
               '<td>' + escapeHtml(a.codigo || a.id || '') + '</td>' +
 <<<<<<< HEAD
+<<<<<<< HEAD
               '<td>' + escapeHtml(a.nome_completo || a.nome || '') + '</td>' +
               '<td>' + escapeHtml(a.turma || '') + '</td>' +
               '<td class="' + statusClass + '">' + statusIcon + ' ' + escapeHtml(a.status || 'ativo') + '</td>' +
@@ -489,14 +512,20 @@
               '<td>' + escapeHtml(a.telefone2 || '') + '</td>' +
 =======
               '<td>' + escapeHtml(a.nome || '') + '</td>' +
+=======
+              '<td>' + escapeHtml(a.nome_completo || a.nome || '') + '</td>' +
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
               '<td>' + escapeHtml(a.turma || '') + '</td>' +
-              '<td>' + escapeHtml(a.turno || '') + '</td>' +
               '<td class="' + statusClass + '">' + statusIcon + ' ' + escapeHtml(a.status || 'ativo') + '</td>' +
-              '<td>' + escapeHtml(a.nascimento || '') + '</td>' +
               '<td>' + escapeHtml(a.responsavel || '') + '</td>' +
+<<<<<<< HEAD
               '<td>' + escapeHtml(a.cpf || '') + '</td>' +
               '<td>' + escapeHtml(a.telefone || '') + '</td>' +
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+              '<td>' + escapeHtml(a.telefone1 || a.telefone || '') + '</td>' +
+              '<td>' + escapeHtml(a.telefone2 || '') + '</td>' +
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
               '<td style="white-space:nowrap">' +
                 '<button type="button" class="btn btn-small" data-action="edit" data-id="' + encodeURIComponent(a.id) + '">Editar</button>' +
                 deleteButton +
@@ -524,11 +553,16 @@
     if (data.turma != null) data.turma = cleanSpaces(data.turma).toUpperCase();
     if (data.cpf != null) data.cpf = data.cpf.replace(/\D/g, '');
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (data.telefone1 != null) data.telefone1 = data.telefone1.trim();
     if (data.telefone2 != null) data.telefone2 = data.telefone2.trim();
 =======
     if (data.telefone != null) data.telefone = data.telefone.trim();
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+    if (data.telefone1 != null) data.telefone1 = data.telefone1.trim();
+    if (data.telefone2 != null) data.telefone2 = data.telefone2.trim();
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     if (data.email != null) data.email = data.email.trim().toLowerCase();
     return data;
   }
@@ -536,6 +570,9 @@
   function fillForm(data) {
     if (!els.form) return;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     
     // Mapear campos corretamente
     const mappedData = {
@@ -551,6 +588,7 @@
     for (const k in mappedData) {
       if (!Object.prototype.hasOwnProperty.call(mappedData, k)) continue;
       const v = mappedData[k];
+<<<<<<< HEAD
       const input = els.form.querySelector('[name="' + cssEscape(k) + '"]');
       if (input) input.value = v == null ? '' : String(v);
     }
@@ -564,6 +602,13 @@
       if (input) input.value = v == null ? '' : String(v);
     }
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+      const input = els.form.querySelector('[name="' + cssEscape(k) + '"]');
+      if (input) input.value = v == null ? '' : String(v);
+    }
+    
+    debugLog('fillForm mapeado:', mappedData);
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
   }
 
   function resetForm() {
@@ -580,22 +625,32 @@
         idInput.classList.add('is-disabled');
       }
 <<<<<<< HEAD
+<<<<<<< HEAD
       if (els.btnSalvar) els.btnSalvar.textContent = '✅ Atualizar';
       if (els.btnExcluir) els.btnExcluir.style.display = 'inline-block';
 =======
       if (els.btnSalvar) els.btnSalvar.textContent = 'Atualizar';
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+      if (els.btnSalvar) els.btnSalvar.textContent = '✅ Atualizar';
+      if (els.btnExcluir) els.btnExcluir.style.display = 'inline-block';
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     } else {
       if (idInput) {
         idInput.disabled = false;
         idInput.classList.remove('is-disabled');
       }
 <<<<<<< HEAD
+<<<<<<< HEAD
       if (els.btnSalvar) els.btnSalvar.textContent = '✅ Salvar';
       if (els.btnExcluir) els.btnExcluir.style.display = 'none';
 =======
       if (els.btnSalvar) els.btnSalvar.textContent = 'Salvar';
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+      if (els.btnSalvar) els.btnSalvar.textContent = '✅ Salvar';
+      if (els.btnExcluir) els.btnExcluir.style.display = 'none';
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     }
   }
 
@@ -612,6 +667,7 @@
 
   function sanitizeData(data, opts) {
     opts = opts || {}; var forCreate = !!opts.forCreate; var forUpdate = !!opts.forUpdate;
+<<<<<<< HEAD
 <<<<<<< HEAD
     
     // Mapear campos do formulário para a estrutura do banco
@@ -640,11 +696,35 @@
       if (data[k] != null && data[k] !== '') out[k] = data[k];
     }
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+    
+    // Mapear campos do formulário para a estrutura do banco
+    var out = {};
+    
+    // Campos obrigatórios
+    if (data.id) out.codigo = String(data.id).trim();
+    if (data.nome) out.nome_completo = String(data.nome).trim();
+    if (data.turma) out.turma = String(data.turma).trim();
+    
+    // Campos opcionais
+    if (data.status) out.status = String(data.status).trim();
+    if (data.responsavel) out.responsavel = String(data.responsavel).trim();
+    if (data.telefone1) out.telefone1 = String(data.telefone1).trim();
+    if (data.telefone2) out.telefone2 = String(data.telefone2).trim();
+    
+    // Criar campo combinado para compatibilidade
+    const telefones = [data.telefone1, data.telefone2].filter(t => t && t.trim()).join(' / ');
+    if (telefones) out.telefone_responsavel = telefones;
+    
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     // Garantir que status seja sempre definido
     if (!out.status) out.status = 'ativo';
     
     var ts = new Date().toISOString();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     if (forCreate) { 
       out.created_at = ts; 
       out.updated_at = ts;
@@ -657,10 +737,13 @@
     }
     
     debugLog('sanitizeData mapeado:', out);
+<<<<<<< HEAD
 =======
     if (forCreate) { out.createdAt = ts; out.updatedAt = ts; }
     if (forUpdate) { out.updatedAt = ts; }
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     return out;
   }
 
@@ -730,6 +813,9 @@
           const rows = snap.docs.map(function(d){ return { id: d.id, ...d.data() }; });
           
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
           // Debug: verificar estrutura dos telefones
           if (rows.length > 0) {
             console.log('📱 Debug telefones - Primeiro aluno:', {
@@ -740,17 +826,23 @@
             });
           }
           
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
           // Ordenar por nome no JavaScript e limitar a 25
           rows.sort((a, b) => (a.nome_completo || a.nome || '').localeCompare(b.nome_completo || b.nome || ''));
           const limitedRows = rows.slice(0, 25);
           
           console.log('readOnce ->', limitedRows.length, 'doc(s)');
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           console.dir(limitedRows);
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
           alunosCache = limitedRows;
           renderTable();
           return limitedRows;
@@ -911,6 +1003,9 @@
   // LIMPEZA
   window.addEventListener('beforeunload', function(){ stopLiveList(); });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 
   // SINCRONIZAÇÃO EM TEMPO REAL
   // Listener para mudanças remotas
@@ -997,6 +1092,9 @@
       throw error;
     }
   }
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 })();

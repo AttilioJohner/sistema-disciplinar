@@ -702,9 +702,13 @@
     <script src="../assets/js/gestao.js" defer></script>
     <script src="../assets/js/medidas.js" defer></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <script src="../assets/js/real-time-sync.js" defer></script>
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+    <script src="../assets/js/real-time-sync.js" defer></script>
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     
     <script>
         // Inicialização da página
@@ -867,6 +871,7 @@
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Função de inicialização otimizada com carregamento progressivo
         async function inicializarMedidasDisciplinares() {
             try {
@@ -875,12 +880,19 @@
                 // Definir data atual no formulário de medidas (operação rápida)
 =======
         // Função de inicialização específica
+=======
+        // Função de inicialização otimizada com carregamento progressivo
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         async function inicializarMedidasDisciplinares() {
             try {
-                showMessage('Carregando módulo de medidas...', 'loading');
+                showMessage('Carregando módulo de medidas...', 'success');
                 
+<<<<<<< HEAD
                 // Definir data atual no formulário de medidas
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+                // Definir data atual no formulário de medidas (operação rápida)
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
                 const hoje = new Date().toISOString().split('T')[0];
                 const dataMedida = document.getElementById('dataMedida');
                 if (dataMedida) {
@@ -888,6 +900,9 @@
                 }
                 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
                 // Verificar se sistema está pronto (sem espera desnecessária)
                 if (!window.localDb.loaded) {
                     showMessage('⚠️ Sistema Local não conectado - aguardando...', 'warning');
@@ -899,6 +914,7 @@
                             }
                         }, 200);
                     });
+<<<<<<< HEAD
                 }
                 
                 // ETAPA 1: Carregamento essencial (rápido)
@@ -987,6 +1003,47 @@
                     carregarDadosDemoMedidas();
                 }
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+                }
+                
+                // ETAPA 1: Carregamento essencial (rápido)
+                showMessage('📋 Carregando interface básica...', 'info');
+                await Promise.all([
+                    carregarSelectsAlunos(),
+                    carregarTurmasEAlunos()
+                ]);
+                
+                showMessage('✅ Interface pronta! Carregando dados em background...', 'success');
+                
+                // ETAPA 2: Carregamento em background (não bloqueia)
+                setTimeout(async () => {
+                    try {
+                        // Carregar estatísticas em background
+                        if (typeof carregarEstatisticasMedidas === 'function') {
+                            await carregarEstatisticasMedidas();
+                        } else if (typeof window.carregarEstatisticasMedidas === 'function') {
+                            await window.carregarEstatisticasMedidas();
+                        }
+                        
+                        // Carregar registros recentes em background
+                        if (typeof carregarRegistrosRecentes === 'function') {
+                            await carregarRegistrosRecentes();
+                        } else if (typeof window.carregarRegistrosRecentes === 'function') {
+                            await window.carregarRegistrosRecentes();
+                        }
+                        
+                        // Carregar alertas em background
+                        if (typeof carregarAlertas === 'function') {
+                            await carregarAlertas();
+                        }
+                        
+                        console.log('✅ Carregamento completo finalizado');
+                    } catch (error) {
+                        console.warn('Erro no carregamento em background:', error);
+                    }
+                }, 100);
+                
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
             } catch (error) {
                 console.error('Erro ao inicializar medidas:', error);
                 showMessage('Erro ao carregar módulo de medidas', 'error');

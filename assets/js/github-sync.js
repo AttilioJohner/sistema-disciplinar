@@ -28,6 +28,9 @@ class GitHubDataSync {
     // Inicializar autenticação
     initAuth() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         // Tentar token do usuário primeiro
         this.token = localStorage.getItem('github_token');
         
@@ -52,9 +55,12 @@ class GitHubDataSync {
 >>>>>>> cb12ad9e93ff1995c42497f25e90cf5802c916a1
         }
         
+<<<<<<< HEAD
 =======
         this.token = localStorage.getItem('github_token');
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
         this.userEmail = localStorage.getItem('github_email') || 'sistema@escola.edu.br';
         this.userName = localStorage.getItem('github_name') || 'Sistema Disciplinar';
         
@@ -474,6 +480,7 @@ if (typeof module !== 'undefined' && module.exports) {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // Sincronizar dados automaticamente (bidirecional)
     async sincronizarAutomatico() {
         try {
@@ -500,12 +507,37 @@ if (typeof module !== 'undefined' && module.exports) {
             console.log('📥 Baixando dados do GitHub...');
 =======
     // Sincronizar dados automaticamente
+=======
+    // Sincronizar dados automaticamente (bidirecional)
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     async sincronizarAutomatico() {
         try {
-            console.log('🔄 Sincronizando dados do GitHub...');
+            console.log('🔄 Sincronizando dados...');
             
+<<<<<<< HEAD
             // Carregar dados principais
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+            // Se puder escrever, fazer upload dos dados locais
+            if (this.podeEscrever()) {
+                const dadosLocais = localStorage.getItem('db');
+                if (dadosLocais) {
+                    try {
+                        const dados = JSON.parse(dadosLocais);
+                        console.log('📤 Enviando dados locais para GitHub...');
+                        
+                        await this.salvarDadosAutomatico(dados, 'sincronizacao_completa', 'Sync automático dos dados locais');
+                        console.log('✅ Dados locais enviados para GitHub');
+                        return dados;
+                    } catch (error) {
+                        console.warn('⚠️ Erro ao enviar dados, baixando do GitHub:', error);
+                    }
+                }
+            }
+            
+            // Senão, carregar dados do GitHub
+            console.log('📥 Baixando dados do GitHub...');
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
             const response = await fetch(`${this.baseUrl}/data/db.json?t=${Date.now()}`);
             if (response.ok) {
                 const dadosGitHub = await response.json();
@@ -517,10 +549,14 @@ if (typeof module !== 'undefined' && module.exports) {
                 }));
                 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 console.log('✅ Dados baixados do GitHub');
 =======
                 console.log('✅ Dados sincronizados automaticamente');
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+                console.log('✅ Dados baixados do GitHub');
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
                 return dadosGitHub;
             }
             
@@ -571,7 +607,11 @@ setInterval(() => {
         window.gitHubSync.sincronizarAutomatico().catch(console.error);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }, 3 * 60 * 1000);
 =======
 }, 3 * 60 * 1000);
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+}, 3 * 60 * 1000);
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d

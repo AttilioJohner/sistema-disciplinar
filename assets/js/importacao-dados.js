@@ -53,6 +53,9 @@ function handleFile(event) {
     reader.onload = function(e) {
         try {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
             let workbook;
             
             // Detectar tipo de arquivo e usar método apropriado
@@ -67,6 +70,7 @@ function handleFile(event) {
                 workbook = XLSX.read(data, {type: "array", raw: false, codepage: 65001});
             }
             
+<<<<<<< HEAD
             const sheet = workbook.Sheets[workbook.SheetNames[0]];
             const jsonData = XLSX.utils.sheet_to_json(sheet, {header: 1, raw: false});
 =======
@@ -75,6 +79,10 @@ function handleFile(event) {
             const sheet = workbook.Sheets[workbook.SheetNames[0]];
             const jsonData = XLSX.utils.sheet_to_json(sheet, {header: 1});
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, {header: 1, raw: false});
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
             
             dadosAlunos = processData(jsonData);
             showPreview(dadosAlunos);
@@ -86,6 +94,9 @@ function handleFile(event) {
         }
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     
     // Usar método de leitura apropriado baseado no tipo do arquivo
     if (file.name.toLowerCase().endsWith('.csv')) {
@@ -93,20 +104,27 @@ function handleFile(event) {
     } else {
         reader.readAsArrayBuffer(file);
     }
+<<<<<<< HEAD
 =======
     reader.readAsArrayBuffer(file);
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 }
 
 function processData(data) {
     const result = [];
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     
     // Log do cabeçalho para debug
     if (data.length > 0) {
         log("📋 Cabeçalhos detectados: " + data[0].map((col, idx) => `${String.fromCharCode(65 + idx)}: ${col}`).join(", "));
     }
     
+<<<<<<< HEAD
     for (let i = 1; i < data.length; i++) {
         const row = data[i];
         if (row[0] || row[1]) {
@@ -118,12 +136,22 @@ function processData(data) {
         if (row[0] || row[1]) {
             result.push({
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+    for (let i = 1; i < data.length; i++) {
+        const row = data[i];
+        if (row[0] || row[1]) {
+            // Mapear campos baseado na posição (ajustar conforme sua estrutura)
+            const aluno = {
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
                 codigo: row[0] ? String(row[0]).trim() : "",
                 nome_completo: row[1] ? String(row[1]).trim() : "",
                 turma: row[2] ? String(row[2]).trim() : "",
                 responsavel: row[3] ? String(row[3]).trim() : "",
                 cpf_responsavel: row[4] ? String(row[4]).trim() : "",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
                 telefone1: row[5] ? String(row[5]).trim() : "",
                 telefone2: row[6] ? String(row[6]).trim() : "",
                 // Campos adicionais se existirem
@@ -135,6 +163,7 @@ function processData(data) {
             aluno.telefone_responsavel = telefones;
             
             result.push(aluno);
+<<<<<<< HEAD
         }
     }
     
@@ -145,6 +174,12 @@ function processData(data) {
         }
     }
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+        }
+    }
+    
+    log(`📊 ${result.length} alunos processados do CSV`);
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     return result;
 }
 
@@ -166,6 +201,9 @@ function showPreview(data) {
 
 async function importData() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     // Confirmar sincronização completa
     const confirmar = confirm("⚠️ SINCRONIZAÇÃO COMPLETA\n\nEsta operação irá:\n• Remover TODOS os alunos do banco atual\n• Importar APENAS os alunos do CSV\n• Excluir duplicatas automaticamente\n\nTem certeza que deseja prosseguir?");
     
@@ -175,9 +213,12 @@ async function importData() {
     }
     
     log("🔄 Iniciando SINCRONIZAÇÃO COMPLETA...");
+<<<<<<< HEAD
 =======
     log("Importando...");
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     
     // Verificar se o usuário está autenticado
     const user = window.localAuth.currentUser;
@@ -196,6 +237,7 @@ async function importData() {
             return;
         }
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     try {
@@ -257,23 +299,46 @@ async function importData() {
         try {
             let alunoExistente = null;
             let docId = null;
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 
-            // 1. Tentar encontrar por código (ID)
-            if (aluno.codigo) {
-                const docSnap = await db.collection("alunos").doc(aluno.codigo).get();
-                if (docSnap.exists) {
-                    alunoExistente = { id: docSnap.id, ...docSnap.data() };
-                    docId = aluno.codigo;
-                }
+    try {
+        // ETAPA 1: Remover TODOS os alunos existentes
+        log("🗑️ ETAPA 1: Removendo todos os alunos existentes...");
+        const alunosExistentes = await db.collection("alunos").get();
+        let removidos = 0;
+        
+        for (const doc of alunosExistentes.docs) {
+            await db.collection("alunos").doc(doc.id).delete();
+            removidos++;
+        }
+        log(`✅ ${removidos} alunos removidos do banco`);
+
+        // ETAPA 2: Remover duplicatas do CSV (por código ou nome)
+        log("🔍 ETAPA 2: Removendo duplicatas do CSV...");
+        const alunosUnicos = new Map();
+        
+        for (const aluno of dadosAlunos) {
+            const chave = aluno.codigo || aluno.nome_completo;
+            if (chave && !alunosUnicos.has(chave)) {
+                alunosUnicos.set(chave, aluno);
             }
+        }
+        
+        const dadosLimpos = Array.from(alunosUnicos.values());
+        log(`✅ ${dadosAlunos.length - dadosLimpos.length} duplicatas removidas do CSV`);
+        log(`📊 ${dadosLimpos.length} alunos únicos para importar`);
 
-            // 2. Se não encontrou, tentar buscar por nome completo
-            if (!alunoExistente && aluno.nome_completo) {
-                const querySnap = await db.collection("alunos")
-                    .where("nome_completo", "==", aluno.nome_completo)
-                    .limit(1)
-                    .get();
+        // ETAPA 3: Importar todos os alunos do CSV limpo
+        log("📥 ETAPA 3: Importando alunos do CSV...");
+        let importados = 0;
+        let errors = 0;
+        
+        for (const aluno of dadosLimpos) {
+            try {
+                const docId = aluno.codigo || "aluno_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
                 
+<<<<<<< HEAD
                 if (!querySnap.empty) {
                     const doc = querySnap.docs[0];
                     alunoExistente = { id: doc.id, ...doc.data() };
@@ -295,10 +360,26 @@ async function importData() {
                 await db.collection("alunos").doc(docId).update({
                     ...dadosMerge,
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+                await db.collection("alunos").doc(docId).set({
+                    codigo: aluno.codigo || "",
+                    nome_completo: aluno.nome_completo || "",
+                    turma: aluno.turma || "",
+                    responsavel: aluno.responsavel || "",
+                    cpf_responsavel: aluno.cpf_responsavel || "",
+                    telefone_responsavel: aluno.telefone_responsavel || "",
+                    telefone1: aluno.telefone1 || "",
+                    telefone2: aluno.telefone2 || "",
+                    email_responsavel: aluno.email_responsavel || "",
+                    status: "ativo",
+                    created_at: new Date().toISOString(),
+                    created_by: user.uid,
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
                     updated_at: new Date().toISOString(),
                     updated_by: user.uid
                 });
                 
+<<<<<<< HEAD
 <<<<<<< HEAD
                 importados++;
                 log(`✅ Importado: ${aluno.nome_completo} (ID: ${docId})`);
@@ -334,17 +415,35 @@ async function importData() {
             } else {
                 // 4. Criar novo aluno
                 docId = aluno.codigo || "aluno_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+=======
+                importados++;
+                log(`✅ Importado: ${aluno.nome_completo} (ID: ${docId})`);
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
                 
-                await db.collection("alunos").doc(docId).set({
-                    ...aluno,
-                    created_at: new Date().toISOString(),
-                    created_by: user.uid
-                });
-                
-                success++;
-                log("Criado: " + aluno.nome_completo + " (ID: " + docId + ")");
+            } catch (err) {
+                errors++;
+                log(`❌ Erro ao importar ${aluno.nome_completo}: ${err.message}`, "error");
             }
+        }
+        
+        log("🎉 SINCRONIZAÇÃO COMPLETA FINALIZADA!");
+        log(`📊 RESUMO: ${importados} alunos importados, ${errors} erros`);
+        log(`✅ Base de dados sincronizada com o CSV!`);
+        
+        // Inicializar notas disciplinares para os alunos
+        if (importados > 0) {
+            try {
+                log("🔄 Inicializando notas disciplinares automático...");
+                await inicializarNotasAutomatico();
+                log("✅ Notas disciplinares inicializadas automaticamente!");
+                
+            } catch (error) {
+                log(`⚠️ Aviso: Erro ao inicializar notas: ${error.message}`, "error");
+                log("ℹ️ Acesse a página de Medidas Disciplinares para inicializar manualmente.");
+            }
+        }
 
+<<<<<<< HEAD
         } catch (err) {
             errors++;
             log("Erro ao processar " + aluno.nome_completo + ": " + err.message, "error");
@@ -369,6 +468,10 @@ async function importData() {
             log("Erro ao inicializar notas: " + error.message, "error");
         }
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+    } catch (error) {
+        log(`❌ ERRO CRÍTICO na sincronização: ${error.message}`, "error");
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     }
 }
 
@@ -388,6 +491,9 @@ function handleMedidasFile(event) {
     reader.onload = function(e) {
         try {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
             let workbook;
             
             // Detectar tipo de arquivo e usar método apropriado
@@ -402,6 +508,7 @@ function handleMedidasFile(event) {
                 workbook = XLSX.read(data, {type: "array", raw: false, codepage: 65001});
             }
             
+<<<<<<< HEAD
             const sheet = workbook.Sheets[workbook.SheetNames[0]];
             const jsonData = XLSX.utils.sheet_to_json(sheet, {header: 1, raw: false});
 =======
@@ -410,6 +517,10 @@ function handleMedidasFile(event) {
             const sheet = workbook.Sheets[workbook.SheetNames[0]];
             const jsonData = XLSX.utils.sheet_to_json(sheet, {header: 1});
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, {header: 1, raw: false});
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
             
             dadosMedidas = processMedidasData(jsonData);
             showMedidasPreview(dadosMedidas);
@@ -421,6 +532,9 @@ function handleMedidasFile(event) {
         }
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     
     // Usar método de leitura apropriado baseado no tipo do arquivo
     if (file.name.toLowerCase().endsWith('.csv')) {
@@ -428,9 +542,12 @@ function handleMedidasFile(event) {
     } else {
         reader.readAsArrayBuffer(file);
     }
+<<<<<<< HEAD
 =======
     reader.readAsArrayBuffer(file);
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 }
 
 function processMedidasData(data) {
@@ -574,6 +691,9 @@ async function importMedidasData() {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 // Função para inicializar notas disciplinares automaticamente
 async function inicializarNotasAutomatico() {
     const user = window.localAuth.currentUser;
@@ -691,8 +811,11 @@ async function removerDuplicatas() {
     }
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
+=======
+>>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
 function log(msg, type) {
     const container = document.getElementById("logImportacao");
     if (!container) {
