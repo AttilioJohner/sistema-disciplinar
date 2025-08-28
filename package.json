@@ -1,0 +1,22 @@
+{
+  "name": "sistema-disciplinar",
+  "version": "2.0.0",
+  "description": "Sistema Disciplinar com NeonDB e Netlify",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "node scripts/build-public.js",
+    "clean": "rimraf public && mkdir public",
+    "db:migrate": "node scripts/migrate.js",
+    "db:seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.7.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0",
+    "rimraf": "^5.0.0"
+  }
+}
