@@ -1,9 +1,5 @@
 {
   "alunos": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     "111": {
       "codigo": "111",
       "nome_completo": "attilio",
@@ -28,11 +24,6 @@
       "id": "113",
       "atualizadoEm": "2025-08-27T16:58:24.979Z"
     },
-<<<<<<< HEAD
-=======
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
     "aluno_001": {
       "id": "aluno_001",
       "codigo": "2639458",
@@ -41,13 +32,6 @@
       "turma": "6A",
       "responsavel": "Responsável Alberto",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0001",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel001@email.com",
       "criadoEm": "2025-08-20T11:57:26.306Z"
     },
@@ -59,13 +43,6 @@
       "turma": "6A",
       "responsavel": "Responsável Ana",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0002",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel002@email.com",
       "criadoEm": "2025-08-20T11:57:26.306Z"
     },
@@ -77,13 +54,6 @@
       "turma": "6A",
       "responsavel": "Responsável Ana",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0003",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel003@email.com",
       "criadoEm": "2025-08-20T11:57:26.306Z"
     },
@@ -95,13 +65,6 @@
       "turma": "6A",
       "responsavel": "Responsável Aysha",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0004",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel004@email.com",
       "criadoEm": "2025-08-20T11:57:26.306Z"
     },
@@ -113,13 +76,6 @@
       "turma": "6A",
       "responsavel": "Responsável Azaff",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0005",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel005@email.com",
       "criadoEm": "2025-08-20T11:57:26.306Z"
     },
@@ -131,13 +87,6 @@
       "turma": "6A",
       "responsavel": "Responsável Bruna",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0006",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel006@email.com",
       "criadoEm": "2025-08-20T11:57:26.306Z"
     },
@@ -149,13 +98,6 @@
       "turma": "6A",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0007",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel007@email.com",
       "criadoEm": "2025-08-20T11:57:26.306Z"
     },
@@ -167,13 +109,6 @@
       "turma": "6A",
       "responsavel": "Responsável Eduarda",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0008",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel008@email.com",
       "criadoEm": "2025-08-20T11:57:26.306Z"
     },
@@ -185,13 +120,6 @@
       "turma": "6A",
       "responsavel": "Responsável Enzo",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0009",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel009@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -203,13 +131,6 @@
       "turma": "6A",
       "responsavel": "Responsável Enzo",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0010",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel010@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -221,13 +142,6 @@
       "turma": "6A",
       "responsavel": "Responsável Everton",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0011",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel011@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -239,13 +153,6 @@
       "turma": "6A",
       "responsavel": "Responsável Felipe",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0012",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel012@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -257,13 +164,6 @@
       "turma": "6A",
       "responsavel": "Responsável Gabriela",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0013",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel013@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -275,13 +175,6 @@
       "turma": "6A",
       "responsavel": "Responsável Graziely",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0014",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel014@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -293,13 +186,6 @@
       "turma": "6A",
       "responsavel": "Responsável Hector",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0015",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel015@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -311,13 +197,6 @@
       "turma": "6A",
       "responsavel": "Responsável José",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0016",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel016@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -329,13 +208,6 @@
       "turma": "6A",
       "responsavel": "Responsável Kamila",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0017",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel017@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -347,13 +219,6 @@
       "turma": "6A",
       "responsavel": "Responsável Kawanny",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0018",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel018@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -365,13 +230,6 @@
       "turma": "6A",
       "responsavel": "Responsável Ludmila",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0019",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel019@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -383,13 +241,6 @@
       "turma": "6A",
       "responsavel": "Responsável Luna",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0020",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel020@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -401,13 +252,6 @@
       "turma": "6A",
       "responsavel": "Responsável Malvina",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0021",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel021@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -419,13 +263,6 @@
       "turma": "6A",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0022",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel022@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -437,13 +274,6 @@
       "turma": "6A",
       "responsavel": "Responsável Mariana",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0023",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel023@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -455,13 +285,6 @@
       "turma": "6A",
       "responsavel": "Responsável Nathiely",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0024",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel024@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -473,13 +296,6 @@
       "turma": "6A",
       "responsavel": "Responsável Nicolly",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0025",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel025@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -491,13 +307,6 @@
       "turma": "6A",
       "responsavel": "Responsável Nikolas",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0026",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel026@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -509,13 +318,6 @@
       "turma": "6A",
       "responsavel": "Responsável Pedro",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0027",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel027@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -527,13 +329,6 @@
       "turma": "6A",
       "responsavel": "Responsável Pedro",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0028",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel028@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -545,13 +340,6 @@
       "turma": "6A",
       "responsavel": "Responsável Rafael",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0029",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel029@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -563,13 +351,6 @@
       "turma": "6A",
       "responsavel": "Responsável Rafael",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0030",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel030@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -581,13 +362,6 @@
       "turma": "6A",
       "responsavel": "Responsável Ruan",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0031",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel031@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -599,13 +373,6 @@
       "turma": "6A",
       "responsavel": "Responsável Wenia",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0032",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel032@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -617,13 +384,6 @@
       "turma": "6B",
       "responsavel": "Responsável Andril",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0033",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel033@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -635,13 +395,6 @@
       "turma": "6B",
       "responsavel": "Responsável Anna",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0034",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel034@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -653,13 +406,6 @@
       "turma": "6B",
       "responsavel": "Responsável Brenda",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0035",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel035@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -671,13 +417,6 @@
       "turma": "6B",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0036",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel036@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -689,13 +428,6 @@
       "turma": "6B",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0037",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel037@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -707,13 +439,6 @@
       "turma": "6B",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0038",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel038@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -725,13 +450,6 @@
       "turma": "6B",
       "responsavel": "Responsável Davi",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0039",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel039@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -743,13 +461,6 @@
       "turma": "6B",
       "responsavel": "Responsável Ellize",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0040",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel040@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -761,13 +472,6 @@
       "turma": "6B",
       "responsavel": "Responsável Emanuelly",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0041",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel041@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -779,13 +483,6 @@
       "turma": "6B",
       "responsavel": "Responsável Heitor",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0042",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel042@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -797,13 +494,6 @@
       "turma": "6B",
       "responsavel": "Responsável Isabella",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0043",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel043@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -815,13 +505,6 @@
       "turma": "6B",
       "responsavel": "Responsável Isadora",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0044",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel044@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -833,13 +516,6 @@
       "turma": "6B",
       "responsavel": "Responsável Jhennyfer",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0045",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel045@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -851,13 +527,6 @@
       "turma": "6B",
       "responsavel": "Responsável João",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0046",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel046@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -869,13 +538,6 @@
       "turma": "6B",
       "responsavel": "Responsável José",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0047",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel047@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -887,13 +549,6 @@
       "turma": "6B",
       "responsavel": "Responsável Júlia",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0048",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel048@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -905,13 +560,6 @@
       "turma": "6B",
       "responsavel": "Responsável Kassyellen",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0049",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel049@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -923,13 +571,6 @@
       "turma": "6B",
       "responsavel": "Responsável Kauane",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0050",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel050@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -941,13 +582,6 @@
       "turma": "6B",
       "responsavel": "Responsável Kevim",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0051",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel051@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -959,13 +593,6 @@
       "turma": "6B",
       "responsavel": "Responsável Lucas",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0052",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel052@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -977,13 +604,6 @@
       "turma": "6B",
       "responsavel": "Responsável Luís",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0053",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel053@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -995,13 +615,6 @@
       "turma": "6B",
       "responsavel": "Responsável Luiz",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0054",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel054@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1013,13 +626,6 @@
       "turma": "6B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0055",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel055@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1031,13 +637,6 @@
       "turma": "6B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0056",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel056@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1049,13 +648,6 @@
       "turma": "6B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0057",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel057@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1067,13 +659,6 @@
       "turma": "6B",
       "responsavel": "Responsável Paulo",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0058",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel058@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1085,13 +670,6 @@
       "turma": "6B",
       "responsavel": "Responsável Paulo",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0059",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel059@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1103,13 +681,6 @@
       "turma": "6B",
       "responsavel": "Responsável Pedro",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0060",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel060@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1121,13 +692,6 @@
       "turma": "6B",
       "responsavel": "Responsável Rhuanna",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0061",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel061@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1139,13 +703,6 @@
       "turma": "6B",
       "responsavel": "Responsável Roger",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0062",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel062@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1157,13 +714,6 @@
       "turma": "6B",
       "responsavel": "Responsável Victor",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0063",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel063@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1175,13 +725,6 @@
       "turma": "6B",
       "responsavel": "Responsável Vitória",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0064",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel064@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1193,13 +736,6 @@
       "turma": "6B",
       "responsavel": "Responsável Yasmin",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0065",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel065@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1211,13 +747,6 @@
       "turma": "7B",
       "responsavel": "Responsável Albedias",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0066",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel066@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1229,13 +758,6 @@
       "turma": "7B",
       "responsavel": "Responsável Alexsandro",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0067",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel067@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1247,13 +769,6 @@
       "turma": "7B",
       "responsavel": "Responsável Ana",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0068",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel068@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1265,13 +780,6 @@
       "turma": "7B",
       "responsavel": "Responsável Ana",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0069",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel069@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1283,13 +791,6 @@
       "turma": "7B",
       "responsavel": "Responsável Antônio",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0070",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel070@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1301,13 +802,6 @@
       "turma": "7B",
       "responsavel": "Responsável Arthur",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0071",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel071@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1319,13 +813,6 @@
       "turma": "7B",
       "responsavel": "Responsável Aysha",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0072",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel072@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1337,13 +824,6 @@
       "turma": "7B",
       "responsavel": "Responsável Diego",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0073",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel073@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1355,13 +835,6 @@
       "turma": "7B",
       "responsavel": "Responsável Dyogo",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0074",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel074@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1373,13 +846,6 @@
       "turma": "7B",
       "responsavel": "Responsável Edgar",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0075",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel075@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1391,13 +857,6 @@
       "turma": "7B",
       "responsavel": "Responsável Eduardo",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0076",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel076@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1409,13 +868,6 @@
       "turma": "7B",
       "responsavel": "Responsável Eduardo",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0077",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel077@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1427,13 +879,6 @@
       "turma": "7B",
       "responsavel": "Responsável Emilly",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0078",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel078@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1445,13 +890,6 @@
       "turma": "7B",
       "responsavel": "Responsável Giovani",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0079",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel079@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1463,13 +901,6 @@
       "turma": "7B",
       "responsavel": "Responsável Jhonnatan",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0080",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel080@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1481,13 +912,6 @@
       "turma": "7B",
       "responsavel": "Responsável João",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0081",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel081@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1499,13 +923,6 @@
       "turma": "7B",
       "responsavel": "Responsável José",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0082",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel082@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1517,13 +934,6 @@
       "turma": "7B",
       "responsavel": "Responsável Juan",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0083",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel083@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1535,13 +945,6 @@
       "turma": "7B",
       "responsavel": "Responsável Keven",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0084",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel084@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1553,13 +956,6 @@
       "turma": "7B",
       "responsavel": "Responsável Manoel",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0085",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel085@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1571,13 +967,6 @@
       "turma": "7B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0086",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel086@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1589,13 +978,6 @@
       "turma": "7B",
       "responsavel": "Responsável Maria",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0087",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel087@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1607,13 +989,6 @@
       "turma": "7B",
       "responsavel": "Responsável Noemi",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0088",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel088@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1625,13 +1000,6 @@
       "turma": "7B",
       "responsavel": "Responsável Odair",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0089",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel089@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1643,13 +1011,6 @@
       "turma": "7B",
       "responsavel": "Responsável Pamella",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0090",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel090@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1661,13 +1022,6 @@
       "turma": "7B",
       "responsavel": "Responsável Samira",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0091",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel091@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1679,13 +1033,6 @@
       "turma": "7B",
       "responsavel": "Responsável Sophia",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0092",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel092@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1697,13 +1044,6 @@
       "turma": "7B",
       "responsavel": "Responsável Vitor",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0093",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel093@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1715,13 +1055,6 @@
       "turma": "7B",
       "responsavel": "Responsável Vitor",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0094",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel094@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1733,13 +1066,6 @@
       "turma": "7B",
       "responsavel": "Responsável Vitória",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0095",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel095@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1751,13 +1077,6 @@
       "turma": "7B",
       "responsavel": "Responsável Ysabella",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0096",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel096@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1769,13 +1088,6 @@
       "turma": "7A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0097",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel097@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1787,13 +1099,6 @@
       "turma": "7A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0098",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel098@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1805,13 +1110,6 @@
       "turma": "7A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0099",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel099@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1823,13 +1121,6 @@
       "turma": "7A",
       "responsavel": "Responsável CALEBE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0100",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel100@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1841,13 +1132,6 @@
       "turma": "7A",
       "responsavel": "Responsável CARLOS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0101",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel101@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1859,13 +1143,6 @@
       "turma": "7A",
       "responsavel": "Responsável CARLOS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0102",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel102@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1877,13 +1154,6 @@
       "turma": "7A",
       "responsavel": "Responsável CLARICE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0103",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel103@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1895,13 +1165,6 @@
       "turma": "7A",
       "responsavel": "Responsável DAVI",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0104",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel104@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1913,13 +1176,6 @@
       "turma": "7A",
       "responsavel": "Responsável EDUARDO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0105",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel105@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1931,13 +1187,6 @@
       "turma": "7A",
       "responsavel": "Responsável EMANUEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0106",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel106@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1949,13 +1198,6 @@
       "turma": "7A",
       "responsavel": "Responsável ESTELA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0107",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel107@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1967,13 +1209,6 @@
       "turma": "7A",
       "responsavel": "Responsável EVANILDO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0108",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel108@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -1985,13 +1220,6 @@
       "turma": "7A",
       "responsavel": "Responsável EVERSON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0109",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel109@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2003,13 +1231,6 @@
       "turma": "7A",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0110",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel110@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2021,13 +1242,6 @@
       "turma": "7A",
       "responsavel": "Responsável GEOVANNA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0111",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel111@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2039,13 +1253,6 @@
       "turma": "7A",
       "responsavel": "Responsável ISABELLA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0112",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel112@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2057,13 +1264,6 @@
       "turma": "7A",
       "responsavel": "Responsável JAMILLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0113",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel113@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2075,13 +1275,6 @@
       "turma": "7A",
       "responsavel": "Responsável JOAO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0114",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel114@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2093,13 +1286,6 @@
       "turma": "7A",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0115",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel115@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2111,13 +1297,6 @@
       "turma": "7A",
       "responsavel": "Responsável JOELSON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0116",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel116@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2129,13 +1308,6 @@
       "turma": "7A",
       "responsavel": "Responsável KHALIL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0117",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel117@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2147,13 +1319,6 @@
       "turma": "7A",
       "responsavel": "Responsável LUIZ",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0118",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel118@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2165,13 +1330,6 @@
       "turma": "7A",
       "responsavel": "Responsável MATEUS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0119",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel119@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2183,13 +1341,6 @@
       "turma": "7A",
       "responsavel": "Responsável MAYANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0120",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel120@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2201,13 +1352,6 @@
       "turma": "7A",
       "responsavel": "Responsável MILENA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0121",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel121@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2219,13 +1363,6 @@
       "turma": "7A",
       "responsavel": "Responsável NATÃ",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0122",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel122@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2237,13 +1374,6 @@
       "turma": "7A",
       "responsavel": "Responsável NICOLAS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0123",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel123@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2255,13 +1385,6 @@
       "turma": "7A",
       "responsavel": "Responsável PEDRO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0124",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel124@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2273,13 +1396,6 @@
       "turma": "7A",
       "responsavel": "Responsável QUÉZIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0125",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel125@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2291,13 +1407,6 @@
       "turma": "7A",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0126",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel126@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2309,13 +1418,6 @@
       "turma": "7A",
       "responsavel": "Responsável RHIAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0127",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel127@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2327,13 +1429,6 @@
       "turma": "7A",
       "responsavel": "Responsável RHUAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0128",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel128@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2345,13 +1440,6 @@
       "turma": "7A",
       "responsavel": "Responsável THÁRCYLLA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0129",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel129@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2363,13 +1451,6 @@
       "turma": "7A",
       "responsavel": "Responsável VINICIUS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0130",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel130@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2381,13 +1462,6 @@
       "turma": "8A",
       "responsavel": "Responsável ALICE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0131",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel131@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2399,13 +1473,6 @@
       "turma": "8A",
       "responsavel": "Responsável ALIFFER",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0132",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel132@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2417,13 +1484,6 @@
       "turma": "8A",
       "responsavel": "Responsável AMITIELY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0133",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel133@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2435,13 +1495,6 @@
       "turma": "8A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0134",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel134@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2453,13 +1506,6 @@
       "turma": "8A",
       "responsavel": "Responsável ANDRE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0135",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel135@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2471,13 +1517,6 @@
       "turma": "8A",
       "responsavel": "Responsável ANDREZA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0136",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel136@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2489,13 +1528,6 @@
       "turma": "8A",
       "responsavel": "Responsável CINTHIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0137",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel137@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2507,13 +1539,6 @@
       "turma": "8A",
       "responsavel": "Responsável DANILO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0138",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel138@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2525,13 +1550,6 @@
       "turma": "8A",
       "responsavel": "Responsável DAVI",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0139",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel139@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2543,13 +1561,6 @@
       "turma": "8A",
       "responsavel": "Responsável DRIKA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0140",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel140@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2561,13 +1572,6 @@
       "turma": "8A",
       "responsavel": "Responsável ELISABETE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0141",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel141@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2579,13 +1583,6 @@
       "turma": "8A",
       "responsavel": "Responsável EMANUELLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0142",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel142@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2597,13 +1594,6 @@
       "turma": "8A",
       "responsavel": "Responsável ERIVELTON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0143",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel143@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2615,13 +1605,6 @@
       "turma": "8A",
       "responsavel": "Responsável GABRIELLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0144",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel144@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2633,13 +1616,6 @@
       "turma": "8A",
       "responsavel": "Responsável GUSTAVO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0145",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel145@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2651,13 +1627,6 @@
       "turma": "8A",
       "responsavel": "Responsável JANIELY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0146",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel146@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2669,13 +1638,6 @@
       "turma": "8A",
       "responsavel": "Responsável JHEYMISON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0147",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel147@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2687,13 +1649,6 @@
       "turma": "8A",
       "responsavel": "Responsável JOSIEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0148",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel148@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2705,13 +1660,6 @@
       "turma": "8A",
       "responsavel": "Responsável LUCAS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0149",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel149@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2723,13 +1671,6 @@
       "turma": "8A",
       "responsavel": "Responsável LUCAS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0150",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel150@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2741,13 +1682,6 @@
       "turma": "8A",
       "responsavel": "Responsável LUIZ",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0151",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel151@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2759,13 +1693,6 @@
       "turma": "8A",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0152",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel152@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2777,13 +1704,6 @@
       "turma": "8A",
       "responsavel": "Responsável MATHEUS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0153",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel153@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2795,13 +1715,6 @@
       "turma": "8A",
       "responsavel": "Responsável MILENA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0154",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel154@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2813,13 +1726,6 @@
       "turma": "8A",
       "responsavel": "Responsável PEDRO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0155",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel155@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2831,13 +1737,6 @@
       "turma": "8A",
       "responsavel": "Responsável PIETRA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0156",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel156@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2849,13 +1748,6 @@
       "turma": "8A",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0157",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel157@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2867,13 +1759,6 @@
       "turma": "8A",
       "responsavel": "Responsável REINIVAL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0158",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel158@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2885,13 +1770,6 @@
       "turma": "8A",
       "responsavel": "Responsável RYAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0159",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel159@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2903,13 +1781,6 @@
       "turma": "8A",
       "responsavel": "Responsável SAMUEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0160",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel160@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2921,13 +1792,6 @@
       "turma": "8A",
       "responsavel": "Responsável STEPHANY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0161",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel161@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2939,13 +1803,6 @@
       "turma": "8A",
       "responsavel": "Responsável YASMIM",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0162",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel162@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2957,13 +1814,6 @@
       "turma": "8B",
       "responsavel": "Responsável ACENDINO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0163",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel163@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2975,13 +1825,6 @@
       "turma": "8B",
       "responsavel": "Responsável ALAENE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0164",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel164@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -2993,13 +1836,6 @@
       "turma": "8B",
       "responsavel": "Responsável ALEXANDRE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0165",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel165@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3011,13 +1847,6 @@
       "turma": "8B",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0166",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel166@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3029,13 +1858,6 @@
       "turma": "8B",
       "responsavel": "Responsável ARIELLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0167",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel167@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3047,13 +1869,6 @@
       "turma": "8B",
       "responsavel": "Responsável ARTHUR",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0168",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel168@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3065,13 +1880,6 @@
       "turma": "8B",
       "responsavel": "Responsável CARLOS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0169",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel169@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3083,13 +1891,6 @@
       "turma": "8B",
       "responsavel": "Responsável ÉRIKA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0170",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel170@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3101,13 +1902,6 @@
       "turma": "8B",
       "responsavel": "Responsável ESTEFANE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0171",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel171@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3119,13 +1913,6 @@
       "turma": "8B",
       "responsavel": "Responsável FELIPE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0172",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel172@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3137,13 +1924,6 @@
       "turma": "8B",
       "responsavel": "Responsável GABRIELA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0173",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel173@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3155,13 +1935,6 @@
       "turma": "8B",
       "responsavel": "Responsável GUILHERME",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0174",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel174@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3173,13 +1946,6 @@
       "turma": "8B",
       "responsavel": "Responsável GUSTAVO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0175",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel175@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3191,13 +1957,6 @@
       "turma": "8B",
       "responsavel": "Responsável JACIARA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0176",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel176@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3209,13 +1968,6 @@
       "turma": "8B",
       "responsavel": "Responsável JANIEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0177",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel177@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3227,13 +1979,6 @@
       "turma": "8B",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0178",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel178@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3245,13 +1990,6 @@
       "turma": "8B",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0179",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel179@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3263,13 +2001,6 @@
       "turma": "8B",
       "responsavel": "Responsável JOSE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0180",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel180@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3281,13 +2012,6 @@
       "turma": "8B",
       "responsavel": "Responsável JOSE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0181",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel181@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3299,13 +2023,6 @@
       "turma": "8B",
       "responsavel": "Responsável LAIS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0182",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel182@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3317,13 +2034,6 @@
       "turma": "8B",
       "responsavel": "Responsável LAURA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0183",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel183@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3335,13 +2045,6 @@
       "turma": "8B",
       "responsavel": "Responsável LAVÍNIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0184",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel184@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3353,13 +2056,6 @@
       "turma": "8B",
       "responsavel": "Responsável LAYLA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0185",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel185@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3371,13 +2067,6 @@
       "turma": "8B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0186",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel186@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3389,13 +2078,6 @@
       "turma": "8B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0187",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel187@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3407,13 +2089,6 @@
       "turma": "8B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0188",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel188@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3425,13 +2100,6 @@
       "turma": "8B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0189",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel189@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3443,13 +2111,6 @@
       "turma": "8B",
       "responsavel": "Responsável OTÁVIO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0190",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel190@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3461,13 +2122,6 @@
       "turma": "8B",
       "responsavel": "Responsável PEDRO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0191",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel191@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3479,13 +2133,6 @@
       "turma": "8B",
       "responsavel": "Responsável RHUAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0192",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel192@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3497,13 +2144,6 @@
       "turma": "8B",
       "responsavel": "Responsável THAILA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0193",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel193@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3515,13 +2155,6 @@
       "turma": "8B",
       "responsavel": "Responsável WILIAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0194",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel194@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3533,13 +2166,6 @@
       "turma": "8B",
       "responsavel": "Responsável VITÓRIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0195",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel195@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3551,13 +2177,6 @@
       "turma": "9A",
       "responsavel": "Responsável ALESSON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0196",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel196@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3569,13 +2188,6 @@
       "turma": "9A",
       "responsavel": "Responsável ALEX",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0197",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel197@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3587,13 +2199,6 @@
       "turma": "9A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0198",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel198@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3605,13 +2210,6 @@
       "turma": "9A",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0199",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel199@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3623,13 +2221,6 @@
       "turma": "9A",
       "responsavel": "Responsável ANNY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0200",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel200@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3641,13 +2232,6 @@
       "turma": "9A",
       "responsavel": "Responsável BLAINO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0201",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel201@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3659,13 +2243,6 @@
       "turma": "9A",
       "responsavel": "Responsável CAMILA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0202",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel202@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3677,13 +2254,6 @@
       "turma": "9A",
       "responsavel": "Responsável CEZAR",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0203",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel203@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3695,13 +2265,6 @@
       "turma": "9A",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0204",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel204@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3713,13 +2276,6 @@
       "turma": "9A",
       "responsavel": "Responsável HELOISA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0205",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel205@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3731,13 +2287,6 @@
       "turma": "9A",
       "responsavel": "Responsável IDELSON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0206",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel206@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3749,13 +2298,6 @@
       "turma": "9A",
       "responsavel": "Responsável ISA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0207",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel207@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3767,13 +2309,6 @@
       "turma": "9A",
       "responsavel": "Responsável ISADORA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0208",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel208@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3785,13 +2320,6 @@
       "turma": "9A",
       "responsavel": "Responsável ISADORA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0209",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel209@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3803,13 +2331,6 @@
       "turma": "9A",
       "responsavel": "Responsável IZABELLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0210",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel210@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3821,13 +2342,6 @@
       "turma": "9A",
       "responsavel": "Responsável JAMILLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0211",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel211@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3839,13 +2353,6 @@
       "turma": "9A",
       "responsavel": "Responsável JHON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0212",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel212@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3857,13 +2364,6 @@
       "turma": "9A",
       "responsavel": "Responsável JULIANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0213",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel213@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3875,13 +2375,6 @@
       "turma": "9A",
       "responsavel": "Responsável KETLYN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0214",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel214@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3893,13 +2386,6 @@
       "turma": "9A",
       "responsavel": "Responsável KEVELLYN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0215",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel215@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3911,13 +2397,6 @@
       "turma": "9A",
       "responsavel": "Responsável LUAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0216",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel216@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3929,13 +2408,6 @@
       "turma": "9A",
       "responsavel": "Responsável LUCCA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0217",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel217@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3947,13 +2419,6 @@
       "turma": "9A",
       "responsavel": "Responsável LUIZ",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0218",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel218@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3965,13 +2430,6 @@
       "turma": "9A",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0219",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel219@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -3983,13 +2441,6 @@
       "turma": "9A",
       "responsavel": "Responsável MICHELLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0220",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel220@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -4001,13 +2452,6 @@
       "turma": "9A",
       "responsavel": "Responsável PAULA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0221",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel221@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -4019,13 +2463,6 @@
       "turma": "9A",
       "responsavel": "Responsável YAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0222",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel222@email.com",
       "criadoEm": "2025-08-20T11:57:26.307Z"
     },
@@ -4037,13 +2474,6 @@
       "turma": "9B",
       "responsavel": "Responsável AMANDA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0223",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel223@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4055,13 +2485,6 @@
       "turma": "9B",
       "responsavel": "Responsável ANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0224",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel224@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4073,13 +2496,6 @@
       "turma": "9B",
       "responsavel": "Responsável ANTÔNIO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0225",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel225@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4091,13 +2507,6 @@
       "turma": "9B",
       "responsavel": "Responsável DANIEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0226",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel226@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4109,13 +2518,6 @@
       "turma": "9B",
       "responsavel": "Responsável DANILO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0227",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel227@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4127,13 +2529,6 @@
       "turma": "9B",
       "responsavel": "Responsável DOUGLAS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0228",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel228@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4145,13 +2540,6 @@
       "turma": "9B",
       "responsavel": "Responsável EMILY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0229",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel229@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4163,13 +2551,6 @@
       "turma": "9B",
       "responsavel": "Responsável EVELIN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0230",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel230@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4181,13 +2562,6 @@
       "turma": "9B",
       "responsavel": "Responsável FRANCISCO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0231",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel231@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4199,13 +2573,6 @@
       "turma": "9B",
       "responsavel": "Responsável HELEN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0232",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel232@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4217,13 +2584,6 @@
       "turma": "9B",
       "responsavel": "Responsável ISAAC",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0233",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel233@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4235,13 +2595,6 @@
       "turma": "9B",
       "responsavel": "Responsável ITALO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0234",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel234@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4253,13 +2606,6 @@
       "turma": "9B",
       "responsavel": "Responsável JAMYLLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0235",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel235@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4271,13 +2617,6 @@
       "turma": "9B",
       "responsavel": "Responsável JARDSON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0236",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel236@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4289,13 +2628,6 @@
       "turma": "9B",
       "responsavel": "Responsável JOICE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0237",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel237@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4307,13 +2639,6 @@
       "turma": "9B",
       "responsavel": "Responsável JULIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0238",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel238@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4325,13 +2650,6 @@
       "turma": "9B",
       "responsavel": "Responsável KAROLINE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0239",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel239@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4343,13 +2661,6 @@
       "turma": "9B",
       "responsavel": "Responsável KESSILYN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0240",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel240@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4361,13 +2672,6 @@
       "turma": "9B",
       "responsavel": "Responsável KEVILIN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0241",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel241@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4379,13 +2683,6 @@
       "turma": "9B",
       "responsavel": "Responsável MANOELLE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0242",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel242@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4397,13 +2694,6 @@
       "turma": "9B",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0243",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel243@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4415,13 +2705,6 @@
       "turma": "9B",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0244",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel244@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4433,13 +2716,6 @@
       "turma": "9B",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0245",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel245@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4451,13 +2727,6 @@
       "turma": "9B",
       "responsavel": "Responsável MATHEUS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0246",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel246@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4469,13 +2738,6 @@
       "turma": "9B",
       "responsavel": "Responsável PIETRO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0247",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel247@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4487,13 +2749,6 @@
       "turma": "9B",
       "responsavel": "Responsável STHEFANY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0248",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel248@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4505,13 +2760,6 @@
       "turma": "9B",
       "responsavel": "Responsável VICENTE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0249",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel249@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4523,13 +2771,6 @@
       "turma": "9E",
       "responsavel": "Responsável BRENA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0250",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel250@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4541,13 +2782,6 @@
       "turma": "9E",
       "responsavel": "Responsável DARLAM",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0251",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel251@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4559,13 +2793,6 @@
       "turma": "9E",
       "responsavel": "Responsável ENZO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0252",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel252@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4577,13 +2804,6 @@
       "turma": "9E",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0253",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel253@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4595,13 +2815,6 @@
       "turma": "9E",
       "responsavel": "Responsável GEOVANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0254",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel254@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4613,13 +2826,6 @@
       "turma": "9E",
       "responsavel": "Responsável HELOÁ",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0255",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel255@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4631,13 +2837,6 @@
       "turma": "9E",
       "responsavel": "Responsável HELOÍZA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0256",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel256@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4649,13 +2848,6 @@
       "turma": "9E",
       "responsavel": "Responsável ICARO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0257",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel257@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4667,13 +2859,6 @@
       "turma": "9E",
       "responsavel": "Responsável JACKSON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0258",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel258@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4685,13 +2870,6 @@
       "turma": "9E",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0259",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel259@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4703,13 +2881,6 @@
       "turma": "9E",
       "responsavel": "Responsável KAUANNE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0260",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel260@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4721,13 +2892,6 @@
       "turma": "9E",
       "responsavel": "Responsável KHEREN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0261",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel261@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4739,13 +2903,6 @@
       "turma": "9E",
       "responsavel": "Responsável LORENA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0262",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel262@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4757,13 +2914,6 @@
       "turma": "9E",
       "responsavel": "Responsável LOANY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0263",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel263@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4775,13 +2925,6 @@
       "turma": "9E",
       "responsavel": "Responsável NAUENE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0264",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel264@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4793,13 +2936,6 @@
       "turma": "9E",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0265",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel265@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4811,13 +2947,6 @@
       "turma": "9E",
       "responsavel": "Responsável RENAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0266",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel266@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4829,13 +2958,6 @@
       "turma": "9E",
       "responsavel": "Responsável STHEPHANY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0267",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel267@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4847,13 +2969,6 @@
       "turma": "9E",
       "responsavel": "Responsável VALQUIRIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0268",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel268@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4865,13 +2980,6 @@
       "turma": "9E",
       "responsavel": "Responsável VALTAIR",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0269",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel269@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4883,13 +2991,6 @@
       "turma": "9E",
       "responsavel": "Responsável VICTOR",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0270",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel270@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4901,13 +3002,6 @@
       "turma": "9E",
       "responsavel": "Responsável VICTOR",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0271",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel271@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4919,13 +3013,6 @@
       "turma": "9E",
       "responsavel": "Responsável VITOR",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0272",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel272@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4937,13 +3024,6 @@
       "turma": "9E",
       "responsavel": "Responsável WASHINGTON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0273",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel273@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4955,13 +3035,6 @@
       "turma": "1B",
       "responsavel": "Responsável ALAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0274",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel274@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4973,13 +3046,6 @@
       "turma": "1B",
       "responsavel": "Responsável ALANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0275",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel275@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -4991,13 +3057,6 @@
       "turma": "1B",
       "responsavel": "Responsável ALEXSANDRO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0276",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel276@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5009,13 +3068,6 @@
       "turma": "1B",
       "responsavel": "Responsável EMERSON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0277",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel277@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5027,13 +3079,6 @@
       "turma": "1B",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0278",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel278@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5045,13 +3090,6 @@
       "turma": "1B",
       "responsavel": "Responsável GABRIELLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0279",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel279@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5063,13 +3101,6 @@
       "turma": "1B",
       "responsavel": "Responsável HALLISON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0280",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel280@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5081,13 +3112,6 @@
       "turma": "1B",
       "responsavel": "Responsável INGRID",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0281",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel281@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5099,13 +3123,6 @@
       "turma": "1B",
       "responsavel": "Responsável JUAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0282",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel282@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5117,13 +3134,6 @@
       "turma": "1B",
       "responsavel": "Responsável JULIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0283",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel283@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5135,13 +3145,6 @@
       "turma": "1B",
       "responsavel": "Responsável JULIANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0284",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel284@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5153,13 +3156,6 @@
       "turma": "1B",
       "responsavel": "Responsável KAUANY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0285",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel285@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5171,13 +3167,6 @@
       "turma": "1B",
       "responsavel": "Responsável LARISSA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0286",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel286@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5189,13 +3178,6 @@
       "turma": "1B",
       "responsavel": "Responsável LARISSA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0287",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel287@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5207,13 +3189,6 @@
       "turma": "1B",
       "responsavel": "Responsável LUCAS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0288",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel288@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5225,13 +3200,6 @@
       "turma": "1B",
       "responsavel": "Responsável LUIZ",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0289",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel289@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5243,13 +3211,6 @@
       "turma": "1B",
       "responsavel": "Responsável MAILANE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0290",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel290@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5261,13 +3222,6 @@
       "turma": "1B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0291",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel291@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5279,13 +3233,6 @@
       "turma": "1B",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0292",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel292@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5297,13 +3244,6 @@
       "turma": "1B",
       "responsavel": "Responsável MAURICIO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0293",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel293@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5315,13 +3255,6 @@
       "turma": "1B",
       "responsavel": "Responsável NATHALIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0294",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel294@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5333,13 +3266,6 @@
       "turma": "1B",
       "responsavel": "Responsável NATHAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0295",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel295@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5351,13 +3277,6 @@
       "turma": "1B",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0296",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel296@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5369,13 +3288,6 @@
       "turma": "1B",
       "responsavel": "Responsável SOFIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0297",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel297@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5387,13 +3299,6 @@
       "turma": "1B",
       "responsavel": "Responsável VICTOR",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0298",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel298@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5405,13 +3310,6 @@
       "turma": "1B",
       "responsavel": "Responsável VITÓRIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0299",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel299@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5423,13 +3321,6 @@
       "turma": "1B",
       "responsavel": "Responsável YAGO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0300",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel300@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5441,13 +3332,6 @@
       "turma": "1B",
       "responsavel": "Responsável YOHHAM",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0301",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel301@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5459,13 +3343,6 @@
       "turma": "1C",
       "responsavel": "Responsável ALESSANDRA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0302",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel302@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5477,13 +3354,6 @@
       "turma": "1C",
       "responsavel": "Responsável ANTONIEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0303",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel303@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5495,13 +3365,6 @@
       "turma": "1C",
       "responsavel": "Responsável ARTHUR",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0304",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel304@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5513,13 +3376,6 @@
       "turma": "1C",
       "responsavel": "Responsável BRUNO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0305",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel305@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5531,13 +3387,6 @@
       "turma": "1C",
       "responsavel": "Responsável DAVI",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0306",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel306@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5549,13 +3398,6 @@
       "turma": "1C",
       "responsavel": "Responsável DUAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0307",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel307@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5567,13 +3409,6 @@
       "turma": "1C",
       "responsavel": "Responsável EMANUELY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0308",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel308@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5585,13 +3420,6 @@
       "turma": "1C",
       "responsavel": "Responsável ISADORA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0309",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel309@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5603,13 +3431,6 @@
       "turma": "1C",
       "responsavel": "Responsável JAIR",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0310",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel310@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5621,13 +3442,6 @@
       "turma": "1C",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0311",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel311@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5639,13 +3453,6 @@
       "turma": "1C",
       "responsavel": "Responsável JOÂO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0312",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel312@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5657,13 +3464,6 @@
       "turma": "1C",
       "responsavel": "Responsável JOÃO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0313",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel313@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5675,13 +3475,6 @@
       "turma": "1C",
       "responsavel": "Responsável JULIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0314",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel314@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5693,13 +3486,6 @@
       "turma": "1C",
       "responsavel": "Responsável KEMILLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0315",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel315@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5711,13 +3497,6 @@
       "turma": "1C",
       "responsavel": "Responsável KEMILLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0316",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel316@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5729,13 +3508,6 @@
       "turma": "1C",
       "responsavel": "Responsável KEVER",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0317",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel317@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5747,13 +3519,6 @@
       "turma": "1C",
       "responsavel": "Responsável LEONARDO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0318",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel318@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5765,13 +3530,6 @@
       "turma": "1C",
       "responsavel": "Responsável LUCAS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0319",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel319@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5783,13 +3541,6 @@
       "turma": "1C",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0320",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel320@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5801,13 +3552,6 @@
       "turma": "1C",
       "responsavel": "Responsável MARCOS",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0321",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel321@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5819,13 +3563,6 @@
       "turma": "1C",
       "responsavel": "Responsável MARIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0322",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel322@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5837,13 +3574,6 @@
       "turma": "1C",
       "responsavel": "Responsável MARIANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0323",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel323@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5855,13 +3585,6 @@
       "turma": "1C",
       "responsavel": "Responsável MARIANI",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0324",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel324@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5873,13 +3596,6 @@
       "turma": "1C",
       "responsavel": "Responsável MELISSA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0325",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel325@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5891,13 +3607,6 @@
       "turma": "1C",
       "responsavel": "Responsável RAFAEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0326",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel326@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5909,13 +3618,6 @@
       "turma": "1C",
       "responsavel": "Responsável RUAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0327",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel327@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5927,13 +3629,6 @@
       "turma": "1C",
       "responsavel": "Responsável STEPHANIE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0328",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel328@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5945,13 +3640,6 @@
       "turma": "1C",
       "responsavel": "Responsável TALYA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0329",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel329@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5963,13 +3651,6 @@
       "turma": "1C",
       "responsavel": "Responsável YOSBEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0330",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel330@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5981,13 +3662,6 @@
       "turma": "2A",
       "responsavel": "Responsável ARIADINE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0331",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel331@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -5999,13 +3673,6 @@
       "turma": "2A",
       "responsavel": "Responsável BRUNA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0332",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel332@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6017,13 +3684,6 @@
       "turma": "2A",
       "responsavel": "Responsável CAROLINE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0333",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel333@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6035,13 +3695,6 @@
       "turma": "2A",
       "responsavel": "Responsável EDUARDO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0334",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel334@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6053,13 +3706,6 @@
       "turma": "2A",
       "responsavel": "Responsável EMANUELLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0335",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel335@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6071,13 +3717,6 @@
       "turma": "2A",
       "responsavel": "Responsável ESTEFANY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0336",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel336@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6089,13 +3728,6 @@
       "turma": "2A",
       "responsavel": "Responsável GABRIEL",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0337",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel337@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6107,13 +3739,6 @@
       "turma": "2A",
       "responsavel": "Responsável GABRIELLY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0338",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel338@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6125,13 +3750,6 @@
       "turma": "2A",
       "responsavel": "Responsável GIOVANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0339",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel339@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6143,13 +3761,6 @@
       "turma": "2A",
       "responsavel": "Responsável IASMIM",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0340",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel340@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6161,13 +3772,6 @@
       "turma": "2A",
       "responsavel": "Responsável JANAINA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0341",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel341@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6179,13 +3783,6 @@
       "turma": "2A",
       "responsavel": "Responsável JENNIFER",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0342",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel342@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6197,13 +3794,6 @@
       "turma": "2A",
       "responsavel": "Responsável JHÚLIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0343",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel343@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6215,13 +3805,6 @@
       "turma": "2A",
       "responsavel": "Responsável JOYCE",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0344",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel344@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6233,13 +3816,6 @@
       "turma": "2A",
       "responsavel": "Responsável JULIANA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0345",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel345@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6251,13 +3827,6 @@
       "turma": "2A",
       "responsavel": "Responsável LUAN",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0346",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel346@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6269,13 +3838,6 @@
       "turma": "2A",
       "responsavel": "Responsável NATHALY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0347",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel347@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6287,13 +3849,6 @@
       "turma": "2A",
       "responsavel": "Responsável PABLO",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0348",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel348@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6305,13 +3860,6 @@
       "turma": "2A",
       "responsavel": "Responsável PÉROLA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0349",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel349@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6323,13 +3871,6 @@
       "turma": "2A",
       "responsavel": "Responsável RICHARLISON",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0350",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel350@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6341,13 +3882,6 @@
       "turma": "2A",
       "responsavel": "Responsável SHTEFANNY",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0351",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel351@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     },
@@ -6359,13 +3893,6 @@
       "turma": "2A",
       "responsavel": "Responsável VITORIA",
       "cpf_responsavel": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "telefone": "(11) 99999-0352",
->>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
-=======
->>>>>>> 84f14b8738d1023f6421e935c877eb1de1dbb84d
       "email": "responsavel352@email.com",
       "criadoEm": "2025-08-20T11:57:26.308Z"
     }
