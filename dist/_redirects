@@ -1,0 +1,4 @@
+# Redirecionamentos do Sistema Disciplinar
+/  /sistema-disciplinar  301
+/sistema-disciplinar/api/*  /.netlify/functions/api/:splat  200
+/sistema-disciplinar/*  /sistema-disciplinar/index.html  200
