@@ -27,6 +27,7 @@ class GitHubDataSync {
     
     // Inicializar autenticação
     initAuth() {
+<<<<<<< HEAD
         // Tentar token do usuário primeiro
         this.token = localStorage.getItem('github_token');
         
@@ -51,6 +52,9 @@ class GitHubDataSync {
 >>>>>>> cb12ad9e93ff1995c42497f25e90cf5802c916a1
         }
         
+=======
+        this.token = localStorage.getItem('github_token');
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
         this.userEmail = localStorage.getItem('github_email') || 'sistema@escola.edu.br';
         this.userName = localStorage.getItem('github_name') || 'Sistema Disciplinar';
         
@@ -469,6 +473,7 @@ if (typeof module !== 'undefined' && module.exports) {
         }
     }
 
+<<<<<<< HEAD
     // Sincronizar dados automaticamente (bidirecional)
     async sincronizarAutomatico() {
         try {
@@ -493,6 +498,14 @@ if (typeof module !== 'undefined' && module.exports) {
             
             // Senão, carregar dados do GitHub
             console.log('📥 Baixando dados do GitHub...');
+=======
+    // Sincronizar dados automaticamente
+    async sincronizarAutomatico() {
+        try {
+            console.log('🔄 Sincronizando dados do GitHub...');
+            
+            // Carregar dados principais
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
             const response = await fetch(`${this.baseUrl}/data/db.json?t=${Date.now()}`);
             if (response.ok) {
                 const dadosGitHub = await response.json();
@@ -503,7 +516,11 @@ if (typeof module !== 'undefined' && module.exports) {
                     detail: dadosGitHub 
                 }));
                 
+<<<<<<< HEAD
                 console.log('✅ Dados baixados do GitHub');
+=======
+                console.log('✅ Dados sincronizados automaticamente');
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
                 return dadosGitHub;
             }
             
@@ -553,4 +570,8 @@ setInterval(() => {
     if (window.gitHubSync.podeEscrever()) {
         window.gitHubSync.sincronizarAutomatico().catch(console.error);
     }
+<<<<<<< HEAD
 }, 3 * 60 * 1000);
+=======
+}, 3 * 60 * 1000);
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e

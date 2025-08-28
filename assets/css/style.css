@@ -119,6 +119,7 @@ body {
     transform: scale(1.05);
 }
 
+<<<<<<< HEAD
 /* Botão Logout */
 .btn-logout {
     padding: 8px 16px;
@@ -154,6 +155,8 @@ body {
     font-size: 12px;
 }
 
+=======
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
 /* ============================================
    LAYOUT PRINCIPAL
 ============================================ */

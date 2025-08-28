@@ -3,7 +3,11 @@ async function carregarDadosFrequenciaCSV() {
   try {
     console.log('📥 Carregando dados de frequência do arquivo CSV...');
     
+<<<<<<< HEAD
     const response = await fetch('./assets/js/dados-frequencia-agosto.js');
+=======
+    const response = await fetch('../assets/js/dados-frequencia-agosto.js');
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
     if (!response.ok) {
       throw new Error('Erro ao carregar arquivo: ' + response.status);
     }
@@ -181,7 +185,11 @@ window.buscarFrequenciaPorCodigo = async function buscarFrequenciaPorCodigo(codi
   try {
     console.log(`🔍 Buscando frequência para aluno: ${codigoAluno}`);
     
+<<<<<<< HEAD
     const response = await fetch('./assets/js/dados-frequencia-agosto.js');
+=======
+    const response = await fetch('../assets/js/dados-frequencia-agosto.js');
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
     if (!response.ok) {
       throw new Error('Erro ao carregar arquivo: ' + response.status);
     }

@@ -701,7 +701,10 @@
     <script src="../assets/js/main.js" defer></script>
     <script src="../assets/js/gestao.js" defer></script>
     <script src="../assets/js/medidas.js" defer></script>
+<<<<<<< HEAD
     <script src="../assets/js/real-time-sync.js" defer></script>
+=======
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
     
     <script>
         // Inicialização da página
@@ -863,18 +866,28 @@
             }
         }
 
+<<<<<<< HEAD
         // Função de inicialização otimizada com carregamento progressivo
         async function inicializarMedidasDisciplinares() {
             try {
                 showMessage('Carregando módulo de medidas...', 'success');
                 
                 // Definir data atual no formulário de medidas (operação rápida)
+=======
+        // Função de inicialização específica
+        async function inicializarMedidasDisciplinares() {
+            try {
+                showMessage('Carregando módulo de medidas...', 'loading');
+                
+                // Definir data atual no formulário de medidas
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
                 const hoje = new Date().toISOString().split('T')[0];
                 const dataMedida = document.getElementById('dataMedida');
                 if (dataMedida) {
                     dataMedida.value = hoje;
                 }
                 
+<<<<<<< HEAD
                 // Verificar se sistema está pronto (sem espera desnecessária)
                 if (!window.localDb.loaded) {
                     showMessage('⚠️ Sistema Local não conectado - aguardando...', 'warning');
@@ -925,6 +938,55 @@
                     }
                 }, 100);
                 
+=======
+                // Aguardar Sistema Local
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                if (window.localDb.loaded) {
+                    await carregarSelectsAlunos();
+                    await carregarTurmasEAlunos();
+                    
+                    // Inicializar notas disciplinares para alunos que não possuem
+                    try {
+                        console.log('Verificando notas disciplinares...');
+                        await inicializarNotasDisciplinares();
+                    } catch (error) {
+                        console.log('Erro ao inicializar notas disciplinares:', error);
+                    }
+                    
+                    if (typeof carregarRegistrosRecentes === 'function') {
+                        console.log('📋 Carregando registros recentes...');
+                        await carregarRegistrosRecentes();
+                    } else if (typeof window.carregarRegistrosRecentes === 'function') {
+                        console.log('📋 Carregando registros recentes (window)...');
+                        await window.carregarRegistrosRecentes();
+                    } else {
+                        console.warn('❌ Função carregarRegistrosRecentes não encontrada');
+                    }
+                    if (typeof carregarEstatisticasMedidas === 'function') {
+                        console.log('📊 Carregando estatísticas...');
+                        await carregarEstatisticasMedidas();
+                    } else if (typeof window.carregarEstatisticasMedidas === 'function') {
+                        console.log('📊 Carregando estatísticas (window)...');
+                        await window.carregarEstatisticasMedidas();
+                    } else {
+                        console.warn('❌ Função carregarEstatisticasMedidas não encontrada');
+                    }
+
+                    // Carregar alertas
+                    if (typeof carregarAlertas === 'function') {
+                        console.log('🚨 Carregando alertas...');
+                        await carregarAlertas();
+                    } else {
+                        console.warn('❌ Função carregarAlertas não encontrada');
+                    }
+
+                    showMessage('✅ Módulo de medidas carregado!', 'success');
+                } else {
+                    showMessage('⚠️ Sistema Local não conectado - funcionalidade limitada', 'error');
+                    carregarDadosDemoMedidas();
+                }
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
             } catch (error) {
                 console.error('Erro ao inicializar medidas:', error);
                 showMessage('Erro ao carregar módulo de medidas', 'error');

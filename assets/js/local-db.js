@@ -8,11 +8,16 @@ class LocalDatabase {
       : 'https://raw.githubusercontent.com/AttilioJohner/sistema-disciplinar-revisado/main/data/db.json';
   }
 
+<<<<<<< HEAD
   // Carregar dados do localStorage primeiro, depois do arquivo JSON como backup
+=======
+  // Carregar dados do arquivo JSON
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
   async loadData() {
     try {
       console.log('🔄 Carregando banco de dados local...');
       
+<<<<<<< HEAD
       // Primeiro tenta carregar do localStorage
       const localData = localStorage.getItem('db');
       if (localData) {
@@ -35,6 +40,8 @@ class LocalDatabase {
       
       // Se não há dados no localStorage, carrega do arquivo remoto
       console.log('📡 Carregando dados iniciais do arquivo remoto...');
+=======
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
       const response = await fetch(this.baseUrl);
       if (!response.ok) {
         throw new Error(`Erro ao carregar dados: ${response.status}`);
@@ -43,15 +50,22 @@ class LocalDatabase {
       this.data = await response.json();
       this.loaded = true;
       
+<<<<<<< HEAD
       console.log('✅ Banco de dados local carregado do arquivo remoto:', {
+=======
+      console.log('✅ Banco de dados local carregado:', {
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
         alunos: Object.keys(this.data.alunos || {}).length,
         medidas: Object.keys(this.data.medidas_disciplinares || {}).length,
         frequencia: Object.keys(this.data.frequencia_diaria || {}).length
       });
       
+<<<<<<< HEAD
       // Salva no localStorage para próxima vez
       await this.saveData();
       
+=======
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
       return this.data;
     } catch (error) {
       console.error('❌ Erro ao carregar banco de dados local:', error);
@@ -89,6 +103,7 @@ class LocalDatabase {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
   }
 
+<<<<<<< HEAD
   // Salvar dados no localStorage
   async saveData() {
     try {
@@ -110,6 +125,13 @@ class LocalDatabase {
       console.error('❌ Erro ao salvar dados:', error);
       return false;
     }
+=======
+  // Salvar dados (simulação - em produção seria read-only)
+  async saveData() {
+    console.log('💾 Dados seriam salvos:', this.data);
+    // Em um sistema real, enviaria para GitHub via API ou webhook
+    return true;
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
   }
 }
 
@@ -255,22 +277,33 @@ class LocalDocument {
 }
 
 class LocalQuery {
+<<<<<<< HEAD
   constructor(db, collectionName, filters = [], limitCount = null) {
     this.db = db;
     this.collectionName = collectionName;
     this.filters = filters;
     this.limitCount = limitCount;
+=======
+  constructor(db, collectionName, filters = []) {
+    this.db = db;
+    this.collectionName = collectionName;
+    this.filters = filters;
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
   }
 
   where(field, operator, value) {
     return new LocalQuery(this.db, this.collectionName, [
       ...this.filters,
       { field, operator, value }
+<<<<<<< HEAD
     ], this.limitCount);
   }
 
   limit(count) {
     return new LocalQuery(this.db, this.collectionName, this.filters, count);
+=======
+    ]);
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
   }
 
   async get() {
@@ -309,11 +342,14 @@ class LocalQuery {
       });
     }
 
+<<<<<<< HEAD
     // Aplicar limit se especificado
     if (this.limitCount !== null && this.limitCount > 0) {
       results = results.slice(0, this.limitCount);
     }
 
+=======
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
     return {
       docs: results,
       size: results.length,

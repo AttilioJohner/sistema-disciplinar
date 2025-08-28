@@ -60,13 +60,18 @@
               <h3>👥 Importar Gestão de Alunos</h3>
             </div>
             <div class="card-content">
+<<<<<<< HEAD
               <p><strong>Estrutura esperada (colunas A-H):</strong></p>
+=======
+              <p><strong>Estrutura esperada (colunas A-F):</strong></p>
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
               <ul style="font-size: 14px; margin: 10px 0;">
                 <li><strong>A:</strong> Código (matrícula)</li>
                 <li><strong>B:</strong> Nome Completo</li>
                 <li><strong>C:</strong> Turma</li>
                 <li><strong>D:</strong> Responsável</li>
                 <li><strong>E:</strong> CPF do Responsável</li>
+<<<<<<< HEAD
                 <li><strong>F:</strong> Telefone 1</li>
                 <li><strong>G:</strong> Telefone 2</li>
                 <li><strong>H:</strong> Email do Responsável</li>
@@ -84,6 +89,16 @@
               <p style="font-size: 12px; color: #666; margin-top: 5px;">
                 ⚠️ <strong>Atenção:</strong> Esta operação substitui TODOS os alunos pelos dados do CSV
               </p>
+=======
+                <li><strong>F:</strong> Telefone do Responsável</li>
+              </ul>
+              
+              <input type="file" id="fileAlunos" accept=".xlsx,.xls,.csv" style="margin: 10px 0;">
+              <br>
+              <button id="btnImportarAlunos" class="btn btn-primary" disabled>
+                📥 Importar Alunos
+              </button>
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
               
               <div id="previewAlunos" style="display:none; margin-top: 15px;">
                 <h4>Preview dos dados:</h4>
@@ -110,10 +125,13 @@
                 <li><strong>H:</strong> Nr da Medida</li>
               </ul>
               
+<<<<<<< HEAD
               <div style="background: #e3f2fd; padding: 10px; border-radius: 4px; margin: 10px 0; font-size: 13px;">
                 <strong>📝 Dica para CSV:</strong> Salve o arquivo CSV com codificação UTF-8 para preservar acentos e caracteres especiais (ç, ã, é, etc.)
               </div>
               
+=======
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
               <input type="file" id="fileMedidas" accept=".xlsx,.xls,.csv" style="margin: 10px 0;">
               <br>
               <button id="btnImportarMedidas" class="btn btn-primary" disabled>
@@ -128,6 +146,7 @@
           </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Ferramentas de Limpeza -->
         <div class="card">
           <div class="card-header">
@@ -150,6 +169,12 @@
         <div class="card">
           <div class="card-header">
             <h3>📋 Log de Operações</h3>
+=======
+        <!-- Log de Importação -->
+        <div class="card">
+          <div class="card-header">
+            <h3>📋 Log de Importação</h3>
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
           </div>
           <div class="card-content">
             <div id="logImportacao" style="background: #f5f5f5; padding: 10px; border-radius: 4px; min-height: 100px; font-family: monospace; font-size: 12px; white-space: pre-wrap;"></div>

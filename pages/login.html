@@ -90,6 +90,7 @@
     // Helpers de mensagem
     function msgOk(t){ if (typeof showMessage==='function') showMessage(t,'success'); else alert(t) }
     function msgErro(t){ if (typeof showMessage==='function') showMessage(t,'error'); else alert(t) }
+<<<<<<< HEAD
     
     // Credenciais válidas como fallback
     const validCredentials = [
@@ -103,6 +104,8 @@
     function isValidCredential(email, password) {
       return validCredentials.some(cred => cred.email === email && cred.password === password);
     }
+=======
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
 
     function atualizarUI(user){
       const container = document.getElementById('loginContainer');
@@ -140,6 +143,7 @@
 
       btn.disabled = true; btn.textContent = '⏳ Entrando...';
       try {
+<<<<<<< HEAD
         console.log('🔑 Tentando login com:', { email, senha: senha.length + ' caracteres' });
         
         // Primeiro, verificar credenciais básicas
@@ -179,6 +183,17 @@
         }, 1000);
       } catch (err){
         console.error('❌ Erro de login:', err);
+=======
+        await window.localAuth.setPersistence(
+          lembrar ? firebase.auth.Auth.Persistence.LOCAL
+                  : firebase.auth.Auth.Persistence.SESSION
+        );
+        await window.localAuth.signInWithEmailAndPassword(email, senha);
+        msgOk('✅ Login realizado!');
+        window.location.href = '../index.html';
+      } catch (err){
+        console.error(err);
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
         msgErro('❌ Falha no login: ' + (err?.message || err));
       } finally {
         btn.disabled = false; btn.textContent = '🔐 Entrar no Sistema';

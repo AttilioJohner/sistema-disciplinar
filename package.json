@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "sistema-disciplinar",
   "version": "2.0.0",
   "description": "Sistema Disciplinar com NeonDB e Netlify",
@@ -20,3 +21,23 @@
     "rimraf": "^5.0.0"
   }
 }
+=======
+  "name": "sistema-disciplinar-revisado",
+  "version": "1.0.0",
+  "description": "Dashboard para gestão disciplinar escolar: alunos, medidas, relatórios e análises.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e

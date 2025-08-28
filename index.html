@@ -60,7 +60,11 @@
         <div class="sidebar-title">Ferramentas</div>
         <a href="pages/configuracoes.html" class="sidebar-item"><span class="sidebar-icon">⚙️</span><span class="sidebar-text">Configurações</span></a>
         <a href="pages/comunicacao.html" class="sidebar-item"><span class="sidebar-icon">📱</span><span class="sidebar-text">Comunicação</span></a>
+<<<<<<< HEAD
         <a href="#" id="sidebarLogout" class="sidebar-item"><span class="sidebar-icon">🚪</span><span class="sidebar-text">Logout</span></a>
+=======
+        <a href="pages/login.html" class="sidebar-item"><span class="sidebar-icon">🔐</span><span class="sidebar-text">Login/Logout</span></a>
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
       </div>
     </div>
 
@@ -185,6 +189,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
     // Verificar fallback de login antes do requireAuth
     const loginFallback = localStorage.getItem('loginSuccess');
     if (loginFallback && !window.localAuth?.getCurrentUser()) {
@@ -213,6 +218,8 @@
       }
     }
     
+=======
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
     requireAuth({
       loginPath: 'pages/login.html',
       onAuth: (user) => {
@@ -223,6 +230,7 @@
           }
         }
 
+<<<<<<< HEAD
         // Função de logout compatible com local-auth
         const btn = document.getElementById('btnLogout');
         if (btn) {
@@ -266,6 +274,10 @@
             }
           });
         }
+=======
+        const btn = document.getElementById('btnLogout');
+        if (btn) btn.addEventListener('click', () => logout('pages/login.html'));
+>>>>>>> 97fc6879a73eb779770aaa1fce2f0abb666a7c4e
 
         // === Toggle "Alunos Cadastrados" ===
         const toggleBtn = document.getElementById('toggleAlunosBtn');
